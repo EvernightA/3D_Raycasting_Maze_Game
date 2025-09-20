@@ -2,20 +2,25 @@ CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror
 
-NAME = cub3D 
+NAME = ../srcs/cub3D 
 
-MLXFLAGS =  -Lminilibx-linux ./minilibx-linux/libmlx_Linux.a -lX11 -lXext
+MLXFLAGS =  -Lminilibx-linux ../minilibx-linux/libmlx_Linux.a ../libft/libft.a -lX11 -lXext
 
-SRCS = ./srcs/main.c \
+LIBFT = ../libft/libft.a
+
+SRCS = ../srcs/main.c \
+	   ../srcs/parse.c
 
 OBJ = $(SRCS:%.c=%.o)
 
-MLX = ./minilibx-linux/libmlx_Linux.a
+MLX = ../minilibx-linux/libmlx_Linux.a
+
+MINILIBX = ../minilibx-linux/
 
 all : $(NAME)
 
 $(LIBFT):
-	make -C ./libft
+	make -C ../libft
 
 $(MLX) :
 	make -C $(MINILIBX)
@@ -28,11 +33,11 @@ $(NAME) : $(OBJ) $(LIBFT) $(MLX)
 
 clean:
 	make clean -C $(MINILIBX)
-	make clean -C ./libft
+	make clean -C ../libft
 	rm -f $(OBJ)
 
 fclean: clean
-	make fclean -C ./libft
+	make fclean -C ../libft
 	rm -f $(NAME)
 
 re : fclean all
