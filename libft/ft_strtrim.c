@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 11:01:26 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/03/19 11:23:32 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/09/20 19:37:18 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 	int		len;
 
 	i = 0;
+	if (!s1)
+		return (NULL);
 	while (ft_is_in_set(s1[i], set))
 		i++;
 	last = ft_strlen (s1) - 1;

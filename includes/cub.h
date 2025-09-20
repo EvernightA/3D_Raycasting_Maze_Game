@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 08:58:59 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/09/20 13:01:04 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/09/20 19:49:18 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,13 @@
 
 typedef struct s_tex
 {
-	char *north;
-	char *south;
-	char *east;
-	char *west;
+	int		completed;
+	char 	*north;
+	char 	*south;
+	char 	*east;
+	char 	*west;
+	char	*c_rgb;
+	char	*f_rgb;
 } t_tex;
 
 #endif
