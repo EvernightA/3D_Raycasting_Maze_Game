@@ -1,6 +1,6 @@
 [ ] parsing
 
-## Error handling	
+## Error handling
 [ ] Your program must take as a first argument a scene description file with the .cub
 	extension.
 
@@ -23,7 +23,6 @@
 [ ]	The map must be parsed as it looks in the file. Spaces are a valid part of the
 	map and are up to you to handle. You must be able to parse any kind of map,
 	as long as it respects the rules of the map.
-
 
 [ ] Except for the map, each element must begin with its type identifier (composed
 	by one or two characters), followed by its specific information in a strict order:
