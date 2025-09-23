@@ -9,7 +9,8 @@ MLXFLAGS =  -Lminilibx-linux ../minilibx-linux/libmlx_Linux.a ../libft/libft.a -
 LIBFT = ../libft/libft.a
 
 SRCS = ../srcs/main.c \
-	   ../srcs/parse.c
+	   ../srcs/parse.c \
+	   ../srcs/map_parsing.c
 
 OBJ = $(SRCS:%.c=%.o)
 

@@ -3,17 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 10:22:35 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/09/20 20:00:55 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/09/23 11:49:42 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
+void print_split(char **split)
+{
+	int i = 0;
+	if (!split)
+	{
+		printf("(null)\n");
+		return ;
+	}
+	while (split[i])
+	{
+		printf("%s", split[i]);
+		i++;
+	}
+}
 
-void	stock_texture(char *str, t_tex *texture)
+void	store_texture(char *str, t_tex *texture)
 {
 	char *tmp;
 	char *file;
@@ -84,11 +98,13 @@ void	filter_texture(t_tex *texture)
 	tmp = NULL;
 	tmp = ft_strtrim(texture->c_rgb, "\n");
 	free(texture->c_rgb);
+	free(tmp);
 	texture->c_rgb = ft_strdup(tmp);
 	tmp = NULL;
 	tmp = ft_strtrim(texture->f_rgb, "\n");
 	free(texture->f_rgb);
 	texture->f_rgb = ft_strdup(tmp);
+	free(tmp);
 }
 
 
@@ -100,26 +116,8 @@ void	see_it(t_tex *texture)
 	printf("South : %s\n", texture->south);
 	printf("c_rgb : %s\n", texture->c_rgb);
 	printf("f_rgb : %s\n", texture->f_rgb);
-
-}
-
-
-void	display_map(int fd, t_tex *texture)
-{
-	char	*str;
-
-	str = "";
-	while (str)
-	{
-		str = get_next_line(fd);
-		if (str)
-		{
-			stock_texture(str, texture);
-		}
-		else
-			break;
-		free(str);
-	}
+	printf("map = \n");
+	print_split(texture->map);
 }
 
 void	init_it(t_tex *text)
@@ -132,10 +130,28 @@ void	init_it(t_tex *text)
 	text->f_rgb = NULL;
 	text->c_rgb = NULL;
 }
+
+void	free_split(char **split)
+{
+	int	i;
+
+	i = 0;
+	if (!split)
+		return ;
+	while (split[i])
+	{
+		free(split[i]);
+		split[i] = NULL;
+		i++;
+	}
+	free(split);
+}
+
 int	main(int argc, char **argv)
 {
 	(void)argv;
 	int fd;
+	int map_height;
 	t_tex	texture;
 	
 	init_it(&texture);
@@ -150,7 +166,15 @@ int	main(int argc, char **argv)
 		ft_putstr_fd("Error\nNo such file or directory\n",2);
 		return (0);
 	}
-	display_map(fd, &texture);
+	map_height = count_map_lines(fd);
+	close(fd);
+	fd = open (argv[1], O_RDONLY);
+	if (fd < 0)
+	{
+		ft_putstr_fd("Error\nNo such file or directory\n",2);
+		return (0);
+	}
+	get_elements(fd, &texture, map_height);
 	filter_texture(&texture);
 	if (texture.completed != 6)
 	{
@@ -158,7 +182,13 @@ int	main(int argc, char **argv)
 		return (0);
 	}
 	see_it(&texture);
-
-
+	/*frees*/
+	free_split(texture.map);
+	free(texture.c_rgb);
+	free(texture.f_rgb);
+	free(texture.east);
+	free(texture.north);
+	free(texture.west);
+	free(texture.south);
 	return (0);
 }

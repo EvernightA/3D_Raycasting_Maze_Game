@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 08:58:59 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/09/20 22:05:38 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/09/23 11:44:10 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,10 @@ typedef struct s_tex
 	char	**map;
 
 } t_tex;
+
+int		count_map_lines(int fd);
+char	**get_map(char *gnl, int fd, int map_height);
+void	get_elements(int fd, t_tex *texture, int map_height);
+void	store_texture(char *str, t_tex *texture);
 
 #endif
