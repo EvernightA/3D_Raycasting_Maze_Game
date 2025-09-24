@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
+/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 10:22:35 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/09/23 11:49:42 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/09/24 13:53:03 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,8 @@ void	filter_texture(t_tex *texture)
 	tmp = NULL;
 	tmp = ft_strtrim(texture->c_rgb, "\n");
 	free(texture->c_rgb);
-	free(tmp);
 	texture->c_rgb = ft_strdup(tmp);
+	free(tmp);
 	tmp = NULL;
 	tmp = ft_strtrim(texture->f_rgb, "\n");
 	free(texture->f_rgb);
