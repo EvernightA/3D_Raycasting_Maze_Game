@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 08:58:59 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/09/25 11:51:55 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/09/25 11:57:03 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void	ft_lineadd_back(t_line **line, t_line *new);
 t_line	*ft_linenew(t_point content);
 void	ft_linefree(t_line **line);
 void	print_list(t_line *head);
+int		error_handling(t_tex *texture);
 void	free_texture(t_tex *texture);
 void	free_split(char **split);
 int		quit_win(t_mlx *mlx);

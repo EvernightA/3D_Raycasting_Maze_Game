@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 10:22:35 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/09/25 11:50:46 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/09/25 11:57:10 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,6 +168,10 @@ int	main(int argc, char **argv)
 	{
 		ft_putstr_fd("Error\nMissing or Invalid identifier\n", 2);
 		return (0);
+	}
+	if (error_handling(&texture))
+	{
+		return (1);
 	}
 	// see_it(&texture);
 	
