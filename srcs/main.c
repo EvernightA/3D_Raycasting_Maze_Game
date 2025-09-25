@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 10:22:35 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/09/25 11:57:10 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/09/25 17:29:53 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,15 @@ void	store_texture(char *str, t_tex *texture)
 	else if (ft_strncmp("C ", tmp, 2) == 0 || ft_strncmp("C\t", tmp, 2) == 0)
 	{
 		texture->c_rgb = ft_strdup(tmp);
+		if (get_rgb(&texture->ceiling_rgb, texture->c_rgb))
+			exit(1);
 		texture->completed++;
 	}
 	else if (ft_strncmp("F ", tmp, 2) == 0 || ft_strncmp("F\t", tmp, 2) == 0)
 	{
 		texture->f_rgb = ft_strdup(tmp);
+		if (get_rgb(&texture->floor_rgb, texture->f_rgb))
+			exit(1);
 		texture->completed++;
 	}
 	free(tmp);

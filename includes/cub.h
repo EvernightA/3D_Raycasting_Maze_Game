@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 08:58:59 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/09/25 13:17:51 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/09/25 17:17:35 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,26 @@ typedef struct  s_line
 	struct	s_line *next;
 } t_line;
 
+typedef struct s_rgb
+{
+	int red;
+	int green;
+	int blue;
+}	t_rgb;
 
 
 typedef struct s_tex
 {
 	int		completed;
+	int		fc;
 	char 	*north;
 	char 	*south;
 	char 	*east;
 	char 	*west;
 	char	*c_rgb;
 	char	*f_rgb;
+	t_rgb	ceiling_rgb;
+	t_rgb	floor_rgb;
 	char	**map;
 
 } t_tex;
@@ -76,6 +85,8 @@ void	free_texture(t_tex *texture);
 void	free_split(char **split);
 int		quit_win(t_mlx *mlx);
 int 	key_hook(int key, void *param);
+long long	atoll(const char *ptr);
+int	get_rgb(t_rgb *rgb, char *str_rgb);
 
 
 #endif
