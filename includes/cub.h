@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 08:58:59 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/09/25 11:46:40 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/09/25 16:08:04 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ t_line	*ft_linenew(t_point content);
 void	ft_linefree(t_line **line);
 void	print_list(t_line *head);
 int		error_handling(t_tex *texture);
+int 	texture_error(t_tex *texture);
+
 
 
 

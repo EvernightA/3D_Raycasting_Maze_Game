@@ -12,12 +12,13 @@ SRCS_DIR = ./srcs/
 
 OBJ_DIR = ./objs/
 
-SRCS =  $(SRCS_DIR)main.c \
-	    $(SRCS_DIR)parse.c \
-	    $(SRCS_DIR)map_parsing.c \
-		$(SRCS_DIR)bresenham.c\
-		$(SRCS_DIR)line_utils.c\
-		$(SRCS_DIR)error.c
+SRCS =  $(SRCS_DIR)main.c 				\
+	    $(SRCS_DIR)parse.c 				\
+	    $(SRCS_DIR)map_parsing.c 		\
+		$(SRCS_DIR)bresenham.c			\
+		$(SRCS_DIR)line_utils.c			\
+		$(SRCS_DIR)error.c				\
+		$(SRCS_DIR)error2.c
 
 OBJ = $(SRCS:$(SRCS_DIR)%.c=%.o)
 
