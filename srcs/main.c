@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
+/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 10:22:35 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/09/25 10:27:18 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/09/25 11:47:55 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,6 +184,10 @@ int	main(int argc, char **argv)
 	{
 		ft_putstr_fd("Error\nMissing or Invalid identifier\n", 2);
 		return (0);
+	}
+	if (error_handling(&texture))
+	{
+		return (1);
 	}
 	// see_it(&texture);
 	
