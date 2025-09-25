@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 10:22:35 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/09/25 09:15:56 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/09/25 10:27:18 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,7 +153,11 @@ int	main(int argc, char **argv)
 	int fd;
 	int map_height;
 	t_tex	texture;
-	
+	t_point begin;
+	t_point end;
+	t_line *head;
+	// t_line *new_node;
+
 	init_it(&texture);
 	if (argc != 2)
 	{
@@ -182,20 +186,16 @@ int	main(int argc, char **argv)
 		return (0);
 	}
 	// see_it(&texture);
-	t_point begin;
-	t_point end;
+	
 
 	begin.x = 10;
 	begin.y = 0;
 	end.x = 30;
 	end.y = 40;
-	t_point bresenham = bresenham_line(&begin, &end);
-	(void)bresenham;
-	// while (bresenham.x <= end.x && bresenham.y <= end.y)
-	// {
-	// 	bresenham =  bresenham_line(&bresenham, &end);
-	// }
-	/*frees*/
+
+	
+	head = bresenham_line(&begin, &end);
+	print_list(head);	
 	free_split(texture.map);
 	free(texture.c_rgb);
 	free(texture.f_rgb);

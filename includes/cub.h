@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 08:58:59 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/09/25 09:55:19 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/09/25 10:25:49 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,14 @@ int		count_map_lines(int fd);
 char	**get_map(char *gnl, int fd, int map_height);
 void	get_elements(int fd, t_tex *texture, int map_height);
 void	store_texture(char *str, t_tex *texture);
-t_point	bresenham_line(t_point *begin, t_point *end);
+t_line	*bresenham_line(t_point *begin, t_point *end);
+int		ft_linesize(t_line *line);
+void	ft_lineadd_back(t_line **line, t_line *new);
+t_line	*ft_linenew(t_point content);
+void	ft_linefree(t_line **line);
+void	print_list(t_line *head);
+
+
+
 
 #endif

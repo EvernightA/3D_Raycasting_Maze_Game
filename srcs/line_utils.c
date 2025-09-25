@@ -1,16 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_utils.c                                        :+:      :+:    :+:   */
+/*   line_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 09:55:53 by mratsima          #+#    #+#             */
-/*   Updated: 2025/09/25 10:02:16 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/09/25 11:07:06 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
+
+void	ft_linefree(t_line **line)
+{
+	t_line	*node;
+	t_line	*prev;
+	t_line	*next;
+
+	node = *line;
+	prev = node;
+	if (!line)
+		return ;
+	while (node != NULL)
+	{
+		prev = node;
+		next = prev->next;
+		free(node);
+		node = next;
+	}
+	*line = NULL;
+}
 
 t_line	*ft_linenew(t_point content)
 {
@@ -54,3 +74,17 @@ int	ft_linesize(t_line *line)
 	return (i);
 }
 
+
+void	print_list(t_line *head)
+{
+	t_line *tmp;
+
+	tmp = head;
+	while (tmp)
+	{
+		printf("x = %d\n",tmp ->dot.x);
+		printf("y = %d\n",tmp ->dot.y);
+		printf("-----------------------\n");
+		tmp = tmp -> next;
+	}
+}
