@@ -1,0 +1,56 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lst_utils.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/25 09:55:53 by mratsima          #+#    #+#             */
+/*   Updated: 2025/09/25 10:02:16 by mratsima         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/cub.h"
+
+t_line	*ft_linenew(t_point content)
+{
+	t_line	*new_node;
+
+	new_node = (t_line *)malloc(sizeof(t_line));
+	if (new_node == NULL)
+		return (NULL);
+	new_node -> dot = content;
+	new_node -> next = NULL;
+	return (new_node);
+}
+
+void	ft_lineadd_back(t_line **line, t_line *new)
+{
+	t_line	*tmp;
+
+	if (*line == NULL )
+	{
+		*line = new;
+		return ;
+	}
+	tmp = *line;
+	while (tmp -> next != NULL)
+	{
+		tmp = tmp -> next;
+	}
+	tmp -> next = new;
+}
+
+int	ft_linesize(t_line *line)
+{
+	int	i;
+
+	i = 0;
+	while (line != NULL)
+	{
+		i++;
+		line = line -> next;
+	}
+	return (i);
+}
+

@@ -14,7 +14,9 @@ OBJ_DIR = ./objs/
 
 SRCS =  $(SRCS_DIR)main.c \
 	    $(SRCS_DIR)parse.c \
-	    $(SRCS_DIR)map_parsing.c
+	    $(SRCS_DIR)map_parsing.c \
+		$(SRCS_DIR)bresenham.c\
+		$(SRCS_DIR)line_utils.c
 
 OBJ = $(SRCS:$(SRCS_DIR)%.c=%.o)
 

@@ -71,3 +71,6 @@ of your choice.
 	Clicking on the red cross on the window’s frame must close the window and
 	quit the program cleanly.
 	The use of images of the minilibX library is strongly recommended.
+
+[ ] ideaaaa!!!!!
+only one bresenham then iter on the bresenham result to have the other lines

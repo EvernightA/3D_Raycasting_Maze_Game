@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 10:22:35 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/09/24 13:53:03 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/09/25 09:15:56 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,7 +181,20 @@ int	main(int argc, char **argv)
 		ft_putstr_fd("Error\nMissing or Invalid identifier\n", 2);
 		return (0);
 	}
-	see_it(&texture);
+	// see_it(&texture);
+	t_point begin;
+	t_point end;
+
+	begin.x = 10;
+	begin.y = 0;
+	end.x = 30;
+	end.y = 40;
+	t_point bresenham = bresenham_line(&begin, &end);
+	(void)bresenham;
+	// while (bresenham.x <= end.x && bresenham.y <= end.y)
+	// {
+	// 	bresenham =  bresenham_line(&bresenham, &end);
+	// }
 	/*frees*/
 	free_split(texture.map);
 	free(texture.c_rgb);
