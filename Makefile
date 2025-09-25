@@ -16,7 +16,9 @@ SRCS =  $(SRCS_DIR)main.c \
 	    $(SRCS_DIR)parse.c \
 	    $(SRCS_DIR)map_parsing.c \
 		$(SRCS_DIR)bresenham.c\
-		$(SRCS_DIR)line_utils.c
+		$(SRCS_DIR)line_utils.c\
+		$(SRCS_DIR)frees.c \
+		$(SRCS_DIR)mlx_utils.c
 
 OBJ = $(SRCS:$(SRCS_DIR)%.c=%.o)
 
