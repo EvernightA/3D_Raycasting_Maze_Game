@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 10:22:35 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/09/25 17:00:33 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/09/25 17:04:16 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,22 +131,6 @@ void	init_it(t_tex *text)
 	text->c_rgb = NULL;
 }
 
-void	free_split(char **split)
-{
-	int	i;
-
-	i = 0;
-	if (!split)
-		return ;
-	while (split[i])
-	{
-		free(split[i]);
-		split[i] = NULL;
-		i++;
-	}
-	free(split);
-}
-
 int	main(int argc, char **argv)
 {
 	(void)argv;
@@ -156,7 +140,7 @@ int	main(int argc, char **argv)
 	t_point begin;
 	t_point end;
 	t_line *head;
-	// t_line *new_node;
+	t_mlx	mlx;
 	char *tmp;
 
 	init_it(&texture);
@@ -196,8 +180,14 @@ int	main(int argc, char **argv)
 	{
 		return (1);
 	}
-
+	// see_it(&texture);
 	
+	/************MLX*********/
+	mlx.mlx_ptr = mlx_init();
+	if (!mlx.mlx_ptr)
+		return (1);
+	mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, 400, 400, "cub3d");
+	/*********************/
 
 	begin.x = 10;
 	begin.y = 0;
@@ -207,12 +197,11 @@ int	main(int argc, char **argv)
 	
 	head = bresenham_line(&begin, &end);
 	print_list(head);	
-	free_split(texture.map);
-	free(texture.c_rgb);
-	free(texture.f_rgb);
-	free(texture.east);
-	free(texture.north);
-	free(texture.west);
-	free(texture.south);
+	/*********MLX******************/
+	mlx_hook(mlx.win_ptr, 17, 0, quit_win, &mlx);
+	mlx_key_hook(mlx.win_ptr, key_hook, &mlx);
+	mlx_loop(mlx.mlx_ptr);
+	/******************************/
+	free_texture(&texture);
 	return (0);
 }

@@ -6,17 +6,19 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 08:58:59 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/09/25 16:08:04 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/09/25 17:03:11 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB_H
-#define CUB_H
-#include "../libft/libft.h"
-#include <stdlib.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <stdio.h>
+# define CUB_H
+# include "../libft/libft.h"
+# include <stdlib.h>
+# include <unistd.h>
+# include <fcntl.h>
+# include <stdio.h>
+# include <X11/keysym.h>
+# include "../minilibx-linux/mlx.h"
 
 typedef struct s_point
 {
@@ -46,7 +48,18 @@ typedef struct s_tex
 
 } t_tex;
 
+typedef struct s_mlx
+{
+	void	*mlx_ptr;
+	void	*win_ptr;
+}				t_mlx;
 
+typedef struct s_display
+{
+	char			**map;
+	t_tex			texture;
+	t_mlx			mlx;
+}				t_display;
 
 int		count_map_lines(int fd);
 char	**get_map(char *gnl, int fd, int map_height);
@@ -61,8 +74,10 @@ void	print_list(t_line *head);
 int		error_handling(t_tex *texture);
 int 	texture_error(t_tex *texture);
 
-
-
+void	free_texture(t_tex *texture);
+void	free_split(char **split);
+int		quit_win(t_mlx *mlx);
+int 	key_hook(int key, void *param);
 
 
 #endif
