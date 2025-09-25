@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 08:58:59 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/09/25 11:57:03 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/09/25 13:17:51 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,8 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdio.h>
+# include <X11/keysym.h>
 # include "../minilibx-linux/mlx.h"
-
-# define K_ESC 65307
 
 typedef struct s_point
 {

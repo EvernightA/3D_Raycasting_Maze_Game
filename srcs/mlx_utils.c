@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:50:26 by mratsima          #+#    #+#             */
-/*   Updated: 2025/09/25 11:51:16 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/09/25 13:18:25 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	quit_win(t_mlx *mlx)
 
 int key_hook(int key, void *param)
 {
-	if (key == K_ESC)
+	if (key == XK_Escape)
 		quit_win((t_mlx *)param);
 	return (0);
 }
