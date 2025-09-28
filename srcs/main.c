@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 10:22:35 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/09/28 11:40:28 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/09/28 12:10:21 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,58 +124,79 @@ void	init_it(t_tex *text)
 	text->c_rgb = NULL;
 }
 
+static int	get_map_height(int *map_height ,char *file)
+{
+	int fd;
+
+	fd = open (file, O_RDONLY);
+	if (fd < 0)
+	{
+		ft_putstr_fd("Error\nNo such file or directory\n",2);
+		return (1);
+	}
+	*map_height = count_map_lines(fd);
+	close(fd);
+	return (0);
+}
+
+static int	parsing(int *map_height, char *file, t_tex *texture)
+{
+	int fd;
+
+	fd = open (file, O_RDONLY);
+	if (fd < 0)
+	{
+		ft_putstr_fd("Error\nNo such file or directory\n",2);
+		return (1);
+	}
+	get_elements(fd, texture, *map_height);
+	if (!texture->c_rgb || !texture->f_rgb || !texture->north 
+	|| !texture->south || !texture->east || !texture->west)
+	{
+		ft_putstr_fd("Error\nMissing or Invalid identifier\n", 2);
+		return (1);
+	}
+	filter_texture(texture);
+	return (0);
+}
+
+static int	input_error(int argc, char **argv)
+{
+	char *tmp;
+
+	if (argc != 2)
+	{
+		ft_putstr_fd("Error\nUsage: ./cub3D <path to the map>\n",2);
+		return (1);
+	}
+	tmp = ft_strnstr(argv[1], ".cub", ft_strlen(argv[1]));
+	if (tmp == NULL || ft_strncmp(".cub", tmp, 4) != 0)
+	{
+		ft_putstr_fd("Error\nInvalid extension for map\n", 2);
+		return (1);
+	}
+	return (0);
+}
+
 int	main(int argc, char **argv)
 {
 	(void)argv;
-	int fd;
 	int map_height;
 	t_tex	texture;
 	t_point begin;
 	t_point end;
 	t_line *head;
 	t_mlx	mlx;
-	char *tmp;
 
 	init_it(&texture);
-	tmp = ft_strnstr(argv[1], ".cub", ft_strlen(argv[1]));
-	if (argc != 2)
-	{
-		ft_putstr_fd("Error\nUsage: ./cub3D <path to the map>\n",2);
-		return (0);
-	}
-	if (tmp == NULL || ft_strncmp(".cub", tmp, 4) != 0)
-	{
-		ft_putstr_fd("Error\nInvalid extension for map\n", 2);
-		return (0);
-	}
-	fd = open (argv[1], O_RDONLY);
-	if (fd < 0)
-	{
-		ft_putstr_fd("Error\nNo such file or directory\n",2);
-		return (0);
-	}
-	map_height = count_map_lines(fd);
-	close(fd);
-	fd = open (argv[1], O_RDONLY);
-	if (fd < 0)
-	{
-		ft_putstr_fd("Error\nNo such file or directory\n",2);
-		return (0);
-	}
-	get_elements(fd, &texture, map_height);
-	if (!texture.c_rgb || !texture.f_rgb || 
-	!texture.north || !texture.south 
-	|| !texture.east || !texture.west)
-	{
-		ft_putstr_fd("Error\nMissing or Invalid identifier\n", 2);
-		return (0);
-	}
-	filter_texture(&texture);
-	printf("c = %p\n", texture.c_rgb);
-	if (error_handling(&texture))
-	{
+	if (input_error(argc, argv))
 		return (1);
-	}
+	if (get_map_height(&map_height, argv[1]))
+		return (1);
+	if (parsing(&map_height, argv[1], &texture))
+		return (1);
+	if (error_handling(&texture))
+		return (1);
 	// see_it(&texture);
 	
 	/************MLX*********/
