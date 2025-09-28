@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 10:22:35 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/09/25 17:04:16 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/09/28 11:40:28 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,35 +37,29 @@ void	store_texture(char *str, t_tex *texture)
 	{
 		file = ft_strnstr(str,".", ft_strlen(str));
 		texture->north = ft_strdup(file);
-		texture->completed++;
 	}
 	else if (ft_strncmp("SO ", tmp, 3) == 0 || ft_strncmp("SO\t", tmp, 3) == 0)
 	{
 		file = ft_strnstr(str,".", ft_strlen(str));
 		texture->south = ft_strdup(file);
-		texture->completed++;
 	}
 	else if (ft_strncmp("WE ", tmp, 3) == 0 || ft_strncmp("WE\t", tmp, 3) == 0) 
 	{
 		file = ft_strnstr(str,".", ft_strlen(str));
 		texture->west = ft_strdup(file);
-		texture->completed++;
 	}
 	else if (ft_strncmp("EA ", tmp, 3) == 0 || ft_strncmp("EA\t", tmp, 3) == 0)
 	{
 		file = ft_strnstr(str,".", ft_strlen(str));
 		texture->east = ft_strdup(file);
-		texture->completed++;
 	}
 	else if (ft_strncmp("C ", tmp, 2) == 0 || ft_strncmp("C\t", tmp, 2) == 0)
 	{
 		texture->c_rgb = ft_strdup(tmp);
-		texture->completed++;
 	}
 	else if (ft_strncmp("F ", tmp, 2) == 0 || ft_strncmp("F\t", tmp, 2) == 0)
 	{
 		texture->f_rgb = ft_strdup(tmp);
-		texture->completed++;
 	}
 	free(tmp);
 }
@@ -122,7 +116,6 @@ void	see_it(t_tex *texture)
 
 void	init_it(t_tex *text)
 {
-	text->completed = 0;
 	text->north = NULL;
 	text->south = NULL;
 	text->east = NULL;
@@ -170,12 +163,15 @@ int	main(int argc, char **argv)
 		return (0);
 	}
 	get_elements(fd, &texture, map_height);
-	filter_texture(&texture);
-	if (texture.completed != 6)
+	if (!texture.c_rgb || !texture.f_rgb || 
+	!texture.north || !texture.south 
+	|| !texture.east || !texture.west)
 	{
 		ft_putstr_fd("Error\nMissing or Invalid identifier\n", 2);
 		return (0);
 	}
+	filter_texture(&texture);
+	printf("c = %p\n", texture.c_rgb);
 	if (error_handling(&texture))
 	{
 		return (1);
@@ -194,9 +190,9 @@ int	main(int argc, char **argv)
 	end.x = 30;
 	end.y = 40;
 
-	
 	head = bresenham_line(&begin, &end);
-	print_list(head);	
+	(void)head;
+	// print_list(head);	
 	/*********MLX******************/
 	mlx_hook(mlx.win_ptr, 17, 0, quit_win, &mlx);
 	mlx_key_hook(mlx.win_ptr, key_hook, &mlx);

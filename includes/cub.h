@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 08:58:59 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/09/25 17:03:11 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/09/28 11:40:25 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ typedef struct  s_line
 
 typedef struct s_tex
 {
-	int		completed;
 	char 	*north;
 	char 	*south;
 	char 	*east;
