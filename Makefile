@@ -16,12 +16,17 @@ SRCS =  $(SRCS_DIR)main.c 				\
 	    $(SRCS_DIR)map_parsing.c 		\
 		$(SRCS_DIR)bresenham.c			\
 		$(SRCS_DIR)line_utils.c			\
-		$(SRCS_DIR)frees.c \
-		$(SRCS_DIR)mlx_utils.c\
+		$(SRCS_DIR)frees.c 				\
+		$(SRCS_DIR)mlx_utils.c			\
 		$(SRCS_DIR)error.c\
 		$(SRCS_DIR)ft_atoll.c\
 		$(SRCS_DIR)rgb_handling.c				\
-		$(SRCS_DIR)error2.c
+		$(SRCS_DIR)error2.c				\
+		$(SRCS_DIR)error3.c				\
+		$(SRCS_DIR)error4.c				
+
+		
+
 
 OBJ = $(SRCS:$(SRCS_DIR)%.c=%.o)
 

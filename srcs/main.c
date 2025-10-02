@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 10:22:35 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/10/02 18:50:45 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/10/02 22:53:25 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,25 +37,21 @@ void	store_texture(char *str, t_tex *texture)
 	{
 		file = ft_strnstr(str,".", ft_strlen(str));
 		texture->north = ft_strdup(file);
-		texture->completed++;
 	}
 	else if (ft_strncmp("SO ", tmp, 3) == 0 || ft_strncmp("SO\t", tmp, 3) == 0)
 	{
 		file = ft_strnstr(str,".", ft_strlen(str));
 		texture->south = ft_strdup(file);
-		texture->completed++;
 	}
 	else if (ft_strncmp("WE ", tmp, 3) == 0 || ft_strncmp("WE\t", tmp, 3) == 0) 
 	{
 		file = ft_strnstr(str,".", ft_strlen(str));
 		texture->west = ft_strdup(file);
-		texture->completed++;
 	}
 	else if (ft_strncmp("EA ", tmp, 3) == 0 || ft_strncmp("EA\t", tmp, 3) == 0)
 	{
 		file = ft_strnstr(str,".", ft_strlen(str));
 		texture->east = ft_strdup(file);
-		texture->completed++;
 	}
 	else if (ft_strncmp("C ", tmp, 2) == 0 || ft_strncmp("C\t", tmp, 2) == 0)
 	{
@@ -126,81 +122,102 @@ void	see_it(t_tex *texture)
 
 void	init_it(t_tex *text)
 {
-	text->completed = 0;
 	text->north = NULL;
 	text->south = NULL;
 	text->east = NULL;
 	text->west =  NULL;
 	text->f_rgb = NULL;
 	text->c_rgb = NULL;
+	text->map =NULL;
+}
+
+static int	get_map_height(t_tex *texture, int *map_height ,char *file)
+{
+	int fd;
+
+	fd = open (file, O_RDONLY);
+	if (fd < 0)
+	{
+		ft_putstr_fd("Error\nNo such file or directory\n",2);
+		return (1);
+	}
+	*map_height = count_map_lines(fd);
+	texture->map_height = *map_height;
+	close(fd);
+	return (0);
+}
+
+static int	parsing(int *map_height, char *file, t_tex *texture)
+{
+	int fd;
+
+	fd = open (file, O_RDONLY);
+	if (fd < 0)
+	{
+		ft_putstr_fd("Error\nNo such file or directory\n",2);
+		return (1);
+	}
+	get_elements(fd, texture, *map_height);
+	if (!texture->c_rgb || !texture->f_rgb || !texture->north 
+	|| !texture->south || !texture->east || !texture->west || !texture->map)
+	{
+		ft_putstr_fd("Error\nMissing or Invalid identifier\n", 2);
+		return (1);
+	}
+	filter_texture(texture);
+	return (0);
+}
+
+static int	input_error(int argc, char **argv)
+{
+	char *tmp;
+
+	if (argc != 2)
+	{
+		ft_putstr_fd("Error\nUsage: ./cub3D <path to the map>\n",2);
+		return (1);
+	}
+	tmp = ft_strnstr(argv[1], ".cub", ft_strlen(argv[1]));
+	if (tmp == NULL || ft_strncmp(".cub", tmp, 4) != 0)
+	{
+		ft_putstr_fd("Error\nInvalid extension for map\n", 2);
+		return (1);
+	}
+	return (0);
 }
 
 int	main(int argc, char **argv)
 {
 	(void)argv;
-	int fd;
 	int map_height;
 	t_tex	texture;
 	t_point begin;
 	t_point end;
 	t_line *head;
 	t_mlx	mlx;
-	char *tmp;
 
 	init_it(&texture);
-	tmp = ft_strnstr(argv[1], ".cub", ft_strlen(argv[1]));
-	if (argc != 2)
-	{
-		ft_putstr_fd("Error\nUsage: ./cub3D <path to the map>\n",2);
-		return (0);
-	}
-	if (tmp == NULL || ft_strncmp(".cub", tmp, 4) != 0)
-	{
-		ft_putstr_fd("Error\nInvalid extension for map\n", 2);
-		return (0);
-	}
-	fd = open (argv[1], O_RDONLY);
-	if (fd < 0)
-	{
-		ft_putstr_fd("Error\nNo such file or directory\n",2);
-		return (0);
-	}
-	map_height = count_map_lines(fd);
-	close(fd);
-	fd = open (argv[1], O_RDONLY);
-	if (fd < 0)
-	{
-		ft_putstr_fd("Error\nNo such file or directory\n",2);
-		return (0);
-	}
-	get_elements(fd, &texture, map_height);
-	filter_texture(&texture);
-	if (texture.completed != 6)
-	{
-		ft_putstr_fd("Error\nMissing or Invalid identifier\n", 2);
-		return (0);
-	}
-	if (error_handling(&texture))
-	{
+	if (input_error(argc, argv))
 		return (1);
-	}
-	// see_it(&texture);
-	
+	if (get_map_height(&texture, &map_height, argv[1]))
+		return (1);
+	if (parsing(&map_height, argv[1], &texture))
+		return (1);
+	if (error_handling(&texture))
+		return (1);
 	/************MLX*********/
 	mlx.mlx_ptr = mlx_init();
 	if (!mlx.mlx_ptr)
 		return (1);
 	mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, 400, 400, "cub3d");
 	/*********************/
-
 	begin.x = 10;
 	begin.y = 0;
 	end.x = 30;
 	end.y = 40;
-
-	
 	head = bresenham_line(&begin, &end);
-	print_list(head);	
+	(void)head;
+	// print_list(head);	
 	/*********MLX******************/
 	mlx_hook(mlx.win_ptr, 17, 0, quit_win, &mlx);
 	mlx_key_hook(mlx.win_ptr, key_hook, &mlx);
