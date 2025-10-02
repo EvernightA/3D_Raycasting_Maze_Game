@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 16:00:37 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/10/02 21:26:52 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/10/02 21:44:13 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,10 @@ int		closed_error(char	**map)
 		while (map[j][k])
 		{
 			if (map[i][k] == 'X' && (map[j][k] == '0' || is_player(map[j][k])))
+			{
+				return (1);
+			}
+			if (map[j][k] == ' ' && (map[i][k] == '0' || is_player(map[i][k])))
 			{
 				return (1);
 			}
