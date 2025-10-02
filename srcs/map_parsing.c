@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 11:17:34 by mratsima          #+#    #+#             */
-/*   Updated: 2025/09/25 13:58:27 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/10/02 21:28:18 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ int	count_map_lines(int fd)
 		free(gnl);
 		gnl = get_next_line(fd);
 	}
-	printf ("count = %d\n", count);
 	return (count);
 }
 

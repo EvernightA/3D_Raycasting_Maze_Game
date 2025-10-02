@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 16:00:37 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/10/02 19:39:05 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/10/02 21:26:52 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ size_t	find_len_max(char **map)
 		}
 		i++;
 	}
-	printf ("max = %ld\n", max);
+	//printf ("max = %ld\n", max);
 	return (max);
 }
 
@@ -53,13 +53,23 @@ int		closed_error(char	**map)
 			{
 				return (1);
 			}
+			if ((is_player(map[i][k]) && map[j][k] == 'X') || (is_player(map[j][k]) && map[i][k] == 'X'))
+			{
+				return (1);
+			}
+			if (map[i][0] == '0')
+			{
+				return (1);
+			}
 			k++;
 		}
 		i++;
 		j++;
 	}
-	if (player_in_str(map[i]))
+	if (player_in_str(map[i]) || map[i][0] == '0')
+	{
 		return (1);
+	}
 	return (0);
 }
 

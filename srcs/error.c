@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:28:34 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/10/02 19:36:24 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/10/02 21:26:31 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,7 @@ int	error_handling(t_tex *texture)
 	if (closed_error(tmp))
 	{
 		free_split(tmp);
-		ft_putstr_fd("Error\nUnclosed wall found\n", 2);
+		ft_putstr_fd("Error1\nUnclosed wall found\n", 2);
 		return (1);
 	}
 	free_split(tmp);
