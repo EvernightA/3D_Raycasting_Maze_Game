@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 10:22:35 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/10/02 19:04:45 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/10/02 19:08:02 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,7 +183,6 @@ int	main(int argc, char **argv)
 {
 	(void)argv;
 	int map_height;
-	char	**tmp;
 	t_tex	texture;
 	t_point begin;
 	t_point end;
@@ -199,13 +198,6 @@ int	main(int argc, char **argv)
 		return (1);
 	if (error_handling(&texture))
 		return (1);
-	tmp = dup_mat(texture.map_height, texture.map);
-	if (closed_error(tmp))
-	{
-		ft_putstr_fd("Error\nUnclosed wall found\n", 2);
-		return (0);
-	}
-	print_map(tmp);
 	// see_it(&texture);
 	/************MLX*********/
 	mlx.mlx_ptr = mlx_init();

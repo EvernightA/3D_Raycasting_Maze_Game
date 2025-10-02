@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:28:34 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/10/02 19:06:10 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/10/02 19:07:40 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,16 @@ int	multiple_player_check(t_tex *texture)
 
 int	error_handling(t_tex *texture)
 {
+	char	**tmp;
+
 	if (multiple_player_check(texture) || texture_error(texture))
 	{
+		return (1);
+	}
+	tmp = dup_mat(texture->map_height, texture->map);
+	if (closed_error(tmp))
+	{
+		ft_putstr_fd("Error\nUnclosed wall found\n", 2);
 		return (1);
 	}
 	return (0);
