@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:28:34 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/09/25 16:09:49 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/10/02 19:06:10 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,9 @@ static int	player_error(int count)
 
 int		closed__map_error(char *str)
 {
-	if (ft_strnstr(str, " 0", ft_strlen(str)) || ft_strnstr(str, "0 ", ft_strlen(str)))
+	if (ft_strnstr(str, " 0", ft_strlen(str)) || ft_strnstr(str, "0 ", ft_strlen(str))
+	|| ft_strnstr(str, "0\n", ft_strlen(str)) || ft_strnstr(str, "\n0", ft_strlen(str))
+	|| ft_strnstr(str, "\t0", ft_strlen(str)) || ft_strnstr(str, "0\t", ft_strlen(str)))
 	{
 		return (1);
 	}
@@ -80,7 +82,7 @@ int	multiple_player_check(t_tex *texture)
 		}
 		if (closed__map_error(texture->map[i]))
 		{
-			ft_putstr_fd("Error\nThere is an unclosed wall inside the map\n", 2);
+			ft_putstr_fd("Error\nUnclosed map found\n", 2);
 			return (1);
 		}
 		i++;

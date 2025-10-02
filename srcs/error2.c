@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 16:00:37 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/10/02 15:58:06 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/10/02 16:31:42 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,30 @@ size_t	find_len_max(char **map)
 	return (max);
 }
 
-//int		closed_error(char	**map)
-//{
-//	int i;
-//	int	j;
+int		closed_error(char	**map)
+{
+	int i;
+	int	j;
+	int	k;
 
-//	i = 0;
-//	j = 0;
-//	while (map[i])
-//	{
-
-//		i++;
-//	}
-//}
+	i = 0;// columns
+	j = 1;// columns
+	while (map[j])
+	{
+		k = 0;
+		while (map[j][k])
+		{
+			if ( map[i][k] == 'X' && map[j][k] == '0')
+			{
+				return (1);
+			}
+			k++;
+		}
+		i++;
+		j++;
+	}
+	return (0);
+}
 
 
 
@@ -62,7 +73,7 @@ char	*ft_strdup_x(char *s, int len)
 	i = 0;
 	while (i < len)
 	{
-		if (tmp[i] == '\n')
+		if (tmp[i] == '\n' || tmp[i] == '\0')
 		{
 			j = i;
 			while (j < len - 1)

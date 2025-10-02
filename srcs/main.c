@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 10:22:35 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/10/02 15:57:09 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/10/02 19:04:45 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,6 +183,7 @@ int	main(int argc, char **argv)
 {
 	(void)argv;
 	int map_height;
+	char	**tmp;
 	t_tex	texture;
 	t_point begin;
 	t_point end;
@@ -198,32 +199,24 @@ int	main(int argc, char **argv)
 		return (1);
 	if (error_handling(&texture))
 		return (1);
-	
-	char	**tmp;
-
 	tmp = dup_mat(texture.map_height, texture.map);
-	(void)tmp;
+	if (closed_error(tmp))
+	{
+		ft_putstr_fd("Error\nUnclosed wall found\n", 2);
+		return (0);
+	}
 	print_map(tmp);
-	
-	
 	// see_it(&texture);
-	
-
-
-
-	exit (0);
 	/************MLX*********/
 	mlx.mlx_ptr = mlx_init();
 	if (!mlx.mlx_ptr)
 		return (1);
 	mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, 400, 400, "cub3d");
 	/*********************/
-
 	begin.x = 10;
 	begin.y = 0;
 	end.x = 30;
 	end.y = 40;
-
 	head = bresenham_line(&begin, &end);
 	(void)head;
 	// print_list(head);	

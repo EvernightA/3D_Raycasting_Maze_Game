@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 08:58:59 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/10/02 14:54:41 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/10/02 16:30:27 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ void	free_texture(t_tex *texture);
 void	free_split(char **split);
 int		quit_win(t_mlx *mlx);
 int 	key_hook(int key, void *param);
+int		closed_error(char	**map);
+
 
 
 #endif
