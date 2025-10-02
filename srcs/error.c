@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:28:34 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/10/02 21:43:04 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/10/02 22:18:57 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int		closed__map_error(char *str)
 	|| ft_strnstr(str, "S ",ft_strlen(str)) || ft_strnstr(str, "W ", ft_strlen(str))
 	|| ft_strnstr(str, "N\n",ft_strlen(str)) || ft_strnstr(str, "E\n", ft_strlen(str))
 	|| ft_strnstr(str, "S\n",ft_strlen(str)) || ft_strnstr(str, "W\n", ft_strlen(str))
+	|| str[ft_strlen(str) - 1] == '0'
 )
 
 	{
@@ -135,9 +136,7 @@ int	error_handling(t_tex *texture)
 	char	**tmp;
 
 	if (multiple_player_check(texture) || texture_error(texture))
-	{
 		return (1);
-	}
 	tmp = dup_mat(texture->map_height, texture->map);
 	print_map(tmp);
 	if (matrix_height(tmp) <= 2)
@@ -149,7 +148,7 @@ int	error_handling(t_tex *texture)
 	if (closed_error(tmp))
 	{
 		free_split(tmp);
-		ft_putstr_fd("\nUnclosed wall found\n", 2);
+		ft_putstr_fd("Error1\nUnclosed wall found\n", 2);
 		return (1);
 	}
 	free_split(tmp);

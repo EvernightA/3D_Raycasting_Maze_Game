@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 10:22:35 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/10/02 21:38:36 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/10/02 22:29:38 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,8 +199,6 @@ int	main(int argc, char **argv)
 		return (1);
 	if (error_handling(&texture))
 		return (1);
-	// see_it(&texture);
-	exit (0);
 	/************MLX*********/
 	mlx.mlx_ptr = mlx_init();
 	if (!mlx.mlx_ptr)

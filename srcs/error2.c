@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 16:00:37 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/10/02 21:44:13 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/10/02 22:26:27 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,34 @@ size_t	find_len_max(char **map)
 	return (max);
 }
 
+int map_invalid(int i, int j, int k, char **map)
+{
+	// check up and down 
+	if ((map[i][k] == 'X' && (map[j][k] == '0' || is_player(map[j][k])))
+	|| (map[j][k] == 'X' && (map[i][k] == '0' || is_player(map[i][k]))))
+	{
+		return (1);
+	}
+	// check up and dowwn
+	if (((is_player(map[i][k]) && map[j][k] == 'X') || (is_player(map[j][k]) && map[i][k] == 'X'))
+	|| ((is_player(map[j][k]) && map[j][k] == 'X') || (is_player(map[i][k]) && map[j][k] == 'X')))
+	{
+		return (1);
+	}
+	// check up and down
+	if ((map[j][k] == ' ' && (map[i][k] == '0' || is_player(map[i][k])))
+	|| (map[i][k] == ' ' && (map[j][k] == '0' || is_player(map[j][k])))
+	)
+	{
+		return (1);
+	}
+	if (map[i][0] == '0')
+	{
+		return (1);
+	}
+	return (0);
+}
+
 int		closed_error(char	**map)
 {
 	int i;
@@ -49,31 +77,15 @@ int		closed_error(char	**map)
 		k = 0;
 		while (map[j][k])
 		{
-			if (map[i][k] == 'X' && (map[j][k] == '0' || is_player(map[j][k])))
-			{
+			if (map_invalid(i, j, k, map))
 				return (1);
-			}
-			if (map[j][k] == ' ' && (map[i][k] == '0' || is_player(map[i][k])))
-			{
-				return (1);
-			}
-			if ((is_player(map[i][k]) && map[j][k] == 'X') || (is_player(map[j][k]) && map[i][k] == 'X'))
-			{
-				return (1);
-			}
-			if (map[i][0] == '0')
-			{
-				return (1);
-			}
 			k++;
 		}
 		i++;
 		j++;
 	}
 	if (player_in_str(map[i]) || map[i][0] == '0')
-	{
 		return (1);
-	}
 	return (0);
 }
 
