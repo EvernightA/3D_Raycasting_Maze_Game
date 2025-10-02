@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 08:58:59 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/10/02 19:38:06 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/10/02 22:39:50 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,21 @@ typedef struct s_display
 
 
 char	**dup_mat(int height, char **map);
+size_t	find_len_max(char **map);
+int 	map_invalid(int i, int j, int k, char **map);
+char	*ft_strdup_x(char *s, int len);
+
+
+int		is_player(char c);
+int		is_unknown(char c);
+int		player_error(int count);
+int		player_in_str(char *str);
+int		matrix_height(char **matrix);
+
+
+
+
+
 void	print_map(char **map);
 int		count_map_lines(int fd);
 char	**get_map(char *gnl, int fd, int map_height);
