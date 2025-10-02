@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 08:58:59 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/09/28 11:40:25 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/10/02 14:54:41 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_tex
 	char	*c_rgb;
 	char	*f_rgb;
 	char	**map;
+	int		map_height;
 
 } t_tex;
 
@@ -60,6 +61,9 @@ typedef struct s_display
 	t_mlx			mlx;
 }				t_display;
 
+
+char	**dup_mat(int height, char **map);
+void	print_map(char **map);
 int		count_map_lines(int fd);
 char	**get_map(char *gnl, int fd, int map_height);
 void	get_elements(int fd, t_tex *texture, int map_height);

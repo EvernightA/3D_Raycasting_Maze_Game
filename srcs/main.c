@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 10:22:35 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/09/28 12:10:21 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/10/02 15:57:09 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ void	init_it(t_tex *text)
 	text->c_rgb = NULL;
 }
 
-static int	get_map_height(int *map_height ,char *file)
+static int	get_map_height(t_tex *texture, int *map_height ,char *file)
 {
 	int fd;
 
@@ -135,6 +135,7 @@ static int	get_map_height(int *map_height ,char *file)
 		return (1);
 	}
 	*map_height = count_map_lines(fd);
+	texture->map_height = *map_height;
 	close(fd);
 	return (0);
 }
@@ -191,14 +192,26 @@ int	main(int argc, char **argv)
 	init_it(&texture);
 	if (input_error(argc, argv))
 		return (1);
-	if (get_map_height(&map_height, argv[1]))
+	if (get_map_height(&texture, &map_height, argv[1]))
 		return (1);
 	if (parsing(&map_height, argv[1], &texture))
 		return (1);
 	if (error_handling(&texture))
 		return (1);
+	
+	char	**tmp;
+
+	tmp = dup_mat(texture.map_height, texture.map);
+	(void)tmp;
+	print_map(tmp);
+	
+	
 	// see_it(&texture);
 	
+
+
+
+	exit (0);
 	/************MLX*********/
 	mlx.mlx_ptr = mlx_init();
 	if (!mlx.mlx_ptr)

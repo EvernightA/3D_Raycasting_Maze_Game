@@ -6,11 +6,116 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 16:00:37 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/09/25 16:17:53 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/10/02 15:58:06 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
+
+
+size_t	find_len_max(char **map)
+{
+	int		i;
+	size_t	max;
+
+	i = 0;
+	max = ft_strlen(map[i]);
+	while (map[i])
+	{
+		if (max < ft_strlen(map[i]))
+		{
+			max = ft_strlen(map[i]);
+		}
+		i++;
+	}
+	printf ("max = %ld\n", max);
+	return (max);
+}
+
+//int		closed_error(char	**map)
+//{
+//	int i;
+//	int	j;
+
+//	i = 0;
+//	j = 0;
+//	while (map[i])
+//	{
+
+//		i++;
+//	}
+//}
+
+
+
+char	*ft_strdup_x(char *s, int len)
+{
+	char		*new;
+	char		*tmp;
+	int			i;
+	int 		j;
+
+	tmp = (char *)s;
+	new = (char *)ft_calloc(len + 2, sizeof(char));
+	if (new == NULL)
+		return (NULL);
+	i = 0;
+	while (i < len)
+	{
+		if (tmp[i] == '\n')
+		{
+			j = i;
+			while (j < len - 1)
+			{
+				new[j] = 'X';
+				j++;
+			}
+			new[j] = '\n';
+			return (new);
+		}
+		else
+		{
+			new[i] = tmp[i];
+		}
+		i++;
+	}
+	new[i + 1] = '\0';
+	return (new);
+}
+
+
+char	**dup_mat(int height, char **map)
+{
+	int 	i;
+	char	**tmp;
+	int		max_len;
+
+	i = 0;
+	tmp = (char **)ft_calloc(height + 2, sizeof(char *));
+	if (!tmp)
+		return (NULL);
+	max_len = find_len_max(map);
+
+	while (map[i])
+	{
+		tmp[i] = ft_strdup_x(map[i], max_len);
+		i++;
+	}
+	return (tmp);
+}
+
+
+void	print_map(char **map)
+{
+	int i;
+
+	i = 0;
+	while (map[i])
+	{
+		printf("%s",map[i]);
+		i++;
+	}
+}
 
 int texture_error(t_tex *texture)
 {
