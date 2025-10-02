@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 10:22:35 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/10/02 19:08:02 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/10/02 19:12:44 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ void	init_it(t_tex *text)
 	text->west =  NULL;
 	text->f_rgb = NULL;
 	text->c_rgb = NULL;
+	text->map =NULL;
 }
 
 static int	get_map_height(t_tex *texture, int *map_height ,char *file)
@@ -152,7 +153,7 @@ static int	parsing(int *map_height, char *file, t_tex *texture)
 	}
 	get_elements(fd, texture, *map_height);
 	if (!texture->c_rgb || !texture->f_rgb || !texture->north 
-	|| !texture->south || !texture->east || !texture->west)
+	|| !texture->south || !texture->east || !texture->west || !texture->map)
 	{
 		ft_putstr_fd("Error\nMissing or Invalid identifier\n", 2);
 		return (1);

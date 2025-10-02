@@ -6,14 +6,14 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:28:34 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/10/02 19:07:40 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/10/02 19:36:24 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
 
-static int	is_player(char c)
+int	is_player(char c)
 {
 	if (c == 'N' || c == 'W' || c == 'E' || c == 'S')
 	{
@@ -49,7 +49,19 @@ int		closed__map_error(char *str)
 {
 	if (ft_strnstr(str, " 0", ft_strlen(str)) || ft_strnstr(str, "0 ", ft_strlen(str))
 	|| ft_strnstr(str, "0\n", ft_strlen(str)) || ft_strnstr(str, "\n0", ft_strlen(str))
-	|| ft_strnstr(str, "\t0", ft_strlen(str)) || ft_strnstr(str, "0\t", ft_strlen(str)))
+	|| ft_strnstr(str, "\t0", ft_strlen(str)) || ft_strnstr(str, "0\t", ft_strlen(str))
+	|| ft_strnstr(str, "0N ",ft_strlen(str)) || ft_strnstr(str, "0E ", ft_strlen(str))
+	|| ft_strnstr(str, "0S ",ft_strlen(str)) || ft_strnstr(str, "0W ", ft_strlen(str))
+	|| ft_strnstr(str, "0N\n",ft_strlen(str)) || ft_strnstr(str, "0E\n", ft_strlen(str))
+	|| ft_strnstr(str, "0S\n",ft_strlen(str)) || ft_strnstr(str, "0W\n", ft_strlen(str))
+	|| ft_strnstr(str, "0N\t",ft_strlen(str)) || ft_strnstr(str, "0E\t", ft_strlen(str))
+	|| ft_strnstr(str, "0S\t",ft_strlen(str)) || ft_strnstr(str, "0W\t", ft_strlen(str))
+	|| ft_strnstr(str, "N ",ft_strlen(str)) || ft_strnstr(str, "E ", ft_strlen(str))
+	|| ft_strnstr(str, "S ",ft_strlen(str)) || ft_strnstr(str, "W ", ft_strlen(str))
+	|| ft_strnstr(str, "N\n",ft_strlen(str)) || ft_strnstr(str, "E\n", ft_strlen(str))
+	|| ft_strnstr(str, "S\n",ft_strlen(str)) || ft_strnstr(str, "W\n", ft_strlen(str))
+)
+
 	{
 		return (1);
 	}
@@ -92,6 +104,32 @@ int	multiple_player_check(t_tex *texture)
 	return (0);
 }
 
+int	matrix_height(char **matrix)
+{
+	int	i;
+
+	i = 0;
+	while (matrix[i])
+	{
+		i++;
+	}
+	return (i);
+}
+
+int player_in_str(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (is_player(str[i]))
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 int	error_handling(t_tex *texture)
 {
 	char	**tmp;
@@ -101,10 +139,18 @@ int	error_handling(t_tex *texture)
 		return (1);
 	}
 	tmp = dup_mat(texture->map_height, texture->map);
+	if (matrix_height(tmp) <= 2)
+	{
+		ft_putstr_fd("Error\nWhat kind of psych are u?\n", 2);
+		free_split(tmp);
+		return (1);
+	}
 	if (closed_error(tmp))
 	{
+		free_split(tmp);
 		ft_putstr_fd("Error\nUnclosed wall found\n", 2);
 		return (1);
 	}
+	free_split(tmp);
 	return (0);
 }

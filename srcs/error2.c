@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 16:00:37 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/10/02 16:31:42 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/10/02 19:39:05 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,16 @@ int		closed_error(char	**map)
 
 	i = 0;// columns
 	j = 1;// columns
+	if (player_in_str(map[0]))
+	{
+		return (1);
+	}
 	while (map[j])
 	{
 		k = 0;
 		while (map[j][k])
 		{
-			if ( map[i][k] == 'X' && map[j][k] == '0')
+			if (map[i][k] == 'X' && (map[j][k] == '0' || is_player(map[j][k])))
 			{
 				return (1);
 			}
@@ -54,6 +58,8 @@ int		closed_error(char	**map)
 		i++;
 		j++;
 	}
+	if (player_in_str(map[i]))
+		return (1);
 	return (0);
 }
 
