@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 10:22:35 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/09/25 17:29:53 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/10/02 18:50:45 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,11 +145,18 @@ int	main(int argc, char **argv)
 	t_point end;
 	t_line *head;
 	t_mlx	mlx;
+	char *tmp;
 
 	init_it(&texture);
+	tmp = ft_strnstr(argv[1], ".cub", ft_strlen(argv[1]));
 	if (argc != 2)
 	{
 		ft_putstr_fd("Error\nUsage: ./cub3D <path to the map>\n",2);
+		return (0);
+	}
+	if (tmp == NULL || ft_strncmp(".cub", tmp, 4) != 0)
+	{
+		ft_putstr_fd("Error\nInvalid extension for map\n", 2);
 		return (0);
 	}
 	fd = open (argv[1], O_RDONLY);

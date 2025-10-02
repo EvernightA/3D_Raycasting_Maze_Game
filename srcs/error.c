@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:28:34 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/09/25 11:50:02 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/09/25 16:09:49 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,15 @@ static int	player_error(int count)
 	return (0);
 }
 
+int		closed__map_error(char *str)
+{
+	if (ft_strnstr(str, " 0", ft_strlen(str)) || ft_strnstr(str, "0 ", ft_strlen(str)))
+	{
+		return (1);
+	}
+	return (0);
+}
+
 int	multiple_player_check(t_tex *texture)
 {
 	int		i;
@@ -60,13 +69,19 @@ int	multiple_player_check(t_tex *texture)
 		{
 			if (is_unknown(texture->map[i][j]))
 			{
-				ft_putstr_fd("Error\nUnknown character found in the map\n", 2);
-				printf("|%c|", texture->map[i][j]);
+				ft_putstr_fd("Error\nUnknown character \'", 2);
+				ft_putchar_fd(texture->map[i][j], 2);
+				ft_putstr_fd("\' found in the map\n", 2);
 				return (1);
 			}
 			if (is_player(texture->map[i][j]))
 				count++;
 			j++;
+		}
+		if (closed__map_error(texture->map[i]))
+		{
+			ft_putstr_fd("Error\nThere is an unclosed wall inside the map\n", 2);
+			return (1);
 		}
 		i++;
 	}
@@ -77,7 +92,7 @@ int	multiple_player_check(t_tex *texture)
 
 int	error_handling(t_tex *texture)
 {
-	if (multiple_player_check(texture))
+	if (multiple_player_check(texture) || texture_error(texture))
 	{
 		return (1);
 	}
