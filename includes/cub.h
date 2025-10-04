@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 08:58:59 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/10/04 16:27:29 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/10/04 16:34:12 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include "../minilibx-linux/mlx.h"
 
 #ifndef SIZE_IMG
- #define SIZE_IMG 1
+ #define SIZE_IMG 16
 #endif
 typedef struct s_point
 {
