@@ -22,7 +22,8 @@ SRCS =  $(SRCS_DIR)main.c 				\
 		$(SRCS_DIR)error.c				\
 		$(SRCS_DIR)error2.c				\
 		$(SRCS_DIR)error3.c				\
-		$(SRCS_DIR)error4.c				
+		$(SRCS_DIR)error4.c				\
+		$(SRCS_DIR)init.c		
 
 		
 

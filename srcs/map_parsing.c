@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 11:17:34 by mratsima          #+#    #+#             */
-/*   Updated: 2025/10/02 21:28:18 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/10/04 14:26:48 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	count_map_lines(int fd)
 	return (count);
 }
 
-void	get_elements(int fd, t_tex *texture, int map_height)
+void	get_elements(int fd, t_display *display, int map_height)
 {
 	char	*str;
 	char	*tmp;
@@ -94,12 +94,12 @@ void	get_elements(int fd, t_tex *texture, int map_height)
 		if (str && (tmp[0] == '1' || tmp[0] == '0'))
 		{
 			free(tmp);
-			texture->map = get_map(str, fd, map_height);
+			display->texture.map = get_map(str, fd, map_height);
 			break;
 		}
 		if (str)
 		{
-			store_texture(str, texture);
+			store_texture(str, display);
 		}
 		else
 			break;
