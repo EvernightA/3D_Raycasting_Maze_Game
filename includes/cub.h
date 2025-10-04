@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 08:58:59 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/10/04 15:04:23 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/10/04 16:27:29 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 # include <X11/keysym.h>
 # include "../minilibx-linux/mlx.h"
 
+#ifndef SIZE_IMG
+ #define SIZE_IMG 1
+#endif
 typedef struct s_point
 {
 	int	x;
@@ -54,6 +57,7 @@ typedef struct s_tex
 	t_rgb	ceiling_rgb;
 	t_rgb	floor_rgb;
 	char	**map;
+	char	**dup_map;
 	int		map_height;
 } t_tex;
 
@@ -112,6 +116,7 @@ int	is_player(char c);
 int player_in_str(char *str);
 
 void	img_initialization(t_display *display);
+void	mini_map(t_display *display, char **map);
 
 
 

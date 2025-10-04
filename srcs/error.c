@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:28:34 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/10/04 14:30:37 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/10/04 16:28:19 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ int	error_handling(t_display *display)
 	if (multiple_player_check(display) || texture_error(display))
 		return (1);
 	tmp = dup_mat(display->texture.map_height, display->texture.map);
+	display->texture.dup_map = dup_mat(display->texture.map_height, display->texture.map);
 	if (matrix_height(tmp) <= 2)
 	{
 		ft_putstr_fd("Error\nWhat kind of psych are u?\n", 2);

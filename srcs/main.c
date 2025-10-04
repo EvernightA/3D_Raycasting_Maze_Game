@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 10:22:35 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/10/04 15:06:32 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/10/04 16:29:50 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,6 +204,8 @@ int	main(int argc, char **argv)
 		return (1);
 	display.mlx.win_ptr = mlx_new_window(display.mlx.mlx_ptr, 400, 400, "cub3d");
 	/*********************/
+	img_initialization(&display);
+	mini_map(&display, display.texture.dup_map);
 	begin.x = 10;
 	begin.y = 0;
 	end.x = 30;
