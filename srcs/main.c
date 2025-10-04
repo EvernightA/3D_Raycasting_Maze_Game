@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 10:22:35 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/10/04 14:32:08 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/10/04 14:51:41 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,11 +204,12 @@ int	main(int argc, char **argv)
 		return (1);
 	display.mlx.win_ptr = mlx_new_window(display.mlx.mlx_ptr, 400, 400, "cub3d");
 	/*********************/
+	img_initialization(&display);
+	mini_map(&display, display.texture.dup_map);
 	begin.x = 10;
 	begin.y = 0;
 	end.x = 30;
 	end.y = 40;
-	img_initialization(&display);
 	head = bresenham_line(&begin, &end);
 	(void)head;
 	// print_list(head);	
