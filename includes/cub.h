@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 08:58:59 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/10/02 22:52:28 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/10/04 15:04:23 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ typedef struct s_rgb
 
 typedef struct s_tex
 {
-	int		completed;
-	int		fc;
+	void	*wall_img;
+	void	*floor_img;
 	char 	*north;
 	char 	*south;
 	char 	*east;
@@ -55,7 +55,6 @@ typedef struct s_tex
 	t_rgb	floor_rgb;
 	char	**map;
 	int		map_height;
-
 } t_tex;
 
 typedef struct s_mlx
@@ -70,7 +69,6 @@ typedef struct s_display
 	t_tex			texture;
 	t_mlx			mlx;
 }				t_display;
-
 
 char	**dup_mat(int height, char **map);
 size_t	find_len_max(char **map);
@@ -91,20 +89,21 @@ int		matrix_height(char **matrix);
 void	print_map(char **map);
 int		count_map_lines(int fd);
 char	**get_map(char *gnl, int fd, int map_height);
-void	get_elements(int fd, t_tex *texture, int map_height);
-void	store_texture(char *str, t_tex *texture);
+void	get_elements(int fd, t_display *texture, int map_height);
+void	store_texture(char *str, t_display *texture);
 t_line	*bresenham_line(t_point *begin, t_point *end);
 int		ft_linesize(t_line *line);
 void	ft_lineadd_back(t_line **line, t_line *new);
 t_line	*ft_linenew(t_point content);
 void	ft_linefree(t_line **line);
 void	print_list(t_line *head);
-int		error_handling(t_tex *texture);
-int 	texture_error(t_tex *texture);
+int		error_handling(t_display *texture);
+int 	texture_error(t_display *texture);
 
-void	free_texture(t_tex *texture);
+
+void	free_texture(t_display *texture);
 void	free_split(char **split);
-int		quit_win(t_mlx *mlx);
+int		quit_win(t_display *mlx);
 int 	key_hook(int key, void *param);
 long long	atoll(const char *ptr);
 int	get_rgb(t_rgb *rgb, char *str_rgb);
@@ -112,6 +111,7 @@ int		closed_error(char	**map);
 int	is_player(char c);
 int player_in_str(char *str);
 
+void	img_initialization(t_display *display);
 
 
 

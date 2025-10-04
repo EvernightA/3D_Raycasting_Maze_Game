@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 16:00:37 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/10/02 22:33:07 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/10/04 14:27:58 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,17 +53,17 @@ void	print_map(char **map)
 	}
 }
 
-int texture_error(t_tex *texture)
+int texture_error(t_display *display)
 {
 	char *tmp;
 	char *tmp1;
 	char *tmp2;
 	char *tmp3;
 
-	tmp = ft_strnstr(texture->north, ".xpm", ft_strlen(texture->north));
-	tmp1 = ft_strnstr(texture->south, ".xpm", ft_strlen(texture->south));
-	tmp2 = ft_strnstr(texture->west, ".xpm", ft_strlen(texture->west));
-	tmp3 = ft_strnstr(texture->east, ".xpm", ft_strlen(texture->east));
+	tmp = ft_strnstr(display->texture.north, ".xpm", ft_strlen(display->texture.north));
+	tmp1 = ft_strnstr(display->texture.south, ".xpm", ft_strlen(display->texture.south));
+	tmp2 = ft_strnstr(display->texture.west, ".xpm", ft_strlen(display->texture.west));
+	tmp3 = ft_strnstr(display->texture.east, ".xpm", ft_strlen(display->texture.east));
 	if (tmp == NULL || tmp1 ==  NULL || tmp2 == NULL || tmp3 == NULL)
 	{
 		ft_putstr_fd("Error\nInvalid extension for texture\n", 2);

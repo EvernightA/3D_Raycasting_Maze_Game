@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_utils.c                                        :+:      :+:    :+:   */
+/*   mini.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/25 11:50:26 by mratsima          #+#    #+#             */
-/*   Updated: 2025/10/04 14:21:02 by fsamy-an         ###   ########.fr       */
+/*   Created: 2025/10/04 09:38:12 by fsamy-an          #+#    #+#             */
+/*   Updated: 2025/10/04 12:37:32 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-int	quit_win(t_display *display)
+void	mini_map(t_display *mlx, char **map)
 {
-	mlx_destroy_window(display->mlx.mlx_ptr, display->mlx.win_ptr);
-	mlx_destroy_display(display->mlx.mlx_ptr);
-	free(display->mlx.mlx_ptr);
-	exit(0);
-}
+	int i;
+	int	j;
+	int	pos_i;
+	int	pos_j;
 
-int key_hook(int key, void *param)
-{
-	if (key == XK_Escape)
-		quit_win((t_display *)param);
-	return (0);
+
+	i = 0;
+	pos_i = i * 16;
+	pos_j = j * 16;
+	while (map[i])
+	{
+		j = 0;
+		while (map[j])
+		{
+			
+			j++;
+		}
+		j++;
+	}
 }

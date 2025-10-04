@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 10:22:35 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/10/02 22:53:25 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/10/04 15:06:32 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void print_split(char **split)
 	}
 }
 
-void	store_texture(char *str, t_tex *texture)
+void	store_texture(char *str, t_display *display)
 {
 	char *tmp;
 	char *file;
@@ -36,102 +36,96 @@ void	store_texture(char *str, t_tex *texture)
 	if (ft_strncmp("NO ", tmp, 3) == 0 || ft_strncmp("NO\t", tmp, 3) == 0)
 	{
 		file = ft_strnstr(str,".", ft_strlen(str));
-		texture->north = ft_strdup(file);
+		display->texture.north = ft_strdup(file);
 	}
 	else if (ft_strncmp("SO ", tmp, 3) == 0 || ft_strncmp("SO\t", tmp, 3) == 0)
 	{
 		file = ft_strnstr(str,".", ft_strlen(str));
-		texture->south = ft_strdup(file);
+		display->texture.south = ft_strdup(file);
 	}
 	else if (ft_strncmp("WE ", tmp, 3) == 0 || ft_strncmp("WE\t", tmp, 3) == 0) 
 	{
 		file = ft_strnstr(str,".", ft_strlen(str));
-		texture->west = ft_strdup(file);
+		display->texture.west = ft_strdup(file);
 	}
 	else if (ft_strncmp("EA ", tmp, 3) == 0 || ft_strncmp("EA\t", tmp, 3) == 0)
 	{
 		file = ft_strnstr(str,".", ft_strlen(str));
-		texture->east = ft_strdup(file);
+		display->texture.east = ft_strdup(file);
 	}
 	else if (ft_strncmp("C ", tmp, 2) == 0 || ft_strncmp("C\t", tmp, 2) == 0)
 	{
-		texture->c_rgb = ft_strdup(tmp);
-		if (get_rgb(&texture->ceiling_rgb, texture->c_rgb))
-			exit(1);
-		texture->completed++;
+		display->texture.c_rgb = ft_strdup(tmp);
 	}
 	else if (ft_strncmp("F ", tmp, 2) == 0 || ft_strncmp("F\t", tmp, 2) == 0)
 	{
-		texture->f_rgb = ft_strdup(tmp);
-		if (get_rgb(&texture->floor_rgb, texture->f_rgb))
-			exit(1);
-		texture->completed++;
+		display->texture.f_rgb = ft_strdup(tmp);
 	}
 	free(tmp);
 }
 
 
-void	filter_texture(t_tex *texture)
+void	filter_texture(t_display *display)
 {
 	char *tmp;
 
 	tmp = NULL;
-	tmp = ft_strtrim(texture->north, "\n");
-	free(texture->north);
-	texture->north = ft_strdup(tmp);
+	tmp = ft_strtrim(display->texture.north, "\n");
+	free(display->texture.north);
+	display->texture.north = ft_strdup(tmp);
 	free(tmp);
 	tmp = NULL;
-	tmp = ft_strtrim(texture->south, "\n");
-	free(texture->south);
-	texture->south = ft_strdup(tmp);
+	tmp = ft_strtrim(display->texture.south, "\n");
+	free(display->texture.south);
+	display->texture.south = ft_strdup(tmp);
 	free(tmp);
 	tmp = NULL;
-	tmp = ft_strtrim(texture->west, "\n");
-	free(texture->west);
-	texture->west = ft_strdup(tmp);
+	tmp = ft_strtrim(display->texture.west, "\n");
+	free(display->texture.west);
+	display->texture.west = ft_strdup(tmp);
 	free(tmp);
 	tmp = NULL;
-	tmp = ft_strtrim(texture->east, "\n");
-	free(texture->east);
-	texture->east = ft_strdup(tmp);
+	tmp = ft_strtrim(display->texture.east, "\n");
+	free(display->texture.east);
+	display->texture.east = ft_strdup(tmp);
 	free(tmp);
 	tmp = NULL;
-	tmp = ft_strtrim(texture->c_rgb, "\n");
-	free(texture->c_rgb);
-	texture->c_rgb = ft_strdup(tmp);
+	tmp = ft_strtrim(display->texture.c_rgb, "\n");
+	free(display->texture.c_rgb);
+	display->texture.c_rgb = ft_strdup(tmp);
 	free(tmp);
 	tmp = NULL;
-	tmp = ft_strtrim(texture->f_rgb, "\n");
-	free(texture->f_rgb);
-	texture->f_rgb = ft_strdup(tmp);
+	tmp = ft_strtrim(display->texture.f_rgb, "\n");
+	free(display->texture.f_rgb);
+	display->texture.f_rgb = ft_strdup(tmp);
 	free(tmp);
 }
 
 
-void	see_it(t_tex *texture)
+void	see_it(t_display *display)
 {
-	printf("North : %s\n",texture->north);
-	printf("East : %s\n", texture->east);
-	printf("West : %s\n", texture->west);
-	printf("South : %s\n", texture->south);
-	printf("c_rgb : %s\n", texture->c_rgb);
-	printf("f_rgb : %s\n", texture->f_rgb);
+	printf("North : %s\n",display->texture.north);
+	printf("East : %s\n", display->texture.east);
+	printf("West : %s\n", display->texture.west);
+	printf("South : %s\n", display->texture.south);
+	printf("c_rgb : %s\n", display->texture.c_rgb);
+	printf("f_rgb : %s\n", display->texture.f_rgb);
 	printf("map = \n");
-	print_split(texture->map);
+	print_split(display->texture.map);
 }
 
-void	init_it(t_tex *text)
+void	init_it(t_display *display)
 {
-	text->north = NULL;
-	text->south = NULL;
-	text->east = NULL;
-	text->west =  NULL;
-	text->f_rgb = NULL;
-	text->c_rgb = NULL;
-	text->map =NULL;
+	display->texture.north = NULL;
+	display->texture.south = NULL;
+	display->texture.east = NULL;
+	display->texture.west =  NULL;
+	display->texture.f_rgb = NULL;
+	display->texture.c_rgb = NULL;
+	display->texture.map =NULL;
 }
 
-static int	get_map_height(t_tex *texture, int *map_height ,char *file)
+static int	get_map_height(t_display *display, int *map_height ,char *file)
 {
 	int fd;
 
@@ -142,12 +136,12 @@ static int	get_map_height(t_tex *texture, int *map_height ,char *file)
 		return (1);
 	}
 	*map_height = count_map_lines(fd);
-	texture->map_height = *map_height;
+	display->texture.map_height = *map_height;
 	close(fd);
 	return (0);
 }
 
-static int	parsing(int *map_height, char *file, t_tex *texture)
+static int	parsing(int *map_height, char *file, t_display *display)
 {
 	int fd;
 
@@ -157,14 +151,14 @@ static int	parsing(int *map_height, char *file, t_tex *texture)
 		ft_putstr_fd("Error\nNo such file or directory\n",2);
 		return (1);
 	}
-	get_elements(fd, texture, *map_height);
-	if (!texture->c_rgb || !texture->f_rgb || !texture->north 
-	|| !texture->south || !texture->east || !texture->west || !texture->map)
+	get_elements(fd, display, *map_height);
+	if (!display->texture.c_rgb || !display->texture.f_rgb || !display->texture.north 
+	|| !display->texture.south || !display->texture.east || !display->texture.west || !display->texture.map)
 	{
 		ft_putstr_fd("Error\nMissing or Invalid identifier\n", 2);
 		return (1);
 	}
-	filter_texture(texture);
+	filter_texture(display);
 	return (0);
 }
 
@@ -190,39 +184,39 @@ int	main(int argc, char **argv)
 {
 	(void)argv;
 	int map_height;
-	t_tex	texture;
+	t_display	display;
 	t_point begin;
 	t_point end;
 	t_line *head;
-	t_mlx	mlx;
 
-	init_it(&texture);
+	init_it(&display);
 	if (input_error(argc, argv))
 		return (1);
-	if (get_map_height(&texture, &map_height, argv[1]))
+	if (get_map_height(&display, &map_height, argv[1]))
 		return (1);
-	if (parsing(&map_height, argv[1], &texture))
+	if (parsing(&map_height, argv[1], &display))
 		return (1);
-	if (error_handling(&texture))
+	if (error_handling(&display))
 		return (1);
 	/************MLX*********/
-	mlx.mlx_ptr = mlx_init();
-	if (!mlx.mlx_ptr)
+	display.mlx.mlx_ptr = mlx_init();
+	if (!display.mlx.mlx_ptr)
 		return (1);
-	mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, 400, 400, "cub3d");
+	display.mlx.win_ptr = mlx_new_window(display.mlx.mlx_ptr, 400, 400, "cub3d");
 	/*********************/
 	begin.x = 10;
 	begin.y = 0;
 	end.x = 30;
 	end.y = 40;
+	img_initialization(&display);
 	head = bresenham_line(&begin, &end);
 	(void)head;
 	// print_list(head);	
 	/*********MLX******************/
-	mlx_hook(mlx.win_ptr, 17, 0, quit_win, &mlx);
-	mlx_key_hook(mlx.win_ptr, key_hook, &mlx);
-	mlx_loop(mlx.mlx_ptr);
+	mlx_hook(display.mlx.win_ptr, 17, 0, quit_win, &display);
+	mlx_key_hook(display.mlx.win_ptr, key_hook, &display);
+	mlx_loop(display.mlx.mlx_ptr);
 	/******************************/
-	free_texture(&texture);
+	free_texture(&display);
 	return (0);
 }
