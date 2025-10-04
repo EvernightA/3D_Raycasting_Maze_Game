@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 09:38:12 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/10/04 15:11:37 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/10/04 16:31:35 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,3 +42,5 @@ void	mini_map(t_display *display, char **map)
 	}
 	free_split(map);
 }
+
+
