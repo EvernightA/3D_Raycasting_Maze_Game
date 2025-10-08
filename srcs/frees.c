@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   frees.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:22:27 by mratsima          #+#    #+#             */
-/*   Updated: 2025/10/04 14:18:48 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/10/08 07:51:36 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	free_split(char **split)
 
 void	free_texture(t_display *display)
 {
-	free_split(display->texture.map);
+	free_split(display->map);
 	free(display->texture.c_rgb);
 	free(display->texture.f_rgb);
 	free(display->texture.east);

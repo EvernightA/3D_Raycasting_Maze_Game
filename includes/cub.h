@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 08:58:59 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/10/04 16:34:12 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/10/08 08:45:09 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct s_tex
 	char	*f_rgb;
 	t_rgb	ceiling_rgb;
 	t_rgb	floor_rgb;
-	char	**map;
+	// char	**map;
 	char	**dup_map;
 	int		map_height;
 } t_tex;
@@ -67,11 +67,20 @@ typedef struct s_mlx
 	void	*win_ptr;
 }				t_mlx;
 
+typedef struct s_player
+{
+	int x;
+	int y;
+	char orientation;
+}
+				t_player;
+
 typedef struct s_display
 {
 	char			**map;
 	t_tex			texture;
 	t_mlx			mlx;
+	t_player		player;
 }				t_display;
 
 char	**dup_mat(int height, char **map);

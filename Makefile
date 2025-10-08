@@ -25,7 +25,6 @@ SRCS =  $(SRCS_DIR)main.c 				\
 		$(SRCS_DIR)error3.c				\
 		$(SRCS_DIR)error4.c				\
 		$(SRCS_DIR)init.c		\
-		$(SRCS_DIR)init.c				\
 		$(SRCS_DIR)mini.c
 
 		

@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:28:34 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/10/04 16:28:19 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/10/08 07:53:40 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,23 +44,23 @@ int	multiple_player_check(t_display *display)
 
 	i = 0;
 	count = 0;
-	while (display->texture.map[i])
+	while (display->map[i])
 	{
 		j = 0;
-		while (display->texture.map[i][j])
+		while (display->map[i][j])
 		{
-			if (is_unknown(display->texture.map[i][j]))
+			if (is_unknown(display->map[i][j]))
 			{
 				ft_putstr_fd("Error\nUnknown character \'", 2);
-				ft_putchar_fd(display->texture.map[i][j], 2);
+				ft_putchar_fd(display->map[i][j], 2);
 				ft_putstr_fd("\' found in the map\n", 2);
 				return (1);
 			}
-			if (is_player(display->texture.map[i][j]))
+			if (is_player(display->map[i][j]))
 				count++;
 			j++;
 		}
-		if (closed__map_error(display->texture.map[i]))
+		if (closed__map_error(display->map[i]))
 		{
 			ft_putstr_fd("Error\nUnclosed map found\n", 2);
 			return (1);
@@ -78,8 +78,8 @@ int	error_handling(t_display *display)
 
 	if (multiple_player_check(display) || texture_error(display))
 		return (1);
-	tmp = dup_mat(display->texture.map_height, display->texture.map);
-	display->texture.dup_map = dup_mat(display->texture.map_height, display->texture.map);
+	tmp = dup_mat(display->texture.map_height, display->map);
+	display->texture.dup_map = dup_mat(display->texture.map_height, display->map);
 	if (matrix_height(tmp) <= 2)
 	{
 		ft_putstr_fd("Error\nWhat kind of psych are u?\n", 2);

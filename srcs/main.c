@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 10:22:35 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/10/04 16:29:50 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/10/08 08:44:41 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ void	see_it(t_display *display)
 	printf("c_rgb : %s\n", display->texture.c_rgb);
 	printf("f_rgb : %s\n", display->texture.f_rgb);
 	printf("map = \n");
-	print_split(display->texture.map);
+	print_split(display->map);
 }
 
 void	init_it(t_display *display)
@@ -122,7 +122,7 @@ void	init_it(t_display *display)
 	display->texture.west =  NULL;
 	display->texture.f_rgb = NULL;
 	display->texture.c_rgb = NULL;
-	display->texture.map =NULL;
+	display->map =NULL;
 }
 
 static int	get_map_height(t_display *display, int *map_height ,char *file)
@@ -153,7 +153,7 @@ static int	parsing(int *map_height, char *file, t_display *display)
 	}
 	get_elements(fd, display, *map_height);
 	if (!display->texture.c_rgb || !display->texture.f_rgb || !display->texture.north 
-	|| !display->texture.south || !display->texture.east || !display->texture.west || !display->texture.map)
+	|| !display->texture.south || !display->texture.east || !display->texture.west || !display->map)
 	{
 		ft_putstr_fd("Error\nMissing or Invalid identifier\n", 2);
 		return (1);
@@ -180,6 +180,31 @@ static int	input_error(int argc, char **argv)
 	return (0);
 }
 
+void	init_player_position(t_display *display)
+{
+	int i;
+	int j;
+
+	j = 0;
+	while (display->map[j])
+	{
+		i = 0;
+		while (display->map[j][i])
+		{
+			if (display->map[j][i] == 'N' || display->map[j][i] == 'S' || display->map[j][i] == 'E' || display->map[j][i] == 'W')
+			{
+				display->player.x = i;
+				display->player.y = j;
+				display->player.orientation = display->map[j][i];
+				return ;
+			}
+			i++;
+		}
+		j++;
+	}
+	
+}
+
 int	main(int argc, char **argv)
 {
 	(void)argv;
@@ -198,6 +223,7 @@ int	main(int argc, char **argv)
 		return (1);
 	if (error_handling(&display))
 		return (1);
+	init_player_position(&display);
 	/************MLX*********/
 	display.mlx.mlx_ptr = mlx_init();
 	if (!display.mlx.mlx_ptr)
@@ -205,18 +231,18 @@ int	main(int argc, char **argv)
 	display.mlx.win_ptr = mlx_new_window(display.mlx.mlx_ptr, 400, 400, "cub3d");
 	/*********************/
 	img_initialization(&display);
-	mini_map(&display, display.texture.dup_map);
 	begin.x = 10;
 	begin.y = 0;
 	end.x = 30;
 	end.y = 40;
-	img_initialization(&display);
+	// img_initialization(&display);
 	head = bresenham_line(&begin, &end);
 	(void)head;
 	// print_list(head);	
 	/*********MLX******************/
 	mlx_hook(display.mlx.win_ptr, 17, 0, quit_win, &display);
 	mlx_key_hook(display.mlx.win_ptr, key_hook, &display);
+	mini_map(&display, display.map);
 	mlx_loop(display.mlx.mlx_ptr);
 	/******************************/
 	free_texture(&display);

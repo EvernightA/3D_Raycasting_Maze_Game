@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 16:00:37 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/10/04 14:27:58 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/10/08 09:12:12 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,13 @@ void	print_map(char **map)
 	int i;
 
 	i = 0;
+	if (!map)
+		return;
 	while (map[i])
 	{
-		printf("%s",map[i]);
+		// printf("%s",map[i]);
+		ft_putstr_fd(map[i], 1);
+		ft_putstr_fd("\n", 1);
 		i++;
 	}
 }
