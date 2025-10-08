@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 09:38:12 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/10/08 08:52:11 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/10/08 09:43:54 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ void	mini_map(t_display *display, char **map)
 			}
 			else if (map[i][j] == '0')
 			{
-				mlx_put_image_to_window(display->mlx.mlx_ptr, display->mlx.win_ptr, display->texture.floor_img, j * SIZE_IMG, i * SIZE_IMG);
 			}
 			else if (is_player(map[i][j]))
 			{
+				mlx_put_image_to_window(display->mlx.mlx_ptr, display->mlx.win_ptr, display->texture.floor_img, j * SIZE_IMG, i * SIZE_IMG);
 
 			}
 			j++;

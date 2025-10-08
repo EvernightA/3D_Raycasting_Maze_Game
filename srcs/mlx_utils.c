@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:50:26 by mratsima          #+#    #+#             */
-/*   Updated: 2025/10/08 09:21:14 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/10/08 09:43:19 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,6 @@ int key_hook(int key, void *param)
 			puts("~\n~");
 		}
 	}
+	mini_map(display, display->map);
 	return (0);
 }
