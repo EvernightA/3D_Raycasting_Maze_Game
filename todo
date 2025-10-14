@@ -76,3 +76,5 @@ of your choice.
 only one bresenham then iter on the bresenham result to have the other lines
 
 [ ] F and F
+
+[ ]make the player change orientation
