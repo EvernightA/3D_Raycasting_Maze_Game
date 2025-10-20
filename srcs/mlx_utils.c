@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:50:26 by mratsima          #+#    #+#             */
-/*   Updated: 2025/10/20 11:26:22 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/10/20 12:48:38 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int key_hook(int key, void *param)
 		quit_win(display);
 	else if (key == XK_Up)
 	{
-		// printf("------------------%d--------------------------\n\n", (display->player.y_pixel - 1) % 16);
 		if (display->map[display->player.y_blocs - 1][display->player.x_blocs] == '0')
 		{
 			display->player.y_pixel--;
