@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 10:22:35 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/10/20 09:15:32 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/10/20 10:00:02 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,6 +195,8 @@ void	init_player_position(t_display *display)
 			{
 				display->player.x_blocs = i;
 				display->player.y_blocs = j;
+				display->player.x_pixel = i * 16 + 16 / 2;
+				display->player.y_pixel = j * 16 + 16 / 2;
 				display->player.orientation = display->map[j][i];
 				return ;
 			}

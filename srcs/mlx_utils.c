@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:50:26 by mratsima          #+#    #+#             */
-/*   Updated: 2025/10/20 09:02:26 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/10/20 09:40:06 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int key_hook(int key, void *param)
 	{
 		//if (display->map[display->player.y_blocs - 1][display->player.x_blocs] == '0')
 		//{
-			display->player.y_blocs--;
+			display->player.y_pixel--;
 			//display->map[display->player.y_blocs + 1][display->player.x_blocs] = '0';
 			//display->map[display->player.y_blocs][display->player.x_blocs] = display->player.orientation;
 			print_map(display->map);
@@ -44,7 +44,7 @@ int key_hook(int key, void *param)
 	{
 		//if (display->map[display->player.y_blocs + 1][display->player.x_blocs] == '0')
 		//{
-			display->player.y_blocs++;
+			display->player.y_pixel++;
 			//display->map[display->player.y_blocs - 1][display->player.x_blocs] = '0';
 			//display->map[display->player.y_blocs][display->player.x_blocs] = display->player.orientation;
 			print_map(display->map);
@@ -55,7 +55,7 @@ int key_hook(int key, void *param)
 	{
 		//if (display->map[display->player.y_blocs][display->player.x_blocs - 1] == '0')
 		//{	
-			display->player.x_blocs--;
+			display->player.x_pixel--;
 			//display->map[display->player.y_blocs][display->player.x_blocs + 1] = '0';
 			//display->map[display->player.y_blocs][display->player.x_blocs] = display->player.orientation;
 			print_map(display->map);
@@ -66,7 +66,7 @@ int key_hook(int key, void *param)
 	{
 		//if (display->map[display->player.y_blocs][display->player.x_blocs + 1] == '0')
 		//{
-			display->player.x_blocs++;
+			display->player.x_pixel++;
 			//display->map[display->player.y_blocs][display->player.x_blocs - 1] = '0';
 			//display->map[display->player.y_blocs][display->player.x_blocs] = display->player.orientation;
 			print_map(display->map);
