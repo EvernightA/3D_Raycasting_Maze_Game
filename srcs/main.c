@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 10:22:35 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/10/20 10:00:02 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/10/20 14:07:24 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,6 +195,8 @@ void	init_player_position(t_display *display)
 			{
 				display->player.x_blocs = i;
 				display->player.y_blocs = j;
+				display->begin.x = i  * 16 + 16 / 2;
+				display->begin.y = j  * 16 + 16 / 2;
 				display->player.x_pixel = i * 16 + 16 / 2;
 				display->player.y_pixel = j * 16 + 16 / 2;
 				display->player.orientation = display->map[j][i];
@@ -207,16 +209,30 @@ void	init_player_position(t_display *display)
 	
 }
 
+void		draw_line(t_display *display)
+{
+	t_line *tmp;
+
+	tmp = display->head;
+	while (tmp)
+	{
+		mlx_pixel_put(display->mlx.mlx_ptr, display->mlx.win_ptr,tmp->dot.x,tmp->dot.y, 0xFF000);
+		tmp = tmp -> next;
+	}
+}
+
+
 int	main(int argc, char **argv)
 {
 	(void)argv;
 	int map_height;
 	t_display	display;
-	t_point begin;
-	t_point end;
-	t_line *head;
+	//t_point begin;
+	//t_point end;
+	//t_line *head;
 
 	init_it(&display);
+
 	if (input_error(argc, argv))
 		return (1);
 	if (get_map_height(&display, &map_height, argv[1]))
@@ -233,19 +249,15 @@ int	main(int argc, char **argv)
 	display.mlx.win_ptr = mlx_new_window(display.mlx.mlx_ptr, 400, 400, "cub3d");
 	/*********************/
 	img_initialization(&display);
-	begin.x = 10;
-	begin.y = 0;
-	end.x = 30;
-	end.y = 40;
-	// img_initialization(&display);
-	head = bresenham_line(&begin, &end);
-	(void)head;
-	// print_list(head);	
+
+	display.end.x = 500;
+	display.end.y = 300;
+	display.head = bresenham_line(&display.begin, &display.end);
+	draw_line(&display);
 	/*********MLX******************/
 	mlx_hook(display.mlx.win_ptr, 17, 0, quit_win, &display);
+	//mlx_key_hook(display.mlx.mlx_ptr, display.mlx.win_ptr, &display);
 	mlx_hook(display.mlx.win_ptr, 2, 1L<<0, key_hook, &display);
-
-	//mlx_key_hook(display.mlx.win_ptr, key_hook, &display);
 	mini_map(&display, display.map);
 	mlx_loop(display.mlx.mlx_ptr);
 	/******************************/
