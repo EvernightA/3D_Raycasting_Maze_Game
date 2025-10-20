@@ -10,11 +10,11 @@
 -[x] Set up a basic Makefile
 
 ### Day 2-3: Theory and Research
--[ ]Learn raycasting principles
--[ ]Study the math behind 3D rendering
--[ ]Research Wolfenstein 3D rendering techniques
--[ ]Create diagrams for understanding raycasting concepts
--[ ]Make notes on vector math required for the project
+-[x]Learn raycasting principles
+-[x]Study the math behind 3D rendering
+-[x]Research Wolfenstein 3D rendering techniques
+-[x]Create diagrams for understanding raycasting concepts
+-[x]Make notes on vector math required for the project
 
 ### Day 4-5: Basic Structure
 -[ ]Design the program architecture

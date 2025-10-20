@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 08:58:59 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/10/20 08:53:40 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/10/20 13:08:42 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,8 @@ typedef struct s_player
 	int 	x_pixel;
 	int 	y_blocs;
 	int 	y_pixel;
-	t_img	*img;
+	int 	fov;
+	t_point	direction;
 	char 	orientation;
 }
 				t_player;
