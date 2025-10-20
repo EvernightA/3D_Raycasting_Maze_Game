@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
+/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:50:26 by mratsima          #+#    #+#             */
-/*   Updated: 2025/10/08 10:56:17 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/10/20 09:02:26 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,47 +31,47 @@ int key_hook(int key, void *param)
 		quit_win(display);
 	else if (key == XK_Up)
 	{
-		if (display->map[display->player.y - 1][display->player.x] == '0')
-		{
-			display->player.y--;
-			display->map[display->player.y + 1][display->player.x] = '0';
-			display->map[display->player.y][display->player.x] = display->player.orientation;
+		//if (display->map[display->player.y_blocs - 1][display->player.x_blocs] == '0')
+		//{
+			display->player.y_blocs--;
+			//display->map[display->player.y_blocs + 1][display->player.x_blocs] = '0';
+			//display->map[display->player.y_blocs][display->player.x_blocs] = display->player.orientation;
 			print_map(display->map);
 			puts("~\n~");
-		}
+		//}
 	}
 	else if (key == XK_Down)
 	{
-		if (display->map[display->player.y + 1][display->player.x] == '0')
-		{
-			display->player.y++;
-			display->map[display->player.y - 1][display->player.x] = '0';
-			display->map[display->player.y][display->player.x] = display->player.orientation;
+		//if (display->map[display->player.y_blocs + 1][display->player.x_blocs] == '0')
+		//{
+			display->player.y_blocs++;
+			//display->map[display->player.y_blocs - 1][display->player.x_blocs] = '0';
+			//display->map[display->player.y_blocs][display->player.x_blocs] = display->player.orientation;
 			print_map(display->map);
 			puts("~\n~");
-		}
+		//}
 	}
 	else if (key == XK_Left)
 	{
-		if (display->map[display->player.y][display->player.x - 1] == '0')
-		{	
-			display->player.x--;
-			display->map[display->player.y][display->player.x + 1] = '0';
-			display->map[display->player.y][display->player.x] = display->player.orientation;
+		//if (display->map[display->player.y_blocs][display->player.x_blocs - 1] == '0')
+		//{	
+			display->player.x_blocs--;
+			//display->map[display->player.y_blocs][display->player.x_blocs + 1] = '0';
+			//display->map[display->player.y_blocs][display->player.x_blocs] = display->player.orientation;
 			print_map(display->map);
 			puts("~\n~");
-		}
+		//}
 	}
 	else if (key == XK_Right)
 	{
-		if (display->map[display->player.y][display->player.x + 1] == '0')
-		{
-			display->player.x++;
-			display->map[display->player.y][display->player.x - 1] = '0';
-			display->map[display->player.y][display->player.x] = display->player.orientation;
+		//if (display->map[display->player.y_blocs][display->player.x_blocs + 1] == '0')
+		//{
+			display->player.x_blocs++;
+			//display->map[display->player.y_blocs][display->player.x_blocs - 1] = '0';
+			//display->map[display->player.y_blocs][display->player.x_blocs] = display->player.orientation;
 			print_map(display->map);
 			puts("~\n~");
-		}
+		//}
 	}
 	mlx_clear_window(display->mlx.mlx_ptr, display->mlx.win_ptr);
 	mini_map(display, display->map);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
+/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 08:58:59 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/10/08 08:45:09 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/10/20 08:53:40 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,16 @@
 #ifndef SIZE_IMG
  #define SIZE_IMG 16
 #endif
+
+typedef struct s_img
+{
+    void	*mlx_img;
+    char	*addr;
+    int		bpp; /* bits per pixel */
+    int		line_len;
+    int		endian;
+}	t_img;
+
 typedef struct s_point
 {
 	int	x;
@@ -69,9 +79,12 @@ typedef struct s_mlx
 
 typedef struct s_player
 {
-	int x;
-	int y;
-	char orientation;
+	int 	x_blocs;
+	int 	x_pixel;
+	int 	y_blocs;
+	int 	y_pixel;
+	t_img	*img;
+	char 	orientation;
 }
 				t_player;
 

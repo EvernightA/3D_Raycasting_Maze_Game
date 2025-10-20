@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
+/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 10:22:35 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/10/08 08:44:41 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/10/20 09:15:32 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,8 +193,8 @@ void	init_player_position(t_display *display)
 		{
 			if (display->map[j][i] == 'N' || display->map[j][i] == 'S' || display->map[j][i] == 'E' || display->map[j][i] == 'W')
 			{
-				display->player.x = i;
-				display->player.y = j;
+				display->player.x_blocs = i;
+				display->player.y_blocs = j;
 				display->player.orientation = display->map[j][i];
 				return ;
 			}
@@ -241,7 +241,9 @@ int	main(int argc, char **argv)
 	// print_list(head);	
 	/*********MLX******************/
 	mlx_hook(display.mlx.win_ptr, 17, 0, quit_win, &display);
-	mlx_key_hook(display.mlx.win_ptr, key_hook, &display);
+	mlx_hook(display.mlx.win_ptr, 2, 1L<<0, key_hook, &display);
+
+	//mlx_key_hook(display.mlx.win_ptr, key_hook, &display);
 	mini_map(&display, display.map);
 	mlx_loop(display.mlx.mlx_ptr);
 	/******************************/

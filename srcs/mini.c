@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
+/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 09:38:12 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/10/08 09:43:54 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/10/20 09:04:37 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,13 @@ void	mini_map(t_display *display, char **map)
 			else if (map[i][j] == '0')
 			{
 			}
-			else if (is_player(map[i][j]))
-			{
-				mlx_put_image_to_window(display->mlx.mlx_ptr, display->mlx.win_ptr, display->texture.floor_img, j * SIZE_IMG, i * SIZE_IMG);
-
-			}
+			//else if (is_player(map[i][j]))
+			//{
+				//mlx_put_image_to_window(display->mlx.mlx_ptr, display->mlx.win_ptr, display->texture.floor_img, j * SIZE_IMG, i * SIZE_IMG);
+				// A FUNCTION TO PUT A PLAYER in pixel
+				mlx_pixel_put(display->mlx.mlx_ptr, display->mlx.win_ptr, display->player.x_blocs * 1, display->player.y_blocs * 1, 0xFF00);
+			
+			//}
 			j++;
 		}
 		i++;
