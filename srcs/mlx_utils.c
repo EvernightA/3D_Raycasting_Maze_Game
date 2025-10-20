@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:50:26 by mratsima          #+#    #+#             */
-/*   Updated: 2025/10/20 11:17:33 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/10/20 11:26:22 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ int key_hook(int key, void *param)
 		{
 			display->player.y_pixel--;
 			display->player.y_blocs = display->player.y_pixel / 16;
-			display->map[display->player.y_blocs + 1][display->player.x_blocs] = '0';
+			if (is_player(display->map[display->player.y_blocs + 1][display->player.x_blocs]))
+				display->map[display->player.y_blocs + 1][display->player.x_blocs] = '0';
 			display->map[display->player.y_blocs][display->player.x_blocs] = display->player.orientation;
 			print_map(display->map);
 			puts("~\n~");
@@ -46,7 +47,8 @@ int key_hook(int key, void *param)
 		{
 			display->player.y_pixel--;
 			display->player.y_blocs = display->player.y_pixel / 16;
-			display->map[display->player.y_blocs + 1][display->player.x_blocs] = '0';
+			if (is_player(display->map[display->player.y_blocs + 1][display->player.x_blocs]))
+				display->map[display->player.y_blocs + 1][display->player.x_blocs] = '0';
 			display->map[display->player.y_blocs][display->player.x_blocs] = display->player.orientation;
 			print_map(display->map);
 			puts("~\n~");
@@ -58,7 +60,8 @@ int key_hook(int key, void *param)
 		{
 			display->player.y_pixel++;
 			display->player.y_blocs = display->player.y_pixel / 16;
-			display->map[display->player.y_blocs - 1][display->player.x_blocs] = '0';
+			if (is_player(display->map[display->player.y_blocs - 1][display->player.x_blocs]))
+				display->map[display->player.y_blocs - 1][display->player.x_blocs] = '0';
 			display->map[display->player.y_blocs][display->player.x_blocs] = display->player.orientation;
 			print_map(display->map);
 			puts("~\n~");
@@ -68,7 +71,8 @@ int key_hook(int key, void *param)
 		{
 			display->player.y_pixel++;
 			display->player.y_blocs = display->player.y_pixel / 16;
-			display->map[display->player.y_blocs - 1][display->player.x_blocs] = '0';
+			if (is_player(display->map[display->player.y_blocs - 1][display->player.x_blocs]))
+				display->map[display->player.y_blocs - 1][display->player.x_blocs] = '0';
 			display->map[display->player.y_blocs][display->player.x_blocs] = display->player.orientation;
 			print_map(display->map);
 			puts("~\n~");
@@ -80,7 +84,8 @@ int key_hook(int key, void *param)
 		{	
 			display->player.x_pixel--;
 			display->player.x_blocs = display->player.x_pixel / 16;
-			display->map[display->player.y_blocs][display->player.x_blocs + 1] = '0';
+			if (is_player(display->map[display->player.y_blocs][display->player.x_blocs + 1]))
+				display->map[display->player.y_blocs][display->player.x_blocs + 1] = '0';
 			display->map[display->player.y_blocs][display->player.x_blocs] = display->player.orientation;
 			print_map(display->map);
 			puts("~\n~");
@@ -90,7 +95,8 @@ int key_hook(int key, void *param)
 		{
 			display->player.x_pixel--;
 			display->player.x_blocs = display->player.x_pixel / 16;
-			display->map[display->player.y_blocs][display->player.x_blocs + 1] = '0';
+			if (is_player(display->map[display->player.y_blocs][display->player.x_blocs + 1]))
+				display->map[display->player.y_blocs][display->player.x_blocs + 1] = '0';
 			display->map[display->player.y_blocs][display->player.x_blocs] = display->player.orientation;
 			print_map(display->map);
 			puts("~\n~");
@@ -102,7 +108,8 @@ int key_hook(int key, void *param)
 		{
 			display->player.x_pixel++;
 			display->player.x_blocs = display->player.x_pixel / 16;
-			display->map[display->player.y_blocs][display->player.x_blocs - 1] = '0';
+			if (is_player(display->map[display->player.y_blocs][display->player.x_blocs - 1]))
+				display->map[display->player.y_blocs][display->player.x_blocs - 1] = '0';
 			display->map[display->player.y_blocs][display->player.x_blocs] = display->player.orientation;
 			print_map(display->map);
 			puts("~\n~");
@@ -112,7 +119,8 @@ int key_hook(int key, void *param)
 		{
 			display->player.x_pixel++;
 			display->player.x_blocs = display->player.x_pixel / 16;
-			display->map[display->player.y_blocs][display->player.x_blocs - 1] = '0';
+			if (is_player(display->map[display->player.y_blocs][display->player.x_blocs - 1]))
+				display->map[display->player.y_blocs][display->player.x_blocs - 1] = '0';
 			display->map[display->player.y_blocs][display->player.x_blocs] = display->player.orientation;
 			print_map(display->map);
 			puts("~\n~");
