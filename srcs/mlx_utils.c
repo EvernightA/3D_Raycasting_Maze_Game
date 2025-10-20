@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:50:26 by mratsima          #+#    #+#             */
-/*   Updated: 2025/10/20 10:11:16 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/10/20 11:17:33 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,18 @@ int key_hook(int key, void *param)
 		quit_win(display);
 	else if (key == XK_Up)
 	{
+		// printf("------------------%d--------------------------\n\n", (display->player.y_pixel - 1) % 16);
 		if (display->map[display->player.y_blocs - 1][display->player.x_blocs] == '0')
+		{
+			display->player.y_pixel--;
+			display->player.y_blocs = display->player.y_pixel / 16;
+			display->map[display->player.y_blocs + 1][display->player.x_blocs] = '0';
+			display->map[display->player.y_blocs][display->player.x_blocs] = display->player.orientation;
+			print_map(display->map);
+			puts("~\n~");
+		}
+		else if (display->map[display->player.y_blocs - 1][display->player.x_blocs] == '1'
+			&& (display->player.y_pixel - 1) % 16)
 		{
 			display->player.y_pixel--;
 			display->player.y_blocs = display->player.y_pixel / 16;
@@ -52,6 +63,16 @@ int key_hook(int key, void *param)
 			print_map(display->map);
 			puts("~\n~");
 		}
+		else if (display->map[display->player.y_blocs + 1][display->player.x_blocs] == '1'
+			&& (display->player.y_pixel + 1) % 16)
+		{
+			display->player.y_pixel++;
+			display->player.y_blocs = display->player.y_pixel / 16;
+			display->map[display->player.y_blocs - 1][display->player.x_blocs] = '0';
+			display->map[display->player.y_blocs][display->player.x_blocs] = display->player.orientation;
+			print_map(display->map);
+			puts("~\n~");
+		}
 	}
 	else if (key == XK_Left)
 	{
@@ -64,10 +85,30 @@ int key_hook(int key, void *param)
 			print_map(display->map);
 			puts("~\n~");
 		}
+		else if (display->map[display->player.y_blocs][display->player.x_blocs - 1] == '1'
+			&& (display->player.x_pixel - 1) % 16)
+		{
+			display->player.x_pixel--;
+			display->player.x_blocs = display->player.x_pixel / 16;
+			display->map[display->player.y_blocs][display->player.x_blocs + 1] = '0';
+			display->map[display->player.y_blocs][display->player.x_blocs] = display->player.orientation;
+			print_map(display->map);
+			puts("~\n~");
+		}
 	}
 	else if (key == XK_Right)
 	{
 		if (display->map[display->player.y_blocs][display->player.x_blocs + 1] == '0')
+		{
+			display->player.x_pixel++;
+			display->player.x_blocs = display->player.x_pixel / 16;
+			display->map[display->player.y_blocs][display->player.x_blocs - 1] = '0';
+			display->map[display->player.y_blocs][display->player.x_blocs] = display->player.orientation;
+			print_map(display->map);
+			puts("~\n~");
+		}
+		else if (display->map[display->player.y_blocs][display->player.x_blocs + 1] == '1'
+			&& (display->player.x_pixel + 1) % 16)
 		{
 			display->player.x_pixel++;
 			display->player.x_blocs = display->player.x_pixel / 16;
