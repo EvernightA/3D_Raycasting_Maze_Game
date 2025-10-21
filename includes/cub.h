@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 08:58:59 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/10/20 13:15:48 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/10/21 09:57:44 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,18 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdio.h>
+#include <math.h>
 # include <X11/keysym.h>
 # include "../minilibx-linux/mlx.h"
+
+
+#ifndef M_PI
+# define M_PI 3.145 
+#endif
+
+#ifndef TETA
+#define TETA M_PI/2
+#endif
 
 #ifndef SIZE_IMG
  #define SIZE_IMG 16
@@ -143,7 +153,10 @@ int player_in_str(char *str);
 
 void	img_initialization(t_display *display);
 void	mini_map(t_display *display, char **map);
-void		draw_line(t_display *display);
+void	draw_line(t_display *display);
+void	rotate_player(t_display *display, float angle);
+
+
 
 
 

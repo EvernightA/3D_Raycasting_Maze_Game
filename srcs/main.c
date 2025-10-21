@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 10:22:35 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/10/20 14:07:24 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/10/21 10:26:14 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -250,9 +250,12 @@ int	main(int argc, char **argv)
 	/*********************/
 	img_initialization(&display);
 
-	display.end.x = 500;
-	display.end.y = 300;
-	display.head = bresenham_line(&display.begin, &display.end);
+	display.end.x = display.player.x_blocs + 16;
+	display.end.y = display.player.y_blocs + 16;
+	if (display.begin.x < display.begin.y)
+		display.head = bresenham_line(&display.begin, &display.end);
+	else
+		display.head = bresenham_line(&display.end, &display.begin);
 	draw_line(&display);
 	/*********MLX******************/
 	mlx_hook(display.mlx.win_ptr, 17, 0, quit_win, &display);

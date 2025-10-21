@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 22:36:20 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/10/02 22:38:36 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/10/21 10:47:44 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int player_in_str(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (is_player(str[i]))
+		if (is_player(str[i]) || str[i] == '0')
 			return (1);
 		i++;
 	}
