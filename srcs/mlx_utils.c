@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:50:26 by mratsima          #+#    #+#             */
-/*   Updated: 2025/10/22 09:53:53 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/10/22 12:42:35 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,8 +115,8 @@ int key_hook(int key, void *param)
 			if (is_player(display->map[display->player.y_blocs][display->player.x_blocs + 1]))
 				display->map[display->player.y_blocs][display->player.x_blocs + 1] = '0';
 			display->map[display->player.y_blocs][display->player.x_blocs] = display->player.orientation;
-			// display->end.y = display->player.y_blocs + 16;
-			// display->end.x = display->player.x_blocs + 16;;
+			display->end.y = display->player.y_pixel + 24;
+			display->end.x = display->player.x_pixel + 24;
 		}
 		else if (display->map[display->player.y_blocs][display->player.x_blocs - 1] == '1'
 			&& (display->player.x_pixel - 1) % 16)
@@ -176,8 +176,9 @@ int key_hook(int key, void *param)
 	{
 		rotate_player(display, -TETA);
 	}
-	// mlx_clear_window(display->mlx.mlx_ptr, display->mlx.win_ptr);
-	// draw_line(display);
+	mlx_clear_window(display->mlx.mlx_ptr, display->mlx.win_ptr);
+	display->head = bresenham_line(&display->begin, &display->end);
+	draw_line(display);
 	mini_map(display, display->map);
 	return (0);
 }
