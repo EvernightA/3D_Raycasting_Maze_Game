@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 10:22:35 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/10/21 10:26:14 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/10/22 09:33:28 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -250,13 +250,9 @@ int	main(int argc, char **argv)
 	/*********************/
 	img_initialization(&display);
 
-	display.end.x = display.player.x_blocs + 16;
-	display.end.y = display.player.y_blocs + 16;
-	if (display.begin.x < display.begin.y)
-		display.head = bresenham_line(&display.begin, &display.end);
-	else
-		display.head = bresenham_line(&display.end, &display.begin);
-	draw_line(&display);
+	display.end.x = display.player.x_pixel + 24;
+	display.end.y = display.player.y_pixel + 24;
+	mlx_pixel_put(display.mlx.mlx_ptr, display.mlx.win_ptr, display.end.x, display.end.y, 0XFF000);
 	/*********MLX******************/
 	mlx_hook(display.mlx.win_ptr, 17, 0, quit_win, &display);
 	//mlx_key_hook(display.mlx.mlx_ptr, display.mlx.win_ptr, &display);

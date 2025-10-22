@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 08:58:59 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/10/21 09:57:44 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/10/22 09:36:16 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 #endif
 
 #ifndef TETA
-#define TETA M_PI/2
+#define TETA M_PI/6
 #endif
 
 #ifndef SIZE_IMG
