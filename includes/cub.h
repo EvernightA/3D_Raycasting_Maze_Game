@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/17 08:58:59 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/10/20 13:08:42 by mratsima         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2025/10/27 07:28:10 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef CUB_H
 # define CUB_H
@@ -17,8 +18,18 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdio.h>
+#include <math.h>
 # include <X11/keysym.h>
 # include "../minilibx-linux/mlx.h"
+
+
+#ifndef M_PI
+# define M_PI 3.145 
+#endif
+
+#ifndef TETA
+#define TETA M_PI/6
+#endif
 
 #ifndef SIZE_IMG
  #define SIZE_IMG 16
@@ -95,6 +106,10 @@ typedef struct s_display
 	t_tex			texture;
 	t_mlx			mlx;
 	t_player		player;
+	t_line			*head;
+	t_point			begin;
+	t_point			end;
+	
 }				t_display;
 
 char	**dup_mat(int height, char **map);
@@ -140,6 +155,10 @@ int player_in_str(char *str);
 
 void	img_initialization(t_display *display);
 void	mini_map(t_display *display, char **map);
+void	draw_line(t_display *display);
+void	rotate_player(t_display *display, float angle);
+
+
 
 
 

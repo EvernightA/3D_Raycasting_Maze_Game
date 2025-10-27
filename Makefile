@@ -4,7 +4,7 @@ CFLAGS = -Wall -Wextra -Werror -g
 
 NAME = cub3D 
 
-MLXFLAGS =  -Lminilibx-linux ./minilibx-linux/libmlx_Linux.a ./libft/libft.a -lX11 -lXext
+MLXFLAGS =  -Lminilibx-linux ./minilibx-linux/libmlx_Linux.a ./libft/libft.a -lX11 -lXext -lm
 
 LIBFT = ./libft/libft.a
 
@@ -18,15 +18,15 @@ SRCS =  $(SRCS_DIR)main.c 				\
 		$(SRCS_DIR)line_utils.c			\
 		$(SRCS_DIR)frees.c 				\
 		$(SRCS_DIR)mlx_utils.c			\
-		$(SRCS_DIR)error.c\
-		$(SRCS_DIR)ft_atoll.c\
-		$(SRCS_DIR)rgb_handling.c				\
+		$(SRCS_DIR)error.c				\
+		$(SRCS_DIR)ft_atoll.c			\
+		$(SRCS_DIR)rgb_handling.c		\
 		$(SRCS_DIR)error2.c				\
 		$(SRCS_DIR)error3.c				\
 		$(SRCS_DIR)error4.c				\
-		$(SRCS_DIR)init.c		\
-		$(SRCS_DIR)mini.c
-
+		$(SRCS_DIR)init.c				\
+		$(SRCS_DIR)mini.c				\
+		$(SRCS_DIR)rotate.c
 		
 
 
