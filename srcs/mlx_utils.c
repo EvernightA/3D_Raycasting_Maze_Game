@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:50:26 by mratsima          #+#    #+#             */
-/*   Updated: 2025/10/22 12:42:35 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/10/27 07:36:59 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,9 +176,9 @@ int key_hook(int key, void *param)
 	{
 		rotate_player(display, -TETA);
 	}
-	mlx_clear_window(display->mlx.mlx_ptr, display->mlx.win_ptr);
+	// mlx_clear_window(display->mlx.mlx_ptr, display->mlx.win_ptr);
 	display->head = bresenham_line(&display->begin, &display->end);
-	draw_line(display);
+	// draw_line(display);
 	mini_map(display, display->map);
 	return (0);
 }
