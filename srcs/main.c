@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
+/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/10/27 07:29:08 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/10/27 14:38:11 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ void	init_it(t_display *display)
 	display->texture.f_rgb = NULL;
 	display->texture.c_rgb = NULL;
 	display->map =NULL;
+	display->head = NULL;
 }
 
 static int	get_map_height(t_display *display, int *map_height ,char *file)
