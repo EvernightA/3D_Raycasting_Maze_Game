@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
+/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:50:26 by mratsima          #+#    #+#             */
-/*   Updated: 2025/10/27 07:38:42 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/10/27 14:14:34 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,7 +177,7 @@ int key_hook(int key, void *param)
 	}
 	// mlx_clear_window(display->mlx.mlx_ptr, display->mlx.win_ptr);
 	display->head = bresenham_line(&display->begin, &display->end);
-	// draw_line(display);
+	 draw_line(display);
 	mini_map(display, display->map);
 	return (0);
 }
