@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bresenham.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 13:17:03 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/10/27 15:31:33 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/10/28 08:34:29 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,10 @@ t_line	*bresenham_line(t_point *begin, t_point *end)
 		y_step = 1;
 	else
 		y_step = -1;
-	begin->dp = 2 * (delta_x - delta_y);
+	if (abs(delta_y) < abs(delta_x))
+		begin->dp = 2 * (delta_y - delta_x);
+	else
+		begin->dp = 2 * (delta_x - delta_y);
 	while (1)
 	{
 		if ((begin->x == end->x && begin->y == end->y) || i > delta_x - 1)
@@ -52,16 +55,20 @@ t_line	*bresenham_line(t_point *begin, t_point *end)
 		}
 		if (begin->dp < 0)
 		{
-			next_point.dp = begin->dp + 2 * delta_y;
-			next_point.x = begin->x + x_step;
-			next_point.y = begin->y + y_step;
+			if (abs(delta_y) < abs(delta_x))
+				next_point.dp = begin->dp + 2 * delta_y;
+			else
+				next_point.dp = begin->dp + 2 * delta_x;
 		}
 		else
 		{
-			next_point.dp = begin->dp + 2 * (delta_x - delta_y);
-			next_point.x = begin->x + x_step;
-			next_point.y = begin->y + y_step; 
+			if (abs(delta_y) < abs(delta_x))
+				next_point.dp = begin->dp + 2 * (delta_y - delta_x);
+			else
+				next_point.dp = begin->dp + 2 * (delta_x - delta_y);
 		}
+		next_point.x = begin->x + x_step;
+		next_point.y = begin->y + y_step;
 		begin = &next_point;
 		i++;
 	}
