@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/10/29 07:48:01 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/10/30 08:16:03 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -231,14 +231,31 @@ void	init_player_position(t_display *display)
 	}
 }
 
+t_point	pix_to_bloc(t_point pixel)
+{
+	t_point bloc;
+
+	bloc.x = pixel.x/SIZE_IMG;
+	bloc.y = pixel.y/SIZE_IMG;
+	return (bloc);
+}
+
 void		draw_line(t_display *display)
 {
 	t_line *tmp;
+	t_point tmp_bloc;
 
 	tmp = display->head;
 	while (tmp)
 	{
-		mlx_pixel_put(display->mlx.mlx_ptr, display->mlx.win_ptr,tmp->dot.x,tmp->dot.y, 0xFF000);
+		tmp_bloc = pix_to_bloc(tmp->dot);
+		if (display->map[tmp_bloc.y][tmp_bloc.x] == '0' || is_player(display->map[tmp_bloc.y][tmp_bloc.x]))
+			mlx_pixel_put(display->mlx.mlx_ptr, display->mlx.win_ptr,tmp->dot.x,tmp->dot.y, 0xFF000);
+		else
+		{
+			printf("fount this here : (%c)\n", display->map[tmp_bloc.y][tmp_bloc.x]);
+			break;
+		}
 		tmp = tmp -> next;
 	}
 }
