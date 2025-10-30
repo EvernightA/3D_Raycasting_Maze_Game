@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:50:26 by mratsima          #+#    #+#             */
-/*   Updated: 2025/10/30 22:00:10 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/10/30 22:25:54 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,12 @@ int key_hook(int key, void *param)
 			display->begin.y = display->player.y_pixel;
 			display->begin.x = display->player.x_pixel;
 			display->player.y_blocs = display->player.y_pixel / 16;
+			display->player.x_blocs = display->player.x_pixel / 16;
 			if (is_player(display->map[display->player.y_blocs + 1][display->player.x_blocs]))
 				display->map[display->player.y_blocs + 1][display->player.x_blocs] = '0';
 			display->map[display->player.y_blocs][display->player.x_blocs] = display->player.orientation;
-			display->end.x = display->player.x_pixel + 24;
-			display->end.y = display->player.y_pixel + 24;
+			// display->end.x = display->player.x_pixel + 24;
+			// display->end.y = display->player.y_pixel + 24;
 ;
 		}
 		else if (display->map[display->player.y_blocs - 1][display->player.x_blocs] == '1'
@@ -67,11 +68,12 @@ int key_hook(int key, void *param)
 			display->begin.y = display->player.y_pixel;
 			display->begin.x = display->player.x_pixel;
 			display->player.y_blocs = display->player.y_pixel / 16;
+			display->player.x_blocs = display->player.x_pixel / 16;
 			if (is_player(display->map[display->player.y_blocs + 1][display->player.x_blocs]))
 				display->map[display->player.y_blocs + 1][display->player.x_blocs] = '0';
 			display->map[display->player.y_blocs][display->player.x_blocs] = display->player.orientation;
-			display->end.x = display->player.x_pixel + 24;
-			display->end.y = display->player.y_pixel + 24;
+			// display->end.x = display->player.x_pixel + 24;
+			// display->end.y = display->player.y_pixel + 24;
 		}
 	}
 	else if (key == XK_S || key == XK_s)
@@ -89,8 +91,8 @@ int key_hook(int key, void *param)
 			display->map[display->player.y_blocs][display->player.x_blocs] = display->player.orientation;
 			//printf ("head = %p\n", )
 			
-			display->end.x = display->player.x_pixel + 24;
-			display->end.y = display->player.y_pixel + 24;
+			// display->end.x = display->player.x_pixel + 24;
+			// display->end.y = display->player.y_pixel + 24;
 
 
 		}
@@ -106,8 +108,8 @@ int key_hook(int key, void *param)
 				display->map[display->player.y_blocs - 1][display->player.x_blocs] = '0';
 			display->map[display->player.y_blocs][display->player.x_blocs] = display->player.orientation;
 			
-			display->end.x = display->player.x_pixel + 24;
-			display->end.y = display->player.y_pixel + 24;
+			// display->end.x = display->player.x_pixel + 24;
+			// display->end.y = display->player.y_pixel + 24;
 
 
 		}
@@ -136,8 +138,8 @@ int key_hook(int key, void *param)
 			display->map[display->player.y_blocs][display->player.x_blocs] = display->player.orientation;
 			
 			
-			display->end.x = display->player.x_pixel + 24;
-			display->end.y = display->player.y_pixel + 24;
+			// display->end.x = display->player.x_pixel + 24;
+			// display->end.y = display->player.y_pixel + 24;
 
 			
 
@@ -154,8 +156,8 @@ int key_hook(int key, void *param)
 				display->map[display->player.y_blocs][display->player.x_blocs - 1] = '0';
 			display->map[display->player.y_blocs][display->player.x_blocs] = display->player.orientation;
 
-			display->end.x = display->player.x_pixel + 24;
-			display->end.y = display->player.y_pixel + 24;
+			// display->end.x = display->player.x_pixel + 24;
+			// display->end.y = display->player.y_pixel + 24;
 		}
 		else if (display->map[display->player.y_blocs][display->player.x_blocs + 1] == '1'
 			&& (display->player.x_pixel + 1) % 16)
@@ -166,8 +168,8 @@ int key_hook(int key, void *param)
 			if (is_player(display->map[display->player.y_blocs][display->player.x_blocs - 1]))
 				display->map[display->player.y_blocs][display->player.x_blocs - 1] = '0';
 			display->map[display->player.y_blocs][display->player.x_blocs] = display->player.orientation;
-			display->end.x = display->player.x_pixel + 24;
-			display->end.y = display->player.y_pixel + 24;	
+			// display->end.x = display->player.x_pixel + 24;
+			// display->end.y = display->player.y_pixel + 24;	
 		}
 	}
 	else if (key == XK_Left)
