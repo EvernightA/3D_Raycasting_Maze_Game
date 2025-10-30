@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:50:26 by mratsima          #+#    #+#             */
-/*   Updated: 2025/10/29 11:36:02 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/10/30 22:00:10 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,10 @@ int key_hook(int key, void *param)
 		//add here 
 		if (display->map[display->player.y_blocs - 1][display->player.x_blocs] == '0')
 		{
-			display->player.y_pixel--;
+			display->player.x_pixel = display->player.x_pixel + cos(display->player.angle);
+			display->player.y_pixel = display->player.y_pixel + sin(display->player.angle);
 			display->begin.y = display->player.y_pixel;
+			display->begin.x = display->player.x_pixel;
 			display->player.y_blocs = display->player.y_pixel / 16;
 			if (is_player(display->map[display->player.y_blocs + 1][display->player.x_blocs]))
 				display->map[display->player.y_blocs + 1][display->player.x_blocs] = '0';
@@ -60,8 +62,10 @@ int key_hook(int key, void *param)
 		else if (display->map[display->player.y_blocs - 1][display->player.x_blocs] == '1'
 			&& (display->player.y_pixel - 1) % 16)
 		{
-			display->player.y_pixel--;
+			display->player.x_pixel = display->player.x_pixel + cos(display->player.angle);
+			display->player.y_pixel = display->player.y_pixel + sin(display->player.angle);
 			display->begin.y = display->player.y_pixel;
+			display->begin.x = display->player.x_pixel;
 			display->player.y_blocs = display->player.y_pixel / 16;
 			if (is_player(display->map[display->player.y_blocs + 1][display->player.x_blocs]))
 				display->map[display->player.y_blocs + 1][display->player.x_blocs] = '0';
@@ -170,11 +174,13 @@ int key_hook(int key, void *param)
 	{
 		rotate_player(display, TETA);
 		laser(display);
+		display->player.angle += TETA;
 	}
 	else if (key == XK_Right)
 	{
 		rotate_player(display, -TETA);
 		laser(display);
+		display->player.angle -= TETA;
 	}
 
 	mini_map(display, display->map);

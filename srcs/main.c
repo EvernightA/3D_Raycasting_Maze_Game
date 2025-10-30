@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
+/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/10/30 08:16:03 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/10/30 22:08:07 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ void	init_it(t_display *display)
 	display->texture.c_rgb = NULL;
 	display->map =NULL;
 	display->head = NULL;
+	display->player.angle = TETA;
 }
 
 static int	get_map_height(t_display *display, int *map_height ,char *file)

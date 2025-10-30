@@ -5,11 +5,10 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/10/29 08:21:42 by fsamy-an         ###   ########.fr       */
+/*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
+/*   Updated: 2025/10/30 22:05:38 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef CUB_H
 # define CUB_H
@@ -28,7 +27,7 @@
 #endif
 
 #ifndef TETA
-#define TETA M_PI/4
+#define TETA 45
 #endif
 
 #ifndef SIZE_IMG
@@ -94,6 +93,11 @@ typedef struct s_player
 	int 	x_pixel;
 	int 	y_blocs;
 	int 	y_pixel;
+
+	float	angle;
+	float	dir;
+
+	
 	int 	fov;
 	t_point	direction;
 	char 	orientation;
