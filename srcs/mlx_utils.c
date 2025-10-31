@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:50:26 by mratsima          #+#    #+#             */
-/*   Updated: 2025/10/30 22:25:54 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/10/31 14:59:16 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int key_hook(int key, void *param)
 		//add here 
 		if (display->map[display->player.y_blocs - 1][display->player.x_blocs] == '0')
 		{
+			ft_printf("%d\n", display->player.angle);
 			display->player.x_pixel = display->player.x_pixel + cos(display->player.angle);
 			display->player.y_pixel = display->player.y_pixel + sin(display->player.angle);
 			display->begin.y = display->player.y_pixel;
@@ -176,13 +177,16 @@ int key_hook(int key, void *param)
 	{
 		rotate_player(display, TETA);
 		laser(display);
+		ft_printf("before %d\n", display->player.angle);
 		display->player.angle += TETA;
+		ft_printf("after %d\n", display->player.angle);
 	}
 	else if (key == XK_Right)
 	{
 		rotate_player(display, -TETA);
-		laser(display);
+		ft_printf("before %d\n", display->player.angle);
 		display->player.angle -= TETA;
+		ft_printf("after %d\n", display->player.angle);
 	}
 
 	mini_map(display, display->map);

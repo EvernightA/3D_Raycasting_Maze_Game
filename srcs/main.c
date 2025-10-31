@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/10/30 22:15:51 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/10/31 15:05:29 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,7 @@ void	init_it(t_display *display)
 	display->map =NULL;
 	display->head = NULL;
 	display->player.angle = M_PI;
+	printf ("The first one %f\n", display->player.angle);
 }
 
 static int	get_map_height(t_display *display, int *map_height ,char *file)
@@ -282,6 +283,7 @@ int	main(int argc, char **argv)
 	if (error_handling(&display))
 		return (1);
 	init_player_position(&display);
+	printf("next -one %f\n", display.player.angle);
 	/************MLX*********/
 	display.mlx.mlx_ptr = mlx_init();
 	if (!display.mlx.mlx_ptr)
@@ -289,7 +291,6 @@ int	main(int argc, char **argv)
 	display.mlx.win_ptr = mlx_new_window(display.mlx.mlx_ptr, 400, 400, "cub3d");
 	/*********************/
 	img_initialization(&display);
-
 	display.end.x = display.player.x_pixel + 24;
 	display.end.y = display.player.y_pixel + 24;
 	mlx_pixel_put(display.mlx.mlx_ptr, display.mlx.win_ptr, display.end.x, display.end.y, 0XFF000);
