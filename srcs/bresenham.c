@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 13:17:03 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/01 18:52:00 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/01 19:03:10 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ t_point calculate_end(t_point begin, float angle, int max_distance)
 	déplacement_horizontal (Δx) = cos(θ) × d
 	déplacement_vertical   (Δy) = sin(θ) × d
 	
+	C'est comme un calcul pour l'orientation
 	*/
 	t_point end;
 	
@@ -43,17 +44,32 @@ void	cast_ray(t_point begin,t_display *display, int d)
 	float	angle;
 
 	/*
-	
+		Dans cette fonction nous mettons angle = -FOV/2 pour que la direction principale se trouve au milieu
 	*/
-	//t_line *tmp;
-
-	//tmp = NULL;
 	angle = -FOV / 2;
 	while (angle <= FOV / 2)
 	{
 		true_end = calculate_end(begin, display->player.angle + angle, d);
+		/*
+			Nous avons ajouter l'orientation duplayer a l'angle pour dessiner des rayons dans ltes cotes environnants
+			Notons que player.angle est update a chaque fois que Left ou right est presEE
+
+
+			Ex :
+
+			itereation 1:
+
+			player_angle = 0;
+			angle = -MPI / 3;
+			
+			calcule de end pour l'angle new = 0 - MPI/3;
+			On cree une ligne grace a bresenham pour new
+			On dessine la ligne
+
+			On fait ca pour chaque iteration
+		*/
 		display->head = bresenham_line(&begin, &true_end);
-		draw_line_2(display);
+		draw_line_2(display); // This draw line uses yellow
 		angle += 0.1;
 	}
 }
