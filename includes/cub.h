@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/01 16:41:26 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/01 16:42:58 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,18 @@
 
 #ifndef SIZE_IMG
  #define SIZE_IMG 16
+#endif
+
+#ifndef FOV
+ #define FOV M_PI/3
+#endif
+
+#ifndef SCRN_WIDTH
+ #define SCRN_WIDTH 400
+#endif
+
+#ifndef SCRN_HEIGHT
+ #define SCRN_HEIGHT 400
 #endif
 
 typedef struct s_img
@@ -89,11 +101,6 @@ typedef struct s_mlx
 
 typedef struct s_player
 {
-	int 	x_blocs;
-	int 	x_pixel;
-	int 	y_blocs;
-	int 	y_pixel;
-	
 	t_point	blocs;
 	t_point pixels;
 
@@ -115,6 +122,7 @@ typedef struct s_display
 	char			**map;
 	t_tex			texture;
 	t_mlx			mlx;
+	t_mlx			mlx2;
 	t_player		player;
 	t_line			*head;
 	t_point			begin;
@@ -171,7 +179,7 @@ void	rotate_player(t_display *display, float angle);
 
 t_point calculate_end(t_point begin, float angle, int max_distance);
 
-
+t_point	pixel_to_bloc(t_point pixel);
 
 
 #endif

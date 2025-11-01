@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/11/01 16:08:20 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/01 16:29:12 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -287,10 +287,14 @@ int	main(int argc, char **argv)
 	init_player_position(&display);
 	printf("next -one %f\n", display.player.angle);
 	/************MLX*********/
-	display.mlx.mlx_ptr = mlx_init();
+		display.mlx.mlx_ptr = mlx_init();
+	display.mlx2.mlx_ptr = mlx_init();
 	if (!display.mlx.mlx_ptr)
 		return (1);
-	display.mlx.win_ptr = mlx_new_window(display.mlx.mlx_ptr, 400, 400, "cub3d");
+	if (!display.mlx2.mlx_ptr)
+		return (1);
+	display.mlx.win_ptr = mlx_new_window(display.mlx.mlx_ptr, SCRN_WIDTH, SCRN_HEIGHT, "cub3d");
+	display.mlx2.win_ptr = mlx_new_window(display.mlx.mlx_ptr, SCRN_WIDTH, SCRN_HEIGHT, "render");
 	/*********************/
 	img_initialization(&display);
 	display.end.x = display.player.pixels.x + 24;
@@ -302,6 +306,7 @@ int	main(int argc, char **argv)
 	mlx_hook(display.mlx.win_ptr, 2, 1L<<0, key_hook, &display);
 	mini_map(&display, display.map);
 	mlx_loop(display.mlx.mlx_ptr);
+	mlx_loop(display.mlx2.mlx_ptr);
 	/******************************/
 	free_texture(&display);
 	return (0);
