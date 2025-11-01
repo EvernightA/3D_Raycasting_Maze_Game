@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:50:26 by mratsima          #+#    #+#             */
-/*   Updated: 2025/11/01 16:07:34 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/01 16:11:10 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ int key_hook(int key, void *param)
 	else if (key == XK_Left)
 	{
 		rotate_player(display, TETA);
-		laser(display);
 		display->player.angle -= TETA;
 		if (display->player.angle < 0)
 		{
@@ -92,7 +91,6 @@ int key_hook(int key, void *param)
 	else if (key == XK_Right)
 	{
 		rotate_player(display, TETA);
-		laser(display);
 		display->player.angle += TETA;
 		if (display->player.angle > 2 * M_PI)
 		{
@@ -102,6 +100,7 @@ int key_hook(int key, void *param)
 		display->player.delta_y = sin (display->player.angle) * 5;
 		printf("%f\n", display->player.angle);
 	}
+	laser(display);
 	mini_map(display, display->map);
 	return (0);
 }
