@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/01 16:06:38 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/01 16:26:17 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,18 @@
 
 #ifndef SIZE_IMG
  #define SIZE_IMG 16
+#endif
+
+#ifndef FOV
+ #define FOV M_PI/3
+#endif
+
+#ifndef SCRN_WIDTH
+ #define SCRN_WIDTH 400
+#endif
+
+#ifndef SCRN_HEIGHT
+ #define SCRN_HEIGHT 400
 #endif
 
 typedef struct s_img
