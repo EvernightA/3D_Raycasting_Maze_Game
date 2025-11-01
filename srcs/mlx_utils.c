@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:50:26 by mratsima          #+#    #+#             */
-/*   Updated: 2025/11/01 16:51:08 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/01 16:58:53 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int key_hook(int key, void *param)
 		display->player.delta_y = sin (display->player.angle) * 5;
 		printf("%f\n", display->player.angle);
 	}
-	cast_ray(display->begin, display, 10);
+	cast_ray(display->begin, display, 1000);
 	mini_map(display, display->map);
 	return (0);
 }
