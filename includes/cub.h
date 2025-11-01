@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/01 16:26:17 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/01 16:27:54 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,7 @@ typedef struct s_display
 	char			**map;
 	t_tex			texture;
 	t_mlx			mlx;
+	t_mlx			mlx2;
 	t_player		player;
 	t_line			*head;
 	t_point			begin;

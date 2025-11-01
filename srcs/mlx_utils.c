@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:50:26 by mratsima          #+#    #+#             */
-/*   Updated: 2025/11/01 16:11:10 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/01 16:30:00 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	quit_win(t_display *display)
 void	laser(t_display *display)
 {
 	mlx_clear_window(display->mlx.mlx_ptr, display->mlx.win_ptr);
+	mlx_clear_window(display->mlx2.mlx_ptr, display->mlx2.win_ptr);
 	if (display->head)
 		ft_linefree(&display->head);
 	display->head = NULL;
