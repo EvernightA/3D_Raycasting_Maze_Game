@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 13:17:03 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/01 16:53:07 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/01 16:55:25 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	cast_ray(t_point begin,t_display *display, int d)
 	//t_line *tmp;
 
 	//tmp = NULL;
-	true_end = calculate_end(begin, TETA, d);
+	true_end = calculate_end(begin, display->player.angle, d);
 	display->head = bresenham_line(&begin, &true_end);
 	draw_line(display);
 }
