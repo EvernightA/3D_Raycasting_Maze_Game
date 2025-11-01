@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:50:26 by mratsima          #+#    #+#             */
-/*   Updated: 2025/11/01 16:58:53 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/01 19:00:05 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,14 @@ void	laser(t_display *display)
 	draw_line(display);
 }
 
-
+			// else
+			// {
+				// printf("why (%d, %d) doesn't work == '%c'\n", tmp.x, tmp.y, display->map[tmp.y][tmp.x]);
+			// }
 int key_hook(int key, void *param)
 {
 	t_display *display;
+	t_point		tmp;
 
 	display = (t_display *)param;
 	mlx_clear_window(display->mlx.mlx_ptr, display->mlx.win_ptr);
@@ -44,36 +48,59 @@ int key_hook(int key, void *param)
 		quit_win(display);
 	else if (key == XK_W || key == XK_w)
 	{
-			display->player.pixels.x = display->player.pixels.x + display->player.delta_x;
-			display->player.pixels.y = display->player.pixels.y + display->player.delta_y;
+			tmp.x = display->player.pixels.x + display->player.delta_x;
+			tmp.y = display->player.pixels.y + display->player.delta_y;
+			tmp = pixel_to_bloc(tmp);
+			if (display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
+			{
+				display->player.pixels.x += display->player.delta_x;
+				display->player.pixels.y += display->player.delta_y;
+				display->begin.y = display->player.pixels.y;
+				display->begin.x = display->player.pixels.x;
+				display->player.blocs = pixel_to_bloc(display->player.pixels);
+				display->map[display->player.blocs.y][display->player.blocs.x] = display->player.orientation;
+			}
+	}
+	else if (key == XK_S || key == XK_s)
+	{
+		tmp.x = display->player.pixels.x - display->player.delta_x;
+		tmp.y = display->player.pixels.y - display->player.delta_y;
+		tmp = pixel_to_bloc(tmp);
+		if (display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
+		{
+			display->player.pixels.x -= display->player.delta_x;
+			display->player.pixels.y -= display->player.delta_y;
 			display->begin.y = display->player.pixels.y;
 			display->begin.x = display->player.pixels.x;
 			display->player.blocs = pixel_to_bloc(display->player.pixels);
 			display->map[display->player.blocs.y][display->player.blocs.x] = display->player.orientation;
-	}
-	else if (key == XK_S || key == XK_s)
-	{
-		// add here
-		display->player.pixels.x -= display->player.delta_x;
-		display->player.pixels.y -= display->player.delta_y;
-		display->begin.y = display->player.pixels.y;
-		display->begin.x = display->player.pixels.x;
-		display->player.blocs = pixel_to_bloc(display->player.pixels);
-		display->map[display->player.blocs.y][display->player.blocs.x] = display->player.orientation;
+		}
 	}
 	else if (key == XK_A || key == XK_a)
 	{
+		tmp.x = display->player.pixels.x - 1;
+		tmp.y = display->player.pixels.y;
+		tmp = pixel_to_bloc(tmp);
+		if (display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
+		{
 			display->player.pixels.x--;
 			display->begin.x = display->player.pixels.x;
 			display->player.blocs = pixel_to_bloc(display->player.pixels);
 			display->map[display->player.blocs.y][display->player.blocs.x] = display->player.orientation;
+		}
 	}
 	else if (key == XK_D || key == XK_d)
 	{
-		display->player.pixels.x++;
-		display->begin.x = display->player.pixels.x;
-		display->player.blocs = pixel_to_bloc(display->player.pixels);
-		display->map[display->player.blocs.y][display->player.blocs.x] = display->player.orientation;
+		tmp.x = display->player.pixels.x + 1;
+		tmp.y = display->player.pixels.y;
+		tmp = pixel_to_bloc(tmp);
+		if (display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
+		{
+			display->player.pixels.x++;
+			display->begin.x = display->player.pixels.x;
+			display->player.blocs = pixel_to_bloc(display->player.pixels);
+			display->map[display->player.blocs.y][display->player.blocs.x] = display->player.orientation;
+		}
 	}
 	else if (key == XK_Left)
 	{
