@@ -6,9 +6,10 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:50:26 by mratsima          #+#    #+#             */
-/*   Updated: 2025/11/01 19:00:05 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/01 19:08:42 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../includes/cub.h"
 
@@ -33,10 +34,7 @@ void	laser(t_display *display)
 	draw_line(display);
 }
 
-			// else
-			// {
-				// printf("why (%d, %d) doesn't work == '%c'\n", tmp.x, tmp.y, display->map[tmp.y][tmp.x]);
-			// }
+
 int key_hook(int key, void *param)
 {
 	t_display *display;
@@ -48,6 +46,7 @@ int key_hook(int key, void *param)
 		quit_win(display);
 	else if (key == XK_W || key == XK_w)
 	{
+		// tmp is too see if next is a wall
 			tmp.x = display->player.pixels.x + display->player.delta_x;
 			tmp.y = display->player.pixels.y + display->player.delta_y;
 			tmp = pixel_to_bloc(tmp);
@@ -63,6 +62,7 @@ int key_hook(int key, void *param)
 	}
 	else if (key == XK_S || key == XK_s)
 	{
+		// tmp is too see if next is a wall
 		tmp.x = display->player.pixels.x - display->player.delta_x;
 		tmp.y = display->player.pixels.y - display->player.delta_y;
 		tmp = pixel_to_bloc(tmp);
@@ -77,6 +77,7 @@ int key_hook(int key, void *param)
 		}
 	}
 	else if (key == XK_A || key == XK_a)
+		// tmp is too see if next is a wall
 	{
 		tmp.x = display->player.pixels.x - 1;
 		tmp.y = display->player.pixels.y;
@@ -91,6 +92,7 @@ int key_hook(int key, void *param)
 	}
 	else if (key == XK_D || key == XK_d)
 	{
+		// tmp is too see if next is a wall
 		tmp.x = display->player.pixels.x + 1;
 		tmp.y = display->player.pixels.y;
 		tmp = pixel_to_bloc(tmp);
@@ -127,6 +129,7 @@ int key_hook(int key, void *param)
 		printf("%f\n", display->player.angle);
 	}
 	cast_ray(display->begin, display, 1000);
+	//ray_fov(display->begin, display, 1000);
 	mini_map(display, display->map);
 	return (0);
 }
