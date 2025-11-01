@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/10/31 15:05:29 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/01 12:36:27 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,9 @@ void	init_it(t_display *display)
 	display->map =NULL;
 	display->head = NULL;
 	display->player.angle = M_PI;
-	printf ("The first one %f\n", display->player.angle);
+	display->player.delta_x = cos (display->player.angle) * 5;
+	display->player.delta_y = sin (display->player.angle) * 5;
+	//printf ("The first one %f\n", display->player.angle);
 }
 
 static int	get_map_height(t_display *display, int *map_height ,char *file)

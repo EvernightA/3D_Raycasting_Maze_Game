@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/10/31 14:57:35 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/01 12:21:45 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 #endif
 
 #ifndef TETA
-#define TETA M_PI/6
+#define TETA M_PI/4
 #endif
 
 #ifndef SIZE_IMG
@@ -94,6 +94,9 @@ typedef struct s_player
 	int 	y_blocs;
 	int 	y_pixel;
 
+	float	delta_x;
+	float	delta_y;
+	
 	float	angle;
 	float	dir;
 
