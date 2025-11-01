@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoll.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
+/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 07:23:41 by mratsima          #+#    #+#             */
-/*   Updated: 2025/09/25 14:45:09 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/01 16:25:48 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	ft_change_sign(long long *number, int count, int sign)
 		*number = 0;
 }
 
-long long	atoll(const char *ptr)
+long long	ft_atoll(const char *ptr)
 {
 	int			i;
 	int			count;

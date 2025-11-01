@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rgb_handling.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
+/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 14:57:44 by mratsima          #+#    #+#             */
-/*   Updated: 2025/10/02 22:45:25 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/01 16:26:16 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,15 +63,15 @@ int	get_rgb(t_rgb *rgb, char *og_rgb)
 		ft_putstr_fd("Error\nWrong rgb value\n", 2);
 		return (1);	
 	}
-	if (atoll(split_rgb[0]) > 255 ||  atoll(split_rgb[1]) > 255 || atoll(split_rgb[2]) > 255
-		|| atoll(split_rgb[0]) < 0 ||  atoll(split_rgb[1]) < 0 || atoll(split_rgb[2]) < 0)
+	if (ft_atoll(split_rgb[0]) > 255 ||  ft_atoll(split_rgb[1]) > 255 || ft_atoll(split_rgb[2]) > 255
+		|| ft_atoll(split_rgb[0]) < 0 ||  ft_atoll(split_rgb[1]) < 0 || ft_atoll(split_rgb[2]) < 0)
 	{
 		ft_putstr_fd("Error\nWrong rgb value\n", 2);
 		return (1);
 	}	
-	rgb->red = atoll(split_rgb[0]);
-	rgb->green = atoll(split_rgb[1]);
-	rgb->blue = atoll(split_rgb[2]);
+	rgb->red = ft_atoll(split_rgb[0]);
+	rgb->green = ft_atoll(split_rgb[1]);
+	rgb->blue = ft_atoll(split_rgb[2]);
 	free(str_rgb);
 	free_split(split_rgb);
 	// printf("rgb = %d, %d, %d\n", rgb->red, rgb->green, rgb->blue);

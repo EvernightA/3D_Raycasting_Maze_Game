@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
+/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/01 16:06:38 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/01 16:41:26 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,7 @@ int		matrix_height(char **matrix);
 
 
 
+void	cast_ray(t_point begin, t_point *end, int d);
 
 void	print_map(char **map);
 int		count_map_lines(int fd);
@@ -157,7 +158,7 @@ void	free_texture(t_display *texture);
 void	free_split(char **split);
 int		quit_win(t_display *mlx);
 int 	key_hook(int key, void *param);
-long long	atoll(const char *ptr);
+long long	ft_atoll(const char *ptr);
 int	get_rgb(t_rgb *rgb, char *str_rgb);
 int		closed_error(char	**map);
 int	is_player(char c);
@@ -168,6 +169,7 @@ void	mini_map(t_display *display, char **map);
 void	draw_line(t_display *display);
 void	rotate_player(t_display *display, float angle);
 
+t_point calculate_end(t_point begin, float angle, int max_distance);
 
 
 
