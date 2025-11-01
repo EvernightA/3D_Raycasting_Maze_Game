@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:50:26 by mratsima          #+#    #+#             */
-/*   Updated: 2025/11/01 16:58:53 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/01 18:46:32 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ int key_hook(int key, void *param)
 		printf("%f\n", display->player.angle);
 	}
 	cast_ray(display->begin, display, 1000);
+	//ray_fov(display->begin, display, 1000);
 	mini_map(display, display->map);
 	return (0);
 }

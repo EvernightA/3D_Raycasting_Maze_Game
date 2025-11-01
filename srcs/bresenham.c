@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 13:17:03 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/01 16:55:25 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/01 18:52:00 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,41 @@ t_point calculate_end(t_point begin, float angle, int max_distance)
 void	cast_ray(t_point begin,t_display *display, int d)
 {
 	t_point true_end;
+	float	angle;
+
+	/*
+	
+	*/
 	//t_line *tmp;
 
 	//tmp = NULL;
-	true_end = calculate_end(begin, display->player.angle, d);
-	display->head = bresenham_line(&begin, &true_end);
-	draw_line(display);
+	angle = -FOV / 2;
+	while (angle <= FOV / 2)
+	{
+		true_end = calculate_end(begin, display->player.angle + angle, d);
+		display->head = bresenham_line(&begin, &true_end);
+		draw_line_2(display);
+		angle += 0.1;
+	}
 }
+
+void	ray_fov(t_point begin,t_display *display, int d)
+{
+	//int	i;
+	float tmp_angle;
+	t_point end;
+
+	//i = 0;
+	tmp_angle = FOV;
+	while (tmp_angle > 0)
+	{
+		end = calculate_end(begin, tmp_angle, d);
+		display->head = bresenham_line(&begin, &end);
+		draw_line(display);
+		tmp_angle -= 0.1;
+	}
+}
+
 
 t_line	*bresenham_line(t_point *begin, t_point *end)
 {

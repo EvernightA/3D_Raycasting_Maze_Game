@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/11/01 17:02:18 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/01 18:29:32 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -242,6 +242,25 @@ t_point	pixel_to_bloc(t_point pixel)
 	bloc.x = pixel.x/SIZE_IMG;
 	bloc.y = pixel.y/SIZE_IMG;
 	return (bloc);
+}
+void		draw_line_2(t_display *display)
+{
+	t_line *tmp;
+	t_point tmp_bloc;
+
+	tmp = display->head;
+	while (tmp)
+	{
+		tmp_bloc = pixel_to_bloc(tmp->dot);
+		if (display->map[tmp_bloc.y][tmp_bloc.x] == '0' || is_player(display->map[tmp_bloc.y][tmp_bloc.x]))
+			mlx_pixel_put(display->mlx.mlx_ptr, display->mlx.win_ptr,tmp->dot.x,tmp->dot.y, 0xFFFF00);
+		else
+		{
+			//printf("fount this here : (%c)\n", display->map[tmp_bloc.y][tmp_bloc.x]);
+			break;
+		}
+		tmp = tmp -> next;
+	}
 }
 
 void		draw_line(t_display *display)

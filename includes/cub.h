@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/01 17:02:49 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/01 18:29:50 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,7 @@ void	print_list(t_line *head);
 int		error_handling(t_display *texture);
 int 	texture_error(t_display *texture);
 
+void		draw_line_2(t_display *display);
 
 void	free_texture(t_display *texture);
 void	free_split(char **split);
@@ -181,6 +182,8 @@ void	rotate_player(t_display *display, float angle);
 t_point calculate_end(t_point begin, float angle, int max_distance);
 
 t_point	pixel_to_bloc(t_point pixel);
+void	ray_fov(t_point begin,t_display *display, int d);
+
 
 
 #endif
