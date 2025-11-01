@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/01 16:27:54 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/01 16:39:14 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,11 +101,6 @@ typedef struct s_mlx
 
 typedef struct s_player
 {
-	int 	x_blocs;
-	int 	x_pixel;
-	int 	y_blocs;
-	int 	y_pixel;
-	
 	t_point	blocs;
 	t_point pixels;
 
@@ -182,7 +177,7 @@ void	draw_line(t_display *display);
 void	rotate_player(t_display *display, float angle);
 
 
-
+t_point	pixel_to_bloc(t_point pixel);
 
 
 #endif
