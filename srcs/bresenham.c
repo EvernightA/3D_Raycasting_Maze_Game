@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 13:17:03 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/01 16:41:10 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/01 16:53:07 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,15 @@ t_point calculate_end(t_point begin, float angle, int max_distance)
 	return (end);
 }
 
-void	cast_ray(t_point begin, t_point *end, int d)
+void	cast_ray(t_point begin,t_display *display, int d)
 {
 	t_point true_end;
+	//t_line *tmp;
 
+	//tmp = NULL;
 	true_end = calculate_end(begin, TETA, d);
-	bresenham_line(&begin, end);
+	display->head = bresenham_line(&begin, &true_end);
+	draw_line(display);
 }
 
 t_line	*bresenham_line(t_point *begin, t_point *end)
@@ -89,6 +92,7 @@ t_line	*bresenham_line(t_point *begin, t_point *end)
 			err += delta_x;
 			current.y += y_step;
 		}
+		//mlx_pixel_put();
 	}
 	return (head);
 }

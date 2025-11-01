@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/01 16:42:58 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/01 16:50:39 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,8 @@ int		matrix_height(char **matrix);
 
 
 
-void	cast_ray(t_point begin, t_point *end, int d);
+void	cast_ray(t_point begin,t_display *display, int d);
+
 
 void	print_map(char **map);
 int		count_map_lines(int fd);

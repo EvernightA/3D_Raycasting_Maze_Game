@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
+/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:50:26 by mratsima          #+#    #+#             */
-/*   Updated: 2025/11/01 16:39:05 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/01 16:51:08 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int key_hook(int key, void *param)
 		display->player.delta_y = sin (display->player.angle) * 5;
 		printf("%f\n", display->player.angle);
 	}
-	laser(display);
+	cast_ray(display->begin, display, 10);
 	mini_map(display, display->map);
 	return (0);
 }
