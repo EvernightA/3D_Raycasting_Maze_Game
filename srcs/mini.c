@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 09:38:12 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/10/20 09:39:02 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/01 16:07:19 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	mini_map(t_display *display, char **map)
 			//{
 				//mlx_put_image_to_window(display->mlx.mlx_ptr, display->mlx.win_ptr, display->texture.floor_img, j * SIZE_IMG, i * SIZE_IMG);
 				// A FUNCTION TO PUT A PLAYER in pixel
-				mlx_pixel_put(display->mlx.mlx_ptr, display->mlx.win_ptr, display->player.x_pixel * 1, display->player.y_pixel * 1, 0xFF00);
+				mlx_pixel_put(display->mlx.mlx_ptr, display->mlx.win_ptr, display->player.pixels.x * 1, display->player.pixels.y * 1, 0xFF00);
 			
 			//}
 			j++;

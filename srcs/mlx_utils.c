@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:50:26 by mratsima          #+#    #+#             */
-/*   Updated: 2025/11/01 15:48:51 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/01 16:07:34 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,38 +43,38 @@ int key_hook(int key, void *param)
 		quit_win(display);
 	else if (key == XK_W || key == XK_w)
 	{
-			display->player.x_pixel = display->player.x_pixel + display->player.delta_x;
-			display->player.y_pixel = display->player.y_pixel + display->player.delta_y;
-			display->begin.y = display->player.y_pixel;
-			display->begin.x = display->player.x_pixel;
-			display->player.y_blocs = display->player.y_pixel / 16;
-			display->player.x_blocs = display->player.x_pixel / 16;
-			display->map[display->player.y_blocs][display->player.x_blocs] = display->player.orientation;
+			display->player.pixels.x = display->player.pixels.x + display->player.delta_x;
+			display->player.pixels.y = display->player.pixels.y + display->player.delta_y;
+			display->begin.y = display->player.pixels.y;
+			display->begin.x = display->player.pixels.x;
+			display->player.blocs.y = display->player.pixels.y / 16;
+			display->player.blocs.x = display->player.pixels.x / 16;
+			display->map[display->player.blocs.y][display->player.blocs.x] = display->player.orientation;
 	}
 	else if (key == XK_S || key == XK_s)
 	{
 		// add here
-		display->player.x_pixel -= display->player.delta_x;
-		display->player.y_pixel -= display->player.delta_y;
-		display->begin.y = display->player.y_pixel;
-		display->begin.x = display->player.x_pixel;
-		display->player.y_blocs = display->player.y_pixel / 16;
-		display->player.x_blocs = display->player.x_pixel / 16;
-		display->map[display->player.y_blocs][display->player.x_blocs] = display->player.orientation;
+		display->player.pixels.x -= display->player.delta_x;
+		display->player.pixels.y -= display->player.delta_y;
+		display->begin.y = display->player.pixels.y;
+		display->begin.x = display->player.pixels.x;
+		display->player.blocs.y = display->player.pixels.y / 16;
+		display->player.blocs.x = display->player.pixels.x / 16;
+		display->map[display->player.blocs.y][display->player.blocs.x] = display->player.orientation;
 	}
 	else if (key == XK_A || key == XK_a)
 	{
-			display->player.x_pixel--;
-			display->begin.x = display->player.x_pixel;
-			display->player.x_blocs = display->player.x_pixel / 16;
-			display->map[display->player.y_blocs][display->player.x_blocs] = display->player.orientation;
+			display->player.pixels.x--;
+			display->begin.x = display->player.pixels.x;
+			display->player.blocs.x = display->player.pixels.x / 16;
+			display->map[display->player.blocs.y][display->player.blocs.x] = display->player.orientation;
 		}
 	else if (key == XK_D || key == XK_d)
 	{
-		display->player.x_pixel++;
-		display->begin.x = display->player.x_pixel;
-		display->player.x_blocs = display->player.x_pixel / 16;
-		display->map[display->player.y_blocs][display->player.x_blocs] = display->player.orientation;
+		display->player.pixels.x++;
+		display->begin.x = display->player.pixels.x;
+		display->player.blocs.x = display->player.pixels.x / 16;
+		display->map[display->player.blocs.y][display->player.blocs.x] = display->player.orientation;
 	}
 	else if (key == XK_Left)
 	{

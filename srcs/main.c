@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/11/01 15:46:51 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/01 16:08:20 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,12 +199,12 @@ void	init_player_position(t_display *display)
 		{
 			if (is_player(display->map[j][i]))
 			{
-				display->player.x_blocs = i;
-				display->player.y_blocs = j;
+				display->player.blocs.x = i;
+				display->player.blocs.y = j;
 				display->begin.x = i  * 16 + 16 / 2;
 				display->begin.y = j  * 16 + 16 / 2;
-				display->player.x_pixel = i * 16 + 16 / 2;
-				display->player.y_pixel = j * 16 + 16 / 2;
+				display->player.pixels.x = i * 16 + 16 / 2;
+				display->player.pixels.y = j * 16 + 16 / 2;
 				display->player.fov = 60;
 				if (display->map[j][i] == 'N')
 				{
@@ -235,7 +235,7 @@ void	init_player_position(t_display *display)
 	}
 }
 
-t_point	pix_to_bloc(t_point pixel)
+t_point	pixel_to_bloc(t_point pixel)
 {
 	t_point bloc;
 
@@ -252,7 +252,7 @@ void		draw_line(t_display *display)
 	tmp = display->head;
 	while (tmp)
 	{
-		tmp_bloc = pix_to_bloc(tmp->dot);
+		tmp_bloc = pixel_to_bloc(tmp->dot);
 		if (display->map[tmp_bloc.y][tmp_bloc.x] == '0' || is_player(display->map[tmp_bloc.y][tmp_bloc.x]))
 			mlx_pixel_put(display->mlx.mlx_ptr, display->mlx.win_ptr,tmp->dot.x,tmp->dot.y, 0xFF000);
 		else
@@ -293,8 +293,8 @@ int	main(int argc, char **argv)
 	display.mlx.win_ptr = mlx_new_window(display.mlx.mlx_ptr, 400, 400, "cub3d");
 	/*********************/
 	img_initialization(&display);
-	display.end.x = display.player.x_pixel + 24;
-	display.end.y = display.player.y_pixel + 24;
+	display.end.x = display.player.pixels.x + 24;
+	display.end.y = display.player.pixels.y + 24;
 	mlx_pixel_put(display.mlx.mlx_ptr, display.mlx.win_ptr, display.end.x, display.end.y, 0XFF000);
 	/*********MLX******************/
 	mlx_hook(display.mlx.win_ptr, 17, 0, quit_win, &display);

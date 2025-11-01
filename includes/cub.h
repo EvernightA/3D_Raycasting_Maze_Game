@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/01 12:21:45 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/01 16:06:38 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,9 @@ typedef struct s_player
 	int 	x_pixel;
 	int 	y_blocs;
 	int 	y_pixel;
+	
+	t_point	blocs;
+	t_point pixels;
 
 	float	delta_x;
 	float	delta_y;
@@ -100,7 +103,7 @@ typedef struct s_player
 	float	angle;
 	float	dir;
 
-	
+
 	int 	fov;
 	t_point	direction;
 	char 	orientation;
