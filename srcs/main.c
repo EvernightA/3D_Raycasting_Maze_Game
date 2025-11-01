@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/11/01 12:36:27 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/01 15:46:51 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -257,7 +257,7 @@ void		draw_line(t_display *display)
 			mlx_pixel_put(display->mlx.mlx_ptr, display->mlx.win_ptr,tmp->dot.x,tmp->dot.y, 0xFF000);
 		else
 		{
-			printf("fount this here : (%c)\n", display->map[tmp_bloc.y][tmp_bloc.x]);
+			//printf("fount this here : (%c)\n", display->map[tmp_bloc.y][tmp_bloc.x]);
 			break;
 		}
 		tmp = tmp -> next;
