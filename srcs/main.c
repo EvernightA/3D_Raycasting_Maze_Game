@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/11/02 07:46:12 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/02 08:12:19 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -282,6 +282,18 @@ void		draw_line(t_display *display)
 			//printf("fount this here : (%c)\n", display->map[tmp_bloc.y][tmp_bloc.x]);
 			break;
 		}
+		tmp = tmp -> next;
+	}
+}
+
+void		draw_simple_line2(t_line *line, t_display *display)
+{
+	t_line *tmp;
+
+	tmp = line;
+	while (tmp)
+	{
+		mlx_pixel_put(display->mlx2.mlx_ptr, display->mlx2.win_ptr,tmp->dot.x,tmp->dot.y, 0xFF000);
 		tmp = tmp -> next;
 	}
 }

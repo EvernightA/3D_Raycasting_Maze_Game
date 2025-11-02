@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bresenham.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 13:17:03 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/02 07:57:31 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/02 08:44:23 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,35 @@ t_point calculate_end(t_point begin, float angle, int max_distance)
 	return (end);
 }
 
+void draw_wall_lines(t_display *display, int distance, int pixel_index)
+{
+	t_line *line;
+	int line_size;
+	t_point begin;
+	t_point end;
+
+	if (distance)
+		line_size = SIZE_IMG / distance;
+	begin.y = SCRN_HEIGHT/2 - line_size/2;
+	begin.x = pixel_index;
+	end.x = pixel_index;
+	end.y = SCRN_HEIGHT/2 + line_size/2;
+	line = bresenham_line(&begin, &end);
+	draw_simple_line2(line, display);
+}
+
 void	cast_ray(t_point begin,t_display *display, int d)
 {
 	t_point true_end;
 	float	angle;
+	int pixel_index;
+	int distance;
 
 	/*
 		Dans cette fonction nous mettons angle = -FOV/2 pour que la direction principale se trouve au milieu
 	*/
+	/*PIXEL INDEX IS USED TO TRACK WHICH SCREEN LINE WE SHOULD DRAW*/
+	pixel_index = 0;
 	angle = -FOV / 2;
 	while (angle <= FOV / 2)
 	{
@@ -69,8 +90,10 @@ void	cast_ray(t_point begin,t_display *display, int d)
 			On fait ca pour chaque iteration
 		*/
 		display->head = bresenham_line(&begin, &true_end);
-		draw_line_2(display); // This draw line uses yellow
+		distance = draw_line_2(display); // This draw line uses yellow
+		draw_wall_lines(display, distance, pixel_index);
 		angle += FOV / SCRN_WIDTH;
+		pixel_index++;
 	}
 }
 

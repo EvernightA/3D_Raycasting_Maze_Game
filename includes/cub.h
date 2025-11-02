@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/02 07:46:22 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/02 08:12:17 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,6 +184,6 @@ t_point calculate_end(t_point begin, float angle, int max_distance);
 t_point	pixel_to_bloc(t_point pixel);
 void	ray_fov(t_point begin,t_display *display, int d);
 int		to_wall(t_display *display, t_point collision);
-
+void		draw_simple_line2(t_line *line, t_display *display);
 
 #endif

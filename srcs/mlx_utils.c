@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:50:26 by mratsima          #+#    #+#             */
-/*   Updated: 2025/11/02 07:41:03 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/02 08:15:46 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int key_hook(int key, void *param)
 
 	display = (t_display *)param;
 	mlx_clear_window(display->mlx.mlx_ptr, display->mlx.win_ptr);
+	mlx_clear_window(display->mlx2.mlx_ptr, display->mlx2.win_ptr);
 	if (key == XK_Escape)
 		quit_win(display);
 	else if (key == XK_W || key == XK_w)
