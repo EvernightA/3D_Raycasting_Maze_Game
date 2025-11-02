@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/11/01 18:29:32 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/02 07:46:12 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -243,10 +243,11 @@ t_point	pixel_to_bloc(t_point pixel)
 	bloc.y = pixel.y/SIZE_IMG;
 	return (bloc);
 }
-void		draw_line_2(t_display *display)
+int		draw_line_2(t_display *display)
 {
 	t_line *tmp;
 	t_point tmp_bloc;
+	int	distance;
 
 	tmp = display->head;
 	while (tmp)
@@ -256,11 +257,13 @@ void		draw_line_2(t_display *display)
 			mlx_pixel_put(display->mlx.mlx_ptr, display->mlx.win_ptr,tmp->dot.x,tmp->dot.y, 0xFFFF00);
 		else
 		{
-			//printf("fount this here : (%c)\n", display->map[tmp_bloc.y][tmp_bloc.x]);
+			distance = to_wall(display, tmp->dot);
 			break;
 		}
 		tmp = tmp -> next;
 	}
+	ft_printf(" = %d\n", distance);
+	return (distance);
 }
 
 void		draw_line(t_display *display)

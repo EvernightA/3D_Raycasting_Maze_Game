@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:50:26 by mratsima          #+#    #+#             */
-/*   Updated: 2025/11/01 19:08:42 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/02 07:41:03 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,11 @@ int	quit_win(t_display *display)
 	exit(0);
 }
 
-void	laser(t_display *display)
+int			to_wall(t_display *display, t_point collision)
 {
-	mlx_clear_window(display->mlx.mlx_ptr, display->mlx.win_ptr);
-	mlx_clear_window(display->mlx2.mlx_ptr, display->mlx2.win_ptr);
-	if (display->head)
-		ft_linefree(&display->head);
-	display->head = NULL;
-	display->head = bresenham_line(&display->begin, &display->end);
-	draw_line(display);
+	/*fishbowl effect not corrected yet*/
+	return (abs(display->player.pixels.x - collision.x) / cos(FOV));
 }
-
 
 int key_hook(int key, void *param)
 {

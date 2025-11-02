@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/01 18:29:50 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/02 07:46:22 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,7 +162,7 @@ void	print_list(t_line *head);
 int		error_handling(t_display *texture);
 int 	texture_error(t_display *texture);
 
-void		draw_line_2(t_display *display);
+int		draw_line_2(t_display *display);
 
 void	free_texture(t_display *texture);
 void	free_split(char **split);
@@ -183,7 +183,7 @@ t_point calculate_end(t_point begin, float angle, int max_distance);
 
 t_point	pixel_to_bloc(t_point pixel);
 void	ray_fov(t_point begin,t_display *display, int d);
-
+int		to_wall(t_display *display, t_point collision);
 
 
 #endif
