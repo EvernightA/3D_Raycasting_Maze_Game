@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 13:17:03 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/01 19:03:10 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/02 07:57:31 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	cast_ray(t_point begin,t_display *display, int d)
 		*/
 		display->head = bresenham_line(&begin, &true_end);
 		draw_line_2(display); // This draw line uses yellow
-		angle += 0.1;
+		angle += FOV / SCRN_WIDTH;
 	}
 }
 
