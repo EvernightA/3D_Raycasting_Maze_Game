@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/02 08:12:17 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/03 13:53:28 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,10 @@
 
 #ifndef SCRN_HEIGHT
  #define SCRN_HEIGHT 400
+#endif
+
+#ifndef WALL_UNIT
+ #define WALL_UNIT 1200
 #endif
 
 typedef struct s_img

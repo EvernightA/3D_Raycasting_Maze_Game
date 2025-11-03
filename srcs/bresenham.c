@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 13:17:03 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/02 08:44:23 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/03 13:54:14 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void draw_wall_lines(t_display *display, int distance, int pixel_index)
 	t_point end;
 
 	if (distance)
-		line_size = SIZE_IMG / distance;
+		line_size =  SIZE_IMG * WALL_UNIT / distance;
 	begin.y = SCRN_HEIGHT/2 - line_size/2;
 	begin.x = pixel_index;
 	end.x = pixel_index;
