@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bresenham.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
+/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 13:17:03 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/03 13:56:08 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/05 11:14:35 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ void draw_wall_lines(t_display *display, int distance, int pixel_index)
 	
 	if (distance)
 		line_size =  SIZE_IMG * WALL_UNIT / distance;
-	begin.y = SCRN_HEIGHT/2 - line_size/2;
+	begin.y = (SCRN_HEIGHT >> 1) - (line_size >>1);
 	begin.x = pixel_index;
 	end.x = pixel_index;
-	end.y = SCRN_HEIGHT/2 + line_size/2;
+	end.y = (SCRN_HEIGHT>>1) + (line_size>>1);
 	line = bresenham_line(&begin, &end);
 	draw_simple_line2(line, display);
 }
@@ -92,7 +92,7 @@ void	cast_ray(t_point begin,t_display *display, int d)
 		display->head = bresenham_line(&begin, &true_end);
 		distance = draw_line_2(display); // This draw line uses yellow
 		draw_wall_lines(display, distance, pixel_index);
-		angle += FOV / SCRN_WIDTH;
+		angle += (FOV / SCRN_WIDTH);
 		pixel_index++;
 	}
 }
