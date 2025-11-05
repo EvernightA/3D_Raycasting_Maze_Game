@@ -61,3 +61,12 @@ end.x = start.x + (0.707 × 100) = start.x + 70.7
 end.y = start.y + (0.707 × 100) = start.y + 70.7
 
 Résultat : Le rayon va en diagonale ↗️
+
+To do a division by right shift we must do 
+
+15 / 2 est equivaut a 15 >> 1
+
+15 / 4 est equivaut a 15 >> 2 car 4 = 2^2
+
+15 / 2^n equivaut a  15 >> n
+

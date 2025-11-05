@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
+/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:50:26 by mratsima          #+#    #+#             */
-/*   Updated: 2025/11/02 08:15:46 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/05 11:16:05 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,14 @@ int key_hook(int key, void *param)
 		// tmp is too see if next is a wall
 			tmp.x = display->player.pixels.x + display->player.delta_x;
 			tmp.y = display->player.pixels.y + display->player.delta_y;
-			tmp = pixel_to_bloc(tmp);
+			tmp = pixel_to_bloc(tmp, display);
 			if (display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
 			{
 				display->player.pixels.x += display->player.delta_x;
 				display->player.pixels.y += display->player.delta_y;
 				display->begin.y = display->player.pixels.y;
 				display->begin.x = display->player.pixels.x;
-				display->player.blocs = pixel_to_bloc(display->player.pixels);
+				display->player.blocs = pixel_to_bloc(display->player.pixels, display);
 				display->map[display->player.blocs.y][display->player.blocs.x] = display->player.orientation;
 			}
 	}
@@ -60,14 +60,14 @@ int key_hook(int key, void *param)
 		// tmp is too see if next is a wall
 		tmp.x = display->player.pixels.x - display->player.delta_x;
 		tmp.y = display->player.pixels.y - display->player.delta_y;
-		tmp = pixel_to_bloc(tmp);
+		tmp = pixel_to_bloc(tmp, display);
 		if (display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
 		{
 			display->player.pixels.x -= display->player.delta_x;
 			display->player.pixels.y -= display->player.delta_y;
 			display->begin.y = display->player.pixels.y;
 			display->begin.x = display->player.pixels.x;
-			display->player.blocs = pixel_to_bloc(display->player.pixels);
+			display->player.blocs = pixel_to_bloc(display->player.pixels, display);
 			display->map[display->player.blocs.y][display->player.blocs.x] = display->player.orientation;
 		}
 	}
@@ -76,12 +76,12 @@ int key_hook(int key, void *param)
 	{
 		tmp.x = display->player.pixels.x - 1;
 		tmp.y = display->player.pixels.y;
-		tmp = pixel_to_bloc(tmp);
+		tmp = pixel_to_bloc(tmp, display);
 		if (display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
 		{
 			display->player.pixels.x--;
 			display->begin.x = display->player.pixels.x;
-			display->player.blocs = pixel_to_bloc(display->player.pixels);
+			display->player.blocs = pixel_to_bloc(display->player.pixels, display);
 			display->map[display->player.blocs.y][display->player.blocs.x] = display->player.orientation;
 		}
 	}
@@ -90,12 +90,12 @@ int key_hook(int key, void *param)
 		// tmp is too see if next is a wall
 		tmp.x = display->player.pixels.x + 1;
 		tmp.y = display->player.pixels.y;
-		tmp = pixel_to_bloc(tmp);
+		tmp = pixel_to_bloc(tmp, display);
 		if (display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
 		{
 			display->player.pixels.x++;
 			display->begin.x = display->player.pixels.x;
-			display->player.blocs = pixel_to_bloc(display->player.pixels);
+			display->player.blocs = pixel_to_bloc(display->player.pixels, display);
 			display->map[display->player.blocs.y][display->player.blocs.x] = display->player.orientation;
 		}
 	}

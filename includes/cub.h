@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
+/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/03 13:53:28 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/05 11:21:53 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@
 #endif
 
 #ifndef SCRN_WIDTH
- #define SCRN_WIDTH 400
+ #define SCRN_WIDTH 512
 #endif
 
 #ifndef SCRN_HEIGHT
- #define SCRN_HEIGHT 400
+ #define SCRN_HEIGHT 512
 #endif
 
 #ifndef WALL_UNIT
@@ -78,6 +78,13 @@ typedef struct s_rgb
 	int green;
 	int blue;
 }	t_rgb;
+
+typedef struct s_shift
+{
+	int sreen_height;
+	int	screen_width;
+	int	size_img;
+}t_shift;
 
 
 typedef struct s_tex
@@ -131,6 +138,7 @@ typedef struct s_display
 	t_line			*head;
 	t_point			begin;
 	t_point			end;
+	t_shift			shifter;
 	
 }				t_display;
 
@@ -184,10 +192,11 @@ void	draw_line(t_display *display);
 void	rotate_player(t_display *display, float angle);
 
 t_point calculate_end(t_point begin, float angle, int max_distance);
+t_point	pixel_to_bloc(t_point pixel, t_display *display);
 
-t_point	pixel_to_bloc(t_point pixel);
 void	ray_fov(t_point begin,t_display *display, int d);
 int		to_wall(t_display *display, t_point collision);
-void		draw_simple_line2(t_line *line, t_display *display);
+void	draw_simple_line2(t_line *line, t_display *display);
+int		shifter(int	number);
 
 #endif

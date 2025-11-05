@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
+/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/11/02 08:12:19 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/05 11:12:13 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,10 @@ void	init_it(t_display *display)
 	display->player.delta_x = cos (display->player.angle) * 5;
 	display->player.delta_y = sin (display->player.angle) * 5;
 	//printf ("The first one %f\n", display->player.angle);
+	display->shifter.screen_width = shifter(SCRN_WIDTH);
+	display->shifter.sreen_height = shifter(SCRN_HEIGHT);
+	display->shifter.size_img = shifter(SIZE_IMG);
+
 }
 
 static int	get_map_height(t_display *display, int *map_height ,char *file)
@@ -201,10 +205,10 @@ void	init_player_position(t_display *display)
 			{
 				display->player.blocs.x = i;
 				display->player.blocs.y = j;
-				display->begin.x = i  * 16 + 16 / 2;
-				display->begin.y = j  * 16 + 16 / 2;
-				display->player.pixels.x = i * 16 + 16 / 2;
-				display->player.pixels.y = j * 16 + 16 / 2;
+				display->begin.x = i  * 16 + (16 >> 1);
+				display->begin.y = j  * 16 + (16 >> 1);
+				display->player.pixels.x = i * 16 + (16 >> 1);
+				display->player.pixels.y = j * 16 + (16 >> 1);
 				display->player.fov = 60;
 				if (display->map[j][i] == 'N')
 				{
@@ -235,12 +239,12 @@ void	init_player_position(t_display *display)
 	}
 }
 
-t_point	pixel_to_bloc(t_point pixel)
+t_point	pixel_to_bloc(t_point pixel, t_display *display)
 {
 	t_point bloc;
 
-	bloc.x = pixel.x/SIZE_IMG;
-	bloc.y = pixel.y/SIZE_IMG;
+	bloc.x = pixel.x >> display->shifter.size_img;// size = 16
+	bloc.y = pixel.y >> display->shifter.size_img;// size = 16
 	return (bloc);
 }
 int		draw_line_2(t_display *display)
@@ -252,7 +256,7 @@ int		draw_line_2(t_display *display)
 	tmp = display->head;
 	while (tmp)
 	{
-		tmp_bloc = pixel_to_bloc(tmp->dot);
+		tmp_bloc = pixel_to_bloc(tmp->dot, display);
 		if (display->map[tmp_bloc.y][tmp_bloc.x] == '0' || is_player(display->map[tmp_bloc.y][tmp_bloc.x]))
 			mlx_pixel_put(display->mlx.mlx_ptr, display->mlx.win_ptr,tmp->dot.x,tmp->dot.y, 0xFFFF00);
 		else
@@ -274,7 +278,7 @@ void		draw_line(t_display *display)
 	tmp = display->head;
 	while (tmp)
 	{
-		tmp_bloc = pixel_to_bloc(tmp->dot);
+		tmp_bloc = pixel_to_bloc(tmp->dot, display);
 		if (display->map[tmp_bloc.y][tmp_bloc.x] == '0' || is_player(display->map[tmp_bloc.y][tmp_bloc.x]))
 			mlx_pixel_put(display->mlx.mlx_ptr, display->mlx.win_ptr,tmp->dot.x,tmp->dot.y, 0xFF000);
 		else
