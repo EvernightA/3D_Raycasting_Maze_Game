@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:50:26 by mratsima          #+#    #+#             */
-/*   Updated: 2025/11/08 17:44:08 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/08 20:30:29 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,15 @@ void	orientation_player(t_display * display, int operation)
 	}
 	display->player.delta_x = cos (display->player.angle) * 5;
 	display->player.delta_y = sin (display->player.angle) * 5;
-	printf("%f\n", display->player.angle);
+	// printf("%f\n", display->player.angle);
+}
+
+void	render_all(t_display *display)
+{
+	cast_ray(display->begin, display, 1000);
+	mlx_put_image_to_window(display->mlx2.mlx_ptr, display->mlx2.win_ptr, display->all.mlx_img, 0, 0);
+	mlx_put_image_to_window(display->mlx.mlx_ptr, display->mlx.win_ptr, display->rays.mlx_img, 0, 0);
+	mini_map(display, display->map);
 }
 
 
@@ -60,14 +68,10 @@ int key_hook(int key, void *param)
 	t_point		tmp;
 
 	display = (t_display *)param;
-	mlx_clear_window(display->mlx.mlx_ptr, display->mlx.win_ptr);
-	mlx_clear_window(display->mlx2.mlx_ptr, display->mlx2.win_ptr);
-	display->all.mlx_img = mlx_new_image(display->mlx.mlx_ptr, SCRN_WIDTH, SCRN_HEIGHT);
-	display->rays.mlx_img = mlx_new_image(display->mlx.mlx_ptr, SCRN_WIDTH, SCRN_HEIGHT);
-	if (!display->all.mlx_img || !display->rays.mlx_img)
-		return (0);
-	display->all.addr = mlx_get_data_addr(display->all.mlx_img, &display->all.bpp, &display->all.line_len, &display->all.endian);
-	display->rays.addr = mlx_get_data_addr(display->rays.mlx_img, &display->rays.bpp, &display->rays.line_len, &display->rays.endian);
+	// mlx_clear_window(display->mlx.mlx_ptr, display->mlx.win_ptr);
+	// mlx_clear_window(display->mlx2.mlx_ptr, display->mlx2.win_ptr);
+	clear_img(display->all.mlx_img);
+	clear_img(display->rays.mlx_img);
 	if (key == XK_Escape)
 		quit_win(display);
 	else if (key == XK_W || key == XK_w)
@@ -76,10 +80,11 @@ int key_hook(int key, void *param)
 			tmp.x = display->player.pixels.x + display->player.delta_x;
 			tmp.y = display->player.pixels.y + display->player.delta_y;
 			tmp = pixel_to_bloc(tmp, display);
-			if (display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
+			if (tmp.y < display->texture.map_height && display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
 			{
 				player_move (display, 1);
 			}
+		render_all(display);
 	}
 	else if (key == XK_S || key == XK_s)
 	{
@@ -87,10 +92,14 @@ int key_hook(int key, void *param)
 		tmp.x = display->player.pixels.x - display->player.delta_x;
 		tmp.y = display->player.pixels.y - display->player.delta_y;
 		tmp = pixel_to_bloc(tmp, display);
-		if (display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
+		if (tmp.y < display->texture.map_height && display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
 		{
 			player_move (display, -1);
 		}
+		// clear_img(display->all.mlx_img);
+		// clear_img(display->rays.mlx_img);
+		render_all(display);
+		
 	}
 	else if (key == XK_A || key == XK_a)
 		// tmp is too see if next is a wall
@@ -98,13 +107,15 @@ int key_hook(int key, void *param)
 		tmp.x = display->player.pixels.x - 1;
 		tmp.y = display->player.pixels.y;
 		tmp = pixel_to_bloc(tmp, display);
-		if (display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
+		if (tmp.y < display->texture.map_height && display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
 		{
 			display->player.pixels.x--;
 			display->begin.x = display->player.pixels.x;
 			display->player.blocs = pixel_to_bloc(display->player.pixels, display);
 			display->map[display->player.blocs.y][display->player.blocs.x] = display->player.orientation;
 		}
+		render_all(display);
+
 	}
 	else if (key == XK_D || key == XK_d)
 	{
@@ -112,28 +123,31 @@ int key_hook(int key, void *param)
 		tmp.x = display->player.pixels.x + 1;
 		tmp.y = display->player.pixels.y;
 		tmp = pixel_to_bloc(tmp, display);
-		if (display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
+		if (tmp.y < display->texture.map_height && display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
 		{
 			display->player.pixels.x++;
 			display->begin.x = display->player.pixels.x;
 			display->player.blocs = pixel_to_bloc(display->player.pixels, display);
 			display->map[display->player.blocs.y][display->player.blocs.x] = display->player.orientation;
 		}
+		render_all(display);
+
 	}
 	else if (key == XK_Left)
 	{
 		orientation_player(display, -1);
+		render_all(display);
 	}
 	else if (key == XK_Right)
 	{
 		orientation_player(display, 1);
+		render_all(display);
 	}
-	cast_ray(display->begin, display, 1000);
-	mlx_put_image_to_window(display->mlx2.mlx_ptr, display->mlx2.win_ptr, display->all.mlx_img, 0, 0);
-	mlx_put_image_to_window(display->mlx.mlx_ptr, display->mlx.win_ptr, display->rays.mlx_img, 0, 0);
-	mlx_destroy_image(display->mlx2.mlx_ptr, display->all.mlx_img);
-	// free(display->all.addr);
-	// display->all.addr = NULL;
-	mini_map(display, display->map);
+	
 	return (0);
 }
+/*
+The problem is not the forgottten  frees of bresenham
+nor the pixel put
+nor the mlx_clear window
+*/

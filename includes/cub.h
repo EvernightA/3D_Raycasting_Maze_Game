@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/08 17:36:54 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/08 19:55:45 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,6 +200,7 @@ int		to_wall(t_display *display, t_point collision);
 void	draw_simple_line2(t_line *line, t_display *display);
 int		shifter(int	number);
 void	img_pix_put(t_img *img, int x, int y, int color);
+void    clear_img(t_img *img);
 
 
 #endif

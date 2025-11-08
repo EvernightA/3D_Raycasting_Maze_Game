@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 13:17:03 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/05 11:14:35 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/08 18:41:00 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ void	cast_ray(t_point begin,t_display *display, int d)
 
 			On fait ca pour chaque iteration
 		*/
+		if (display->head)
+			ft_linefree(&display->head);
 		display->head = bresenham_line(&begin, &true_end);
 		distance = draw_line_2(display); // This draw line uses yellow
 		draw_wall_lines(display, distance, pixel_index);

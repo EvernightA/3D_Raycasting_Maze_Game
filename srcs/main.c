@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/11/08 17:40:36 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/08 19:44:23 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -259,7 +259,7 @@ int		draw_line_2(t_display *display)
 		tmp_bloc = pixel_to_bloc(tmp->dot, display);
 		if (display->map[tmp_bloc.y][tmp_bloc.x] == '0' || is_player(display->map[tmp_bloc.y][tmp_bloc.x]))
 		{
-			img_pix_put(&display->rays, tmp->dot.x, tmp->dot.y, 0xFF000);
+			img_pix_put(&display->rays, tmp->dot.x, tmp->dot.y, 0xF000);
 			// mlx_pixel_put(display->mlx.mlx_ptr, display->mlx.win_ptr,tmp->dot.x,tmp->dot.y, 0xFFFF00);
 		}	
 		else
@@ -329,14 +329,14 @@ int	main(int argc, char **argv)
 	init_player_position(&display);
 	printf("next -one %f\n", display.player.angle);
 	/************MLX*********/
-		display.mlx.mlx_ptr = mlx_init();
+	display.mlx.mlx_ptr = mlx_init();
 	display.mlx2.mlx_ptr = mlx_init();
 	if (!display.mlx.mlx_ptr)
 		return (1);
 	if (!display.mlx2.mlx_ptr)
 		return (1);
 	display.mlx.win_ptr = mlx_new_window(display.mlx.mlx_ptr, SCRN_WIDTH, SCRN_HEIGHT, "cub3d");
-	display.mlx2.win_ptr = mlx_new_window(display.mlx.mlx_ptr, SCRN_WIDTH, SCRN_HEIGHT, "render");
+	display.mlx2.win_ptr = mlx_new_window(display.mlx2.mlx_ptr, SCRN_WIDTH, SCRN_HEIGHT, "render");
 	/*********************/
 	img_initialization(&display);
 	display.end.x = display.player.pixels.x + 24;
@@ -348,7 +348,7 @@ int	main(int argc, char **argv)
 	mlx_hook(display.mlx.win_ptr, 2, 1L<<0, key_hook, &display);
 	mini_map(&display, display.map);
 	mlx_loop(display.mlx.mlx_ptr);
-	mlx_loop(display.mlx2.mlx_ptr);
+	// mlx_loop(display.mlx2.mlx_ptr); boucle morte
 	/******************************/
 	free_texture(&display);
 	return (0);
