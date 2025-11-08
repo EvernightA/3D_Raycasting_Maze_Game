@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 09:08:08 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/01 17:01:21 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/08 17:46:52 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,11 @@ void	rotate_player(t_display *display, float angle)
 {
 	float tmpx;
 	float tmpy;
-//
+
 	tmpx = (display->end.x - display->begin.x) * cos(angle) - (display->end.y - display->begin.y) * sin(angle) + display->begin.x;
 	tmpy = (display->end.y - display->begin.y) * cos(angle) + (display->end.x - display->begin.x) * sin(angle) + display->begin.y;
-//
 	display->end.x = float_abs(tmpx);
 	display->end.y = float_abs(tmpy);
-	//printf("end x = %d ; ", display->end.x);
-	//printf("end y = %d\n\n", display->end.y);
-	//mlx_pixel_put(display->mlx.mlx_ptr, display->mlx.win_ptr, tmpx, tmpy, 0XFF000);
 }
 
 
