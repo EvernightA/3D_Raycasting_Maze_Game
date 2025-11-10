@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:50:26 by mratsima          #+#    #+#             */
-/*   Updated: 2025/11/08 20:30:29 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/10 10:10:29 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ int key_hook(int key, void *param)
 	display = (t_display *)param;
 	// mlx_clear_window(display->mlx.mlx_ptr, display->mlx.win_ptr);
 	// mlx_clear_window(display->mlx2.mlx_ptr, display->mlx2.win_ptr);
-	clear_img(display->all.mlx_img);
-	clear_img(display->rays.mlx_img);
+	clear_img(display);
+	clear_rays(display);
 	if (key == XK_Escape)
 		quit_win(display);
 	else if (key == XK_W || key == XK_w)
