@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 16:41:21 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/10 10:10:09 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/10 14:45:10 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@ void	img_pix_put(t_img *img, int x, int y, int color)
 
     if (img->addr)
     {
+        if (x < 0 || y < 0 || x >= SCRN_WIDTH || y >= SCRN_HEIGHT)
+        {
+            return ;
+        }
         pixel = img->addr + (y * img->line_len + x * (img->bpp / 8));
         *(int *)pixel = color;
     }

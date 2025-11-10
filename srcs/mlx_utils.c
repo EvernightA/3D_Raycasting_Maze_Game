@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:50:26 by mratsima          #+#    #+#             */
-/*   Updated: 2025/11/10 10:55:11 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/10 14:34:52 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,16 @@ void	render_all(t_display *display)
 }
 
 
+void	tmp_debug(t_point tmp)
+{
+	ft_putstr_fd("x = ", 1);
+	ft_putnbr_fd(tmp.x, 1);
+	ft_putstr_fd("\n", 1);
+	ft_putstr_fd("y = ", 1);
+	ft_putnbr_fd(tmp.y, 1);
+	ft_putstr_fd("\n", 1);
+}
+
 int key_hook(int key, void *param)
 {
 	t_display *display;
@@ -80,6 +90,7 @@ int key_hook(int key, void *param)
 			tmp.x = display->player.pixels.x + display->player.delta_x;
 			tmp.y = display->player.pixels.y + display->player.delta_y;
 			tmp = pixel_to_bloc(tmp, display);
+			tmp_debug(tmp);
 			if (tmp.y < display->texture.map_height && display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
 			{
 				player_move (display, 1);
@@ -92,6 +103,7 @@ int key_hook(int key, void *param)
 		tmp.x = display->player.pixels.x - display->player.delta_x;
 		tmp.y = display->player.pixels.y - display->player.delta_y;
 		tmp = pixel_to_bloc(tmp, display);
+		tmp_debug(tmp);
 		if (tmp.y < display->texture.map_height && display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
 		{
 			player_move (display, -1);
@@ -107,6 +119,7 @@ int key_hook(int key, void *param)
 		tmp.x = display->player.pixels.x - 1;
 		tmp.y = display->player.pixels.y;
 		tmp = pixel_to_bloc(tmp, display);
+		tmp_debug(tmp);
 		if (tmp.y < display->texture.map_height && display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
 		{
 			display->player.pixels.x--;
@@ -123,6 +136,7 @@ int key_hook(int key, void *param)
 		tmp.x = display->player.pixels.x + 1;
 		tmp.y = display->player.pixels.y;
 		tmp = pixel_to_bloc(tmp, display);
+		tmp_debug(tmp);
 		if (tmp.y < display->texture.map_height && display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
 		{
 			display->player.pixels.x++;
