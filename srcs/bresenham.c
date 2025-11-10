@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 13:17:03 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/10 14:46:09 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/10 14:58:57 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,11 @@ void draw_wall_lines(t_display *display, int distance, int pixel_index)
 	end.y = (SCRN_HEIGHT >> 1) + (line_size >> 1);
 	line = bresenham_line(&begin, &end);
 	draw_simple_line2(line, display);
+	if (display->head)
+	{
+		ft_linefree(&display->head);
+		display->head = NULL;
+	}
 }
 
 void	cast_ray(t_point begin,t_display *display, int d)
@@ -101,9 +106,12 @@ void	cast_ray(t_point begin,t_display *display, int d)
 			ft_linefree(&display->head);
 		display->head = bresenham_line(&begin, &true_end);
 		distance = draw_line_2(display); // This draw line uses yellow
-		draw_wall_lines(display, distance, pixel_index);
 		if (display->head)
+		{
 			ft_linefree(&display->head);
+			display->head = NULL;
+		}
+		draw_wall_lines(display, distance, pixel_index);
 		angle += (FOV / SCRN_WIDTH);
 		pixel_index++;
 	}
