@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/11/10 14:02:36 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/10 15:17:29 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -259,18 +259,7 @@ int		draw_line_2(t_display *display)
 		tmp_bloc = pixel_to_bloc(tmp->dot, display);
 		if (display->map[tmp_bloc.y][tmp_bloc.x] == '0' || is_player(display->map[tmp_bloc.y][tmp_bloc.x]))
 		{
-			// if (tmp->dot.x > SCRN_HEIGHT )
-			// {
-			// 	write(1, "hello", 5);
-			// 	tmp->dot.x = SCRN_HEIGHT ;
-			// }
-			// if (tmp->dot.y > SCRN_HEIGHT)
-			// {
-			// 	write(1, "hello", 6);
-			// 	tmp->dot.y = SCRN_HEIGHT;
-			// }
 			img_pix_put(&display->rays, tmp->dot.x, tmp->dot.y, 0x00F0);
-			// mlx_pixel_put(display->mlx.mlx_ptr, display->mlx.win_ptr,tmp->dot.x,tmp->dot.y, 0xFFFF00);
 		}	
 		else
 		{
@@ -279,7 +268,7 @@ int		draw_line_2(t_display *display)
 		}
 		tmp = tmp -> next;
 	}
-	// ft_printf(" = %d\n", distance);
+	ft_printf(" = %d\n", distance);
 	return (distance);
 }
 

@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:50:26 by mratsima          #+#    #+#             */
-/*   Updated: 2025/11/10 14:34:52 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/10 15:43:06 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@ int	quit_win(t_display *display)
 int			to_wall(t_display *display, t_point collision)
 {
 	/*fishbowl effect not corrected yet*/
+	(void)display;
+	(void)collision;
+	// return ();
+
 	return (abs(display->player.pixels.x - collision.x) / cos(FOV));
 }
 
@@ -149,12 +153,12 @@ int key_hook(int key, void *param)
 	}
 	else if (key == XK_Left)
 	{
-		orientation_player(display, -1);
+		orientation_player(display, 1);
 		render_all(display);
 	}
 	else if (key == XK_Right)
 	{
-		orientation_player(display, 1);
+		orientation_player(display, -1);
 		render_all(display);
 	}
 	

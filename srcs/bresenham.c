@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 13:17:03 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/10 14:58:57 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/10 15:31:16 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void draw_wall_lines(t_display *display, int distance, int pixel_index)
 	t_point begin;
 	t_point end;
 	
+
+	/*How we calculate the distance may be the problem ?*/
 	if (distance)
 		line_size =  SIZE_IMG * WALL_UNIT / distance;
 	begin.y = (SCRN_HEIGHT >> 1) - (line_size >> 1);
@@ -162,6 +164,10 @@ t_line	*bresenham_line(t_point *begin, t_point *end)
 	current = *begin;
 	while (1)
 	{
+		if(current.x > SCRN_WIDTH || current.y > SCRN_HEIGHT)
+		{
+			break;
+		}
 		new_node = ft_linenew(current);
 		ft_lineadd_back(&head, new_node);
 		if (head == NULL)
