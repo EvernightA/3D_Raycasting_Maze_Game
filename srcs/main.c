@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/11/10 15:17:29 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/11 09:43:25 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -247,7 +247,7 @@ t_point	pixel_to_bloc(t_point pixel, t_display *display)
 	bloc.y = pixel.y >> display->shifter.size_img;// size = 16
 	return (bloc);
 }
-int		draw_line_2(t_display *display)
+int		draw_line_2(t_display *display, float beta)
 {
 	t_line *tmp;
 	t_point tmp_bloc;
@@ -263,7 +263,7 @@ int		draw_line_2(t_display *display)
 		}	
 		else
 		{
-			distance = to_wall(display, tmp->dot);
+			distance = to_wall(display, tmp->dot, beta);
 			break;
 		}
 		tmp = tmp -> next;
