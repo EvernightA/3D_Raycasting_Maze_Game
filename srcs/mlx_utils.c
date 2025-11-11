@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:50:26 by mratsima          #+#    #+#             */
-/*   Updated: 2025/11/11 09:51:20 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/11 13:52:17 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,12 +152,12 @@ int key_hook(int key, void *param)
 	}
 	else if (key == XK_Left)
 	{
-		orientation_player(display, 1);
+		orientation_player(display, -1);
 		render_all(display);
 	}
 	else if (key == XK_Right)
 	{
-		orientation_player(display, -1);
+		orientation_player(display, 1);
 		render_all(display);
 	}
 	
