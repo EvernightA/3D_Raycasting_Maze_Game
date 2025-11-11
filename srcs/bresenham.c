@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 13:17:03 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/05 11:14:35 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/10 15:31:16 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,21 @@ void draw_wall_lines(t_display *display, int distance, int pixel_index)
 	t_point begin;
 	t_point end;
 	
+
+	/*How we calculate the distance may be the problem ?*/
 	if (distance)
 		line_size =  SIZE_IMG * WALL_UNIT / distance;
-	begin.y = (SCRN_HEIGHT >> 1) - (line_size >>1);
+	begin.y = (SCRN_HEIGHT >> 1) - (line_size >> 1);
 	begin.x = pixel_index;
 	end.x = pixel_index;
-	end.y = (SCRN_HEIGHT>>1) + (line_size>>1);
+	end.y = (SCRN_HEIGHT >> 1) + (line_size >> 1);
 	line = bresenham_line(&begin, &end);
 	draw_simple_line2(line, display);
+	if (display->head)
+	{
+		ft_linefree(&display->head);
+		display->head = NULL;
+	}
 }
 
 void	cast_ray(t_point begin,t_display *display, int d)
@@ -89,8 +96,23 @@ void	cast_ray(t_point begin,t_display *display, int d)
 
 			On fait ca pour chaque iteration
 		*/
+		// if (true_end.x > SCRN_HEIGHT)
+		// {
+		// 	true_end.x = SCRN_HEIGHT;
+		// }
+		// if (true_end.y > SCRN_WIDTH)
+		// {
+		// 	true_end.y = SCRN_WIDTH;
+		// }
+		if (display->head)
+			ft_linefree(&display->head);
 		display->head = bresenham_line(&begin, &true_end);
 		distance = draw_line_2(display); // This draw line uses yellow
+		if (display->head)
+		{
+			ft_linefree(&display->head);
+			display->head = NULL;
+		}
 		draw_wall_lines(display, distance, pixel_index);
 		angle += (FOV / SCRN_WIDTH);
 		pixel_index++;
@@ -142,6 +164,10 @@ t_line	*bresenham_line(t_point *begin, t_point *end)
 	current = *begin;
 	while (1)
 	{
+		if(current.x > SCRN_WIDTH || current.y > SCRN_HEIGHT)
+		{
+			break;
+		}
 		new_node = ft_linenew(current);
 		ft_lineadd_back(&head, new_node);
 		if (head == NULL)

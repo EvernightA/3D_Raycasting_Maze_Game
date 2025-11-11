@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/05 11:21:53 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/10 10:09:07 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,8 @@ typedef struct s_display
 	t_point			begin;
 	t_point			end;
 	t_shift			shifter;
-	
+	t_img			all;
+	t_img			rays;
 }				t_display;
 
 char	**dup_mat(int height, char **map);
@@ -198,5 +199,8 @@ void	ray_fov(t_point begin,t_display *display, int d);
 int		to_wall(t_display *display, t_point collision);
 void	draw_simple_line2(t_line *line, t_display *display);
 int		shifter(int	number);
+void	img_pix_put(t_img *img, int x, int y, int color);
+void    clear_img(t_display *display);
+void	clear_rays(t_display *display);
 
 #endif
