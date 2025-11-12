@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/11 14:07:45 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/12 11:33:14 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@
 
 #ifndef M_PI
 # define M_PI 3.145 
+#endif
+
+#ifndef SPEED
+# define  SPEED 5 
 #endif
 
 #ifndef TETA

@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/11/12 10:30:39 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/12 11:34:30 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,9 +126,9 @@ void	init_it(t_display *display)
 	display->map =NULL;
 	display->head = NULL;
 	display->player.angle = M_PI;
-	display->player.rl_angle = display->player.angle + M_PI / 2;
-	display->player.delta_x = cos (display->player.angle) * 5;
-	display->player.delta_y = sin (display->player.angle) * 5;
+	// display->player.rl_angle = display->player.angle + M_PI / 2;
+	display->player.delta_x = cos (display->player.angle) * SPEED;
+	display->player.delta_y = sin (display->player.angle) * SPEED;
 	//printf ("The first one %f\n", display->player.angle);
 	display->shifter.screen_width = shifter(SCRN_WIDTH);
 	display->shifter.sreen_height = shifter(SCRN_HEIGHT);
