@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:50:26 by mratsima          #+#    #+#             */
-/*   Updated: 2025/11/12 11:02:28 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/12 11:12:14 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,13 +129,13 @@ int key_hook(int key, void *param)
 	else if (key == XK_A || key == XK_a)
 		// tmp is too see if next is a wall
 	{
-		tmp.x = display->player.pixels.x - sin(display->player.angle) * 5;
-		tmp.y = display->player.pixels.y + (cos(display->player.angle) * 5);
+		tmp.x = display->player.pixels.x + sin(display->player.angle) * 5;
+		tmp.y = display->player.pixels.y - (cos(display->player.angle) * 5);
 		tmp = pixel_to_bloc(tmp, display);
 		if (tmp.y < display->texture.map_height && display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
 		{
-			display->player.pixels.x = display->player.pixels.x - sin(display->player.angle) * 5;
-			display->player.pixels.y = display->player.pixels.y + cos(display->player.angle) * 5;
+			display->player.pixels.x = display->player.pixels.x + sin(display->player.angle) * 5;
+			display->player.pixels.y = display->player.pixels.y - cos(display->player.angle) * 5;
 			display->begin.y = display->player.pixels.y;
 			display->begin.x = display->player.pixels.x;
 			display->player.blocs = pixel_to_bloc(display->player.pixels, display);
@@ -147,14 +147,14 @@ int key_hook(int key, void *param)
 	else if (key == XK_D || key == XK_d)
 	{
 		// tmp is too see if next is a wall
-		tmp.x = display->player.pixels.x + sin(display->player.angle) * 5;
-		tmp.y = display->player.pixels.y - cos(display->player.angle) * 5;
+		tmp.x = display->player.pixels.x - sin(display->player.angle) * 5;
+		tmp.y = display->player.pixels.y + cos(display->player.angle) * 5;
 		tmp = pixel_to_bloc(tmp, display);
 		if (tmp.y < display->texture.map_height && display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
 		{
 			// player_move(display, -1, -1, display->player.angle);
-			display->player.pixels.x = display->player.pixels.x + sin(display->player.angle) * 5;
-			display->player.pixels.y = display->player.pixels.y - cos(display->player.angle) * 5;
+			display->player.pixels.x = display->player.pixels.x - sin(display->player.angle) * 5;
+			display->player.pixels.y = display->player.pixels.y + cos(display->player.angle) * 5;
 			display->begin.y = display->player.pixels.y;
 			display->begin.x = display->player.pixels.x;
 			display->player.blocs = pixel_to_bloc(display->player.pixels, display);
@@ -165,14 +165,14 @@ int key_hook(int key, void *param)
 	}
 	else if (key == XK_Left)
 	{
-		orientation_player(display, 1);
+		orientation_player(display, -1);
 		rad_to_deg(display->player.angle);
 		// rad_to_deg(display->player.rl_angle);
 		render_all(display);
 	}
 	else if (key == XK_Right)
 	{
-		orientation_player(display, -1);
+		orientation_player(display, 1);
 		rad_to_deg(display->player.angle);
 		// rad_to_deg(display->player.angle);
 		render_all(display);
