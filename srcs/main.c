@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/11/12 11:34:30 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/12 12:55:22 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -248,7 +248,7 @@ t_point	pixel_to_bloc(t_point pixel, t_display *display)
 	bloc.y = pixel.y >> display->shifter.size_img;// size = 16
 	return (bloc);
 }
-int		draw_line_2(t_display *display)
+int		draw_line_2(t_display *display, float beta)
 {
 	t_line *tmp;
 	t_point tmp_bloc;
@@ -264,7 +264,7 @@ int		draw_line_2(t_display *display)
 		}	
 		else
 		{
-			distance = to_wall(display, tmp->dot);
+			distance = to_wall(display, tmp->dot, beta);
 			break;
 		}
 		tmp = tmp -> next;

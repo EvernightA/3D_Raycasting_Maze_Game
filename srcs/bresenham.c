@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bresenham.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 13:17:03 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/10 15:31:16 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/11 09:55:23 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ void draw_wall_lines(t_display *display, int distance, int pixel_index)
 	/*How we calculate the distance may be the problem ?*/
 	if (distance)
 		line_size =  SIZE_IMG * WALL_UNIT / distance;
+	else
+		line_size = SCRN_HEIGHT;
 	begin.y = (SCRN_HEIGHT >> 1) - (line_size >> 1);
 	begin.x = pixel_index;
 	end.x = pixel_index;
@@ -107,7 +109,7 @@ void	cast_ray(t_point begin,t_display *display, int d)
 		if (display->head)
 			ft_linefree(&display->head);
 		display->head = bresenham_line(&begin, &true_end);
-		distance = draw_line_2(display); // This draw line uses yellow
+		distance = draw_line_2(display, angle); // This draw line uses yellow
 		if (display->head)
 		{
 			ft_linefree(&display->head);

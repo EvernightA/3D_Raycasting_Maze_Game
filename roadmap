@@ -49,10 +49,10 @@
 
 ### Day 11-13: Basic Raycasting
 -[x] Implement the bresenham algorithm
--[ ]Calculate wall distances using raycasting
--[ ]Determine wall heights based on distance
--[ ]Create a basic 3D view with solid-colored walls
--[ ]Implement field of view calculations
+-[x]Calculate wall distances using raycasting
+-[x]Determine wall heights based on distance
+-[x]Create a basic 3D view with solid-colored walls
+-[x]Implement field of view calculations
 
 ### Day 14-15: Texture Loading
 -[ ]Load wall textures from files
@@ -72,10 +72,10 @@
 
 ### Day 18-19: Player Movement
 -[x] Refine player movement controls
--[ ]Add rotation with arrow keys or mouse
--[ ]Implement smooth movement and collision detection
+-[x]Add rotation with arrow keys or mouse
+-[x]Implement smooth movement and collision detection
+-[x]Implement strafing (sideways movement)
 -[ ]Add acceleration and deceleration for realistic movement
--[ ]Implement strafing (sideways movement)
 
 ### Day 20: Performance Optimization
 -[ ]Optimize raycasting algorithm

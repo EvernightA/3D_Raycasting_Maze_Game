@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:50:26 by mratsima          #+#    #+#             */
-/*   Updated: 2025/11/12 11:35:26 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/12 12:54:51 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,13 @@ int	quit_win(t_display *display)
 	exit(0);
 }
 
-int			to_wall(t_display *display, t_point collision)
+int			to_wall(t_display *display, t_point collision, float beta)
 {
 	/*fishbowl effect not corrected yet*/
-	(void)display;
-	(void)collision;
-	// return ();
+	int distorted_distance;
 
-	return (abs(display->player.pixels.x - collision.x) * tan(FOV));
+	distorted_distance = abs(display->player.pixels.x - collision.x) / cos(FOV);
+	return (distorted_distance * cos(beta));
 }
 
 void	player_move (t_display *display, int opx, int opy, double angle)
@@ -64,7 +63,7 @@ void	orientation_player(t_display * display, int operation)
 
 void	render_all(t_display *display)
 {
-	cast_ray(display->begin, display, 500);
+	cast_ray(display->begin, display, MAX_DISTANCE);
 	mlx_put_image_to_window(display->mlx2.mlx_ptr, display->mlx2.win_ptr, display->all.mlx_img, 0, 0);
 	mlx_put_image_to_window(display->mlx.mlx_ptr, display->mlx.win_ptr, display->rays.mlx_img, 0, 0);
 	mini_map(display, display->map);

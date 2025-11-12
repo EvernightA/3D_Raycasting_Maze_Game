@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/12 11:40:01 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/12 12:55:05 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,10 @@
 
 #ifndef WALL_UNIT
  #define WALL_UNIT 1200
+#endif
+
+#ifndef MAX_DISTANCE
+ #define MAX_DISTANCE 500
 #endif
 
 typedef struct s_img
@@ -179,7 +183,7 @@ void	print_list(t_line *head);
 int		error_handling(t_display *texture);
 int 	texture_error(t_display *texture);
 
-int		draw_line_2(t_display *display);
+int		draw_line_2(t_display *display, float beta);
 
 void	free_texture(t_display *texture);
 void	free_split(char **split);
@@ -200,7 +204,7 @@ t_point calculate_end(t_point begin, float angle, int max_distance);
 t_point	pixel_to_bloc(t_point pixel, t_display *display);
 
 void	ray_fov(t_point begin,t_display *display, int d);
-int		to_wall(t_display *display, t_point collision);
+int		to_wall(t_display *display, t_point collision, float beta);
 void	draw_simple_line2(t_line *line, t_display *display);
 int		shifter(int	number);
 void	img_pix_put(t_img *img, int x, int y, int color);
