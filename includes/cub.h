@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/10 10:09:07 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/11 14:07:45 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ typedef struct s_player
 	
 	float	angle;
 	float	dir;
-
+	float	rl_angle;
 
 	int 	fov;
 	t_point	direction;

@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/11/10 15:17:29 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/12 10:30:39 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,7 @@ void	init_it(t_display *display)
 	display->map =NULL;
 	display->head = NULL;
 	display->player.angle = M_PI;
+	display->player.rl_angle = display->player.angle + M_PI / 2;
 	display->player.delta_x = cos (display->player.angle) * 5;
 	display->player.delta_y = sin (display->player.angle) * 5;
 	//printf ("The first one %f\n", display->player.angle);
@@ -268,7 +269,7 @@ int		draw_line_2(t_display *display)
 		}
 		tmp = tmp -> next;
 	}
-	ft_printf(" = %d\n", distance);
+	// ft_printf(" = %d\n", distance);
 	return (distance);
 }
 
@@ -299,7 +300,6 @@ void		draw_simple_line2(t_line *line, t_display *display)
 	tmp = line;
 	while (tmp)
 	{
-		// mlx_pixel_put(display->mlx2.mlx_ptr, display->mlx2.win_ptr,tmp->dot.x,tmp->dot.y, 0xFF000);
 		img_pix_put(&display->all, tmp->dot.x, tmp->dot.y, 0x0000FF);
 		tmp = tmp -> next;
 	}
