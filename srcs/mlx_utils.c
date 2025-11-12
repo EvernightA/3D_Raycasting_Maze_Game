@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:50:26 by mratsima          #+#    #+#             */
-/*   Updated: 2025/11/12 12:54:51 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/12 13:18:00 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,9 @@ int			to_wall(t_display *display, t_point collision, float beta)
 	/*fishbowl effect not corrected yet*/
 	int distorted_distance;
 
+	(void)beta;
 	distorted_distance = abs(display->player.pixels.x - collision.x) / cos(FOV);
-	return (distorted_distance * cos(beta));
+	return (distorted_distance/* * cos(beta)*/);
 }
 
 void	player_move (t_display *display, int opx, int opy, double angle)
