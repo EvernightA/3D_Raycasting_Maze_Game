@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/13 09:06:13 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/13 09:44:03 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 #endif
 
 #ifndef SPEED
-# define  SPEED 5
+# define  SPEED 1
 #endif
 
 #ifndef TETA

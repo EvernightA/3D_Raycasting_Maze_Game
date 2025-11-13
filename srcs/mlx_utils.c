@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:50:26 by mratsima          #+#    #+#             */
-/*   Updated: 2025/11/13 09:33:00 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/13 09:47:21 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 void	rad_to_deg(double rad)
 {
 	printf("angle en deg = %f\n", 180 * rad / M_PI);
+	printf("cos = %f, sin = %f\n", cos(rad), sin(rad));
+
 }
 
 int	quit_win(t_display *display)
@@ -129,7 +131,7 @@ int key_hook(int key, void *param)
 	{
 		tmp.x = display->player.pixels.x + (sin(display->player.angle) * SPEED);
 		tmp.y = display->player.pixels.y - (cos(display->player.angle) * SPEED);
-		printf("cos = %f, sin = %f\n", cos(display->player.angle), sin(display->player.angle));
+		// printf("cos = %f, sin = %f\n", cos(display->player.angle), sin(display->player.angle));
 		tmp = pixel_to_bloc(tmp, display);
 		if (tmp.y < display->texture.map_height && display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
 		{
@@ -148,7 +150,7 @@ int key_hook(int key, void *param)
 		// tmp is too see if next is a wall
 		tmp.x = display->player.pixels.x - (sin(display->player.angle) * SPEED);
 		tmp.y = display->player.pixels.y + (cos(display->player.angle) * SPEED);
-		printf("cos = %f, sin = %f\n", cos(display->player.angle), sin(display->player.angle));
+		// printf("cos = %f, sin = %f\n", cos(display->player.angle), sin(display->player.angle));
 		tmp = pixel_to_bloc(tmp, display);
 		if (tmp.y < display->texture.map_height && display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
 		{
@@ -165,14 +167,14 @@ int key_hook(int key, void *param)
 	}
 	else if (key == XK_Left)
 	{
-		orientation_player(display, 1);
+		orientation_player(display, -1);
 		rad_to_deg(display->player.angle);
 		// rad_to_deg(display->player.rl_angle);
 		render_all(display);
 	}
 	else if (key == XK_Right)
 	{
-		orientation_player(display, -1);
+		orientation_player(display, 1);
 		rad_to_deg(display->player.angle);
 		// rad_to_deg(display->player.angle);
 		render_all(display);
