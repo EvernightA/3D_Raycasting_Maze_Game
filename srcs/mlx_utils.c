@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:50:26 by mratsima          #+#    #+#             */
-/*   Updated: 2025/11/13 10:25:42 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/13 13:52:37 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ void	orientation_player(t_display * display, int operation)
 	}
 	display->player.delta_x = cos (display->player.angle) * SPEED;
 	display->player.delta_y = sin (display->player.angle) * SPEED;
+	display->player.perp_x = -sin(display->player.angle) * SPEED;
+	display->player.perp_y = display->player.delta_x;
 	// printf("%f\n", display->player.angle);
 }
 
@@ -107,9 +109,7 @@ int key_hook(int key, void *param)
 		// tmp is too see if next is a wall
 			tmp.x = display->player.pixels.x + display->player.delta_x;
 			tmp.y = display->player.pixels.y + display->player.delta_y;
-			
 			tmp = pixel_to_bloc(tmp, display);
-
 			if (tmp.y < display->texture.map_height && display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
 			{
 				player_move (display, 1, 1, display->player.angle);
@@ -119,8 +119,8 @@ int key_hook(int key, void *param)
 	else if (key == XK_S || key == XK_s)
 	{
 		// tmp is too see if next is a wall
-		tmp.x = display->player.pixels.x + display->player.delta_x;
-		tmp.y = display->player.pixels.y + display->player.delta_y;
+		tmp.x = display->player.pixels.x - display->player.delta_x;
+		tmp.y = display->player.pixels.y - display->player.delta_y;
 		tmp = pixel_to_bloc(tmp, display);
 		if (tmp.y < display->texture.map_height && display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
 		{
@@ -132,14 +132,14 @@ int key_hook(int key, void *param)
 	else if (key == XK_A || key == XK_a)
 		// tmp is too see if next is a wall
 	{
-		tmp.x = display->player.pixels.x + (sin(display->player.angle) * SPEED);
-		tmp.y = display->player.pixels.y - (cos(display->player.angle) * SPEED);
+		tmp.x = display->player.pixels.x - display->player.perp_x;
+		tmp.y = display->player.pixels.y - display->player.perp_y;
 		// printf("cos = %f, sin = %f\n", cos(display->player.angle), sin(display->player.angle));
 		tmp = pixel_to_bloc(tmp, display);
 		if (tmp.y < display->texture.map_height && display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
 		{
-			display->player.pixels.x = display->player.pixels.x + (sin(display->player.angle) * SPEED);
-			display->player.pixels.y = display->player.pixels.y - (cos(display->player.angle) * SPEED);
+			display->player.pixels.x = display->player.pixels.x - display->player.perp_x;
+			display->player.pixels.y = display->player.pixels.y - display->player.perp_y;
 			display->begin.y = display->player.pixels.y;
 			display->begin.x = display->player.pixels.x;
 			display->player.blocs = pixel_to_bloc(display->player.pixels, display);
@@ -151,15 +151,15 @@ int key_hook(int key, void *param)
 	else if (key == XK_D || key == XK_d)
 	{
 		// tmp is too see if next is a wall
-		tmp.x = display->player.pixels.x - (sin(display->player.angle) * SPEED);
-		tmp.y = display->player.pixels.y + (cos(display->player.angle) * SPEED);
+		tmp.x = display->player.pixels.x + display->player.perp_x;
+		tmp.y = display->player.pixels.y + display->player.perp_y;
 		// printf("cos = %f, sin = %f\n", cos(display->player.angle), sin(display->player.angle));
 		tmp = pixel_to_bloc(tmp, display);
 		if (tmp.y < display->texture.map_height && display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
 		{
 			// player_move(display, -1, -1, display->player.angle);
-			display->player.pixels.x = display->player.pixels.x - (sin(display->player.angle) * SPEED);
-			display->player.pixels.y = display->player.pixels.y + (cos(display->player.angle) * SPEED);
+			display->player.pixels.x = display->player.pixels.x + display->player.perp_x;
+			display->player.pixels.y = display->player.pixels.y + display->player.perp_y;
 			display->begin.y = display->player.pixels.y;
 			display->begin.x = display->player.pixels.x;
 			display->player.blocs = pixel_to_bloc(display->player.pixels, display);
