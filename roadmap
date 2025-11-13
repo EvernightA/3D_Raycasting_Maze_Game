@@ -66,7 +66,7 @@
 ### Day 16-17: Improved Texturing
 -[ ]Add ceiling and floor colors
 -[ ]Implement texture coordinate precision
--[ ]Fix fisheye effect
+-[x]Fix fisheye effect
 -[ ]Add proper wall shading based on distance
 -[ ]Implement texture selection based on wall orientation
 
