@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/13 14:07:07 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/13 14:08:25 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,9 @@ typedef struct s_player
 	float	delta_x;
 	float	delta_y;
 	
+	float	perp_x;
+	float	perp_y;
+
 	float	angle;
 	float	dir;
 	float	rl_angle;

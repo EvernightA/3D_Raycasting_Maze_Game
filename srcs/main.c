@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/11/13 14:07:15 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/13 14:08:32 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,8 @@ void	init_it(t_display *display)
 	// display->player.rl_angle = display->player.angle + M_PI / 2;
 	display->player.delta_x = cos (display->player.angle) * SPEED;
 	display->player.delta_y = sin (display->player.angle) * SPEED;
+	display->player.perp_x = -sin(display->player.angle) * SPEED;
+	display->player.perp_y = display->player.delta_x;
 	//printf ("The first one %f\n", display->player.angle);
 	display->shifter.screen_width = shifter(SCRN_WIDTH);
 	display->shifter.sreen_height = shifter(SCRN_HEIGHT);
@@ -261,7 +263,7 @@ float		draw_line_2(t_display *display, float beta)
 		if (display->map[tmp_bloc.y][tmp_bloc.x] == '0' || is_player(display->map[tmp_bloc.y][tmp_bloc.x]))
 		{
 			img_pix_put(&display->rays, tmp->dot.x, tmp->dot.y, 0x00F0);
-		}	
+		}
 		else
 		{
 			distance = to_wall(display, tmp->dot, beta);
