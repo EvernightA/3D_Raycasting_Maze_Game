@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 13:17:03 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/13 14:00:03 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/13 14:28:02 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,24 +120,6 @@ void	cast_ray(t_point begin,t_display *display, int d)
 		pixel_index++;
 	}
 }
-
-void	ray_fov(t_point begin,t_display *display, int d)
-{
-	//int	i;
-	float tmp_angle;
-	t_point end;
-
-	//i = 0;
-	tmp_angle = FOV;
-	while (tmp_angle > 0)
-	{
-		end = calculate_end(begin, tmp_angle, d);
-		display->head = bresenham_line(&begin, &end);
-		draw_line(display);
-		tmp_angle -= 0.1;
-	}
-}
-
 
 t_line	*bresenham_line(t_point *begin, t_point *end)
 {
