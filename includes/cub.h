@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/13 10:16:18 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/13 10:25:08 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@
 #endif
 
 #ifndef WALL_UNIT
- #define WALL_UNIT 1200
+ #define WALL_UNIT 600
 #endif
 
 #ifndef MAX_DISTANCE

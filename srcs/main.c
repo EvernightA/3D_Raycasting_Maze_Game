@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/11/13 09:05:30 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/13 10:25:23 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -252,7 +252,7 @@ int		draw_line_2(t_display *display, float beta)
 {
 	t_line *tmp;
 	t_point tmp_bloc;
-	int	distance;
+	float	distance;
 
 	tmp = display->head;
 	while (tmp)
