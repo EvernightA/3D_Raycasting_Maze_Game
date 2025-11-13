@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:50:26 by mratsima          #+#    #+#             */
-/*   Updated: 2025/11/12 12:56:06 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/13 10:06:22 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,18 @@ int	quit_win(t_display *display)
 	exit(0);
 }
 
-int			to_wall(t_display *display, t_point collision, float beta)
+int to_wall(t_display *display, t_point collision, float beta)
 {
-	/*fishbowl effect not corrected yet*/
-	int distorted_distance;
+	int distance;
+	int dx;
+	int dy;
 
-	(void)beta;
-	distorted_distance = abs(display->player.pixels.x - collision.x) / cos(FOV);
-	return (distorted_distance /** cos(beta)*/);
+	dx = display->player.pixels.x - collision.x;
+	dy = display->player.pixels.y - collision.y;
+	distance = sqrt(pow(abs(dx), 2) + pow(abs(dy), 2));
+	distance = distance * cos(beta);
+	return (distance);
 }
-
 void	player_move (t_display *display, int opx, int opy, double angle)
 {
 	display->player.pixels.x = display->player.pixels.x + cos(angle) * opx * 5;

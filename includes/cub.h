@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/12 12:49:12 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/13 10:05:11 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@
 #endif
 
 #ifndef WALL_UNIT
- #define WALL_UNIT 1200
+ #define WALL_UNIT 600
 #endif
 
 #ifndef MAX_DISTANCE
