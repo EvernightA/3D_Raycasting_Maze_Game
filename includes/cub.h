@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/13 17:53:31 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/13 20:13:40 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 #endif
 
 #ifndef TETA
-#define TETA M_PI/8
+#define TETA M_PI/12
 #endif
 
 #ifndef SIZE_IMG
@@ -180,6 +180,11 @@ int		player_in_str(char *str);
 int		matrix_height(char **matrix);
 
 
+void	rad_to_deg(double rad);
+void	render_all(t_display *display);
+void	orientation_player(t_display * display, int operation);
+
+
 
 
 void	cast_ray(t_point begin,t_display *display, int d);
@@ -227,5 +232,8 @@ int		shifter(int	number);
 void	img_pix_put(t_img *img, int x, int y, int color);
 void    clear_img(t_display *display);
 void	clear_rays(t_display *display);
+int    	game_engine(t_display *display);
+void	player_move (t_display *display, int opx, int opy, double angle);
+
 
 #endif

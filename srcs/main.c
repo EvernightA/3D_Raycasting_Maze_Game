@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/11/13 18:39:22 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/13 19:59:38 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -350,6 +350,8 @@ int	main(int argc, char **argv)
 	mlx_hook(display.mlx.win_ptr, 2, 1L<<0, key_hook, &display);
 	mlx_hook(display.mlx.win_ptr, 3, 1L<<1, releasing_key, &display);
 	mini_map(&display, display.map);
+	game_engine(&display);
+	mlx_loop_hook(display.mlx.mlx_ptr, &game_engine, &display);
 	mlx_loop(display.mlx.mlx_ptr);
 	mlx_do_key_autorepeaton(display.mlx.mlx_ptr);/*Cette fonction les reactive*/
 	

@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:50:26 by mratsima          #+#    #+#             */
-/*   Updated: 2025/11/13 18:59:21 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/13 20:17:13 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,98 +97,39 @@ void	tmp_debug(t_point tmp)
 int key_hook(int key, void *param)
 {
 	t_display *display;
-	t_point		tmp;
+	// t_point		tmp;
 
 	display = (t_display *)param;
 	// mlx_clear_window(display->mlx.mlx_ptr, display->mlx.win_ptr);
 	// mlx_clear_window(display->mlx2.mlx_ptr, display->mlx2.win_ptr);
-	clear_img(display);
-	clear_rays(display);
+	
 	if (key == XK_Escape)
 		quit_win(display);
 	else if (key == XK_W || key == XK_w)
 	{
 		// tmp is too see if next is a wall
-			display->key_stat.w_press = true;
-			tmp.x = display->player.pixels.x + display->player.delta_x;
-			tmp.y = display->player.pixels.y + display->player.delta_y;
-			tmp = pixel_to_bloc(tmp, display);
-			if (tmp.y < display->texture.map_height && display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
-			{
-				player_move (display, 1, 1, display->player.angle);
-			}
-		render_all(display);
+		display->key_stat.w_press = true;
 	}
 	else if (key == XK_S || key == XK_s)
 	{
 		// tmp is too see if next is a wall
 		display->key_stat.s_press = true;
-		tmp.x = display->player.pixels.x - display->player.delta_x;
-		tmp.y = display->player.pixels.y - display->player.delta_y;
-		tmp = pixel_to_bloc(tmp, display);
-		if (tmp.y < display->texture.map_height && display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
-		{
-			player_move (display, -1, -1, display->player.angle);
-		}
-		render_all(display);
-		
 	}
 	else if (key == XK_A || key == XK_a)
-		// tmp is too see if next is a wall
 	{
 		display->key_stat.a_press = true;
-		tmp.x = display->player.pixels.x - display->player.perp_x;
-		tmp.y = display->player.pixels.y - display->player.perp_y;
-		// printf("cos = %f, sin = %f\n", cos(display->player.angle), sin(display->player.angle));
-		tmp = pixel_to_bloc(tmp, display);
-		if (tmp.y < display->texture.map_height && display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
-		{
-			display->player.pixels.x = display->player.pixels.x - display->player.perp_x;
-			display->player.pixels.y = display->player.pixels.y - display->player.perp_y;
-			display->begin.y = display->player.pixels.y;
-			display->begin.x = display->player.pixels.x;
-			display->player.blocs = pixel_to_bloc(display->player.pixels, display);
-			display->map[display->player.blocs.y][display->player.blocs.x] = display->player.orientation;
-		}
-		render_all(display);
-
 	}
 	else if (key == XK_D || key == XK_d)
 	{
-		// tmp is too see if next is a wall
 		display->key_stat.d_press = true;
-		tmp.x = display->player.pixels.x + display->player.perp_x;
-		tmp.y = display->player.pixels.y + display->player.perp_y;
-		// printf("cos = %f, sin = %f\n", cos(display->player.angle), sin(display->player.angle));
-		tmp = pixel_to_bloc(tmp, display);
-		if (tmp.y < display->texture.map_height && display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
-		{
-			// player_move(display, -1, -1, display->player.angle);
-			display->player.pixels.x = display->player.pixels.x + display->player.perp_x;
-			display->player.pixels.y = display->player.pixels.y + display->player.perp_y;
-			display->begin.y = display->player.pixels.y;
-			display->begin.x = display->player.pixels.x;
-			display->player.blocs = pixel_to_bloc(display->player.pixels, display);
-			display->map[display->player.blocs.y][display->player.blocs.x] = display->player.orientation;
-		}
-		render_all(display);
-
 	}
 	else if (key == XK_Left)
 	{
 		display->key_stat.left_press = true;
-		orientation_player(display, -1);
-		rad_to_deg(display->player.angle);
-		// rad_to_deg(display->player.rl_angle);
-		render_all(display);
 	}
 	else if (key == XK_Right)
 	{
 		display->key_stat.right_press = true;
-		orientation_player(display, 1);
-		rad_to_deg(display->player.angle);
-		// rad_to_deg(display->player.angle);
-		render_all(display);
 	}
 	
 	return (0);
