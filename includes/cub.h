@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/13 13:29:02 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/13 17:53:31 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include <math.h>
 # include <X11/keysym.h>
 # include "../minilibx-linux/mlx.h"
+#include <stdbool.h>
 
 
 #ifndef M_PI
@@ -95,6 +96,17 @@ typedef struct s_shift
 }t_shift;
 
 
+typedef struct s_move
+{
+	bool	w_press;
+	bool	a_press;
+	bool	s_press;
+	bool	d_press;
+	bool	left_press;
+	bool	right_press;
+}t_move;
+
+
 typedef struct s_tex
 {
 	void	*wall_img;
@@ -152,6 +164,7 @@ typedef struct s_display
 	t_shift			shifter;
 	t_img			all;
 	t_img			rays;
+	t_move			key_stat;
 }				t_display;
 
 char	**dup_mat(int height, char **map);
@@ -185,6 +198,7 @@ void	ft_linefree(t_line **line);
 void	print_list(t_line *head);
 int		error_handling(t_display *texture);
 int 	texture_error(t_display *texture);
+int 	releasing_key(int key, void *param);
 
 int		draw_line_2(t_display *display, float beta);
 

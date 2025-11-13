@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:50:26 by mratsima          #+#    #+#             */
-/*   Updated: 2025/11/13 13:52:37 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/13 18:59:21 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,13 @@ void	rad_to_deg(double rad)
 
 int	quit_win(t_display *display)
 {
+	mlx_do_key_autorepeaton(display->mlx.mlx_ptr);/*Cette fonction les reactive faut toujours reactiver a chaque fois*/
 	mlx_destroy_image(display->mlx.mlx_ptr, display->texture.floor_img);
 	mlx_destroy_image(display->mlx.mlx_ptr, display->texture.wall_img);
 	mlx_destroy_window(display->mlx.mlx_ptr, display->mlx.win_ptr);
 	mlx_destroy_display(display->mlx.mlx_ptr);
 	free(display->mlx.mlx_ptr);
+
 	exit(0);
 }
 
@@ -107,6 +109,7 @@ int key_hook(int key, void *param)
 	else if (key == XK_W || key == XK_w)
 	{
 		// tmp is too see if next is a wall
+			display->key_stat.w_press = true;
 			tmp.x = display->player.pixels.x + display->player.delta_x;
 			tmp.y = display->player.pixels.y + display->player.delta_y;
 			tmp = pixel_to_bloc(tmp, display);
@@ -119,6 +122,7 @@ int key_hook(int key, void *param)
 	else if (key == XK_S || key == XK_s)
 	{
 		// tmp is too see if next is a wall
+		display->key_stat.s_press = true;
 		tmp.x = display->player.pixels.x - display->player.delta_x;
 		tmp.y = display->player.pixels.y - display->player.delta_y;
 		tmp = pixel_to_bloc(tmp, display);
@@ -132,6 +136,7 @@ int key_hook(int key, void *param)
 	else if (key == XK_A || key == XK_a)
 		// tmp is too see if next is a wall
 	{
+		display->key_stat.a_press = true;
 		tmp.x = display->player.pixels.x - display->player.perp_x;
 		tmp.y = display->player.pixels.y - display->player.perp_y;
 		// printf("cos = %f, sin = %f\n", cos(display->player.angle), sin(display->player.angle));
@@ -151,6 +156,7 @@ int key_hook(int key, void *param)
 	else if (key == XK_D || key == XK_d)
 	{
 		// tmp is too see if next is a wall
+		display->key_stat.d_press = true;
 		tmp.x = display->player.pixels.x + display->player.perp_x;
 		tmp.y = display->player.pixels.y + display->player.perp_y;
 		// printf("cos = %f, sin = %f\n", cos(display->player.angle), sin(display->player.angle));
@@ -170,6 +176,7 @@ int key_hook(int key, void *param)
 	}
 	else if (key == XK_Left)
 	{
+		display->key_stat.left_press = true;
 		orientation_player(display, -1);
 		rad_to_deg(display->player.angle);
 		// rad_to_deg(display->player.rl_angle);
@@ -177,6 +184,7 @@ int key_hook(int key, void *param)
 	}
 	else if (key == XK_Right)
 	{
+		display->key_stat.right_press = true;
 		orientation_player(display, 1);
 		rad_to_deg(display->player.angle);
 		// rad_to_deg(display->player.angle);

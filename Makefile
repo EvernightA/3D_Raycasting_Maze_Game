@@ -28,7 +28,8 @@ SRCS =  $(SRCS_DIR)main.c 				\
 		$(SRCS_DIR)mini.c				\
 		$(SRCS_DIR)rotate.c				\
 		$(SRCS_DIR)calculus.c			\
-		$(SRCS_DIR)img.c
+		$(SRCS_DIR)img.c				\
+		$(SRCS_DIR)moves.c
 
 
 OBJ = $(SRCS:$(SRCS_DIR)%.c=%.o)
