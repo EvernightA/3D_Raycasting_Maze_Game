@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:50:26 by mratsima          #+#    #+#             */
-/*   Updated: 2025/11/13 10:06:22 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/13 14:02:17 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ int	quit_win(t_display *display)
 	exit(0);
 }
 
-int to_wall(t_display *display, t_point collision, float beta)
+float to_wall(t_display *display, t_point collision, float beta)
 {
-	int distance;
+	float distance;
 	int dx;
 	int dy;
 
@@ -40,6 +40,8 @@ int to_wall(t_display *display, t_point collision, float beta)
 	distance = distance * cos(beta);
 	return (distance);
 }
+
+
 void	player_move (t_display *display, int opx, int opy, double angle)
 {
 	display->player.pixels.x = display->player.pixels.x + cos(angle) * opx * 5;
