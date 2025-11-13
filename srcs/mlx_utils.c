@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:50:26 by mratsima          #+#    #+#             */
-/*   Updated: 2025/11/13 09:47:21 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/13 10:15:17 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,9 @@ int			to_wall(t_display *display, t_point collision, float beta)
 
 void	player_move (t_display *display, int opx, int opy, double angle)
 {
-	display->player.pixels.x = display->player.pixels.x + cos(angle) * opx * SPEED;
-	display->player.pixels.y = display->player.pixels.y + sin(angle) * opy * SPEED;
+	(void)angle;
+	display->player.pixels.x = display->player.pixels.x + display->player.delta_x * opx;
+	display->player.pixels.y = display->player.pixels.y + display->player.delta_y * opy;
 	display->begin.y = display->player.pixels.y;
 	display->begin.x = display->player.pixels.x;
 	display->player.blocs = pixel_to_bloc(display->player.pixels, display);
@@ -102,8 +103,8 @@ int key_hook(int key, void *param)
 	else if (key == XK_W || key == XK_w)
 	{
 		// tmp is too see if next is a wall
-			tmp.x = display->player.pixels.x + (cos(display->player.angle) * SPEED);
-			tmp.y = display->player.pixels.y + (sin(display->player.angle) * SPEED);
+			tmp.x = display->player.pixels.x + display->player.delta_x;
+			tmp.y = display->player.pixels.y + display->player.delta_y;
 			
 			tmp = pixel_to_bloc(tmp, display);
 
@@ -116,8 +117,8 @@ int key_hook(int key, void *param)
 	else if (key == XK_S || key == XK_s)
 	{
 		// tmp is too see if next is a wall
-		tmp.x = display->player.pixels.x - (cos(display->player.angle) * SPEED);
-		tmp.y = display->player.pixels.y - (sin(display->player.angle) * SPEED);
+		tmp.x = display->player.pixels.x + display->player.delta_x;
+		tmp.y = display->player.pixels.y + display->player.delta_y;
 		tmp = pixel_to_bloc(tmp, display);
 		if (tmp.y < display->texture.map_height && display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
 		{
