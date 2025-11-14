@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 17:41:59 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/13 20:02:12 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/14 11:04:08 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int game_engine(t_display *display)
 			{
 				player_move (display, 1, 1, display->player.angle);
 			}
-		render_all(display);
+		// render_all(display);
 	}
 	else if (display->key_stat.s_press)
 	{
@@ -89,7 +89,7 @@ int game_engine(t_display *display)
 		{
 			player_move (display, -1, -1, display->player.angle);
 		}
-		render_all(display);
+		// render_all(display);
     
 	}
 	else if (display->key_stat.a_press)
@@ -109,7 +109,7 @@ int game_engine(t_display *display)
 			display->player.blocs = pixel_to_bloc(display->player.pixels, display);
 			display->map[display->player.blocs.y][display->player.blocs.x] = display->player.orientation;
 		}
-		render_all(display);
+		// render_all(display);
 	}
 	else if (display->key_stat.d_press)
 	{
@@ -129,7 +129,7 @@ int game_engine(t_display *display)
 			display->player.blocs = pixel_to_bloc(display->player.pixels, display);
 			display->map[display->player.blocs.y][display->player.blocs.x] = display->player.orientation;
 		}
-		render_all(display);
+		// render_all(display);
 	}
 	else if (display->key_stat.left_press)
 	{
@@ -137,7 +137,7 @@ int game_engine(t_display *display)
 		orientation_player(display, -1);
 		rad_to_deg(display->player.angle);
 		// rad_to_deg(display->player.rl_angle);
-		render_all(display);
+		// render_all(display);
 	}
 	else if (display->key_stat.right_press)
 	{
@@ -145,8 +145,8 @@ int game_engine(t_display *display)
 		orientation_player(display, 1);
 		rad_to_deg(display->player.angle);
 		// rad_to_deg(display->player.angle);
-		render_all(display);
 	}
+	render_all(display);
     // ft_putstr_fd("WUUUUUT\n", 1);
         // sleep(1);
     return (0);
