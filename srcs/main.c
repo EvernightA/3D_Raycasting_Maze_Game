@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/11/14 10:59:10 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/14 14:01:50 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,8 +125,11 @@ void	init_it(t_display *display)
 	display->texture.c_rgb = NULL;
 	display->map =NULL;
 	display->head = NULL;
+
 	display->player.angle = M_PI;
 	// display->player.rl_angle = display->player.angle + M_PI / 2;
+	// printf("orientation %c\n", display->player.orientation);
+	// exit (0);
 	display->player.delta_x = cos (display->player.angle) * SPEED;
 	display->player.delta_y = sin (display->player.angle) * SPEED;
 	display->player.perp_x = -sin(display->player.angle) * SPEED;
@@ -217,21 +220,25 @@ void	init_player_position(t_display *display)
 				{
 					display->player.direction.x = 0;
 					display->player.direction.y = -1;
+					display->player.angle = 3 * M_PI/2;
 				}
 				else if (display->map[j][i] == 'S')
 				{
 					display->player.direction.x = 0;
 					display->player.direction.y = 1;
+					display->player.angle =  M_PI/2;
 				}
 				else  if (display->map[j][i] == 'E')
 				{
 					display->player.direction.x = 1;
 					display->player.direction.y = 0;
+					display->player.angle = 0;
 				}
 				else if (display->map[j][i] == 'W')
 				{
 					display->player.direction.x = -1;
 					display->player.direction.y = 0;
+					display->player.angle = M_PI;
 				}
 				display->player.orientation = display->map[j][i];
 				return ;
