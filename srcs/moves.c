@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 17:41:59 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/14 11:04:08 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/14 12:09:41 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int game_engine(t_display *display)
 			}
 		// render_all(display);
 	}
-	else if (display->key_stat.s_press)
+	if (display->key_stat.s_press)
 	{
 		// tmp is too see if next is a wall
 		// display->key_stat.s_press = true;
@@ -92,7 +92,7 @@ int game_engine(t_display *display)
 		// render_all(display);
     
 	}
-	else if (display->key_stat.a_press)
+	if (display->key_stat.a_press)
 		// tmp is too see if next is a wall
 	{
 		// display->key_stat.a_press = true;
@@ -111,7 +111,7 @@ int game_engine(t_display *display)
 		}
 		// render_all(display);
 	}
-	else if (display->key_stat.d_press)
+	if (display->key_stat.d_press)
 	{
 		// tmp is too see if next is a wall
 		// display->key_stat.d_press = true;
@@ -131,7 +131,7 @@ int game_engine(t_display *display)
 		}
 		// render_all(display);
 	}
-	else if (display->key_stat.left_press)
+	if (display->key_stat.left_press)
 	{
 		// display->key_stat.left_press = true;
 		orientation_player(display, -1);
@@ -139,7 +139,7 @@ int game_engine(t_display *display)
 		// rad_to_deg(display->player.rl_angle);
 		// render_all(display);
 	}
-	else if (display->key_stat.right_press)
+	if (display->key_stat.right_press)
 	{
 		// display->key_stat.right_press = true;
 		orientation_player(display, 1);
