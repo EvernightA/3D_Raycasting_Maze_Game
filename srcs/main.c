@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/11/14 14:01:50 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/15 13:54:19 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -257,13 +257,16 @@ t_point	pixel_to_bloc(t_point pixel, t_display *display)
 	bloc.y = pixel.y >> display->shifter.size_img;// size = 16
 	return (bloc);
 }
-float		draw_line_2(t_display *display, float beta)
+t_hit		draw_line_2(t_display *display, float beta)
 {
 	t_line *tmp;
 	t_point tmp_bloc;
-	float	distance;
+	t_hit 	hit;
 
 	tmp = display->head;
+	hit.distance = 0;
+	hit.collision.x = 0;
+	hit.collision.y = 0;
 	while (tmp)
 	{
 		tmp_bloc = pixel_to_bloc(tmp->dot, display);
@@ -273,13 +276,14 @@ float		draw_line_2(t_display *display, float beta)
 		}
 		else
 		{
-			distance = to_wall(display, tmp->dot, beta);
+			hit.collision = tmp->dot;
+			hit.distance = to_wall(display, tmp->dot, beta);
 			break;
 		}
 		tmp = tmp -> next;
 	}
 	// ft_printf(" = %d\n", distance);
-	return (distance);
+	return (hit);
 }
 
 void		draw_line(t_display *display)
@@ -302,16 +306,19 @@ void		draw_line(t_display *display)
 	}
 }
 
-void		draw_simple_line2(t_line *line, t_display *display)
+void    draw_simple_line2(t_line *line, t_hit hit, t_display *display)
 {
-	t_line *tmp;
+        t_line *tmp;
 
-	tmp = line;
-	while (tmp)
-	{
-		img_pix_put(&display->all, tmp->dot.x, tmp->dot.y, 0x0000FF);
-		tmp = tmp -> next;
-	}
+        tmp = line;
+        while (tmp)
+        {
+                float uv_x = (float)(hit.collision.x % 16) / 16.0f;
+                float uv_y = (float)(hit.collision.y % 16) / 16.0f;
+                int texture_color = sample_texture(&display->texture.t_north, uv_x, uv_y);
+                img_pix_put(&display->all, tmp->dot.x, tmp->dot.y, texture_color);
+                tmp = tmp -> next;
+        }
 }
 
 
@@ -348,6 +355,7 @@ int	main(int argc, char **argv)
 	display.mlx2.win_ptr = mlx_new_window(display.mlx2.mlx_ptr, SCRN_WIDTH, SCRN_HEIGHT, "render");
 	/*********************/
 	img_initialization(&display);
+	load_textures(&display);
 	display.end.x = display.player.pixels.x + 24;
 	display.end.y = display.player.pixels.y + 24;
 	//mlx_pixel_put(display.mlx.mlx_ptr, display.mlx.win_ptr, display.end.x, display.end.y, 0XFF000);

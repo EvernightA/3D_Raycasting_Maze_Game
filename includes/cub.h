@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/13 20:20:34 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/15 13:54:41 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,17 @@ typedef struct s_img
     int		endian;
 }	t_img;
 
+typedef struct s_img_texture
+{
+    void        *img_ptr;
+    char        *data;
+    int         width;
+    int         height;
+    int         bpp;
+    int         line_len;
+    int         endian;
+}   t_img_texture;
+
 typedef struct s_point
 {
 	int	x;
@@ -106,6 +117,11 @@ typedef struct s_move
 	bool	right_press;
 }t_move;
 
+typedef struct s_hit
+{
+	float distance;
+	t_point collision;
+}	t_hit;
 
 typedef struct s_tex
 {
@@ -115,6 +131,10 @@ typedef struct s_tex
 	char 	*south;
 	char 	*east;
 	char 	*west;
+	t_img_texture t_north;
+	t_img_texture t_south;
+	t_img_texture t_east;
+	t_img_texture t_west;
 	char	*c_rgb;
 	char	*f_rgb;
 	t_rgb	ceiling_rgb;
@@ -205,7 +225,7 @@ int		error_handling(t_display *texture);
 int 	texture_error(t_display *texture);
 int 	releasing_key(int key, void *param);
 
-float		draw_line_2(t_display *display, float beta);
+t_hit		draw_line_2(t_display *display, float beta);
 
 void	free_texture(t_display *texture);
 void	free_split(char **split);
@@ -227,13 +247,14 @@ t_point	pixel_to_bloc(t_point pixel, t_display *display);
 
 void	ray_fov(t_point begin,t_display *display, int d);
 float		to_wall(t_display *display, t_point collision, float beta);
-void	draw_simple_line2(t_line *line, t_display *display);
+void	draw_simple_line2(t_line *line, t_hit hit, t_display *display);
 int		shifter(int	number);
 void	img_pix_put(t_img *img, int x, int y, int color);
 void    clear_img(t_display *display);
 void	clear_rays(t_display *display);
 int    	game_engine(t_display *display);
 void	player_move (t_display *display, int opx, int opy, double angle);
-
+void    load_textures(t_display *display);
+int     sample_texture(t_img_texture *img_tex, float u, float v);
 
 #endif

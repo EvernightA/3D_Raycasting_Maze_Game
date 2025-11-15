@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 13:17:03 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/13 14:28:02 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/15 13:57:07 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_point calculate_end(t_point begin, float angle, int max_distance)
 	return (end);
 }
 
-void draw_wall_lines(t_display *display, float distance, int pixel_index)
+void draw_wall_lines(t_display *display, t_hit hit, int pixel_index)
 {
 	t_line *line;
 	int line_size;
@@ -47,8 +47,8 @@ void draw_wall_lines(t_display *display, float distance, int pixel_index)
 	
 
 	/*How we calculate the distance may be the problem ?*/
-	if (distance)
-		line_size =  SIZE_IMG * WALL_UNIT / distance;
+	if (hit.distance)
+		line_size =  SIZE_IMG * WALL_UNIT / hit.distance;
 	else
 		line_size = SCRN_HEIGHT;
 	begin.y = (SCRN_HEIGHT >> 1) - (line_size >> 1);
@@ -56,7 +56,7 @@ void draw_wall_lines(t_display *display, float distance, int pixel_index)
 	end.x = pixel_index;
 	end.y = (SCRN_HEIGHT >> 1) + (line_size >> 1);
 	line = bresenham_line(&begin, &end);
-	draw_simple_line2(line, display);
+	draw_simple_line2(line, hit, display);
 	if (display->head)
 	{
 		ft_linefree(&display->head);
@@ -69,7 +69,8 @@ void	cast_ray(t_point begin,t_display *display, int d)
 	t_point true_end;
 	float	angle;
 	int pixel_index;
-	float distance;
+	// float distance;
+	t_hit hit;
 
 	/*
 		Dans cette fonction nous mettons angle = -FOV/2 pour que la direction principale se trouve au milieu
@@ -109,13 +110,13 @@ void	cast_ray(t_point begin,t_display *display, int d)
 		if (display->head)
 			ft_linefree(&display->head);
 		display->head = bresenham_line(&begin, &true_end);
-		distance = draw_line_2(display, angle); // This draw line uses yellow
+		hit = draw_line_2(display, angle); // This draw line uses yellow
 		if (display->head)
 		{
 			ft_linefree(&display->head);
 			display->head = NULL;
 		}
-		draw_wall_lines(display, distance, pixel_index);
+		draw_wall_lines(display, hit, pixel_index);
 		angle += (FOV / SCRN_WIDTH);
 		pixel_index++;
 	}
