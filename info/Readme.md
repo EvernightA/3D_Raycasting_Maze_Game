@@ -70,3 +70,11 @@ To do a division by right shift we must do
 
 15 / 2^n equivaut a  15 >> n
 
+## smooth
+
+Calculer la distance a parcourir
+
+distance = speed * delta_time;
+
+delta_time : temps ecoulE
+speed : au choix
