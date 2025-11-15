@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 11:37:27 by mratsima          #+#    #+#             */
-/*   Updated: 2025/11/15 15:15:31 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/15 16:05:24 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,20 +80,62 @@ void    load_textures(t_display *display)
     return (pixel);
 }
 
-int get_wall_direction_from_angle(float ray_angle)
+int get_wall_direction(t_point collision, t_point player_bloc)
 {
-    float angle;
+	t_point	collision_pixel;
+	t_point	collision_bloc;
 
-	angle = fmod(ray_angle, 2 * M_PI);
-    if (angle < 0)
-        angle += 2 * M_PI;
+    collision_bloc.x = collision.x / 16;
+    collision_bloc.y = collision.y / 16;
+    collision_pixel.x = collision.x % 16;
+    collision_pixel.y = collision.y % 16;
     
-	else if (angle >= 3 * M_PI / 2 && angle < 2 * M_PI)
-		return (NORTH);
-	else if (angle >= M_PI / 2 && angle < M_PI)
-			return (SOUTH);
-    if (angle >= 0 && angle < M_PI / 2)
-        return (EAST);
-    else
+    // just get the coordinates of the vector player->wall 
+	// so we can know which direction the ray has
+    int dx = collision_bloc.x - player_bloc.x;
+    int dy = collision_bloc.y - player_bloc.y;
+    
+    // if dx == 0 || dy == 0 the ray is in a straight vertical or straight horizontal line
+    if (dx > 0 && dy == 0)
         return (WEST);
+    if (dx < 0 && dy == 0)
+        return (EAST);    
+    if (dy > 0 && dx == 0)
+        return (NORTH);    
+    if (dy < 0 && dx == 0)
+        return (SOUTH);
+    // For diagonal hits, determine by which edge is closer
+    if (dx > 0 && dy > 0)
+    {
+        //to be sure which side of the wall we hit we just have to compare the
+		//x coordinates and the y coordinates of the ray super easy 
+		//if u don't understand make a drawing and you'll get it
+        if (collision_pixel.x < collision_pixel.y)
+            return (WEST);
+        else
+            return (NORTH);
+    }
+    if (dx < 0 && dy > 0)
+    {
+        if ((15 - collision_pixel.x) < collision_pixel.y)
+            return (EAST);
+        else
+            return (NORTH);
+    }    
+    if (dx > 0 && dy < 0)
+    {
+        if (collision_pixel.x < (15 - collision_pixel.y))
+            return (WEST);
+        else
+            return (SOUTH);
+    }    
+    if (dx < 0 && dy < 0)
+    {
+        if ((15 - collision_pixel.x) < (15 - collision_pixel.y))
+            return (EAST);
+        else
+            return (SOUTH);
+    }
+	//just to return smth
+    return (NORTH);
 }

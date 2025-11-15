@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/11/15 15:21:31 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/15 15:35:20 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -278,6 +278,7 @@ t_hit		draw_line_2(t_display *display, float beta)
 		{
 			hit.collision = tmp->dot;
 			hit.distance = to_wall(display, tmp->dot, beta);
+			hit.wall_direction = get_wall_direction(hit.collision, display->player.blocs);
 			break;
 		}
 		tmp = tmp -> next;
@@ -313,12 +314,13 @@ void    draw_textured_line(t_line *line, t_hit hit, float angle, t_display *disp
 		float uv_y;
 		t_img_texture *texture_to_display;
 
+		(void)angle;
         tmp = line;
-		if (get_wall_direction_from_angle(angle + display->player.angle) == NORTH)
+		if (hit.wall_direction == NORTH)
 			texture_to_display = &display->texture.t_north;
-		else if (get_wall_direction_from_angle(angle + display->player.angle) == SOUTH)
+		else if (hit.wall_direction == SOUTH)
 			texture_to_display = &display->texture.t_south;
-		else if (get_wall_direction_from_angle(angle + display->player.angle) == EAST)
+		else if (hit.wall_direction == EAST)
 			texture_to_display = &display->texture.t_east;
 		else
 			texture_to_display = &display->texture.t_west;

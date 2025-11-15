@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/15 15:16:19 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/15 16:05:40 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,7 @@ typedef struct s_hit
 {
 	float distance;
 	t_point collision;
+	int wall_direction;
 }	t_hit;
 
 typedef struct s_tex
@@ -272,5 +273,5 @@ int    	game_engine(t_display *display);
 void	player_move (t_display *display, int opx, int opy, double angle);
 void    load_textures(t_display *display);
 int     sample_texture(t_img_texture *img_tex, float u, float v);
-int get_wall_direction_from_angle(float ray_angle);
+int get_wall_direction(t_point collision, t_point player_pos);
 #endif
