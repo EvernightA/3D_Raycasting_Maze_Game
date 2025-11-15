@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/11/15 17:08:50 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/15 18:50:56 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ void	init_it(t_display *display)
 	display->texture.west =  NULL;
 	display->texture.f_rgb = NULL;
 	display->texture.c_rgb = NULL;
-	display->map =NULL;
+	display->map = NULL;
 	display->head = NULL;
 	display->timer.start_time = get_time();
 	display->timer.current_time = 0;
@@ -138,9 +138,10 @@ void	init_it(t_display *display)
 
 void	calculus_dir(t_display *display)
 {
-	display->player.delta_x = cos (display->player.angle) * SPEED;
-	display->player.delta_y = sin (display->player.angle) * SPEED;
-	display->player.perp_x = -sin(display->player.angle) * SPEED;
+	// mlx loop hook se declenche parfois automatiquement ce qui declenche le mouvements
+	display->player.delta_x = cos (display->player.angle) * 2;
+	display->player.delta_y = sin (display->player.angle) * 2;
+	display->player.perp_x = -sin(display->player.angle) * 2;
 	display->player.perp_y = display->player.delta_x;
 }
 

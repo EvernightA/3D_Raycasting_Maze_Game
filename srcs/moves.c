@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 17:41:59 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/15 17:14:09 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/15 19:06:10 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,32 +68,40 @@ int game_engine(t_display *display)
 
     /*calculating the time to calculate the distance*/
 	display->timer.current_time = get_time() - display->timer.start_time;
-	display->timer.delta_time = (display->timer.current_time - display->timer.last_time) / 1000; // for secs
-	display->timer.last_time = display->timer.current_time;
+	display->timer.delta_time = (display->timer.current_time - display->timer.last_time) / 1000.0; // for secs
 	/****************************************************/
 	/*DISTANCE = SPEED * delta_time */
+	display->timer.distance = SPEED * display->timer.delta_time;
+	display->timer.rotation_speed = R_SPEED * display->timer.delta_time;
 	if (display->key_stat.w_press)
 	{
 		// tmp is too see if next is a wall
 		// display->key_stat.w_press = true;
-			// display->timer
-			tmp.x = display->player.pixels.x + display->player.delta_x;
-			tmp.y = display->player.pixels.y + display->player.delta_y;
-			tmp = pixel_to_bloc(tmp, display);
-			if (tmp.y < display->texture.map_height && display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
-			{
-				player_move (display, 1, 1, display->player.angle);
-			}
+		// display->timer.current_time = get_time() - display->timer.start_time;
+		// display->timer.delta_time = (display->timer.current_time - display->timer.last_time) / 1000.0;
+		// display->timer.distance = SPEED * display->timer.delta_time;
+		printf("dist %f\ndelta_time = %f\nstart_time %ld\ncurrent %ld\nlast_time %ld\n", display->timer.distance, display->timer.delta_time, display->timer.start_time, display->timer.current_time, display->timer.last_time);
+		tmp.x = display->player.pixels.x + display->player.delta_x;
+		tmp.y = display->player.pixels.y + display->player.delta_y;
+		tmp = pixel_to_bloc(tmp, display);
+		if (tmp.y < display->texture.map_height && tmp.x < SCRN_WIDTH && display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
+		{
+			player_move (display, 1, 1, display->player.angle);
+		}
 		// render_all(display);
 	}
 	if (display->key_stat.s_press)
 	{
 		// tmp is too see if next is a wall
 		// display->key_stat.s_press = true;
+		// display->timer.current_time = get_time() - display->timer.start_time;
+		// display->timer.delta_time = (display->timer.current_time - display->timer.last_time) / 1000.0;
+		// display->timer.distance = SPEED * display->timer.delta_time;
+		printf("dist %f\ndelta_time = %f\nstart_time %ld\ncurrent %ld\nlast_time %ld\n", display->timer.distance, display->timer.delta_time, display->timer.start_time, display->timer.current_time, display->timer.last_time);
 		tmp.x = display->player.pixels.x - display->player.delta_x;
 		tmp.y = display->player.pixels.y - display->player.delta_y;
 		tmp = pixel_to_bloc(tmp, display);
-		if (tmp.y < display->texture.map_height && display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
+		if (tmp.y < display->texture.map_height && tmp.x < SCRN_WIDTH && display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
 		{
 			player_move (display, -1, -1, display->player.angle);
 		}
@@ -104,11 +112,15 @@ int game_engine(t_display *display)
 		// tmp is too see if next is a wall
 	{
 		// display->key_stat.a_press = true;
+		// display->timer.current_time = get_time() - display->timer.start_time;
+		// display->timer.delta_time = (display->timer.current_time - display->timer.last_time) / 1000.0;
+		// display->timer.distance = SPEED * display->timer.delta_time;
+		printf("dist %f\ndelta_time = %f\nstart_time %ld\ncurrent %ld\nlast_time %ld\n", display->timer.distance, display->timer.delta_time, display->timer.start_time, display->timer.current_time, display->timer.last_time);
 		tmp.x = display->player.pixels.x - display->player.perp_x;
 		tmp.y = display->player.pixels.y - display->player.perp_y;
-		// printf("cos = %f, sin = %f\n", cos(display->player.angle), sin(display->player.angle));
+		// printf("cos = %ld, sin = %ld\nstart_time %ld\ncurrent %ld\nlast_time %ld\n", cos(display->player.angle), sin(display->player.an, display->timer.start_time, display->timer.current_time, display->timer.last_timegle));
 		tmp = pixel_to_bloc(tmp, display);
-		if (tmp.y < display->texture.map_height && display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
+		if (tmp.y < display->texture.map_height && tmp.x < SCRN_WIDTH && display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
 		{
 			display->player.pixels.x = display->player.pixels.x - display->player.perp_x;
 			display->player.pixels.y = display->player.pixels.y - display->player.perp_y;
@@ -123,11 +135,15 @@ int game_engine(t_display *display)
 	{
 		// tmp is too see if next is a wall
 		// display->key_stat.d_press = true;
+		// display->timer.current_time = get_time() - display->timer.start_time;
+		// display->timer.delta_time = (display->timer.current_time - display->timer.last_time) / 1000.0;
+		// display->timer.distance = SPEED * display->timer.delta_time;
+		printf("dist %f\ndelta_time = %f\nstart_time %ld\ncurrent %ld\nlast_time %ld\n", display->timer.distance, display->timer.delta_time, display->timer.start_time, display->timer.current_time, display->timer.last_time);
 		tmp.x = display->player.pixels.x + display->player.perp_x;
 		tmp.y = display->player.pixels.y + display->player.perp_y;
-		// printf("cos = %f, sin = %f\n", cos(display->player.angle), sin(display->player.angle));
+		// printf("cos = %ld, sin = %ld\nstart_time %ld\ncurrent %ld\nlast_time %ld\n", cos(display->player.angle), sin(display->player.an, display->timer.start_time, display->timer.current_time, display->timer.last_timegle));
 		tmp = pixel_to_bloc(tmp, display);
-		if (tmp.y < display->texture.map_height && display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
+		if (tmp.y < display->texture.map_height && tmp.x < SCRN_WIDTH && display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
 		{
 			// player_move(display, -1, -1, display->player.angle);
 			display->player.pixels.x = display->player.pixels.x + display->player.perp_x;
@@ -155,6 +171,7 @@ int game_engine(t_display *display)
 		// rad_to_deg(display->player.angle);
 	}
 	render_all(display);
+	display->timer.last_time = display->timer.current_time;
     // ft_putstr_fd("WUUUUUT\n", 1);
         // sleep(1);
     return (0);

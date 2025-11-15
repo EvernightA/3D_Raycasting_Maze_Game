@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:50:26 by mratsima          #+#    #+#             */
-/*   Updated: 2025/11/13 20:20:17 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/15 19:08:28 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	player_move (t_display *display, int opx, int opy, double angle)
 void	orientation_player(t_display * display, int operation)
 {
 	rotate_player(display, TETA * operation);
-	display->player.angle = display->player.angle + TETA * operation;
+	display->player.angle = display->player.angle + TETA * operation * R_SPEED;
 	if (display->player.angle < 0)
 	{
 		display->player.angle += 2 * M_PI;
@@ -70,9 +70,9 @@ void	orientation_player(t_display * display, int operation)
 	{
 		display->player.angle = 0;
 	}
-	display->player.delta_x = cos (display->player.angle) * SPEED;
-	display->player.delta_y = sin (display->player.angle) * SPEED;
-	display->player.perp_x = -sin(display->player.angle) * SPEED;
+	display->player.delta_x = cos (display->player.angle) * display->timer.distance;
+	display->player.delta_y = sin (display->player.angle) * display->timer.distance;
+	display->player.perp_x = -sin(display->player.angle) * display->timer.distance;
 	display->player.perp_y = display->player.delta_x;
 	// printf("%f\n", display->player.angle);
 }

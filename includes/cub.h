@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/15 17:12:57 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/15 19:17:10 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,11 @@
 #endif
 
 #ifndef SPEED
-# define  SPEED 5
+# define  SPEED 30
+#endif
+
+#ifndef R_SPEED
+# define  R_SPEED 1.5
 #endif
 
 #ifndef TETA
@@ -65,8 +69,9 @@ typedef struct s_time
 	long	start_time;
 	long	last_time;
 	long	current_time;
-	long	delta_time;
+	float	delta_time;
 	float	distance;
+	float	rotation_speed;
 }t_time;
 typedef struct s_img
 {
