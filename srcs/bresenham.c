@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 13:17:03 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/15 13:57:07 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/15 15:14:17 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_point calculate_end(t_point begin, float angle, int max_distance)
 	return (end);
 }
 
-void draw_wall_lines(t_display *display, t_hit hit, int pixel_index)
+void draw_wall_lines(t_display *display, t_hit hit, int pixel_index, float angle)
 {
 	t_line *line;
 	int line_size;
@@ -56,7 +56,7 @@ void draw_wall_lines(t_display *display, t_hit hit, int pixel_index)
 	end.x = pixel_index;
 	end.y = (SCRN_HEIGHT >> 1) + (line_size >> 1);
 	line = bresenham_line(&begin, &end);
-	draw_simple_line2(line, hit, display);
+	draw_textured_line(line, hit, angle, display);
 	if (display->head)
 	{
 		ft_linefree(&display->head);
@@ -116,7 +116,7 @@ void	cast_ray(t_point begin,t_display *display, int d)
 			ft_linefree(&display->head);
 			display->head = NULL;
 		}
-		draw_wall_lines(display, hit, pixel_index);
+		draw_wall_lines(display, hit, pixel_index, angle);
 		angle += (FOV / SCRN_WIDTH);
 		pixel_index++;
 	}

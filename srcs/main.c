@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/11/15 13:54:19 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/15 15:21:31 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -306,18 +306,29 @@ void		draw_line(t_display *display)
 	}
 }
 
-void    draw_simple_line2(t_line *line, t_hit hit, t_display *display)
+void    draw_textured_line(t_line *line, t_hit hit, float angle, t_display *display)
 {
         t_line *tmp;
+		float uv_x;
+		float uv_y;
+		t_img_texture *texture_to_display;
 
         tmp = line;
+		if (get_wall_direction_from_angle(angle + display->player.angle) == NORTH)
+			texture_to_display = &display->texture.t_north;
+		else if (get_wall_direction_from_angle(angle + display->player.angle) == SOUTH)
+			texture_to_display = &display->texture.t_south;
+		else if (get_wall_direction_from_angle(angle + display->player.angle) == EAST)
+			texture_to_display = &display->texture.t_east;
+		else
+			texture_to_display = &display->texture.t_west;
         while (tmp)
         {
-                float uv_x = (float)(hit.collision.x % 16) / 16.0f;
-                float uv_y = (float)(hit.collision.y % 16) / 16.0f;
-                int texture_color = sample_texture(&display->texture.t_north, uv_x, uv_y);
-                img_pix_put(&display->all, tmp->dot.x, tmp->dot.y, texture_color);
-                tmp = tmp -> next;
+            uv_x = (float)(hit.collision.x % 16) / 16.0f;
+            uv_y = (float)(hit.collision.y % 16) / 16.0f;
+            int texture_color = sample_texture(texture_to_display, uv_x, uv_y);
+            img_pix_put(&display->all, tmp->dot.x, tmp->dot.y, texture_color);
+            tmp = tmp -> next;
         }
 }
 
