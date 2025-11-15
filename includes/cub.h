@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/13 20:20:34 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/15 17:03:24 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <X11/keysym.h>
 # include "../minilibx-linux/mlx.h"
 #include <stdbool.h>
-
+#include <sys/time.h>
 
 #ifndef M_PI
 # define M_PI 3.14159265358979 
@@ -59,6 +59,14 @@
  #define MAX_DISTANCE 500
 #endif
 
+
+typedef struct s_time
+{
+	long	start_time;
+	long	last_time;
+	long	current_time;
+	long	delta_time;
+}t_time;
 typedef struct s_img
 {
     void	*mlx_img;
@@ -165,6 +173,7 @@ typedef struct s_display
 	t_img			all;
 	t_img			rays;
 	t_move			key_stat;
+	t_time			timer;
 }				t_display;
 
 char	**dup_mat(int height, char **map);
@@ -185,6 +194,7 @@ void	render_all(t_display *display);
 void	orientation_player(t_display * display, int operation);
 
 
+long	get_time(void);
 
 
 void	cast_ray(t_point begin,t_display *display, int d);
