@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/11/15 11:32:34 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/15 16:23:23 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -266,13 +266,16 @@ t_point	pixel_to_bloc(t_point pixel, t_display *display)
 	bloc.y = pixel.y >> display->shifter.size_img;// size = 16
 	return (bloc);
 }
-float		draw_line_2(t_display *display, float beta)
+t_hit		draw_line_2(t_display *display, float beta)
 {
 	t_line *tmp;
 	t_point tmp_bloc;
-	float	distance;
+	t_hit 	hit;
 
 	tmp = display->head;
+	hit.distance = 0;
+	hit.collision.x = 0;
+	hit.collision.y = 0;
 	while (tmp)
 	{
 		tmp_bloc = pixel_to_bloc(tmp->dot, display);
@@ -282,13 +285,15 @@ float		draw_line_2(t_display *display, float beta)
 		}
 		else
 		{
-			distance = to_wall(display, tmp->dot, beta);
+			hit.collision = tmp->dot;
+			hit.distance = to_wall(display, tmp->dot, beta);
+			hit.wall_direction = get_wall_direction(hit.collision, display->player.blocs);
 			break;
 		}
 		tmp = tmp -> next;
 	}
 	// ft_printf(" = %d\n", distance);
-	return (distance);
+	return (hit);
 }
 
 void		draw_line(t_display *display)
@@ -311,16 +316,31 @@ void		draw_line(t_display *display)
 	}
 }
 
-void		draw_simple_line2(t_line *line, t_display *display)
+void    draw_textured_line(t_line *line, t_hit hit, float angle, t_display *display)
 {
-	t_line *tmp;
+        t_line *tmp;
+		float uv_x;
+		float uv_y;
+		t_img_texture *texture_to_display;
 
-	tmp = line;
-	while (tmp)
-	{
-		img_pix_put(&display->all, tmp->dot.x, tmp->dot.y, 0x0000FF);
-		tmp = tmp -> next;
-	}
+		(void)angle;
+        tmp = line;
+		if (hit.wall_direction == NORTH)
+			texture_to_display = &display->texture.t_north;
+		else if (hit.wall_direction == SOUTH)
+			texture_to_display = &display->texture.t_south;
+		else if (hit.wall_direction == EAST)
+			texture_to_display = &display->texture.t_east;
+		else
+			texture_to_display = &display->texture.t_west;
+        while (tmp)
+        {
+            uv_x = (float)(hit.collision.x % 16) / 16.0f;
+            uv_y = (float)(hit.collision.y % 16) / 16.0f;
+            int texture_color = sample_texture(texture_to_display, uv_x, uv_y);
+            img_pix_put(&display->all, tmp->dot.x, tmp->dot.y, texture_color);
+            tmp = tmp -> next;
+        }
 }
 
 
@@ -357,6 +377,7 @@ int	main(int argc, char **argv)
 	display.mlx2.win_ptr = mlx_new_window(display.mlx2.mlx_ptr, SCRN_WIDTH, SCRN_HEIGHT, "render");
 	/*********************/
 	img_initialization(&display);
+	load_textures(&display);
 	display.end.x = display.player.pixels.x + 24;
 	display.end.y = display.player.pixels.y + 24;
 	//mlx_pixel_put(display.mlx.mlx_ptr, display.mlx.win_ptr, display.end.x, display.end.y, 0XFF000);
