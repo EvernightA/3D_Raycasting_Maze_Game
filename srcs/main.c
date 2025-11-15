@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/11/15 16:23:23 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/15 16:28:16 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -335,8 +335,8 @@ void    draw_textured_line(t_line *line, t_hit hit, float angle, t_display *disp
 			texture_to_display = &display->texture.t_west;
         while (tmp)
         {
-            uv_x = (float)(hit.collision.x % 16) / 16.0f;
-            uv_y = (float)(hit.collision.y % 16) / 16.0f;
+            uv_x = (float)(hit.collision.x % 16) / 16;
+            uv_y = (float)(hit.collision.y % 16) / 16;
             int texture_color = sample_texture(texture_to_display, uv_x, uv_y);
             img_pix_put(&display->all, tmp->dot.x, tmp->dot.y, texture_color);
             tmp = tmp -> next;
