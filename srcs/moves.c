@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 17:41:59 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/14 12:09:41 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/15 17:14:09 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,18 @@ int game_engine(t_display *display)
     // {
     clear_img(display);
     clear_rays(display);
-    if (display->key_stat.w_press)
+
+    /*calculating the time to calculate the distance*/
+	display->timer.current_time = get_time() - display->timer.start_time;
+	display->timer.delta_time = (display->timer.current_time - display->timer.last_time) / 1000; // for secs
+	display->timer.last_time = display->timer.current_time;
+	/****************************************************/
+	/*DISTANCE = SPEED * delta_time */
+	if (display->key_stat.w_press)
 	{
 		// tmp is too see if next is a wall
-			// display->key_stat.w_press = true;
+		// display->key_stat.w_press = true;
+			// display->timer
 			tmp.x = display->player.pixels.x + display->player.delta_x;
 			tmp.y = display->player.pixels.y + display->player.delta_y;
 			tmp = pixel_to_bloc(tmp, display);

@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/11/15 17:03:53 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/15 17:08:50 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,10 +125,14 @@ void	init_it(t_display *display)
 	display->texture.c_rgb = NULL;
 	display->map =NULL;
 	display->head = NULL;
-
+	display->timer.start_time = get_time();
+	display->timer.current_time = 0;
+	display->timer.last_time = 0;
+	display->timer.delta_time = 0;
 	display->shifter.screen_width = shifter(SCRN_WIDTH);
 	display->shifter.sreen_height = shifter(SCRN_HEIGHT);
 	display->shifter.size_img = shifter(SIZE_IMG);
+
 
 }
 
