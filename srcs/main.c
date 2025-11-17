@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/11/17 11:30:52 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/17 13:03:34 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -344,11 +344,10 @@ void    draw_textured_line(t_line *line, t_hit hit, int line_size, t_display *di
         while (tmp)
         {
 			if (hit.wall_direction == NORTH || hit.wall_direction == SOUTH)
-            	uv_x = (float)(hit.collision.x % 16) / 16;
+				uv_x = (float)(hit.collision.x % 16) / 16;
 			else
 				uv_x = (float)(hit.collision.y % 16) / 16;
             uv_y = (float)(count * 16) / line_size / 16;
-			printf("uv_y = %f\n----------", uv_y);
             texture_color = sample_texture(texture_to_display, uv_x, uv_y);
             img_pix_put(&display->all, tmp->dot.x, tmp->dot.y, texture_color);
 			count ++;

@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 13:17:03 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/17 10:57:32 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/17 13:16:55 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ void draw_wall_lines(t_display *display, t_hit hit, int pixel_index, float angle
 	end.x = pixel_index;
 	end.y = (SCRN_HEIGHT >> 1) + (line_size >> 1);
 	line = bresenham_line(&begin, &end);
-	hit.collision.x = pixel_index;
 	draw_textured_line(line, hit, line_size, display);
 	if (display->head)
 	{
