@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/11/17 11:16:28 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/17 20:22:59 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,8 +151,8 @@ void	calculus_dir(t_display *display)
 {
 	display->player.delta_x = cos (display->player.angle) * SPEED;
 	display->player.delta_y = sin (display->player.angle) * SPEED;
-	display->player.perp_x = -sin(display->player.angle) * SPEED;
-	display->player.perp_y = cos (display->player.angle) * SPEED;
+	display->player.perp_x = -display->player.delta_y;
+	display->player.perp_y = display->player.delta_x;
 }
 
 static int	get_map_height(t_display *display, int *map_height ,char *file)

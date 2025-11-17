@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 17:41:59 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/17 11:16:36 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/17 21:24:53 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,15 +99,15 @@ int game_engine(t_display *display)
 		// tmp is too see if next is a wall
 	{
 		// display->key_stat.a_press = true;
-		tmp.x = display->player.pixels.x - display->player.perp_x;
-		tmp.y = display->player.pixels.y - display->player.perp_y;
+		tmp.x = display->player.pixels.x - roundf(display->player.perp_x);
+		tmp.y = display->player.pixels.y - roundf(display->player.perp_y);
 		// printf("cos = %f, sin = %f\n", cos(display->player.angle), sin(display->player.angle));
 		tmp = pixel_to_bloc(tmp, display);
 		if (tmp.y < display->texture.map_height && display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
 		{
 			rad_to_deg(display->player.angle);
-			display->player.pixels.x += -display->player.perp_x;
-			display->player.pixels.y += -display->player.perp_y;
+			display->player.pixels.x += -roundf(display->player.perp_x);
+			display->player.pixels.y += -roundf(display->player.perp_y);
 			printf("px = %d ---- py %d\n", display->player.pixels.x, display->player.pixels.y);
 			display->begin.y = display->player.pixels.y;
 			display->begin.x = display->player.pixels.x;
@@ -122,16 +122,16 @@ int game_engine(t_display *display)
 	{
 		// tmp is too see if next is a wall
 		// display->key_stat.d_press = true;
-		tmp.x = display->player.pixels.x + display->player.perp_x;
-		tmp.y = display->player.pixels.y + display->player.perp_y;
+		tmp.x = display->player.pixels.x + roundf(display->player.perp_x);
+		tmp.y = display->player.pixels.y + roundf(display->player.perp_y);
 		// printf("cos = %f, sin = %f\n", cos(display->player.angle), sin(display->player.angle));
 		tmp = pixel_to_bloc(tmp, display);
 		if (tmp.y < display->texture.map_height && display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
 		{
 			// player_move(display, -1, -1, display->player.angle);
 			rad_to_deg(display->player.angle);
-			display->player.pixels.x += display->player.perp_x;
-			display->player.pixels.y += display->player.perp_y;
+			display->player.pixels.x += roundf(display->player.perp_x);
+			display->player.pixels.y += roundf(display->player.perp_y);
 			printf("px = %d ---- py = %d\n", display->player.pixels.x, display->player.pixels.y);
 			display->begin.y = display->player.pixels.y;
 			display->begin.x = display->player.pixels.x;

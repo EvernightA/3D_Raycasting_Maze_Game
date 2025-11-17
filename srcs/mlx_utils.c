@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:50:26 by mratsima          #+#    #+#             */
-/*   Updated: 2025/11/17 11:15:05 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/17 20:48:34 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,10 @@ void	orientation_player(t_display * display, int operation)
 	{
 		display->player.angle = 0;
 	}
-	display->player.perp_x = -sinf (display->player.angle) * SPEED;
-	display->player.perp_y = cosf (display->player.angle) * SPEED;
 	display->player.delta_x = cosf (display->player.angle) * SPEED;
 	display->player.delta_y = sinf (display->player.angle) * SPEED;
+	display->player.perp_x = -sinf(display->player.angle) *  SPEED;
+	display->player.perp_y = cosf(display->player.angle) * SPEED;
 
 	// printf("%f\n", display->player.angle);
 }

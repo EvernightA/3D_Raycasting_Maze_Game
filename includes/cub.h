@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/17 08:57:07 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/17 21:26:59 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,7 +177,7 @@ typedef struct s_player
 	
 	float	perp_x;
 	float	perp_y;
-
+	
 	float	angle;
 	float	dir;
 	float	rl_angle;
@@ -225,6 +225,7 @@ void	orientation_player(t_display * display, int operation);
 
 
 void	cast_ray(t_point begin,t_display *display, int d);
+int 	float_abs(float number);
 
 
 void	print_map(char **map);
