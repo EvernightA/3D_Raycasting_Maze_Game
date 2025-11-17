@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/17 21:26:59 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/17 21:27:31 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -265,7 +265,7 @@ t_point	pixel_to_bloc(t_point pixel, t_display *display);
 
 void	ray_fov(t_point begin,t_display *display, int d);
 float		to_wall(t_display *display, t_point collision, float beta);
-void	draw_textured_line(t_line *line, t_hit hit, float angle, t_display *display);
+void	draw_textured_line(t_line *line, t_hit hit, int line_size, t_display *display);
 int		shifter(int	number);
 void	img_pix_put(t_img *img, int x, int y, int color);
 void    clear_img(t_display *display);
