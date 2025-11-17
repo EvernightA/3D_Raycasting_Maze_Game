@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/11/17 07:30:14 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/17 10:24:20 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -389,6 +389,7 @@ int	main(int argc, char **argv)
 	//mlx_pixel_put(display.mlx.mlx_ptr, display.mlx.win_ptr, display.end.x, display.end.y, 0XFF000);
 	/*********MLX******************/
 	//mlx_key_hook(display.mlx.mlx_ptr, display.mlx.win_ptr, &display);
+	render_all(&display);
 	mlx_hook(display.mlx.win_ptr, 17, 0, quit_win, &display);
 	mlx_hook(display.mlx.win_ptr, 2, 1L<<0, key_hook, &display);
 	mlx_hook(display.mlx.win_ptr, 3, 1L<<1, releasing_key, &display);
