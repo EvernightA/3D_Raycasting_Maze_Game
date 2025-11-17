@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
+/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 17:41:59 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/17 10:15:55 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/17 11:16:36 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,10 @@ int game_engine(t_display *display)
 		tmp = pixel_to_bloc(tmp, display);
 		if (tmp.y < display->texture.map_height && display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
 		{
-			display->player.pixels.x = display->player.pixels.x - display->player.perp_x;
-			display->player.pixels.y = display->player.pixels.y - display->player.perp_y;
+			rad_to_deg(display->player.angle);
+			display->player.pixels.x += -display->player.perp_x;
+			display->player.pixels.y += -display->player.perp_y;
+			printf("px = %d ---- py %d\n", display->player.pixels.x, display->player.pixels.y);
 			display->begin.y = display->player.pixels.y;
 			display->begin.x = display->player.pixels.x;
 			display->player.blocs = pixel_to_bloc(display->player.pixels, display);
@@ -116,7 +118,7 @@ int game_engine(t_display *display)
     	clear_rays(display);
 		render_all(display);
 	}
-	if (display->key_stat.d_press)
+	else if (display->key_stat.d_press)
 	{
 		// tmp is too see if next is a wall
 		// display->key_stat.d_press = true;
@@ -127,8 +129,10 @@ int game_engine(t_display *display)
 		if (tmp.y < display->texture.map_height && display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
 		{
 			// player_move(display, -1, -1, display->player.angle);
-			display->player.pixels.x = display->player.pixels.x + display->player.perp_x;
-			display->player.pixels.y = display->player.pixels.y + display->player.perp_y;
+			rad_to_deg(display->player.angle);
+			display->player.pixels.x += display->player.perp_x;
+			display->player.pixels.y += display->player.perp_y;
+			printf("px = %d ---- py = %d\n", display->player.pixels.x, display->player.pixels.y);
 			display->begin.y = display->player.pixels.y;
 			display->begin.x = display->player.pixels.x;
 			display->player.blocs = pixel_to_bloc(display->player.pixels, display);
