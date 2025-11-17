@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/15 19:17:10 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/17 07:34:56 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 #endif
 
 #ifndef SPEED
-# define  SPEED 30
+# define  SPEED 60
 #endif
 
 #ifndef R_SPEED
