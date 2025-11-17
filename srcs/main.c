@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
+/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/11/15 16:28:16 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/17 07:30:14 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,12 @@ void	init_it(t_display *display)
 	// display->player.perp_x = -sin(display->player.angle) * SPEED;
 	// display->player.perp_y = display->player.delta_x;
 	//printf ("The first one %f\n", display->player.angle);
+	display->key_stat.a_press = false;
+	display->key_stat.d_press = false;
+	display->key_stat.left_press = false;
+	display->key_stat.right_press = false;
+	display->key_stat.w_press = false;
+	display->key_stat.s_press = false;
 	display->shifter.screen_width = shifter(SCRN_WIDTH);
 	display->shifter.sreen_height = shifter(SCRN_HEIGHT);
 	display->shifter.size_img = shifter(SIZE_IMG);
