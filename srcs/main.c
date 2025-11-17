@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/11/17 10:24:20 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/17 11:30:52 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -322,15 +322,17 @@ void		draw_line(t_display *display)
 	}
 }
 
-void    draw_textured_line(t_line *line, t_hit hit, float angle, t_display *display)
+void    draw_textured_line(t_line *line, t_hit hit, int line_size, t_display *display)
 {
         t_line *tmp;
 		float uv_x;
 		float uv_y;
 		t_img_texture *texture_to_display;
+		int texture_color;
+		int count;
 
-		(void)angle;
         tmp = line;
+		count = 0;
 		if (hit.wall_direction == NORTH)
 			texture_to_display = &display->texture.t_north;
 		else if (hit.wall_direction == SOUTH)
@@ -341,10 +343,15 @@ void    draw_textured_line(t_line *line, t_hit hit, float angle, t_display *disp
 			texture_to_display = &display->texture.t_west;
         while (tmp)
         {
-            uv_x = (float)(hit.collision.x % 16) / 16;
-            uv_y = (float)(hit.collision.y % 16) / 16;
-            int texture_color = sample_texture(texture_to_display, uv_x, uv_y);
+			if (hit.wall_direction == NORTH || hit.wall_direction == SOUTH)
+            	uv_x = (float)(hit.collision.x % 16) / 16;
+			else
+				uv_x = (float)(hit.collision.y % 16) / 16;
+            uv_y = (float)(count * 16) / line_size / 16;
+			printf("uv_y = %f\n----------", uv_y);
+            texture_color = sample_texture(texture_to_display, uv_x, uv_y);
             img_pix_put(&display->all, tmp->dot.x, tmp->dot.y, texture_color);
+			count ++;
             tmp = tmp -> next;
         }
 }

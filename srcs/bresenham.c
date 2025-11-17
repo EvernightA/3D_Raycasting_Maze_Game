@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 13:17:03 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/15 15:14:17 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/17 10:57:32 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void draw_wall_lines(t_display *display, t_hit hit, int pixel_index, float angle
 	t_point begin;
 	t_point end;
 	
-
+	(void)angle;
 	/*How we calculate the distance may be the problem ?*/
 	if (hit.distance)
 		line_size =  SIZE_IMG * WALL_UNIT / hit.distance;
@@ -56,7 +56,8 @@ void draw_wall_lines(t_display *display, t_hit hit, int pixel_index, float angle
 	end.x = pixel_index;
 	end.y = (SCRN_HEIGHT >> 1) + (line_size >> 1);
 	line = bresenham_line(&begin, &end);
-	draw_textured_line(line, hit, angle, display);
+	hit.collision.x = pixel_index;
+	draw_textured_line(line, hit, line_size, display);
 	if (display->head)
 	{
 		ft_linefree(&display->head);
