@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/11/18 08:21:25 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/18 12:31:52 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ void	init_it(t_display *display)
 	display->texture.c_rgb = NULL;
 	display->map =NULL;
 	display->head = NULL;
-
+	display->texture.dup_map = NULL;
 	// display->player.angle = M_PI;
 	// display->player.rl_angle = display->player.angle + M_PI / 2;
 	// printf("orientation %c\n", display->player.orientation);

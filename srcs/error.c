@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
+/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:28:34 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/10/08 07:53:40 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/18 12:36:40 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,20 @@ int	multiple_player_check(t_display *display)
 		i++;
 	}
 	if (player_error(count))
+	{
+		free(display->texture.c_rgb);
+		free(display->texture.f_rgb);
+		if (display->map)
+			free_split(display->map);
+		if (display->texture.dup_map)
+			free_split(display->texture.dup_map);
+		free(display->texture.east);
+		free(display->texture.north);
+		free(display->texture.south);
+		free(display->texture.west);
+
 		return (1);
+	}
 	return (0);
 }
 
