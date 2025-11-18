@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
+/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 16:00:37 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/10/08 09:12:12 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/18 13:14:49 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,32 @@ int texture_error(t_display *display)
 	tmp3 = ft_strnstr(display->texture.east, ".xpm", ft_strlen(display->texture.east));
 	if (tmp == NULL || tmp1 ==  NULL || tmp2 == NULL || tmp3 == NULL)
 	{
+		free(display->texture.c_rgb);
+		free(display->texture.f_rgb);
+		if (display->map)
+			free_split(display->map);
+		if (display->texture.dup_map)
+			free_split(display->texture.dup_map);
+		free(display->texture.east);
+		free(display->texture.north);
+		free(display->texture.south);
+		free(display->texture.west);
 		ft_putstr_fd("Error\nInvalid extension for texture\n", 2);
 		return (1);
 	}
 	if (ft_strncmp(tmp, ".xpm", 5) != 0 || ft_strncmp(tmp1, ".xpm", 5) != 0 
 	|| ft_strncmp(tmp2, ".xpm", 5) != 0 || ft_strncmp(tmp3, ".xpm", 5) != 0)
  	{
+		free(display->texture.c_rgb);
+		free(display->texture.f_rgb);
+		if (display->map)
+			free_split(display->map);
+		if (display->texture.dup_map)
+			free_split(display->texture.dup_map);
+		free(display->texture.east);
+		free(display->texture.north);
+		free(display->texture.south);
+		free(display->texture.west);
 		ft_putstr_fd("Error\nInvalid extension for texture\n", 2);
 		return (1);
 	}
