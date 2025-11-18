@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/11/17 21:27:38 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/18 08:21:25 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -403,12 +403,6 @@ int	main(int argc, char **argv)
 	mlx_loop_hook(display.mlx.mlx_ptr, &game_engine, &display);
 	mlx_loop(display.mlx.mlx_ptr);
 	mlx_do_key_autorepeaton(display.mlx.mlx_ptr);/*Cette fonction les reactive*/
-	
-	/*
-	*/
-
-	// mlx_loop(display.mlx2.mlx_ptr); boucle morte
-	/******************************/
 	free_texture(&display);
 	return (0);
 }
