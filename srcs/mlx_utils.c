@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:50:26 by mratsima          #+#    #+#             */
-/*   Updated: 2025/11/18 08:30:13 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/19 08:47:29 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,17 +65,27 @@ float to_wall(t_display *display, t_point collision, float beta)
 }
 
 
-void	player_move (t_display *display, int opx, int opy, double angle)
+void	player_move (t_display *display, int op, bool is_float)
 {
-	(void)angle;
-	display->player.pixels.x = display->player.pixels.x + display->player.delta_x * opx;
-	display->player.pixels.y = display->player.pixels.y + display->player.delta_y * opy;
-	display->begin.y = display->player.pixels.y;
-	display->begin.x = display->player.pixels.x;
-	display->player.blocs = pixel_to_bloc(display->player.pixels, display);
-	display->map[display->player.blocs.y][display->player.blocs.x] = display->player.orientation;
+	if (!is_float)
+	{
+		display->player.pixels.x = display->player.pixels.x + display->player.delta_x * op;
+		display->player.pixels.y = display->player.pixels.y + display->player.delta_y * op;
+		display->begin.y = display->player.pixels.y;
+		display->begin.x = display->player.pixels.x;
+		display->player.blocs = pixel_to_bloc(display->player.pixels, display);
+		display->map[display->player.blocs.y][display->player.blocs.x] = display->player.orientation;
+	}
+	else
+	{
+		display->player.pixels.x = display->player.pixels.x  + roundf(display->player.perp_x) * op;
+		display->player.pixels.y = display->player.pixels.y  + roundf(display->player.perp_y) * op;
+		display->begin.y = display->player.pixels.y;
+		display->begin.x = display->player.pixels.x;
+		display->player.blocs = pixel_to_bloc(display->player.pixels, display);
+		display->map[display->player.blocs.y][display->player.blocs.x] = display->player.orientation;
+	}
 }
-
 
 void	orientation_player(t_display * display, int operation)
 {

@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/17 21:27:31 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/19 08:47:49 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -271,7 +271,8 @@ void	img_pix_put(t_img *img, int x, int y, int color);
 void    clear_img(t_display *display);
 void	clear_rays(t_display *display);
 int    	game_engine(t_display *display);
-void	player_move (t_display *display, int opx, int opy, double angle);
+void	player_move (t_display *display, int op, bool is_float);
+
 void    load_textures(t_display *display);
 int     sample_texture(t_img_texture *img_tex, float u, float v);
 int get_wall_direction(t_point collision, t_point player_pos);

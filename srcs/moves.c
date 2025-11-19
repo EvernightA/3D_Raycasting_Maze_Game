@@ -6,11 +6,18 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 17:41:59 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/17 21:24:53 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/19 08:49:23 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
+
+void	clean_rendering(t_display *display)
+{
+	clear_img(display);
+   	clear_rays(display);
+	render_all(display);
+}
 
 int releasing_key(int key, void *param)
 {
@@ -56,114 +63,72 @@ int releasing_key(int key, void *param)
     return (0);
 }
 
+int	there_is_no_wall(t_display *display, int op, bool is_float)
+{
+	t_point tmp;
+
+	if (!is_float)
+	{
+		tmp.x = display->player.pixels.x + display->player.delta_x * op;
+		tmp.y = display->player.pixels.y + display->player.delta_y * op;
+		tmp = pixel_to_bloc(tmp, display);
+	}
+	else
+	{
+		tmp.x = display->player.pixels.x + roundf(display->player.perp_x) * op;
+		tmp.y = display->player.pixels.y + roundf(display->player.perp_y) * op;
+		tmp = pixel_to_bloc(tmp, display);
+	}
+	if (tmp.y < display->texture.map_height && display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
+	{
+		return (1);
+	}
+	return (0);
+}
+
 int game_engine(t_display *display)
 {
-    t_point tmp;
-    
-    // printf ("YOU ARE HERE\n");
-    // while (1)
-    // {
-    clear_img(display);
-    clear_rays(display);
     if (display->key_stat.w_press)
 	{
-		// tmp is too see if next is a wall
-			// display->key_stat.w_press = true;
-			tmp.x = display->player.pixels.x + display->player.delta_x;
-			tmp.y = display->player.pixels.y + display->player.delta_y;
-			tmp = pixel_to_bloc(tmp, display);
-			if (tmp.y < display->texture.map_height && display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
-			{
-				player_move (display, 1, 1, display->player.angle);
-			}
-		clear_img(display);
-    	clear_rays(display);
-		render_all(display);
+		if (there_is_no_wall(display, 1, false))
+		{
+			player_move (display, 1, false);
+		}
+		clean_rendering(display);
 	}
 	if (display->key_stat.s_press)
 	{
-		// tmp is too see if next is a wall
-		// display->key_stat.s_press = true;
-		tmp.x = display->player.pixels.x - display->player.delta_x;
-		tmp.y = display->player.pixels.y - display->player.delta_y;
-		tmp = pixel_to_bloc(tmp, display);
-		if (tmp.y < display->texture.map_height && display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
+		if (there_is_no_wall(display, -1, false))
 		{
-			player_move (display, -1, -1, display->player.angle);
+			player_move (display, -1, false);
 		}
-		clear_img(display);
-    	clear_rays(display);
-		render_all(display);   
+		clean_rendering(display);
 	}
 	if (display->key_stat.a_press)
-		// tmp is too see if next is a wall
 	{
-		// display->key_stat.a_press = true;
-		tmp.x = display->player.pixels.x - roundf(display->player.perp_x);
-		tmp.y = display->player.pixels.y - roundf(display->player.perp_y);
-		// printf("cos = %f, sin = %f\n", cos(display->player.angle), sin(display->player.angle));
-		tmp = pixel_to_bloc(tmp, display);
-		if (tmp.y < display->texture.map_height && display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
+		if (there_is_no_wall(display, -1, true))
 		{
-			rad_to_deg(display->player.angle);
-			display->player.pixels.x += -roundf(display->player.perp_x);
-			display->player.pixels.y += -roundf(display->player.perp_y);
-			printf("px = %d ---- py %d\n", display->player.pixels.x, display->player.pixels.y);
-			display->begin.y = display->player.pixels.y;
-			display->begin.x = display->player.pixels.x;
-			display->player.blocs = pixel_to_bloc(display->player.pixels, display);
-			display->map[display->player.blocs.y][display->player.blocs.x] = display->player.orientation;
+			player_move(display, -1, true);
 		}
-		clear_img(display);
-    	clear_rays(display);
-		render_all(display);
+		clean_rendering(display);
 	}
 	else if (display->key_stat.d_press)
 	{
-		// tmp is too see if next is a wall
-		// display->key_stat.d_press = true;
-		tmp.x = display->player.pixels.x + roundf(display->player.perp_x);
-		tmp.y = display->player.pixels.y + roundf(display->player.perp_y);
-		// printf("cos = %f, sin = %f\n", cos(display->player.angle), sin(display->player.angle));
-		tmp = pixel_to_bloc(tmp, display);
-		if (tmp.y < display->texture.map_height && display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
+		if (there_is_no_wall(display, 1, true))
 		{
-			// player_move(display, -1, -1, display->player.angle);
-			rad_to_deg(display->player.angle);
-			display->player.pixels.x += roundf(display->player.perp_x);
-			display->player.pixels.y += roundf(display->player.perp_y);
-			printf("px = %d ---- py = %d\n", display->player.pixels.x, display->player.pixels.y);
-			display->begin.y = display->player.pixels.y;
-			display->begin.x = display->player.pixels.x;
-			display->player.blocs = pixel_to_bloc(display->player.pixels, display);
-			display->map[display->player.blocs.y][display->player.blocs.x] = display->player.orientation;
+			player_move(display, 1, true);
 		}
-		clear_img(display);
-    	clear_rays(display);
-		render_all(display);
+		clean_rendering(display);
 	}
 	if (display->key_stat.left_press)
 	{
-		// display->key_stat.left_press = true;
 		orientation_player(display, -1);
-		rad_to_deg(display->player.angle);
-		// rad_to_deg(display->player.rl_angle);
-		clear_img(display);
-    	clear_rays(display);
-		render_all(display);
+		clean_rendering(display);
 	}
 	if (display->key_stat.right_press)
 	{
-		// display->key_stat.right_press = true;
 		orientation_player(display, 1);
-		rad_to_deg(display->player.angle);
-		// rad_to_deg(display->player.angle);
-		clear_img(display);
-   		clear_rays(display);
-		render_all(display);
+		clean_rendering(display);
 	}
-    // ft_putstr_fd("WUUUUUT\n", 1);
-        // sleep(1);
     return (0);
-       // }
 }
