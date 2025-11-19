@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/11/17 21:27:38 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/19 11:49:35 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -277,6 +277,9 @@ t_hit		draw_line_2(t_display *display, float beta)
 	t_line *tmp;
 	t_point tmp_bloc;
 	t_hit 	hit;
+	t_point bloc;
+	char prev_wall_char;
+	char next_wall_char;
 
 	tmp = display->head;
 	hit.distance = 0;
@@ -294,6 +297,25 @@ t_hit		draw_line_2(t_display *display, float beta)
 			hit.collision = tmp->dot;
 			hit.distance = to_wall(display, tmp->dot, beta);
 			hit.wall_direction = get_wall_direction(hit.collision, display->player.blocs);
+			if (hit.wall_direction == NORTH || hit.wall_direction == SOUTH)
+			{
+				bloc = pixel_to_bloc(hit.collision, display);
+				if (bloc.y - 1 < 0 || !(display->map[bloc.y][bloc.x]))
+					break;
+				ft_printf("y = %d, x = %d\n", bloc.y, bloc.x);
+				prev_wall_char = display->map[bloc.y - 1][bloc.x];
+				next_wall_char = display->map[bloc.y + 1][bloc.x];
+				if (display->map[bloc.y][bloc.x] == prev_wall_char
+					&& prev_wall_char == next_wall_char)
+				{
+					if (display->player.angle > 0 && display->player.angle < M_PI / 2
+						&& display->player.angle > 3/2 * M_PI && display->player.angle < 2 * M_PI)
+						hit.wall_direction = EAST;
+					else
+						hit.wall_direction = WEST;
+				}
+			}
+			printf("wall_direction = %d\n", hit.wall_direction);
 			break;
 		}
 		tmp = tmp -> next;
