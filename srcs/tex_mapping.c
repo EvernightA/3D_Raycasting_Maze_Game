@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 11:37:27 by mratsima          #+#    #+#             */
-/*   Updated: 2025/11/17 13:16:42 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/19 14:48:11 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,14 +120,19 @@ int get_wall_direction(t_point collision, t_point player_bloc)
         if ((15 - collision_pixel.x) < collision_pixel.y)
             return (EAST);
         else
+		{
             return (NORTH);
+		}
     }    
     if (dx > 0 && dy < 0)
     {
         if (collision_pixel.x < (15 - collision_pixel.y))
             return (WEST);
         else
+		{
+			// ft_printf("collision = %d\n", collision_pixel.x);
             return (SOUTH);
+		}
     }    
     if (dx < 0 && dy < 0)
     {
