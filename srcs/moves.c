@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 17:41:59 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/19 08:49:23 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/19 09:05:45 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,40 +26,17 @@ int releasing_key(int key, void *param)
     display = (t_display *)param;
     (void)display;
     if (key == XK_W || key == XK_w)
-    {
         display->key_stat.w_press = false;
-        printf("W released\n");
-    }
     if (key == XK_A || key == XK_a)
-    {
         display->key_stat.a_press = false;
-        printf("A released\n");
-
-    }
     if (key == XK_S || key == XK_s)
-    {
         display->key_stat.s_press = false;
-        printf("S released\n");
-
-    }
     if (key == XK_D || key == XK_d)
-    {
         display->key_stat.d_press = false;
-        printf("D released\n");
-
-    }
     if (key == XK_Left)
-    {
         display->key_stat.left_press = false;
-        printf("Left released\n");
-
-    }
     if (key == XK_Right)
-    {
         display->key_stat.right_press = false;
-        printf("Right released\n");
-
-    }
     return (0);
 }
 
@@ -85,41 +62,23 @@ int	there_is_no_wall(t_display *display, int op, bool is_float)
 	}
 	return (0);
 }
+void	moving(t_display *display, int op, bool is_float)
+{
+	if (there_is_no_wall(display, op, is_float))
+		player_move (display, op, is_float);
+	clean_rendering(display);
+}
 
 int game_engine(t_display *display)
 {
     if (display->key_stat.w_press)
-	{
-		if (there_is_no_wall(display, 1, false))
-		{
-			player_move (display, 1, false);
-		}
-		clean_rendering(display);
-	}
-	if (display->key_stat.s_press)
-	{
-		if (there_is_no_wall(display, -1, false))
-		{
-			player_move (display, -1, false);
-		}
-		clean_rendering(display);
-	}
+		moving(display, 1, false);
+	else if (display->key_stat.s_press)
+		moving(display, -1, false);
 	if (display->key_stat.a_press)
-	{
-		if (there_is_no_wall(display, -1, true))
-		{
-			player_move(display, -1, true);
-		}
-		clean_rendering(display);
-	}
+		moving(display, -1, true);
 	else if (display->key_stat.d_press)
-	{
-		if (there_is_no_wall(display, 1, true))
-		{
-			player_move(display, 1, true);
-		}
-		clean_rendering(display);
-	}
+		moving(display, 1, true);
 	if (display->key_stat.left_press)
 	{
 		orientation_player(display, -1);
