@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:28:34 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/18 13:12:53 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/19 13:43:47 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,16 +54,7 @@ int	multiple_player_check(t_display *display)
 				ft_putstr_fd("Error\nUnknown character \'", 2);
 				ft_putchar_fd(display->map[i][j], 2);
 				ft_putstr_fd("\' found in the map\n", 2);
-				free(display->texture.c_rgb);
-				free(display->texture.f_rgb);
-				if (display->map)
-					free_split(display->map);
-				if (display->texture.dup_map)
-					free_split(display->texture.dup_map);
-				free(display->texture.east);
-				free(display->texture.north);
-				free(display->texture.south);
-				free(display->texture.west);
+				free_tex_map(display);
 				return (1);
 			}
 			if (is_player(display->map[i][j]))
@@ -73,32 +64,14 @@ int	multiple_player_check(t_display *display)
 		if (closed__map_error(display->map[i]))
 		{
 			ft_putstr_fd("Error\nUnclosed map found\n", 2);
-			free(display->texture.c_rgb);
-			free(display->texture.f_rgb);
-			if (display->map)
-				free_split(display->map);
-			if (display->texture.dup_map)
-				free_split(display->texture.dup_map);
-			free(display->texture.east);
-			free(display->texture.north);
-			free(display->texture.south);
-			free(display->texture.west);
+			free_tex_map(display);
 			return (1);
 		}
 		i++;
 	}
 	if (player_error(count))
 	{
-		free(display->texture.c_rgb);
-		free(display->texture.f_rgb);
-		if (display->map)
-			free_split(display->map);
-		if (display->texture.dup_map)
-			free_split(display->texture.dup_map);
-		free(display->texture.east);
-		free(display->texture.north);
-		free(display->texture.south);
-		free(display->texture.west);
+		free_tex_map(display);
 
 		return (1);
 	}
@@ -116,32 +89,13 @@ int	error_handling(t_display *display)
 	if (matrix_height(tmp) <= 2)
 	{
 		ft_putstr_fd("Error\nWhat kind of psych are u?\n", 2);
-		free(display->texture.c_rgb);
-		free(display->texture.f_rgb);
-		if (display->map)
-			free_split(display->map);
-		if (display->texture.dup_map)
-			free_split(display->texture.dup_map);
-		free(display->texture.east);
-		free(display->texture.north);
-		free(display->texture.south);
-		free(display->texture.west);
-		free_split(tmp);
+		free_tex_map(display);
 		return (1);
 	}
 	if (closed_error(tmp))
 	{
 		free_split(tmp);
-		free(display->texture.c_rgb);
-		free(display->texture.f_rgb);
-		if (display->map)
-			free_split(display->map);
-		if (display->texture.dup_map)
-			free_split(display->texture.dup_map);
-		free(display->texture.east);
-		free(display->texture.north);
-		free(display->texture.south);
-		free(display->texture.west);
+		free_tex_map(display);
 		ft_putstr_fd("Error\nUnclosed wall found\n", 2);
 		return (1);
 	}

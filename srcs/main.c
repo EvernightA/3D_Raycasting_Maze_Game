@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/11/19 09:35:13 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/19 13:45:30 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,16 +193,7 @@ static int	parsing(int *map_height, char *file, t_display *display)
 	|| !display->texture.south || !display->texture.east || !display->texture.west || !display->map)
 	{
 		ft_putstr_fd("Error\nMissing or Invalid identifier\n", 2);
-		free(display->texture.c_rgb);
-		free(display->texture.f_rgb);
-		if (display->map)
-			free_split(display->map);
-		if (display->texture.dup_map)
-			free_split(display->texture.dup_map);
-		free(display->texture.east);
-		free(display->texture.north);
-		free(display->texture.south);
-		free(display->texture.west);
+		free_tex_map(display);
 		return (1);
 	}
 	filter_texture(display);
