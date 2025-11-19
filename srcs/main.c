@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/11/18 13:18:12 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/19 09:35:13 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,23 @@ void print_split(char **split)
 		printf("%s", split[i]);
 		i++;
 	}
+}
+void	init_direction(t_display *display, int x_dir, int y_dir, float angle)
+{
+	display->player.direction.x = x_dir;
+	display->player.direction.y = y_dir;
+	display->player.angle = angle;
+}
+ 
+void	init_player_pos(t_display *display, int i, int j)
+{
+	display->player.blocs.x = i;
+	display->player.blocs.y = j;
+	display->begin.x = i  * 16 + (16 >> 1);
+	display->begin.y = j  * 16 + (16 >> 1);
+	display->player.pixels.x = i * 16 + (16 >> 1);
+	display->player.pixels.y = j * 16 + (16 >> 1);
+	display->player.fov = 60;
 }
 
 void	store_texture(char *str, t_display *display)
@@ -126,15 +143,6 @@ void	init_it(t_display *display)
 	display->map =NULL;
 	display->head = NULL;
 	display->texture.dup_map = NULL;
-	// display->player.angle = M_PI;
-	// display->player.rl_angle = display->player.angle + M_PI / 2;
-	// printf("orientation %c\n", display->player.orientation);
-	// exit (0);
-	// display->player.delta_x = cos (display->player.angle) * SPEED;
-	// display->player.delta_y = sin (display->player.angle) * SPEED;
-	// display->player.perp_x = -sin(display->player.angle) * SPEED;
-	// display->player.perp_y = display->player.delta_x;
-	//printf ("The first one %f\n", display->player.angle);
 	display->key_stat.a_press = false;
 	display->key_stat.d_press = false;
 	display->key_stat.left_press = false;
@@ -144,7 +152,6 @@ void	init_it(t_display *display)
 	display->shifter.screen_width = shifter(SCRN_WIDTH);
 	display->shifter.sreen_height = shifter(SCRN_HEIGHT);
 	display->shifter.size_img = shifter(SIZE_IMG);
-
 }
 
 void	calculus_dir(t_display *display)
@@ -233,37 +240,15 @@ void	init_player_position(t_display *display)
 		{
 			if (is_player(display->map[j][i]))
 			{
-				display->player.blocs.x = i;
-				display->player.blocs.y = j;
-				display->begin.x = i  * 16 + (16 >> 1);
-				display->begin.y = j  * 16 + (16 >> 1);
-				display->player.pixels.x = i * 16 + (16 >> 1);
-				display->player.pixels.y = j * 16 + (16 >> 1);
-				display->player.fov = 60;
+				init_player_pos(display, i, j);
 				if (display->map[j][i] == 'N')
-				{
-					display->player.direction.x = 0;
-					display->player.direction.y = -1;
-					display->player.angle = 3 * M_PI/2;
-				}
+					init_direction(display, 0, 1, 3 * M_PI/2);
 				else if (display->map[j][i] == 'S')
-				{
-					display->player.direction.x = 0;
-					display->player.direction.y = 1;
-					display->player.angle =  M_PI/2;
-				}
+					init_direction(display, 0, 1, M_PI / 2);
 				else  if (display->map[j][i] == 'E')
-				{
-					display->player.direction.x = 1;
-					display->player.direction.y = 0;
-					display->player.angle = 0;
-				}
+					init_direction(display, 1, 0, 0);
 				else if (display->map[j][i] == 'W')
-				{
-					display->player.direction.x = -1;
-					display->player.direction.y = 0;
-					display->player.angle = M_PI;
-				}
+					init_direction(display, -1, 0, M_PI);
 				display->player.orientation = display->map[j][i];
 				calculus_dir(display);
 				return ;
@@ -371,9 +356,6 @@ int	main(int argc, char **argv)
 	(void)argv;
 	int map_height;
 	t_display	display;
-	//t_point begin;
-	//t_point end;
-	//t_line *head;
 
 	init_it(&display);
 
