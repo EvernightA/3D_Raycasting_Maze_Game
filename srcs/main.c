@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/11/20 11:03:27 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/20 11:37:56 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -315,7 +315,8 @@ t_hit		draw_line_2(t_display *display, float beta)
 				if (display->map[bloc.y][bloc.x] == prev_wall_char
 					&& prev_wall_char == next_wall_char)
 				{
-					if (display->player.angle > M_PI / 2 && display->player.angle < 3 * M_PI / 2)
+					printf("pla = %f, pi/2 = %f\n", display->player.angle, 3 *M_PI / 2);
+					if ((dx < 0 && dy < 0) || (dx < 0 && dy > 0))
 						hit.wall_direction = EAST;
 					else
 						hit.wall_direction = WEST;
