@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/19 13:40:00 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/20 10:31:53 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,6 +209,7 @@ size_t	find_len_max(char **map);
 int 	map_invalid(int i, int j, int k, char **map);
 char	*ft_strdup_x(char *s, int len);
 
+void	filter_texture(t_display *display);
 
 int		is_player(char c);
 int		is_unknown(char c);
@@ -254,6 +255,7 @@ int	get_rgb(t_rgb *rgb, char *str_rgb);
 int		closed_error(char	**map);
 int	is_player(char c);
 int player_in_str(char *str);
+int	parsing(int *map_height, char *file, t_display *display);
 
 void	img_initialization(t_display *display);
 void	mini_map(t_display *display, char **map);

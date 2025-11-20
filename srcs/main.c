@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/11/19 13:45:30 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/20 10:36:49 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,81 +44,6 @@ void	init_player_pos(t_display *display, int i, int j)
 	display->player.pixels.y = j * 16 + (16 >> 1);
 	display->player.fov = 60;
 }
-
-void	store_texture(char *str, t_display *display)
-{
-	char *tmp;
-	char *file;
-
-	tmp = ft_strtrim(str, " \t");
-	if (ft_strncmp("NO ", tmp, 3) == 0 || ft_strncmp("NO\t", tmp, 3) == 0)
-	{
-		file = ft_strnstr(str,".", ft_strlen(str));
-		display->texture.north = ft_strdup(file);
-	}
-	else if (ft_strncmp("SO ", tmp, 3) == 0 || ft_strncmp("SO\t", tmp, 3) == 0)
-	{
-		file = ft_strnstr(str,".", ft_strlen(str));
-		display->texture.south = ft_strdup(file);
-	}
-	else if (ft_strncmp("WE ", tmp, 3) == 0 || ft_strncmp("WE\t", tmp, 3) == 0) 
-	{
-		file = ft_strnstr(str,".", ft_strlen(str));
-		display->texture.west = ft_strdup(file);
-	}
-	else if (ft_strncmp("EA ", tmp, 3) == 0 || ft_strncmp("EA\t", tmp, 3) == 0)
-	{
-		file = ft_strnstr(str,".", ft_strlen(str));
-		display->texture.east = ft_strdup(file);
-	}
-	else if (ft_strncmp("C ", tmp, 2) == 0 || ft_strncmp("C\t", tmp, 2) == 0)
-	{
-		display->texture.c_rgb = ft_strdup(tmp);
-	}
-	else if (ft_strncmp("F ", tmp, 2) == 0 || ft_strncmp("F\t", tmp, 2) == 0)
-	{
-		display->texture.f_rgb = ft_strdup(tmp);
-	}
-	free(tmp);
-}
-
-
-void	filter_texture(t_display *display)
-{
-	char *tmp;
-
-	tmp = NULL;
-	tmp = ft_strtrim(display->texture.north, "\n");
-	free(display->texture.north);
-	display->texture.north = ft_strdup(tmp);
-	free(tmp);
-	tmp = NULL;
-	tmp = ft_strtrim(display->texture.south, "\n");
-	free(display->texture.south);
-	display->texture.south = ft_strdup(tmp);
-	free(tmp);
-	tmp = NULL;
-	tmp = ft_strtrim(display->texture.west, "\n");
-	free(display->texture.west);
-	display->texture.west = ft_strdup(tmp);
-	free(tmp);
-	tmp = NULL;
-	tmp = ft_strtrim(display->texture.east, "\n");
-	free(display->texture.east);
-	display->texture.east = ft_strdup(tmp);
-	free(tmp);
-	tmp = NULL;
-	tmp = ft_strtrim(display->texture.c_rgb, "\n");
-	free(display->texture.c_rgb);
-	display->texture.c_rgb = ft_strdup(tmp);
-	free(tmp);
-	tmp = NULL;
-	tmp = ft_strtrim(display->texture.f_rgb, "\n");
-	free(display->texture.f_rgb);
-	display->texture.f_rgb = ft_strdup(tmp);
-	free(tmp);
-}
-
 
 void	see_it(t_display *display)
 {
@@ -178,27 +103,7 @@ static int	get_map_height(t_display *display, int *map_height ,char *file)
 	return (0);
 }
 
-static int	parsing(int *map_height, char *file, t_display *display)
-{
-	int fd;
 
-	fd = open (file, O_RDONLY);
-	if (fd < 0)
-	{
-		ft_putstr_fd("Error\nNo such file or directory\n",2);
-		return (1);
-	}
-	get_elements(fd, display, *map_height);
-	if (!display->texture.c_rgb || !display->texture.f_rgb || !display->texture.north 
-	|| !display->texture.south || !display->texture.east || !display->texture.west || !display->map)
-	{
-		ft_putstr_fd("Error\nMissing or Invalid identifier\n", 2);
-		free_tex_map(display);
-		return (1);
-	}
-	filter_texture(display);
-	return (0);
-}
 
 static int	input_error(int argc, char **argv)
 {
@@ -258,88 +163,11 @@ t_point	pixel_to_bloc(t_point pixel, t_display *display)
 	bloc.y = pixel.y >> display->shifter.size_img;// size = 16
 	return (bloc);
 }
-t_hit		draw_line_2(t_display *display, float beta)
-{
-	t_line *tmp;
-	t_point tmp_bloc;
-	t_hit 	hit;
 
-	tmp = display->head;
-	hit.distance = 0;
-	hit.collision.x = 0;
-	hit.collision.y = 0;
-	while (tmp)
-	{
-		tmp_bloc = pixel_to_bloc(tmp->dot, display);
-		if (display->map[tmp_bloc.y][tmp_bloc.x] == '0' || is_player(display->map[tmp_bloc.y][tmp_bloc.x]))
-		{
-			img_pix_put(&display->rays, tmp->dot.x, tmp->dot.y, 0x00F0);
-		}
-		else
-		{
-			hit.collision = tmp->dot;
-			hit.distance = to_wall(display, tmp->dot, beta);
-			hit.wall_direction = get_wall_direction(hit.collision, display->player.blocs);
-			break;
-		}
-		tmp = tmp -> next;
-	}
-	// ft_printf(" = %d\n", distance);
-	return (hit);
-}
 
-void		draw_line(t_display *display)
-{
-	t_line *tmp;
-	t_point tmp_bloc;
 
-	tmp = display->head;
-	while (tmp)
-	{
-		tmp_bloc = pixel_to_bloc(tmp->dot, display);
-		if (display->map[tmp_bloc.y][tmp_bloc.x] == '0' || is_player(display->map[tmp_bloc.y][tmp_bloc.x]))
-			mlx_pixel_put(display->mlx.mlx_ptr, display->mlx.win_ptr,tmp->dot.x,tmp->dot.y, 0xFF000);
-		else
-		{
-			//printf("fount this here : (%c)\n", display->map[tmp_bloc.y][tmp_bloc.x]);
-			break;
-		}
-		tmp = tmp -> next;
-	}
-}
 
-void    draw_textured_line(t_line *line, t_hit hit, int line_size, t_display *display)
-{
-        t_line *tmp;
-		float uv_x;
-		float uv_y;
-		t_img_texture *texture_to_display;
-		int texture_color;
-		int count;
 
-        tmp = line;
-		count = 0;
-		if (hit.wall_direction == NORTH)
-			texture_to_display = &display->texture.t_north;
-		else if (hit.wall_direction == SOUTH)
-			texture_to_display = &display->texture.t_south;
-		else if (hit.wall_direction == EAST)
-			texture_to_display = &display->texture.t_east;
-		else
-			texture_to_display = &display->texture.t_west;
-        while (tmp)
-        {
-			if (hit.wall_direction == NORTH || hit.wall_direction == SOUTH)
-				uv_x = (float)(hit.collision.x % 16) / 16;
-			else
-				uv_x = (float)(hit.collision.y % 16) / 16;
-            uv_y = (float)(count * 16) / line_size / 16;
-            texture_color = sample_texture(texture_to_display, uv_x, uv_y);
-            img_pix_put(&display->all, tmp->dot.x, tmp->dot.y, texture_color);
-			count ++;
-            tmp = tmp -> next;
-        }
-}
 
 
 int	main(int argc, char **argv)
@@ -359,7 +187,6 @@ int	main(int argc, char **argv)
 	if (error_handling(&display))
 		return (1);
 	init_player_position(&display);
-	printf("next -one %f\n", display.player.angle);
 	/************MLX*********/
 	display.mlx.mlx_ptr = mlx_init();
 	display.mlx2.mlx_ptr = mlx_init();
