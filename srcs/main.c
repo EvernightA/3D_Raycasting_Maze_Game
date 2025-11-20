@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/11/20 10:36:49 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/20 10:43:07 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,24 +86,6 @@ void	calculus_dir(t_display *display)
 	display->player.perp_x = -display->player.delta_y;
 	display->player.perp_y = display->player.delta_x;
 }
-
-static int	get_map_height(t_display *display, int *map_height ,char *file)
-{
-	int fd;
-
-	fd = open (file, O_RDONLY);
-	if (fd < 0)
-	{
-		ft_putstr_fd("Error\nNo such file or directory\n",2);
-		return (1);
-	}
-	*map_height = count_map_lines(fd);
-	display->texture.map_height = *map_height;
-	close(fd);
-	return (0);
-}
-
-
 
 static int	input_error(int argc, char **argv)
 {

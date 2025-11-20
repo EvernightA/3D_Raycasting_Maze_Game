@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/20 10:31:53 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/20 10:42:49 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -227,6 +227,7 @@ void	orientation_player(t_display * display, int operation);
 
 void	cast_ray(t_point begin,t_display *display, int d);
 int 	float_abs(float number);
+int		get_map_height(t_display *display, int *map_height ,char *file);
 
 
 void	print_map(char **map);

@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 10:27:44 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/20 10:30:49 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/20 10:43:21 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,5 +104,21 @@ int	parsing(int *map_height, char *file, t_display *display)
 		return (1);
 	}
 	filter_texture(display);
+	return (0);
+}
+
+int	get_map_height(t_display *display, int *map_height ,char *file)
+{
+	int fd;
+
+	fd = open (file, O_RDONLY);
+	if (fd < 0)
+	{
+		ft_putstr_fd("Error\nNo such file or directory\n",2);
+		return (1);
+	}
+	*map_height = count_map_lines(fd);
+	display->texture.map_height = *map_height;
+	close(fd);
 	return (0);
 }
