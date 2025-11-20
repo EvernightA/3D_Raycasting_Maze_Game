@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/20 10:42:49 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/20 11:27:49 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 #endif
 
 #ifndef TETA
-#define TETA M_PI/12
+#define TETA 0.0872664626
 #endif
 
 #ifndef SIZE_IMG
