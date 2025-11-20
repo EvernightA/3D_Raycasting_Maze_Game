@@ -6,6 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2025/11/20 10:43:07 by fsamy-an         ###   ########.fr       */
 /*   Updated: 2025/11/20 11:37:56 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -27,81 +28,23 @@ void print_split(char **split)
 		i++;
 	}
 }
-
-void	store_texture(char *str, t_display *display)
+void	init_direction(t_display *display, int x_dir, int y_dir, float angle)
 {
-	char *tmp;
-	char *file;
-
-	tmp = ft_strtrim(str, " \t");
-	if (ft_strncmp("NO ", tmp, 3) == 0 || ft_strncmp("NO\t", tmp, 3) == 0)
-	{
-		file = ft_strnstr(str,".", ft_strlen(str));
-		display->texture.north = ft_strdup(file);
-	}
-	else if (ft_strncmp("SO ", tmp, 3) == 0 || ft_strncmp("SO\t", tmp, 3) == 0)
-	{
-		file = ft_strnstr(str,".", ft_strlen(str));
-		display->texture.south = ft_strdup(file);
-	}
-	else if (ft_strncmp("WE ", tmp, 3) == 0 || ft_strncmp("WE\t", tmp, 3) == 0) 
-	{
-		file = ft_strnstr(str,".", ft_strlen(str));
-		display->texture.west = ft_strdup(file);
-	}
-	else if (ft_strncmp("EA ", tmp, 3) == 0 || ft_strncmp("EA\t", tmp, 3) == 0)
-	{
-		file = ft_strnstr(str,".", ft_strlen(str));
-		display->texture.east = ft_strdup(file);
-	}
-	else if (ft_strncmp("C ", tmp, 2) == 0 || ft_strncmp("C\t", tmp, 2) == 0)
-	{
-		display->texture.c_rgb = ft_strdup(tmp);
-	}
-	else if (ft_strncmp("F ", tmp, 2) == 0 || ft_strncmp("F\t", tmp, 2) == 0)
-	{
-		display->texture.f_rgb = ft_strdup(tmp);
-	}
-	free(tmp);
+	display->player.direction.x = x_dir;
+	display->player.direction.y = y_dir;
+	display->player.angle = angle;
 }
-
-
-void	filter_texture(t_display *display)
+ 
+void	init_player_pos(t_display *display, int i, int j)
 {
-	char *tmp;
-
-	tmp = NULL;
-	tmp = ft_strtrim(display->texture.north, "\n");
-	free(display->texture.north);
-	display->texture.north = ft_strdup(tmp);
-	free(tmp);
-	tmp = NULL;
-	tmp = ft_strtrim(display->texture.south, "\n");
-	free(display->texture.south);
-	display->texture.south = ft_strdup(tmp);
-	free(tmp);
-	tmp = NULL;
-	tmp = ft_strtrim(display->texture.west, "\n");
-	free(display->texture.west);
-	display->texture.west = ft_strdup(tmp);
-	free(tmp);
-	tmp = NULL;
-	tmp = ft_strtrim(display->texture.east, "\n");
-	free(display->texture.east);
-	display->texture.east = ft_strdup(tmp);
-	free(tmp);
-	tmp = NULL;
-	tmp = ft_strtrim(display->texture.c_rgb, "\n");
-	free(display->texture.c_rgb);
-	display->texture.c_rgb = ft_strdup(tmp);
-	free(tmp);
-	tmp = NULL;
-	tmp = ft_strtrim(display->texture.f_rgb, "\n");
-	free(display->texture.f_rgb);
-	display->texture.f_rgb = ft_strdup(tmp);
-	free(tmp);
+	display->player.blocs.x = i;
+	display->player.blocs.y = j;
+	display->begin.x = i  * 16 + (16 >> 1);
+	display->begin.y = j  * 16 + (16 >> 1);
+	display->player.pixels.x = i * 16 + (16 >> 1);
+	display->player.pixels.y = j * 16 + (16 >> 1);
+	display->player.fov = 60;
 }
-
 
 void	see_it(t_display *display)
 {
@@ -125,16 +68,7 @@ void	init_it(t_display *display)
 	display->texture.c_rgb = NULL;
 	display->map =NULL;
 	display->head = NULL;
-
-	// display->player.angle = M_PI;
-	// display->player.rl_angle = display->player.angle + M_PI / 2;
-	// printf("orientation %c\n", display->player.orientation);
-	// exit (0);
-	// display->player.delta_x = cos (display->player.angle) * SPEED;
-	// display->player.delta_y = sin (display->player.angle) * SPEED;
-	// display->player.perp_x = -sin(display->player.angle) * SPEED;
-	// display->player.perp_y = display->player.delta_x;
-	//printf ("The first one %f\n", display->player.angle);
+	display->texture.dup_map = NULL;
 	display->key_stat.a_press = false;
 	display->key_stat.d_press = false;
 	display->key_stat.left_press = false;
@@ -144,7 +78,6 @@ void	init_it(t_display *display)
 	display->shifter.screen_width = shifter(SCRN_WIDTH);
 	display->shifter.sreen_height = shifter(SCRN_HEIGHT);
 	display->shifter.size_img = shifter(SIZE_IMG);
-
 }
 
 void	calculus_dir(t_display *display)
@@ -153,43 +86,6 @@ void	calculus_dir(t_display *display)
 	display->player.delta_y = sin (display->player.angle) * SPEED;
 	display->player.perp_x = -display->player.delta_y;
 	display->player.perp_y = display->player.delta_x;
-}
-
-static int	get_map_height(t_display *display, int *map_height ,char *file)
-{
-	int fd;
-
-	fd = open (file, O_RDONLY);
-	if (fd < 0)
-	{
-		ft_putstr_fd("Error\nNo such file or directory\n",2);
-		return (1);
-	}
-	*map_height = count_map_lines(fd);
-	display->texture.map_height = *map_height;
-	close(fd);
-	return (0);
-}
-
-static int	parsing(int *map_height, char *file, t_display *display)
-{
-	int fd;
-
-	fd = open (file, O_RDONLY);
-	if (fd < 0)
-	{
-		ft_putstr_fd("Error\nNo such file or directory\n",2);
-		return (1);
-	}
-	get_elements(fd, display, *map_height);
-	if (!display->texture.c_rgb || !display->texture.f_rgb || !display->texture.north 
-	|| !display->texture.south || !display->texture.east || !display->texture.west || !display->map)
-	{
-		ft_putstr_fd("Error\nMissing or Invalid identifier\n", 2);
-		return (1);
-	}
-	filter_texture(display);
-	return (0);
 }
 
 static int	input_error(int argc, char **argv)
@@ -223,37 +119,15 @@ void	init_player_position(t_display *display)
 		{
 			if (is_player(display->map[j][i]))
 			{
-				display->player.blocs.x = i;
-				display->player.blocs.y = j;
-				display->begin.x = i  * 16 + (16 >> 1);
-				display->begin.y = j  * 16 + (16 >> 1);
-				display->player.pixels.x = i * 16 + (16 >> 1);
-				display->player.pixels.y = j * 16 + (16 >> 1);
-				display->player.fov = 60;
+				init_player_pos(display, i, j);
 				if (display->map[j][i] == 'N')
-				{
-					display->player.direction.x = 0;
-					display->player.direction.y = -1;
-					display->player.angle = 3 * M_PI/2;
-				}
+					init_direction(display, 0, 1, 3 * M_PI/2);
 				else if (display->map[j][i] == 'S')
-				{
-					display->player.direction.x = 0;
-					display->player.direction.y = 1;
-					display->player.angle =  M_PI/2;
-				}
+					init_direction(display, 0, 1, M_PI / 2);
 				else  if (display->map[j][i] == 'E')
-				{
-					display->player.direction.x = 1;
-					display->player.direction.y = 0;
-					display->player.angle = 0;
-				}
+					init_direction(display, 1, 0, 0);
 				else if (display->map[j][i] == 'W')
-				{
-					display->player.direction.x = -1;
-					display->player.direction.y = 0;
-					display->player.angle = M_PI;
-				}
+					init_direction(display, -1, 0, M_PI);
 				display->player.orientation = display->map[j][i];
 				calculus_dir(display);
 				return ;
@@ -272,140 +146,8 @@ t_point	pixel_to_bloc(t_point pixel, t_display *display)
 	bloc.y = pixel.y >> display->shifter.size_img;// size = 16
 	return (bloc);
 }
-t_hit		draw_line_2(t_display *display, float beta)
-{
-	t_line *tmp;
-	t_point tmp_bloc;
-	t_hit 	hit;
-	t_point bloc;
-	char prev_wall_char;
-	char next_wall_char;
-	int dx;
-	int dy;
 
-	tmp = display->head;
-	hit.distance = 0;
-	hit.collision.x = 0;
-	hit.collision.y = 0;
-	(void)dx;
-	(void)dy;
-	while (tmp)
-	{
-		tmp_bloc = pixel_to_bloc(tmp->dot, display);
-		if (display->map[tmp_bloc.y][tmp_bloc.x] == '0' || is_player(display->map[tmp_bloc.y][tmp_bloc.x]))
-		{
-			img_pix_put(&display->rays, tmp->dot.x, tmp->dot.y, 0x00F0);
-		}
-		else
-		{
-			hit.collision = tmp->dot;
-			hit.distance = to_wall(display, tmp->dot, beta);
-			hit.wall_direction = get_wall_direction(hit.collision, display->player.blocs);
-			/****************************fix-for textures and wall direction***************************************************/
-			dx = hit.collision.x / 16 - display->player.blocs.x;
-    		dy = hit.collision.y / 16 - display->player.blocs.y;
-			if (hit.wall_direction == NORTH || hit.wall_direction == SOUTH)
-			{
-				bloc = pixel_to_bloc(hit.collision, display);
-				if (bloc.y <= 0 || bloc.y >= display->texture.map_height - 1
-					|| !(display->map[bloc.y][bloc.x]))
-					break;
-				prev_wall_char = display->map[bloc.y - 1][bloc.x];
-				next_wall_char = display->map[bloc.y + 1][bloc.x];
-				if (display->map[bloc.y][bloc.x] == prev_wall_char
-					&& prev_wall_char == next_wall_char)
-				{
-					printf("pla = %f, pi/2 = %f\n", display->player.angle, 3 *M_PI / 2);
-					if ((dx < 0 && dy < 0) || (dx < 0 && dy > 0))
-						hit.wall_direction = EAST;
-					else
-						hit.wall_direction = WEST;
-				}
-				else
-				{
-					if (dx < 0 && dy > 0 && hit.wall_direction == NORTH)
-					{
-						if (hit.collision.x % 16 == 15 && display->map[bloc.y][bloc.x + 1] == '0')
-							hit.wall_direction = EAST;
-					}
-					if (dx < 0 && dy < 0 && hit.wall_direction == SOUTH)
-					{
-						if (hit.collision.x % 16 == 15 && display->map[bloc.y][bloc.x + 1] == '0')
-							hit.wall_direction = EAST;
-					}
-					if (dx > 0 && dy > 0 && hit.wall_direction == NORTH)
-					{
-						if (hit.collision.x % 16 == 0 && display->map[bloc.y][bloc.x - 1] == '0')
-							hit.wall_direction = WEST;
-					}
-					if (dx > 0 && dy < 0 && hit.wall_direction == SOUTH)
-					{
-						if (hit.collision.x % 16 == 0 && display->map[bloc.y][bloc.x - 1] == '0')
-							hit.wall_direction = WEST;
-					}
-				}
-			}
-			/*************************************************************************************************/
-			break;
-		}
-		tmp = tmp -> next;
-	}
-	// ft_printf(" = %d\n", distance);
-	return (hit);
-}
 
-void		draw_line(t_display *display)
-{
-	t_line *tmp;
-	t_point tmp_bloc;
-
-	tmp = display->head;
-	while (tmp)
-	{
-		tmp_bloc = pixel_to_bloc(tmp->dot, display);
-		if (display->map[tmp_bloc.y][tmp_bloc.x] == '0' || is_player(display->map[tmp_bloc.y][tmp_bloc.x]))
-			mlx_pixel_put(display->mlx.mlx_ptr, display->mlx.win_ptr,tmp->dot.x,tmp->dot.y, 0xFF000);
-		else
-		{
-			//printf("fount this here : (%c)\n", display->map[tmp_bloc.y][tmp_bloc.x]);
-			break;
-		}
-		tmp = tmp -> next;
-	}
-}
-
-void    draw_textured_line(t_line *line, t_hit hit, int line_size, t_display *display)
-{
-        t_line *tmp;
-		float uv_x;
-		float uv_y;
-		t_img_texture *texture_to_display;
-		int texture_color;
-		int count;
-
-        tmp = line;
-		count = 0;
-		if (hit.wall_direction == NORTH)
-			texture_to_display = &display->texture.t_north;
-		else if (hit.wall_direction == SOUTH)
-			texture_to_display = &display->texture.t_south;
-		else if (hit.wall_direction == EAST)
-			texture_to_display = &display->texture.t_east;
-		else
-			texture_to_display = &display->texture.t_west;
-        while (tmp)
-        {
-			if (hit.wall_direction == NORTH || hit.wall_direction == SOUTH)
-				uv_x = (float)(hit.collision.x % 16) / 16;
-			else
-				uv_x = (float)(hit.collision.y % 16) / 16;
-            uv_y = (float)(count * 16) / line_size / 16;
-            texture_color = sample_texture(texture_to_display, uv_x, uv_y);
-            img_pix_put(&display->all, tmp->dot.x, tmp->dot.y, texture_color);
-			count ++;
-            tmp = tmp -> next;
-        }
-}
 
 
 int	main(int argc, char **argv)
@@ -413,9 +155,6 @@ int	main(int argc, char **argv)
 	(void)argv;
 	int map_height;
 	t_display	display;
-	//t_point begin;
-	//t_point end;
-	//t_line *head;
 
 	init_it(&display);
 
@@ -428,7 +167,6 @@ int	main(int argc, char **argv)
 	if (error_handling(&display))
 		return (1);
 	init_player_position(&display);
-	printf("next -one %f\n", display.player.angle);
 	/************MLX*********/
 	display.mlx.mlx_ptr = mlx_init();
 	display.mlx2.mlx_ptr = mlx_init();
@@ -455,12 +193,6 @@ int	main(int argc, char **argv)
 	mlx_loop_hook(display.mlx.mlx_ptr, &game_engine, &display);
 	mlx_loop(display.mlx.mlx_ptr);
 	mlx_do_key_autorepeaton(display.mlx.mlx_ptr);/*Cette fonction les reactive*/
-	
-	/*
-	*/
-
-	// mlx_loop(display.mlx2.mlx_ptr); boucle morte
-	/******************************/
 	free_texture(&display);
 	return (0);
 }

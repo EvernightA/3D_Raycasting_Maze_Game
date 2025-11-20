@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/17 21:27:31 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/20 11:27:49 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 #endif
 
 #ifndef TETA
-#define TETA M_PI/12
+#define TETA 0.0872664626
 #endif
 
 #ifndef SIZE_IMG
@@ -209,6 +209,7 @@ size_t	find_len_max(char **map);
 int 	map_invalid(int i, int j, int k, char **map);
 char	*ft_strdup_x(char *s, int len);
 
+void	filter_texture(t_display *display);
 
 int		is_player(char c);
 int		is_unknown(char c);
@@ -226,6 +227,7 @@ void	orientation_player(t_display * display, int operation);
 
 void	cast_ray(t_point begin,t_display *display, int d);
 int 	float_abs(float number);
+int		get_map_height(t_display *display, int *map_height ,char *file);
 
 
 void	print_map(char **map);
@@ -254,6 +256,7 @@ int	get_rgb(t_rgb *rgb, char *str_rgb);
 int		closed_error(char	**map);
 int	is_player(char c);
 int player_in_str(char *str);
+int	parsing(int *map_height, char *file, t_display *display);
 
 void	img_initialization(t_display *display);
 void	mini_map(t_display *display, char **map);
@@ -271,8 +274,11 @@ void	img_pix_put(t_img *img, int x, int y, int color);
 void    clear_img(t_display *display);
 void	clear_rays(t_display *display);
 int    	game_engine(t_display *display);
-void	player_move (t_display *display, int opx, int opy, double angle);
+void	player_move (t_display *display, int op, bool is_float);
+
 void    load_textures(t_display *display);
 int     sample_texture(t_img_texture *img_tex, float u, float v);
-int get_wall_direction(t_point collision, t_point player_pos);
+int 	get_wall_direction(t_point collision, t_point player_pos);
+void	free_tex_map(t_display *display);
+
 #endif

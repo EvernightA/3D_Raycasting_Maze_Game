@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bresenham.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
+/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 13:17:03 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/17 13:16:55 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/18 06:40:07 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void draw_wall_lines(t_display *display, t_hit hit, int pixel_index, float angle
 	end.y = (SCRN_HEIGHT >> 1) + (line_size >> 1);
 	line = bresenham_line(&begin, &end);
 	draw_textured_line(line, hit, line_size, display);
+	ft_linefree(&line);
 	if (display->head)
 	{
 		ft_linefree(&display->head);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
+/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 11:17:34 by mratsima          #+#    #+#             */
-/*   Updated: 2025/10/08 09:32:48 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/19 13:53:19 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ char	**get_map(char *gnl, int fd, int map_height)
 		free(gnl);
 		gnl = get_next_line(fd);
 	}
+	close(fd);
 	return (map);
 }
 

@@ -25,10 +25,29 @@ int	quit_win(t_display *display)
 	mlx_do_key_autorepeaton(display->mlx.mlx_ptr);/*Cette fonction les reactive faut toujours reactiver a chaque fois*/
 	mlx_destroy_image(display->mlx.mlx_ptr, display->texture.floor_img);
 	mlx_destroy_image(display->mlx.mlx_ptr, display->texture.wall_img);
-	mlx_destroy_window(display->mlx.mlx_ptr, display->mlx.win_ptr);
-	mlx_destroy_display(display->mlx.mlx_ptr);
-	free(display->mlx.mlx_ptr);
+	mlx_destroy_image(display->mlx.mlx_ptr, display->rays.mlx_img);
+	mlx_destroy_image(display->mlx.mlx_ptr, display->texture.t_east.img_ptr);
+	mlx_destroy_image(display->mlx.mlx_ptr, display->texture.t_north.img_ptr);
+	mlx_destroy_image(display->mlx.mlx_ptr, display->texture.t_west.img_ptr);
+	mlx_destroy_image(display->mlx.mlx_ptr, display->texture.t_south.img_ptr);
 
+	mlx_destroy_image(display->mlx2.mlx_ptr, display->all.mlx_img);
+	mlx_destroy_window(display->mlx.mlx_ptr, display->mlx.win_ptr);
+	mlx_destroy_window(display->mlx2.mlx_ptr, display->mlx2.win_ptr);
+	mlx_destroy_display(display->mlx.mlx_ptr);
+	mlx_destroy_display(display->mlx2.mlx_ptr);
+	free(display->mlx.mlx_ptr);
+	free(display->mlx2.mlx_ptr);
+
+	free(display->texture.c_rgb);
+	free(display->texture.f_rgb);
+	free(display->texture.north);
+	free(display->texture.south);
+	free(display->texture.east);
+	free(display->texture.west);
+	free_split(display->texture.dup_map);
+	free_split(display->map);
+	//free(display->all.);
 	exit(0);
 }
 
@@ -46,17 +65,27 @@ float to_wall(t_display *display, t_point collision, float beta)
 }
 
 
-void	player_move (t_display *display, int opx, int opy, double angle)
+void	player_move (t_display *display, int op, bool is_float)
 {
-	(void)angle;
-	display->player.pixels.x = display->player.pixels.x + display->player.delta_x * opx;
-	display->player.pixels.y = display->player.pixels.y + display->player.delta_y * opy;
-	display->begin.y = display->player.pixels.y;
-	display->begin.x = display->player.pixels.x;
-	display->player.blocs = pixel_to_bloc(display->player.pixels, display);
-	display->map[display->player.blocs.y][display->player.blocs.x] = display->player.orientation;
+	if (!is_float)
+	{
+		display->player.pixels.x = display->player.pixels.x + display->player.delta_x * op;
+		display->player.pixels.y = display->player.pixels.y + display->player.delta_y * op;
+		display->begin.y = display->player.pixels.y;
+		display->begin.x = display->player.pixels.x;
+		display->player.blocs = pixel_to_bloc(display->player.pixels, display);
+		display->map[display->player.blocs.y][display->player.blocs.x] = display->player.orientation;
+	}
+	else
+	{
+		display->player.pixels.x = display->player.pixels.x  + roundf(display->player.perp_x) * op;
+		display->player.pixels.y = display->player.pixels.y  + roundf(display->player.perp_y) * op;
+		display->begin.y = display->player.pixels.y;
+		display->begin.x = display->player.pixels.x;
+		display->player.blocs = pixel_to_bloc(display->player.pixels, display);
+		display->map[display->player.blocs.y][display->player.blocs.x] = display->player.orientation;
+	}
 }
-
 
 void	orientation_player(t_display * display, int operation)
 {
@@ -84,6 +113,13 @@ void	render_all(t_display *display)
 	mlx_put_image_to_window(display->mlx2.mlx_ptr, display->mlx2.win_ptr, display->all.mlx_img, 0, 0);
 	mlx_put_image_to_window(display->mlx.mlx_ptr, display->mlx.win_ptr, display->rays.mlx_img, 0, 0);
 	mini_map(display, display->map);
+	//if (display->all.mlx_img && display->rays.mlx_img)
+	//{
+	//	mlx_destroy_image(display->mlx2.mlx_ptr, display->all.mlx_img);
+	//	mlx_destroy_image(display->mlx.mlx_ptr, display->rays.mlx_img);
+	//}
+	//display->all.mlx_img = NULL;
+	//display->rays.mlx_img = NULL;
 }
 
 
