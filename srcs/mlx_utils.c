@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:50:26 by mratsima          #+#    #+#             */
-/*   Updated: 2025/11/17 20:48:34 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/20 10:53:53 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void	rad_to_deg(double rad)
 {
 	printf("angle en deg = %f\n", 180 * rad / M_PI);
-	printf("cos = %f, sin = %f\n", cos(rad), sin(rad));
+	// printf("cos = %f, sin = %f\n", cos(rad), sin(rad));
 
 }
 

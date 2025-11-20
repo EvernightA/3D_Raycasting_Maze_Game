@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 17:41:59 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/17 21:24:53 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/20 10:55:45 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,10 +105,10 @@ int game_engine(t_display *display)
 		tmp = pixel_to_bloc(tmp, display);
 		if (tmp.y < display->texture.map_height && display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
 		{
-			rad_to_deg(display->player.angle);
+			// rad_to_deg(display->player.angle);
 			display->player.pixels.x += -roundf(display->player.perp_x);
 			display->player.pixels.y += -roundf(display->player.perp_y);
-			printf("px = %d ---- py %d\n", display->player.pixels.x, display->player.pixels.y);
+			// printf("px = %d ---- py %d\n", display->player.pixels.x, display->player.pixels.y);
 			display->begin.y = display->player.pixels.y;
 			display->begin.x = display->player.pixels.x;
 			display->player.blocs = pixel_to_bloc(display->player.pixels, display);
@@ -129,10 +129,10 @@ int game_engine(t_display *display)
 		if (tmp.y < display->texture.map_height && display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
 		{
 			// player_move(display, -1, -1, display->player.angle);
-			rad_to_deg(display->player.angle);
+			// rad_to_deg(display->player.angle);
 			display->player.pixels.x += roundf(display->player.perp_x);
 			display->player.pixels.y += roundf(display->player.perp_y);
-			printf("px = %d ---- py = %d\n", display->player.pixels.x, display->player.pixels.y);
+			// printf("px = %d ---- py = %d\n", display->player.pixels.x, display->player.pixels.y);
 			display->begin.y = display->player.pixels.y;
 			display->begin.x = display->player.pixels.x;
 			display->player.blocs = pixel_to_bloc(display->player.pixels, display);
@@ -146,7 +146,7 @@ int game_engine(t_display *display)
 	{
 		// display->key_stat.left_press = true;
 		orientation_player(display, -1);
-		rad_to_deg(display->player.angle);
+		// rad_to_deg(display->player.angle);
 		// rad_to_deg(display->player.rl_angle);
 		clear_img(display);
     	clear_rays(display);
@@ -156,7 +156,7 @@ int game_engine(t_display *display)
 	{
 		// display->key_stat.right_press = true;
 		orientation_player(display, 1);
-		rad_to_deg(display->player.angle);
+		// rad_to_deg(display->player.angle);
 		// rad_to_deg(display->player.angle);
 		clear_img(display);
    		clear_rays(display);

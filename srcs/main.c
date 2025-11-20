@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/11/19 15:44:58 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/20 11:03:27 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -315,31 +315,33 @@ t_hit		draw_line_2(t_display *display, float beta)
 				if (display->map[bloc.y][bloc.x] == prev_wall_char
 					&& prev_wall_char == next_wall_char)
 				{
-					if (display->player.angle > 0 && display->player.angle < M_PI / 2
-						&& display->player.angle > 3/2 * M_PI && display->player.angle < 2 * M_PI)
+					if (display->player.angle > M_PI / 2 && display->player.angle < 3 * M_PI / 2)
 						hit.wall_direction = EAST;
 					else
 						hit.wall_direction = WEST;
 				}
-				if (dx < 0 && dy > 0 && hit.wall_direction == NORTH)
+				else
 				{
-					if (hit.collision.x % 16 == 15 && display->map[bloc.y][bloc.x + 1] == '0')
-						hit.wall_direction = WEST;
-				}
-				if (dx < 0 && dy < 0 && hit.wall_direction == SOUTH)
-				{
-					if (hit.collision.x % 16 == 15 && display->map[bloc.y][bloc.x + 1] == '0')
-						hit.wall_direction = WEST;
-				}
-				if (dx > 0 && dy > 0 && hit.wall_direction == NORTH)
-				{
-					if (hit.collision.x % 16 == 0 && display->map[bloc.y][bloc.x - 1] == '0')
-						hit.wall_direction = EAST;
-				}
-				if (dx > 0 && dy < 0 && hit.wall_direction == SOUTH)
-				{
-					if (hit.collision.x % 16 == 0 && display->map[bloc.y][bloc.x - 1] == '0')
-						hit.wall_direction = EAST;
+					if (dx < 0 && dy > 0 && hit.wall_direction == NORTH)
+					{
+						if (hit.collision.x % 16 == 15 && display->map[bloc.y][bloc.x + 1] == '0')
+							hit.wall_direction = EAST;
+					}
+					if (dx < 0 && dy < 0 && hit.wall_direction == SOUTH)
+					{
+						if (hit.collision.x % 16 == 15 && display->map[bloc.y][bloc.x + 1] == '0')
+							hit.wall_direction = EAST;
+					}
+					if (dx > 0 && dy > 0 && hit.wall_direction == NORTH)
+					{
+						if (hit.collision.x % 16 == 0 && display->map[bloc.y][bloc.x - 1] == '0')
+							hit.wall_direction = WEST;
+					}
+					if (dx > 0 && dy < 0 && hit.wall_direction == SOUTH)
+					{
+						if (hit.collision.x % 16 == 0 && display->map[bloc.y][bloc.x - 1] == '0')
+							hit.wall_direction = WEST;
+					}
 				}
 			}
 			/*************************************************************************************************/
