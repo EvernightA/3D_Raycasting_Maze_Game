@@ -29,36 +29,12 @@ void	img_pix_put(t_img *img, int x, int y, int color)
 
 void    clear_img(t_display *display)
 {
-    int i;
-    int j;
-
-    i = 0;
-    while (i < SCRN_HEIGHT)
-    {
-        j = 0;
-        while (j < SCRN_WIDTH)
-        {
-            img_pix_put(&display->all ,j , i, 0x00000);
-            j++;
-        }
-        i++;
-    }
+    if (display->all.addr)
+        ft_memset(display->all.addr, 0, SCRN_HEIGHT * display->all.line_len);
 }
 
 void    clear_rays(t_display *display)
 {
-    int i;
-    int j;
-
-    i = 0;
-    while (i < SCRN_HEIGHT)
-    {
-        j = 0;
-        while (j < SCRN_WIDTH)
-        {
-            img_pix_put(&display->rays ,j , i, 0x00000);
-            j++;
-        }
-        i++;
-    }
+    if (display->rays.addr)
+        ft_memset(display->rays.addr, 0, SCRN_HEIGHT * display->rays.line_len);
 }

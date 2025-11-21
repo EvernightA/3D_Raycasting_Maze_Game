@@ -24,24 +24,21 @@ void	aff_floor_and_ceiling(t_display *display)
 	int j;
 	int ceiling_color;
 	int floor_color;
+	int half_height;
 
-	j = 0;
 	floor_color = create_trgb(0, display->texture.floor_rgb.red,
-	display->texture.floor_rgb.green, display->texture.floor_rgb.blue);
-	ft_printf("red = %d\n", display->texture.floor_rgb.red);
-	ft_printf("blue = %d\n", display->texture.floor_rgb.blue);
-	ft_printf("green = %d\n", display->texture.floor_rgb.green);
+		display->texture.floor_rgb.green, display->texture.floor_rgb.blue);
 	ceiling_color = create_trgb(0, display->texture.ceiling_rgb.red,
 		display->texture.ceiling_rgb.green, display->texture.ceiling_rgb.blue);
-	while (j < SCRN_HEIGHT - 1)
+	half_height = SCRN_HEIGHT >> 1;
+	j = 0;
+	while (j < half_height)
 	{
 		i = 0;
-		while (i < SCRN_WIDTH - 1)
+		while (i < SCRN_WIDTH)
 		{
-			if (j <= SCRN_HEIGHT / 2)
-				img_pix_put(&display->all, i, j, ceiling_color);
-			else
-				img_pix_put(&display->all, i, j, floor_color);
+			img_pix_put(&display->all, i, j, ceiling_color);
+			img_pix_put(&display->all, i, j + half_height, floor_color);
 			i++;
 		}
 		j++;
