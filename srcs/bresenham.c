@@ -133,9 +133,11 @@ t_line	*bresenham_line(t_point *begin, t_point *end)
 	int dp;
 	t_point current;
 	t_line *head;
+	t_line *tail;
 	t_line *new_node;
 	
 	head = NULL;
+	tail = NULL;
 	delta_x = ft_abs(end->x - begin->x);
 	delta_y = ft_abs(end->y - begin->y);
 	if ((begin->x < end->x))
@@ -155,9 +157,16 @@ t_line	*bresenham_line(t_point *begin, t_point *end)
 			break;
 		}
 		new_node = ft_linenew(current);
-		ft_lineadd_back(&head, new_node);
 		if (head == NULL)
+		{
 			head = new_node;
+			tail = new_node;
+		}
+		else
+		{
+			tail->next = new_node;
+			tail = new_node;
+		}
 		if (current.x == end->x && current.y == end->y)
 			break ;
 		dp = 2 * err;
@@ -171,7 +180,6 @@ t_line	*bresenham_line(t_point *begin, t_point *end)
 			err += delta_x;
 			current.y += y_step;
 		}
-		//mlx_pixel_put();
 	}
 	return (head);
 }
