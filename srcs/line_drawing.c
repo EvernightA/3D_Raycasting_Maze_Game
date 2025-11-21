@@ -108,7 +108,6 @@ t_hit		draw_line_2(t_display *display, float beta)
 				if (display->map[bloc.y][bloc.x] == prev_wall_char
 					&& prev_wall_char == next_wall_char)
 				{
-					printf("pla = %f, pi/2 = %f\n", display->player.angle, 3 *M_PI / 2);
 					if ((dx < 0 && dy < 0) || (dx < 0 && dy > 0))
 						hit.wall_direction = EAST;
 					else

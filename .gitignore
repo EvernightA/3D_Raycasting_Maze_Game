@@ -1,0 +1,17 @@
+# Object files
+*.o
+*.a
+
+# Executables
+cub3D
+minilibx-linux/test/mlx-test
+
+# Libraries
+libft/libft.a
+minilibx-linux/libmlx.a
+minilibx-linux/libmlx_Linux.a
+minilibx-linux/obj/
+
+# IDE
+.vscode/
+.DS_Store

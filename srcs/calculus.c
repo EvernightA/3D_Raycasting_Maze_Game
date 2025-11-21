@@ -16,14 +16,17 @@
 int		shifter(int	number)
 {
 	int	i;
+	int power;
+	int max_bits;
 
 	i = 0;
-	while (i < number)
+	power = 1;
+	max_bits = 32;
+	while (i < max_bits)
 	{
-		if (pow(2, i) == number)
-		{
+		if (power == number)
 			return (i);
-		}
+		power = power << 1;
 		i++;
 	}
 	printf("Not valid number for size\n");

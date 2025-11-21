@@ -59,8 +59,8 @@ float to_wall(t_display *display, t_point collision, float beta)
 
 	dx = display->player.pixels.x - collision.x;
 	dy = display->player.pixels.y - collision.y;
-	distance = sqrt(pow(abs(dx), 2) + pow(abs(dy), 2));
-	distance = distance * cos(beta);
+	distance = sqrtf(dx * dx + dy * dy);
+	distance = distance * cosf(beta);
 	return (distance);
 }
 

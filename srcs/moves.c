@@ -14,9 +14,7 @@
 
 void	clean_rendering(t_display *display)
 {
-	//clear_img(display);
-   	//clear_rays(display);
-	mlx_clear_window(display->mlx.mlx_ptr, display->mlx.win_ptr);
+	clear_rays(display);
 	render_all(display);
 }
 
