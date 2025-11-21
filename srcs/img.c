@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 16:41:21 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/21 20:13:35 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/21 20:22:41 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void    clear_img_opti(t_display *display)
 {
     if (display->all.addr)
     {
-        ft_memset(display->all.addr, 0, SCRN_HEIGHT);
+        ft_memset(display->all.addr, 0, SCRN_HEIGHT * display->all.line_len);
     }
 }
 
