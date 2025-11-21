@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 10:34:32 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/20 10:36:45 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/21 14:03:15 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ t_hit		draw_line_2(t_display *display, float beta)
 		tmp_bloc = pixel_to_bloc(tmp->dot, display);
 		if (display->map[tmp_bloc.y][tmp_bloc.x] == '0' || is_player(display->map[tmp_bloc.y][tmp_bloc.x]))
 		{
-			img_pix_put(&display->rays, tmp->dot.x, tmp->dot.y, 0x00F0);
+			//img_pix_put(&display->rays, tmp->dot.x, tmp->dot.y, 0x00F0);
 		}
 		else
 		{

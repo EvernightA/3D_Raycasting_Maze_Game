@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/11/20 10:43:07 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/21 14:02:16 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,7 +178,7 @@ int	main(int argc, char **argv)
 		return (1);
 	mlx_do_key_autorepeatoff(display.mlx.mlx_ptr);/*Cette fonction annule l'auto repetition des touches*/
 	display.mlx.win_ptr = mlx_new_window(display.mlx.mlx_ptr, SCRN_WIDTH, SCRN_HEIGHT, "cub3d");
-	display.mlx2.win_ptr = mlx_new_window(display.mlx2.mlx_ptr, SCRN_WIDTH, SCRN_HEIGHT, "render");
+	//display.mlx2.win_ptr = mlx_new_window(display.mlx2.mlx_ptr, SCRN_WIDTH, SCRN_HEIGHT, "render");
 	/*********************/
 	img_initialization(&display);
 	load_textures(&display);
@@ -191,7 +191,7 @@ int	main(int argc, char **argv)
 	mlx_hook(display.mlx.win_ptr, 17, 0, quit_win, &display);
 	mlx_hook(display.mlx.win_ptr, 2, 1L<<0, key_hook, &display);
 	mlx_hook(display.mlx.win_ptr, 3, 1L<<1, releasing_key, &display);
-	mini_map(&display, display.map);
+	//mini_map(&display, display.map);
 	mlx_loop_hook(display.mlx.mlx_ptr, &game_engine, &display);
 	mlx_loop(display.mlx.mlx_ptr);
 	mlx_do_key_autorepeaton(display.mlx.mlx_ptr);/*Cette fonction les reactive*/
