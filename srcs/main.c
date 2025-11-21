@@ -6,8 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/11/20 10:43:07 by fsamy-an         ###   ########.fr       */
-/*   Updated: 2025/11/20 11:37:56 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/21 16:17:21 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,6 +165,14 @@ int	main(int argc, char **argv)
 		return (1);
 	if (error_handling(&display))
 		return (1);
+	if (get_rgb(&display.texture.floor_rgb, display.texture.f_rgb))
+	{
+		return (1);
+	}
+	if (get_rgb(&display.texture.ceiling_rgb, display.texture.c_rgb))
+	{
+		return (1);
+	}
 	init_player_position(&display);
 	/************MLX*********/
 	display.mlx.mlx_ptr = mlx_init();
