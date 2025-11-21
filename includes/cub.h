@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/20 11:27:49 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/21 16:17:14 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -278,6 +278,8 @@ void	player_move (t_display *display, int op, bool is_float);
 
 void    load_textures(t_display *display);
 int     sample_texture(t_img_texture *img_tex, float u, float v);
+void	aff_floor_and_ceiling(t_display *display);
+
 int 	get_wall_direction(t_point collision, t_point player_pos);
 void	free_tex_map(t_display *display);
 

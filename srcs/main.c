@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/11/21 14:02:16 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/21 16:29:39 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,9 +149,6 @@ t_point	pixel_to_bloc(t_point pixel, t_display *display)
 
 
 
-
-
-
 int	main(int argc, char **argv)
 {
 	(void)argv;
@@ -168,6 +165,14 @@ int	main(int argc, char **argv)
 		return (1);
 	if (error_handling(&display))
 		return (1);
+	if (get_rgb(&display.texture.floor_rgb, display.texture.f_rgb))
+	{
+		return (1);
+	}
+	if (get_rgb(&display.texture.ceiling_rgb, display.texture.c_rgb))
+	{
+		return (1);
+	}
 	init_player_position(&display);
 	/************MLX*********/
 	display.mlx.mlx_ptr = mlx_init();
