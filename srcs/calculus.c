@@ -17,10 +17,12 @@ int		shifter(int	number)
 {
 	int	i;
 	int power;
+	int max_bits;
 
 	i = 0;
 	power = 1;
-	while (i < 32)
+	max_bits = 32;
+	while (i < max_bits)
 	{
 		if (power == number)
 			return (i);
