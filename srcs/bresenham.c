@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 13:17:03 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/21 14:18:03 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/21 20:53:37 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,8 +134,10 @@ t_line	*bresenham_line(t_point *begin, t_point *end)
 	t_point current;
 	t_line *head;
 	t_line *new_node;
+	t_line	*tail;
 	
 	head = NULL;
+	tail = NULL;
 	delta_x = ft_abs(end->x - begin->x);
 	delta_y = ft_abs(end->y - begin->y);
 	if ((begin->x < end->x))
@@ -155,9 +157,17 @@ t_line	*bresenham_line(t_point *begin, t_point *end)
 			break;
 		}
 		new_node = ft_linenew(current);
-		ft_lineadd_back(&head, new_node);
+		//ft_lineadd_back(&head, new_node);
 		if (head == NULL)
+		{
 			head = new_node;
+			tail = new_node;
+		}
+		else
+		{
+			tail->next = new_node;
+			tail = new_node;
+		}
 		if (current.x == end->x && current.y == end->y)
 			break ;
 		dp = 2 * err;
