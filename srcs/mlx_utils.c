@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
+/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:50:26 by mratsima          #+#    #+#             */
-/*   Updated: 2025/11/21 15:42:21 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/21 21:26:15 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ void	player_move (t_display *display, int op, bool is_float)
 {
 	if (!is_float)
 	{
-		display->player.pixels.x = display->player.pixels.x + display->player.delta_x * op;
-		display->player.pixels.y = display->player.pixels.y + display->player.delta_y * op;
+		display->player.pixels.x = display->player.pixels.x + roundf(display->player.delta_x) * op;
+		display->player.pixels.y = display->player.pixels.y + roundf(display->player.delta_y) * op;
 		display->begin.y = display->player.pixels.y;
 		display->begin.x = display->player.pixels.x;
 		display->player.blocs = pixel_to_bloc(display->player.pixels, display);
