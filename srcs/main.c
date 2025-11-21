@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/11/20 11:37:56 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/21 16:08:38 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -427,6 +427,14 @@ int	main(int argc, char **argv)
 		return (1);
 	if (error_handling(&display))
 		return (1);
+	if (get_rgb(&display.texture.floor_rgb, display.texture.f_rgb))
+	{
+		return (1);
+	}
+	if (get_rgb(&display.texture.ceiling_rgb, display.texture.c_rgb))
+	{
+		return (1);
+	}
 	init_player_position(&display);
 	printf("next -one %f\n", display.player.angle);
 	/************MLX*********/
