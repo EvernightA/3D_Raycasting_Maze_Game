@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 17:41:59 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/21 21:08:28 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/22 13:31:00 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ int	there_is_no_wall(t_display *display, int op, bool is_float)
 
 	if (!is_float)
 	{
-		tmp.x = display->player.pixels.x + display->player.delta_x * op;
-		tmp.y = display->player.pixels.y + display->player.delta_y * op;
+		tmp.x = display->player.pixels.x + roundf(display->player.delta_x) * op;
+		tmp.y = display->player.pixels.y + roundf(display->player.delta_y) * op;
 		tmp = pixel_to_bloc(tmp, display);
 	}
 	else
@@ -57,7 +57,8 @@ int	there_is_no_wall(t_display *display, int op, bool is_float)
 		tmp.y = display->player.pixels.y + roundf(display->player.perp_y) * op;
 		tmp = pixel_to_bloc(tmp, display);
 	}
-	if (tmp.y < display->texture.map_height && display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
+	printf("height %d\n", display->texture.map_height);
+	if (display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
 	{
 		return (1);
 	}
