@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/21 16:17:14 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/22 09:28:41 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <X11/keysym.h>
 # include "../minilibx-linux/mlx.h"
 #include <stdbool.h>
+//#include <float.h>
 
 
 #ifndef M_PI
@@ -28,7 +29,7 @@
 #endif
 
 #ifndef SPEED
-# define  SPEED 5
+# define  SPEED 1.5
 #endif
 
 #ifndef TETA

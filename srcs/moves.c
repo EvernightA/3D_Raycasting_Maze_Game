@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 17:41:59 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/22 08:08:18 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/22 09:28:19 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	clean_rendering(t_display *display)
 {
-	clear_img(display);
-	clear_rays(display);
-	// mlx_clear_window(display->mlx2.mlx_ptr, display->mlx2.win_ptr);
+	//clear_img(display);
+   	clear_rays(display);
+	mlx_clear_window(display->mlx.mlx_ptr, display->mlx.win_ptr);
 	render_all(display);
 }
 
@@ -90,5 +90,7 @@ int game_engine(t_display *display)
 		orientation_player(display, 1);
 		clean_rendering(display);
 	}
+		//clean_rendering(display);
+
     return (0);
 }
