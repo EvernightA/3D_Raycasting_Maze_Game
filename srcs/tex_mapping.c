@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 11:37:27 by mratsima          #+#    #+#             */
-/*   Updated: 2025/11/21 20:24:00 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/22 10:20:20 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,49 +101,17 @@ int	straight_line_case(int dx, int dy)
 	return (-1);
 }
 
-int get_wall_direction(t_point collision, t_point player_bloc)
+int diagonal_line_direction(int dx, int dy, t_point collision_pixel)
 {
-	t_point	collision_pixel;
-	t_point	collision_bloc;
-	int dx;
-	int dy;
-
-    collision_bloc.x = collision.x / 16;
-    collision_bloc.y = collision.y / 16;
-    collision_pixel.x = collision.x % 16;
-    collision_pixel.y = collision.y % 16;  
-	// just get the coordinates of the vector player->wall 
-	// so we can know which direction the ray has
-	dx = collision_bloc.x - player_bloc.x;
-	dy = collision_bloc.y - player_bloc.y;    
-    // if dx == 0 || dy == 0 the ray is in a straight vertical or straight horizontal line
-    // if (dx > 0 && dy == 0)
-    //     return (WEST);
-    // if (dx < 0 && dy == 0)
-    //     return (EAST);    
-    // if (dy > 0 && dx == 0)
-    //     return (NORTH);    
-    // if (dy < 0 && dx == 0)
-    //     return (SOUTH);
-	if (straight_line_case(dx, dy) != -1)
-		return (straight_line_case(dx, dy));
-    // For diagonal hits, determine by which edge is closer
-    if (dx > 0 && dy > 0)
+	if (dx > 0 && dy > 0)
     {
-        //to be sure which side of the wall we hit we just have to compare the
-		//x coordinates and the y coordinates of the ray super easy 
-		//if u don't understand make a drawing and you'll get it
         if (collision_pixel.x < collision_pixel.y)
             return (WEST);
-        else
-            return (NORTH);
     }
     if (dx < 0 && dy > 0)
     {
         if ((15 - collision_pixel.x) < collision_pixel.y)
             return (EAST);
-        else
-            return (NORTH);
     }    
     if (dx > 0 && dy < 0)
     {
@@ -159,5 +127,27 @@ int get_wall_direction(t_point collision, t_point player_bloc)
         else
             return (SOUTH);
     }
-    return (NORTH);
+	return (NORTH);
+}
+
+int get_wall_direction(t_point collision, t_point player_bloc)
+{
+	t_point	collision_pixel;
+	t_point	collision_bloc;
+	int dx;
+	int dy;
+
+    collision_bloc.x = collision.x / 16;
+    collision_bloc.y = collision.y / 16;
+    collision_pixel.x = collision.x % 16;
+    collision_pixel.y = collision.y % 16;  
+	// just get the coordinates of the vector player->wall 
+	// so we can know which direction the ray has
+	dx = collision_bloc.x - player_bloc.x;
+	dy = collision_bloc.y - player_bloc.y;    
+	if (straight_line_case(dx, dy) != -1)
+		return (straight_line_case(dx, dy));
+    // For diagonal hits, determine by which edge is closer
+	else
+		return (diagonal_line_direction(dx, dy, collision_pixel));
 }

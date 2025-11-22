@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 10:34:32 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/22 10:17:42 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/22 10:21:13 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,6 @@ t_hit		draw_line_2(t_display *display, float beta)
 	hit.distance = 0;
 	hit.collision.x = 0;
 	hit.collision.y = 0;
-	(void)dx;
-	(void)dy;
 	while (tmp)
 	{
 		tmp_bloc = pixel_to_bloc(tmp->dot, display);
