@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/22 14:28:07 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/23 14:02:37 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@
 #endif
 
 #ifndef MAX_DISTANCE
- #define MAX_DISTANCE 500
+ #define MAX_DISTANCE 500 // This is a problem we need to calculate the optimal distance
 #endif
 
 #ifndef NORTH

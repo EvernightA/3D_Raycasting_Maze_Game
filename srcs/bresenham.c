@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 13:17:03 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/21 21:06:03 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/23 13:52:47 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@ t_point calculate_end(t_point begin, float angle, int max_distance)
 	
 	end.x = begin.x + cos(angle) * max_distance;
 	end.y = begin.y + sin(angle) * max_distance; 
+	
+// A corriger
+
 	return (end);
 }
 
