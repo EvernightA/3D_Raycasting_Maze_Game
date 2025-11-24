@@ -113,6 +113,12 @@ typedef struct s_point
 	int	dp;
 }t_point;
 
+typedef struct s_point_f
+{
+	float x;
+	float y;
+}t_point_f;
+
 typedef struct  s_line
 {
 	t_point dot;
@@ -148,6 +154,7 @@ typedef struct s_hit
 {
 	float distance;
 	t_point collision;
+	t_point_f collision_precise;
 	int wall_direction;
 }	t_hit;
 
@@ -239,6 +246,7 @@ void	orientation_player(t_display * display, int operation);
 
 
 void	cast_ray(t_point begin,t_display *display, int d);
+t_hit	cast_ray_dda(t_display *display, float ray_angle);
 int 	float_abs(float number);
 int		get_map_height(t_display *display, int *map_height ,char *file);
 

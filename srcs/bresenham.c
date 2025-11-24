@@ -73,56 +73,17 @@ void draw_wall_lines(t_display *display, t_hit hit, int pixel_index, float angle
 
 void	cast_ray(t_point begin,t_display *display, int d)
 {
-	t_point true_end;
 	float	angle;
-	int pixel_index;
-	// float distance;
-	t_hit hit;
+	int		pixel_index;
+	t_hit	hit;
 
-	/*
-		Dans cette fonction nous mettons angle = -FOV/2 pour que la direction principale se trouve au milieu
-	*/
-	/*PIXEL INDEX IS USED TO TRACK WHICH SCREEN LINE WE SHOULD DRAW*/
+	(void)d;
+	(void)begin;
 	pixel_index = 0;
 	angle = -FOV / 2;
 	while (angle <= FOV / 2)
 	{
-		true_end = calculate_end(begin, display->player.angle + angle, d);
-		/*
-			Nous avons ajouter l'orientation duplayer a l'angle pour dessiner des rayons dans ltes cotes environnants
-			Notons que player.angle est update a chaque fois que Left ou right est presEE
-
-
-			Ex :
-
-			itereation 1:
-
-			player_angle = 0;
-			angle = -MPI / 3;
-			
-			calcule de end pour l'angle new = 0 - MPI/3;
-			On cree une ligne grace a bresenham pour new
-			On dessine la ligne
-
-			On fait ca pour chaque iteration
-		*/
-		// if (true_end.x > SCRN_HEIGHT)
-		// {
-		// 	true_end.x = SCRN_HEIGHT;
-		// }
-		// if (true_end.y > SCRN_WIDTH)
-		// {
-		// 	true_end.y = SCRN_WIDTH;
-		// }
-		if (display->head)
-			ft_linefree(&display->head);
-		display->head = bresenham_line(&begin, &true_end);
-		hit = draw_line_2(display, angle); // This draw line uses yellow
-		if (display->head)
-		{
-			ft_linefree(&display->head);
-			display->head = NULL;
-		}
+		hit = cast_ray_dda(display, display->player.angle + angle);
 		draw_wall_lines(display, hit, pixel_index, angle);
 		angle += (FOV / SCRN_WIDTH);
 		pixel_index++;
