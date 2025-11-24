@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 22:31:11 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/10/02 22:33:19 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/24 19:10:14 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ char	*ft_strdup_x(char *s, int len)
 	return (new);
 }
 
-char	**dup_mat(int height, char **map)
+char	**dup_mat(t_display *display,  int height, char **map)
 {
 	int 	i;
 	char	**tmp;
@@ -103,7 +103,7 @@ char	**dup_mat(int height, char **map)
 	if (!tmp)
 		return (NULL);
 	max_len = find_len_max(map);
-
+	display->texture.map_width = max_len;
 	while (map[i])
 	{
 		tmp[i] = ft_strdup_x(map[i], max_len);

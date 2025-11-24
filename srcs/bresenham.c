@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 13:17:03 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/24 14:44:28 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/24 18:54:31 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,14 +129,16 @@ void	cast_ray(t_point begin,t_display *display, int d)
 	}
 }
 
+//int delta_x;
+//int delta_y;
+//int x_step;
+//int y_step;
+//int err;
+//int dp;
+
 t_line	*bresenham_line(t_point *begin, t_point *end)
 {
-	int delta_x;
-	int delta_y;
-	int x_step;
-	int y_step;
-	int err;
-	int dp;
+	t_bres	utils;
 	t_point current;
 	t_line *head;
 	t_line *new_node;
@@ -144,17 +146,17 @@ t_line	*bresenham_line(t_point *begin, t_point *end)
 	
 	head = NULL;
 	tail = NULL;
-	delta_x = ft_abs(end->x - begin->x);
-	delta_y = ft_abs(end->y - begin->y);
+	utils.delta_x = ft_abs(end->x - begin->x);
+	utils.delta_y = ft_abs(end->y - begin->y);
 	if ((begin->x < end->x))
-		x_step = 1;
+		utils.x_step = 1;
 	else
-		x_step = -1;
+		utils.x_step = -1;
 	if ((begin->y < end->y))
-		y_step = 1;
+		utils.y_step = 1;
 	else
-		y_step = -1;
-	err = delta_x - delta_y;
+		utils.y_step = -1;
+	utils.err = utils.delta_x - utils.delta_y;
 	current = *begin;
 	while (1)
 	{
@@ -172,16 +174,16 @@ t_line	*bresenham_line(t_point *begin, t_point *end)
 		}
 		if (current.x == end->x && current.y == end->y)
 			break ;
-		dp = 2 * err;
-		if (dp > -delta_y)
+		utils.dp = 2 * utils.err;
+		if (utils.dp > -utils.delta_y)
 		{
-			err -= delta_y;
-			current.x += x_step;
+			utils.err -= utils.delta_y;
+			current.x += utils.x_step;
 		}
-		if (dp < delta_x)
+		if (utils.dp < utils.delta_x)
 		{
-			err += delta_x;
-			current.y += y_step;
+			utils.err += utils.delta_x;
+			current.y += utils.y_step;
 		}
 		//mlx_pixel_put();
 	}

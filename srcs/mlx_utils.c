@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:50:26 by mratsima          #+#    #+#             */
-/*   Updated: 2025/11/24 09:36:43 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/24 19:15:05 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,9 +110,14 @@ void	orientation_player(t_display * display, int operation)
 void	render_all(t_display *display)
 {
 	int	d;
+	int	power_h;
+	int	power_w;
+
+	power_h = display->texture.map_height * display->texture.map_height * 256;
+	power_w  = display->texture.map_width * display->texture.map_width * 256;
 	aff_floor_and_ceiling(display);
 	// Clculer max_distance ici
-	d = display->texture.map_height  * 16;
+	d = sqrt(power_h + power_w);
 	cast_ray(display->begin, display, d);
 	mlx_put_image_to_window(display->mlx2.mlx_ptr, display->mlx2.win_ptr, display->all.mlx_img, 0, 0);
 	mlx_put_image_to_window(display->mlx.mlx_ptr, display->mlx.win_ptr, display->rays.mlx_img, 0, 0);

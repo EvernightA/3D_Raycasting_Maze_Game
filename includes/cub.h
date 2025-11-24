@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/24 14:46:02 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/24 19:10:37 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,16 @@ typedef struct s_img
     int		endian;
 }	t_img;
 
+typedef struct s_bres
+{
+	int delta_x;
+	int delta_y;
+	int x_step;
+	int y_step;
+	int err;
+	int dp;
+}t_bres;
+
 typedef struct s_img_texture
 {
     void        *img_ptr;
@@ -160,6 +170,7 @@ typedef struct s_tex
 	// char	**map;
 	char	**dup_map;
 	int		map_height;
+	int		map_width;
 } t_tex;
 
 typedef struct s_mlx
@@ -205,7 +216,8 @@ typedef struct s_display
 	t_move			key_stat;
 }				t_display;
 
-char	**dup_mat(int height, char **map);
+char	**dup_mat(t_display *display,  int height, char **map);
+
 size_t	find_len_max(char **map);
 int 	map_invalid(int i, int j, int k, char **map);
 char	*ft_strdup_x(char *s, int len);
