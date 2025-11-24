@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 10:34:32 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/24 09:55:12 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/24 09:57:49 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,8 @@ t_hit		draw_line_2(t_display *display, float beta)
 			hit.collision = before->dot;
 			hit.distance = to_wall(display, before->dot, beta);
 			hit.wall_direction = get_wall_direction(hit.collision, display->player.blocs);
+			return (hit);
+
 		}
 		tmp = tmp -> next;
 	}

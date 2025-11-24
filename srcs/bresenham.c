@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 13:17:03 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/24 09:45:15 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/24 14:44:28 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,10 +158,6 @@ t_line	*bresenham_line(t_point *begin, t_point *end)
 	current = *begin;
 	while (1)
 	{
-		if(current.x > SCRN_WIDTH || current.y > SCRN_HEIGHT)
-		{
-			break;
-		}
 		new_node = ft_linenew(current);
 		//ft_lineadd_back(&head, new_node);
 		if (head == NULL)
