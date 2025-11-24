@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 17:41:59 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/22 14:28:34 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/24 17:13:05 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,10 @@ int releasing_key(int key, void *param)
     if (key == XK_Left)
         display->key_stat.left_press = false;
     if (key == XK_Right)
+	{
         display->key_stat.right_press = false;
+	}
+	mlx_do_key_autorepeaton(display->mlx.mlx_ptr);
     return (0);
 }
 
