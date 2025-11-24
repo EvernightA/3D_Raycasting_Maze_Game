@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/21 20:13:50 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/24 15:30:36 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <X11/keysym.h>
 # include "../minilibx-linux/mlx.h"
 #include <stdbool.h>
+//#include <float.h>
 
 
 #ifndef M_PI
@@ -56,7 +57,7 @@
 #endif
 
 #ifndef MAX_DISTANCE
- #define MAX_DISTANCE 500
+ #define MAX_DISTANCE 600
 #endif
 
 #ifndef NORTH

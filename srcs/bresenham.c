@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 13:17:03 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/21 20:53:37 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/24 15:30:47 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@ t_point calculate_end(t_point begin, float angle, int max_distance)
 	
 	end.x = begin.x + cos(angle) * max_distance;
 	end.y = begin.y + sin(angle) * max_distance; 
+	
+// A corriger
+
 	return (end);
 }
 
@@ -50,7 +53,10 @@ void draw_wall_lines(t_display *display, t_hit hit, int pixel_index, float angle
 	if (hit.distance)
 		line_size =  SIZE_IMG * WALL_UNIT / hit.distance;
 	else
+	{
 		line_size = SCRN_HEIGHT;
+		printf("=====================================================> %f\n", hit.distance);
+	}
 	begin.y = (SCRN_HEIGHT >> 1) - (line_size >> 1);
 	begin.x = pixel_index;
 	end.x = pixel_index;
@@ -152,10 +158,6 @@ t_line	*bresenham_line(t_point *begin, t_point *end)
 	current = *begin;
 	while (1)
 	{
-		if(current.x > SCRN_WIDTH || current.y > SCRN_HEIGHT)
-		{
-			break;
-		}
 		new_node = ft_linenew(current);
 		//ft_lineadd_back(&head, new_node);
 		if (head == NULL)

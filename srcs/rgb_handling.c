@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rgb_handling.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 14:57:44 by mratsima          #+#    #+#             */
-/*   Updated: 2025/11/01 16:26:16 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/22 10:43:40 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	non_numeric_check(char *rgb_part)
 	{
 		if (!ft_isdigit(rgb_part[i]))
 		{
-			ft_putstr_fd("Error\nWrong rgb value\n", 2);
+			// ft_putstr_fd("Error\nWrong rgb value\n", 2);
 			return (1);
 		}
 		i++;

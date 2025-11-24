@@ -6,7 +6,11 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:50:26 by mratsima          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/11/21 16:30:15 by fsamy-an         ###   ########.fr       */
+=======
+/*   Updated: 2025/11/24 09:36:43 by fsamy-an         ###   ########.fr       */
+>>>>>>> main
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +73,8 @@ void	player_move (t_display *display, int op, bool is_float)
 {
 	if (!is_float)
 	{
-		display->player.pixels.x = display->player.pixels.x + display->player.delta_x * op;
-		display->player.pixels.y = display->player.pixels.y + display->player.delta_y * op;
+		display->player.pixels.x = display->player.pixels.x + roundf(display->player.delta_x) * op;
+		display->player.pixels.y = display->player.pixels.y + roundf(display->player.delta_y) * op;
 		display->begin.y = display->player.pixels.y;
 		display->begin.x = display->player.pixels.x;
 		display->player.blocs = pixel_to_bloc(display->player.pixels, display);
@@ -109,11 +113,28 @@ void	orientation_player(t_display * display, int operation)
 
 void	render_all(t_display *display)
 {
+	int	d;
 	aff_floor_and_ceiling(display);
+<<<<<<< HEAD
 	cast_ray(display->begin, display, MAX_DISTANCE);
 	mlx_put_image_to_window(display->mlx.mlx_ptr, display->mlx.win_ptr, display->all.mlx_img, 0, 0);
 	//mlx_put_image_to_window(display->mlx.mlx_ptr, display->mlx.win_ptr, display->rays.mlx_img, 0, 0);
 	//mini_map(display, display->map);
+=======
+	// Clculer max_distance ici
+	d = display->texture.map_height  * 16;
+	cast_ray(display->begin, display, d);
+	mlx_put_image_to_window(display->mlx2.mlx_ptr, display->mlx2.win_ptr, display->all.mlx_img, 0, 0);
+	mlx_put_image_to_window(display->mlx.mlx_ptr, display->mlx.win_ptr, display->rays.mlx_img, 0, 0);
+	mini_map(display, display->map);
+	//if (display->all.mlx_img && display->rays.mlx_img)
+	//{
+	//	mlx_destroy_image(display->mlx2.mlx_ptr, display->all.mlx_img);
+	//	mlx_destroy_image(display->mlx.mlx_ptr, display->rays.mlx_img);
+	//}
+	//display->all.mlx_img = NULL;
+	//display->rays.mlx_img = NULL;
+>>>>>>> main
 }
 
 
