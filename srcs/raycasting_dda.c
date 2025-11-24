@@ -75,7 +75,11 @@ t_hit	cast_ray_dda(t_display *display, float ray_angle)
 			side = 1;
 		}
 		if (map_y < 0 || map_y >= display->texture.map_height
-			|| map_x < 0 || !display->map[map_y][map_x]
+			|| map_x < 0 || map_x >= display->texture.map_width)
+		{
+			hit_wall = 1;
+		}
+		else if (!display->map[map_y][map_x]
 			|| display->map[map_y][map_x] == '1')
 		{
 			hit_wall = 1;
