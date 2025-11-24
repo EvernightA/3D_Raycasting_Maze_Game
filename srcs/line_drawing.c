@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   line_drawing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 10:34:32 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/24 09:57:49 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/24 19:37:00 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void    draw_textured_line(t_line *line, t_hit hit, int line_size, t_display *di
 				uv_x = (float)(hit.collision.x % 16) / SIZE_IMG;
 			else
 				uv_x = (float)(hit.collision.y % 16) / SIZE_IMG;
-            uv_y = (float)(count * 16) / line_size / SIZE_IMG;
+            uv_y = (float)count / line_size;
             texture_color = sample_texture(texture_to_display, uv_x, uv_y);
             img_pix_put(&display->all, tmp->dot.x, tmp->dot.y, texture_color);
 			count ++;
