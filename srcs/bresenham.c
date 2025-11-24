@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bresenham.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 13:17:03 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/24 18:54:31 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/24 19:39:44 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ void draw_wall_lines(t_display *display, t_hit hit, int pixel_index, float angle
 		line_size = SCRN_HEIGHT;
 		printf("=====================================================> %f\n", hit.distance);
 	}
+	if (line_size > SCRN_HEIGHT * 2)
+ 	   line_size = SCRN_HEIGHT * 2;  // fix for the fisheye close
 	begin.y = (SCRN_HEIGHT >> 1) - (line_size >> 1);
 	begin.x = pixel_index;
 	end.x = pixel_index;
