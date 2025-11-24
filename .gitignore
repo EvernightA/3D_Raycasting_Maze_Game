@@ -1,0 +1,18 @@
+# Object files
+*.o
+
+# Executables
+cub3D
+
+# Libraries
+*.a
+
+# Build artifacts
+minilibx-linux/obj/
+minilibx-linux/test/main.o
+minilibx-linux/test/mlx-test
+libft/libft.a
+
+# Editor/IDE files
+.vscode/
+.DS_Store

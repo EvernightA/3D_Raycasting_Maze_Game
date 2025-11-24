@@ -110,19 +110,19 @@ int diagonal_line_direction(int dx, int dy, t_point collision_pixel)
     }
     if (dx < 0 && dy > 0)
     {
-        if ((15 - collision_pixel.x) < collision_pixel.y)
+        if ((SIZE_IMG - 1 - collision_pixel.x) < collision_pixel.y)
             return (EAST);
     }    
     if (dx > 0 && dy < 0)
     {
-        if (collision_pixel.x < (15 - collision_pixel.y))
+        if (collision_pixel.x < (SIZE_IMG - 1 - collision_pixel.y))
             return (WEST);
         else
             return (SOUTH);
     }    
     if (dx < 0 && dy < 0)
     {
-        if ((15 - collision_pixel.x) < (15 - collision_pixel.y))
+        if ((SIZE_IMG - 1 - collision_pixel.x) < (SIZE_IMG - 1 - collision_pixel.y))
             return (EAST);
         else
             return (SOUTH);
@@ -137,10 +137,10 @@ int get_wall_direction(t_point collision, t_point player_bloc)
 	int dx;
 	int dy;
 
-    collision_bloc.x = collision.x / 16;
-    collision_bloc.y = collision.y / 16;
-    collision_pixel.x = collision.x % 16;
-    collision_pixel.y = collision.y % 16;  
+    collision_bloc.x = collision.x / SIZE_IMG;
+    collision_bloc.y = collision.y / SIZE_IMG;
+    collision_pixel.x = collision.x % SIZE_IMG;
+    collision_pixel.y = collision.y % SIZE_IMG;  
 	// just get the coordinates of the vector player->wall 
 	// so we can know which direction the ray has
 	dx = collision_bloc.x - player_bloc.x;

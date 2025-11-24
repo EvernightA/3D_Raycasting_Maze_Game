@@ -34,10 +34,10 @@ void    draw_textured_line(t_line *line, t_hit hit, int line_size, t_display *di
         while (tmp)
         {
 			if (hit.wall_direction == NORTH || hit.wall_direction == SOUTH)
-				uv_x = (float)(hit.collision.x % 16) / SIZE_IMG;
+				uv_x = (float)(hit.collision.x % SIZE_IMG) / SIZE_IMG;
 			else
-				uv_x = (float)(hit.collision.y % 16) / SIZE_IMG;
-            uv_y = (float)(count * 16) / line_size / SIZE_IMG;
+				uv_x = (float)(hit.collision.y % SIZE_IMG) / SIZE_IMG;
+            uv_y = (float)(count * SIZE_IMG) / line_size / SIZE_IMG;
             texture_color = sample_texture(texture_to_display, uv_x, uv_y);
             img_pix_put(&display->all, tmp->dot.x, tmp->dot.y, texture_color);
 			count ++;
@@ -95,8 +95,8 @@ t_hit		draw_line_2(t_display *display, float beta)
 			hit.distance = to_wall(display, tmp->dot, beta);
 			hit.wall_direction = get_wall_direction(hit.collision, display->player.blocs);
 			/****************************fix-for textures and wall direction***************************************************/
-			dx = hit.collision.x / 16 - display->player.blocs.x;
-    		dy = hit.collision.y / 16 - display->player.blocs.y;
+			dx = hit.collision.x / SIZE_IMG - display->player.blocs.x;
+    		dy = hit.collision.y / SIZE_IMG - display->player.blocs.y;
 			if (hit.wall_direction == NORTH || hit.wall_direction == SOUTH)
 			{
 				bloc = pixel_to_bloc(hit.collision, display);
@@ -116,33 +116,33 @@ t_hit		draw_line_2(t_display *display, float beta)
 				}
 				else
 				{
-					printf("dx = %d, dy = %d, hitwc = %d, dpy+1 = '%c', dpy-1 = '%c'\n", dx, dy, hit.collision.x % 16, display->map[bloc.y + 1][bloc.x], display->map[bloc.y - 1][bloc.x]); 
+					printf("dx = %d, dy = %d, hitwc = %d, dpy+1 = '%c', dpy-1 = '%c'\n", dx, dy, hit.collision.x % SIZE_IMG, display->map[bloc.y + 1][bloc.x], display->map[bloc.y - 1][bloc.x]); 
 					if (dx < 0 && dy > 0 && hit.wall_direction == NORTH)
 					{
-						if (hit.collision.x % 16 == 15 && display->map[bloc.y][bloc.x + 1] != '1')
+						if (hit.collision.x % SIZE_IMG == SIZE_IMG - 1 && display->map[bloc.y][bloc.x + 1] != '1')
 							hit.wall_direction = EAST;
-						if (hit.collision.x % 16 == 15 && display->map[bloc.y + 1][bloc.x] != '1' && display->map[bloc.y - 1][bloc.x] == '1')
+						if (hit.collision.x % SIZE_IMG == SIZE_IMG - 1 && display->map[bloc.y + 1][bloc.x] != '1' && display->map[bloc.y - 1][bloc.x] == '1')
 							hit.wall_direction = EAST;
 					}
 					if (dx < 0 && dy < 0 && hit.wall_direction == SOUTH)
 					{
-						if (hit.collision.x % 16 == 15 && display->map[bloc.y][bloc.x + 1] != '1')
+						if (hit.collision.x % SIZE_IMG == SIZE_IMG - 1 && display->map[bloc.y][bloc.x + 1] != '1')
 							hit.wall_direction = EAST;
-						if (hit.collision.x % 16 == 15 && display->map[bloc.y - 1][bloc.x] != '1' && display->map[bloc.y + 1][bloc.x] == '1')
+						if (hit.collision.x % SIZE_IMG == SIZE_IMG - 1 && display->map[bloc.y - 1][bloc.x] != '1' && display->map[bloc.y + 1][bloc.x] == '1')
 							hit.wall_direction = EAST;
 					}
 					if (dx > 0 && dy > 0 && hit.wall_direction == NORTH)
 					{
-						if (hit.collision.x % 16 == 0 && display->map[bloc.y][bloc.x - 1] != '1')
+						if (hit.collision.x % SIZE_IMG == 0 && display->map[bloc.y][bloc.x - 1] != '1')
 							hit.wall_direction = WEST;
-						if (hit.collision.x % 16 == 0 && display->map[bloc.y + 1][bloc.x] != '1' && display->map[bloc.y - 1][bloc.x] == '1')
+						if (hit.collision.x % SIZE_IMG == 0 && display->map[bloc.y + 1][bloc.x] != '1' && display->map[bloc.y - 1][bloc.x] == '1')
 							hit.wall_direction = WEST;
 					}
 					if (dx > 0 && dy < 0 && hit.wall_direction == SOUTH)
 					{
-						if (hit.collision.x % 16 == 0 && display->map[bloc.y][bloc.x - 1] != '1')
+						if (hit.collision.x % SIZE_IMG == 0 && display->map[bloc.y][bloc.x - 1] != '1')
 							hit.wall_direction = WEST;
-						if (hit.collision.x % 16 == 0 && display->map[bloc.y - 1][bloc.x] != '1' && display->map[bloc.y + 1][bloc.x] == '1')
+						if (hit.collision.x % SIZE_IMG == 0 && display->map[bloc.y - 1][bloc.x] != '1' && display->map[bloc.y + 1][bloc.x] == '1')
 							hit.wall_direction = WEST;
 					}
 					printf("hitwd = %d\n", hit.wall_direction);
