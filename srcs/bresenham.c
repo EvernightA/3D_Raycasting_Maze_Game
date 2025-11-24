@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 13:17:03 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/23 13:52:47 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/24 09:45:15 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,10 @@ void draw_wall_lines(t_display *display, t_hit hit, int pixel_index, float angle
 	if (hit.distance)
 		line_size =  SIZE_IMG * WALL_UNIT / hit.distance;
 	else
+	{
 		line_size = SCRN_HEIGHT;
+		printf("=====================================================> %f\n", hit.distance);
+	}
 	begin.y = (SCRN_HEIGHT >> 1) - (line_size >> 1);
 	begin.x = pixel_index;
 	end.x = pixel_index;

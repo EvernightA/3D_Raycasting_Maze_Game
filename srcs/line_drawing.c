@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   line_drawing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
+/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 10:34:32 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/22 10:27:21 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/24 09:55:12 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void		draw_line(t_display *display)
 t_hit		draw_line_2(t_display *display, float beta)
 {
 	t_line *tmp;
+	t_line	*before;
 	t_point tmp_bloc;
 	t_hit 	hit;
 	t_point bloc;
@@ -80,6 +81,7 @@ t_hit		draw_line_2(t_display *display, float beta)
 	hit.distance = 0;
 	hit.collision.x = 0;
 	hit.collision.y = 0;
+	before = NULL;
 	while (tmp)
 	{
 		tmp_bloc = pixel_to_bloc(tmp->dot, display);
@@ -147,11 +149,17 @@ t_hit		draw_line_2(t_display *display, float beta)
 				}
 			}
 			/*************************************************************************************************/
-			printf("----------\n");
-			break;
+			return (hit);
+		}
+		if (tmp->next == NULL)
+		{
+			before = tmp;
+			hit.collision = before->dot;
+			hit.distance = to_wall(display, before->dot, beta);
+			hit.wall_direction = get_wall_direction(hit.collision, display->player.blocs);
 		}
 		tmp = tmp -> next;
 	}
-	// ft_printf(" = %d\n", distance);
+	
 	return (hit);
 }
