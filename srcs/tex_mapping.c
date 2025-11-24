@@ -70,8 +70,29 @@ void    load_textures(t_display *display)
     int     pixel;
     char    *addr;
     
+    // Clamp UV coordinates to [0, 1] range to prevent out-of-bounds access
+    if (u < 0.0f)
+        u = 0.0f;
+    if (u > 1.0f)
+        u = 1.0f;
+    if (v < 0.0f)
+        v = 0.0f;
+    if (v > 1.0f)
+        v = 1.0f;
+    
+    // Map UV to texture coordinates (0 to width-1, 0 to height-1)
     x = (int)(u * (img_tex->width - 1));
     y = (int)(v * (img_tex->height - 1));
+    
+    // Extra safety: clamp to texture bounds
+    if (x < 0)
+        x = 0;
+    if (x >= img_tex->width)
+        x = img_tex->width - 1;
+    if (y < 0)
+        y = 0;
+    if (y >= img_tex->height)
+        y = img_tex->height - 1;
     
     addr = img_tex->data + (y * img_tex->line_len + x * (img_tex->bpp / 8));
     
@@ -110,19 +131,19 @@ int diagonal_line_direction(int dx, int dy, t_point collision_pixel)
     }
     if (dx < 0 && dy > 0)
     {
-        if ((15 - collision_pixel.x) < collision_pixel.y)
+        if ((SIZE_IMG - 1 - collision_pixel.x) < collision_pixel.y)
             return (EAST);
     }    
     if (dx > 0 && dy < 0)
     {
-        if (collision_pixel.x < (15 - collision_pixel.y))
+        if (collision_pixel.x < (SIZE_IMG - 1 - collision_pixel.y))
             return (WEST);
         else
             return (SOUTH);
     }    
     if (dx < 0 && dy < 0)
     {
-        if ((15 - collision_pixel.x) < (15 - collision_pixel.y))
+        if ((SIZE_IMG - 1 - collision_pixel.x) < (SIZE_IMG - 1 - collision_pixel.y))
             return (EAST);
         else
             return (SOUTH);
@@ -137,10 +158,10 @@ int get_wall_direction(t_point collision, t_point player_bloc)
 	int dx;
 	int dy;
 
-    collision_bloc.x = collision.x / 16;
-    collision_bloc.y = collision.y / 16;
-    collision_pixel.x = collision.x % 16;
-    collision_pixel.y = collision.y % 16;  
+    collision_bloc.x = collision.x / SIZE_IMG;
+    collision_bloc.y = collision.y / SIZE_IMG;
+    collision_pixel.x = collision.x % SIZE_IMG;
+    collision_pixel.y = collision.y % SIZE_IMG;  
 	// just get the coordinates of the vector player->wall 
 	// so we can know which direction the ray has
 	dx = collision_bloc.x - player_bloc.x;

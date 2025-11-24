@@ -38,10 +38,10 @@ void	init_player_pos(t_display *display, int i, int j)
 {
 	display->player.blocs.x = i;
 	display->player.blocs.y = j;
-	display->begin.x = i  * 16 + (16 >> 1);
-	display->begin.y = j  * 16 + (16 >> 1);
-	display->player.pixels.x = i * 16 + (16 >> 1);
-	display->player.pixels.y = j * 16 + (16 >> 1);
+	display->begin.x = i  * SIZE_IMG + (SIZE_IMG >> 1);
+	display->begin.y = j  * SIZE_IMG + (SIZE_IMG >> 1);
+	display->player.pixels.x = i * SIZE_IMG + (SIZE_IMG >> 1);
+	display->player.pixels.y = j * SIZE_IMG + (SIZE_IMG >> 1);
 	display->player.fov = 60;
 }
 

@@ -112,7 +112,7 @@ void	render_all(t_display *display)
 	int	d;
 	aff_floor_and_ceiling(display);
 	// Clculer max_distance ici
-	d = display->texture.map_height  * 16;
+	d = display->texture.map_height  * SIZE_IMG;
 	cast_ray(display->begin, display, d);
 	mlx_put_image_to_window(display->mlx2.mlx_ptr, display->mlx2.win_ptr, display->all.mlx_img, 0, 0);
 	mlx_put_image_to_window(display->mlx.mlx_ptr, display->mlx.win_ptr, display->rays.mlx_img, 0, 0);
