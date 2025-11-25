@@ -33,9 +33,9 @@ void    draw_textured_line(t_line *line, t_hit hit, int line_size, int wall_star
         while (tmp)
         {
 			if (hit.wall_direction == NORTH || hit.wall_direction == SOUTH)
-				uv_x = (float)(hit.collision.x % 16) / SIZE_IMG;
+				uv_x = (float)(hit.collision.x % SIZE_IMG) / SIZE_IMG;
 			else
-				uv_x = (float)(hit.collision.y % 16) / SIZE_IMG;
+				uv_x = (float)(hit.collision.y % SIZE_IMG) / SIZE_IMG;
 			tex_y = tmp->dot.y - wall_start;
 			if (line_size > 0)
 				uv_y = (float)tex_y / (float)line_size;
