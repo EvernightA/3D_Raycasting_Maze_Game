@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
+/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 17:41:59 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/25 10:48:09 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/25 14:05:31 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ int	there_is_no_wall(t_display *display, int op, bool is_float)
 		tmp = pixel_to_bloc(tmp, display);
 	}
 	printf("height %d\n", display->texture.map_height);
-	if (display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
+	printf("y = %d < height %d  |  x = %d \n", tmp.y, display->texture.map_height, tmp.x);
+	if (tmp.y < display->texture.map_height && tmp.x < display->texture.map_width && display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
 	{
 		return (1);
 	}
