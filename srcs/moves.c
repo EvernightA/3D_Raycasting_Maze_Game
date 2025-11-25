@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 17:41:59 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/22 14:28:34 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/25 08:53:29 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ int	there_is_no_wall(t_display *display, int op, bool is_float)
 	{
 		tmp.x = display->player.pixels.x + roundf(display->player.delta_x) * op;
 		tmp.y = display->player.pixels.y + roundf(display->player.delta_y) * op;
+		tmp.f_x = display->player.pixels.f_x + display->player.delta_x * op;
+		tmp.f_y = display->player.pixels.f_y + display->player.delta_y * op;
 		tmp = pixel_to_bloc(tmp, display);
 	}
 	else

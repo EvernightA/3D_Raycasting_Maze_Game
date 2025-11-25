@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 13:17:03 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/24 19:39:44 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/25 08:40:00 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,9 @@ t_point calculate_end(t_point begin, float angle, int max_distance)
 	t_point end;
 	
 	end.x = begin.x + cos(angle) * max_distance;
-	end.y = begin.y + sin(angle) * max_distance; 
+	end.y = begin.y + sin(angle) * max_distance;
+	end.f_x = begin.f_x + cos(angle) * max_distance;
+	end.f_y = begin.f_y + sin(angle) * max_distance;
 	
 // A corriger
 
@@ -62,6 +64,8 @@ void draw_wall_lines(t_display *display, t_hit hit, int pixel_index, float angle
 	begin.y = (SCRN_HEIGHT >> 1) - (line_size >> 1);
 	begin.x = pixel_index;
 	end.x = pixel_index;
+	begin.f_x = pixel_index;
+	end.f_x = pixel_index;
 	end.y = (SCRN_HEIGHT >> 1) + (line_size >> 1);
 	line = bresenham_line(&begin, &end);
 	draw_textured_line(line, hit, line_size, display);
@@ -137,6 +141,69 @@ void	cast_ray(t_point begin,t_display *display, int d)
 //int y_step;
 //int err;
 //int dp;
+
+t_line	*dda_line(t_point *begin, t_point *end)
+{
+	float	dx;
+	float	dy;
+	float	steps;
+	float	x_inc;
+	float	y_inc;
+	float	x;
+	float	y;
+	int		i;
+	t_point	current;
+	t_line	*head;
+	t_line	*new_node;
+	t_line	*tail;
+	
+	head = NULL;
+	tail = NULL;
+	
+	// Use the precise coordinates for calculation
+	dx = end->f_x - begin->f_x;
+	dy = end->f_y - begin->f_y;
+	
+	if (fabsf(dx) > fabsf(dy))
+		steps = fabsf(dx);
+	else
+		steps = fabsf(dy);
+	
+	x_inc = dx / steps;
+	y_inc = dy / steps;
+	
+	x = begin->f_x;
+	y = begin->f_y;
+	
+	i = 0;
+	while (i <= steps)
+	{
+		// Store both integer and float versions
+		current.f_x = x;
+		current.f_y = y;
+		current.x = (int)x;  // Integer for grid access
+		current.y = (int)y;  // Integer for grid access
+		current.dp = 0;
+		
+		new_node = ft_linenew(current);
+		if (head == NULL)
+		{
+			head = new_node;
+			tail = new_node;
+		}
+		else
+		{
+			tail->next = new_node;
+			tail = new_node;
+		}
+		
+		x += x_inc;
+		y += y_inc;
+		i++;
+	}
+	
+	return (head);
+}
 
 t_line	*bresenham_line(t_point *begin, t_point *end)
 {

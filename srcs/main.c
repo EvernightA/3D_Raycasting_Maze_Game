@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/11/21 16:17:21 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/25 08:44:39 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,12 @@ void	init_player_pos(t_display *display, int i, int j)
 	display->player.blocs.y = j;
 	display->begin.x = i  * 16 + (16 >> 1);
 	display->begin.y = j  * 16 + (16 >> 1);
+	display->begin.f_x = i  * 16 + (16 >> 1);
+	display->begin.f_y = j  * 16 + (16 >> 1);
 	display->player.pixels.x = i * 16 + (16 >> 1);
 	display->player.pixels.y = j * 16 + (16 >> 1);
+	display->player.pixels.f_x = i * 16 + (16 >> 1);
+	display->player.pixels.f_y = j * 16 + (16 >> 1);
 	display->player.fov = 60;
 }
 
@@ -143,6 +147,8 @@ t_point	pixel_to_bloc(t_point pixel, t_display *display)
 
 	bloc.x = pixel.x >> display->shifter.size_img;// size = 16
 	bloc.y = pixel.y >> display->shifter.size_img;// size = 16
+	bloc.f_x = pixel.x >> display->shifter.size_img;// size = 16
+	bloc.f_y = pixel.y >> display->shifter.size_img;// size = 16
 	return (bloc);
 }
 
@@ -187,8 +193,6 @@ int	main(int argc, char **argv)
 	/*********************/
 	img_initialization(&display);
 	load_textures(&display);
-	display.end.x = display.player.pixels.x + 24;
-	display.end.y = display.player.pixels.y + 24;
 	//mlx_pixel_put(display.mlx.mlx_ptr, display.mlx.win_ptr, display.end.x, display.end.y, 0XFF000);
 	/*********MLX******************/
 	//mlx_key_hook(display.mlx.mlx_ptr, display.mlx.win_ptr, &display);

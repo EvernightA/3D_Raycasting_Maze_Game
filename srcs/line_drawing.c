@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 10:34:32 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/24 19:37:00 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/25 08:41:06 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ t_hit		draw_line_2(t_display *display, float beta)
 	hit.distance = 0;
 	hit.collision.x = 0;
 	hit.collision.y = 0;
+	hit.collision.f_x = 0;
+	hit.collision.f_y = 0;
 	before = NULL;
 	while (tmp)
 	{
