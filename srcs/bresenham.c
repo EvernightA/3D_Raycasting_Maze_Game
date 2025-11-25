@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 13:17:03 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/25 09:00:10 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/25 09:31:48 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,25 +99,35 @@ t_line	*dda_line(t_point *begin, t_point *end)
 	dx = end->f_x - begin->f_x;
 	dy = end->f_y - begin->f_y;
 	
+	// Calculate steps - take the larger absolute value
 	if (fabsf(dx) > fabsf(dy))
 		steps = fabsf(dx);
 	else
 		steps = fabsf(dy);
 	
+	// Avoid division by zero
+	if (steps == 0)
+	{
+		new_node = ft_linenew(*begin);
+		return (new_node);
+	}
+	
+	// Calculate increment for each step
 	x_inc = dx / steps;
 	y_inc = dy / steps;
 	
+	// Start at beginning point
 	x = begin->f_x;
 	y = begin->f_y;
 	
 	i = 0;
-	while (i <= steps)
+	while (i <= (int)steps)
 	{
 		// Store both integer and float versions
 		current.f_x = x;
 		current.f_y = y;
-		current.x = (int)x;  // Integer for grid access
-		current.y = (int)y;  // Integer for grid access
+		current.x = (int)x;  // Just truncate - no rounding!
+		current.y = (int)y;  // Just truncate - no rounding!
 		current.dp = 0;
 		
 		new_node = ft_linenew(current);
@@ -175,17 +185,10 @@ void	cast_ray(t_point begin,t_display *display, int d)
 
 			On fait ca pour chaque iteration
 		*/
-		// if (true_end.x > SCRN_HEIGHT)
-		// {
-		// 	true_end.x = SCRN_HEIGHT;
-		// }
-		// if (true_end.y > SCRN_WIDTH)
-		// {
-		// 	true_end.y = SCRN_WIDTH;
-		// }
+
 		if (display->head)
 			ft_linefree(&display->head);
-		display->head = bresenham_line(&begin, &true_end);
+		display->head = dda_line(&begin, &true_end);
 		hit = draw_line_2(display, angle); // This draw line uses yellow
 		if (display->head)
 		{
