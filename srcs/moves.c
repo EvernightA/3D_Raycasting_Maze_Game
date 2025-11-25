@@ -44,6 +44,7 @@ int releasing_key(int key, void *param)
 int	there_is_no_wall(t_display *display, int op, bool is_float)
 {
 	t_point	tmp;
+	char	cell;
 
 	if (!is_float)
 	{
@@ -57,12 +58,12 @@ int	there_is_no_wall(t_display *display, int op, bool is_float)
 		tmp.y = display->player.pixels.y + roundf(display->player.perp_y) * op;
 		tmp = pixel_to_bloc(tmp, display);
 	}
-	if (tmp.y < 0 || tmp.y >= display->texture.map_height)
+	if (tmp.y < 0 || tmp.y >= display->texture.map_height || !display->map[tmp.y])
 		return (0);
-	if (tmp.x < 0 || !display->map[tmp.y]
-		|| tmp.x >= (int)ft_strlen(display->map[tmp.y]))
+	if (tmp.x < 0 || tmp.x >= (int)ft_strlen(display->map[tmp.y]))
 		return (0);
-	if (display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
+	cell = display->map[tmp.y][tmp.x];
+	if (cell && cell != '1')
 		return (1);
 	return (0);
 }
