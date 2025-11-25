@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
+/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:50:26 by mratsima          #+#    #+#             */
-/*   Updated: 2025/11/25 10:35:57 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/25 21:17:30 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ float to_wall(t_display *display, t_point collision, float beta)
 }
 
 
-void	player_move (t_display *display, int op, bool is_float)
+void	 player_move (t_display *display, int op, bool is_float)
 {
 	if (!is_float)
 	{

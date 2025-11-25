@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 17:41:59 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/25 14:05:31 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/25 21:19:36 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ int	there_is_no_wall(t_display *display, int op, bool is_float)
 
 	if (!is_float)
 	{
-		tmp.x = display->player.pixels.x + roundf(display->player.delta_x) * op;
-		tmp.y = display->player.pixels.y + roundf(display->player.delta_y) * op;
 		tmp.f_x = display->player.pixels.f_x + display->player.delta_x * op;
 		tmp.f_y = display->player.pixels.f_y + display->player.delta_y * op;
+		tmp.x = (int)tmp.f_x;
+		tmp.y = (int)tmp.f_y;
 		tmp = pixel_to_bloc(tmp, display);
 	}
 	else
