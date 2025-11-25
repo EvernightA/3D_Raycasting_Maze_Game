@@ -47,6 +47,7 @@ void draw_wall_lines(t_display *display, t_hit hit, int pixel_index, float angle
 	int line_size;
 	t_point begin;
 	t_point end;
+	int wall_start;
 	
 	(void)angle;
 	/*How we calculate the distance may be the problem ?*/
@@ -57,12 +58,17 @@ void draw_wall_lines(t_display *display, t_hit hit, int pixel_index, float angle
 		line_size = SCRN_HEIGHT;
 		printf("=====================================================> %f\n", hit.distance);
 	}
-	begin.y = (SCRN_HEIGHT >> 1) - (line_size >> 1);
+	wall_start = (SCRN_HEIGHT >> 1) - (line_size >> 1);
+	begin.y = wall_start;
+	if (begin.y < 0)
+		begin.y = 0;
 	begin.x = pixel_index;
 	end.x = pixel_index;
 	end.y = (SCRN_HEIGHT >> 1) + (line_size >> 1);
+	if (end.y >= SCRN_HEIGHT)
+		end.y = SCRN_HEIGHT - 1;
 	line = bresenham_line(&begin, &end);
-	draw_textured_line(line, hit, line_size, display);
+	draw_textured_line(line, hit, line_size, wall_start, display);
 	ft_linefree(&line);
 	if (display->head)
 	{

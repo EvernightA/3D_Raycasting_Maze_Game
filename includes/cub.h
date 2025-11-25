@@ -281,7 +281,7 @@ t_point	pixel_to_bloc(t_point pixel, t_display *display);
 
 void	ray_fov(t_point begin,t_display *display, int d);
 float		to_wall(t_display *display, t_point collision, float beta);
-void	draw_textured_line(t_line *line, t_hit hit, int line_size, t_display *display);
+void	draw_textured_line(t_line *line, t_hit hit, int line_size, int wall_start, t_display *display);
 int		shifter(int	number);
 void	img_pix_put(t_img *img, int x, int y, int color);
 void    clear_img(t_display *display);
