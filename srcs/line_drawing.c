@@ -12,6 +12,19 @@
 
 #include "../includes/cub.h"
 
+void	set_texture(t_img_texture **texture_to_display, t_hit hit, t_display *display)
+{
+	(void)texture_to_display;
+	if (hit.wall_direction == NORTH)
+		*texture_to_display = &display->texture.t_north;
+	else if (hit.wall_direction == SOUTH)
+		*texture_to_display = &display->texture.t_south;
+	else if (hit.wall_direction == EAST)
+		*texture_to_display = &display->texture.t_east;
+	else
+		*texture_to_display = &display->texture.t_west;
+}
+
 void    draw_textured_line(t_line *line, t_hit hit, int line_size, t_display *display)
 {
         t_line *tmp;
@@ -23,14 +36,8 @@ void    draw_textured_line(t_line *line, t_hit hit, int line_size, t_display *di
 
         tmp = line;
 		count = 0;
-		if (hit.wall_direction == NORTH)
-			texture_to_display = &display->texture.t_north;
-		else if (hit.wall_direction == SOUTH)
-			texture_to_display = &display->texture.t_south;
-		else if (hit.wall_direction == EAST)
-			texture_to_display = &display->texture.t_east;
-		else
-			texture_to_display = &display->texture.t_west;
+		texture_to_display = &display->texture.t_north;;
+		set_texture(&texture_to_display, hit, display);
         while (tmp)
         {
 			if (hit.wall_direction == NORTH || hit.wall_direction == SOUTH)
