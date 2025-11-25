@@ -59,7 +59,6 @@ void		draw_line(t_display *display)
 			mlx_pixel_put(display->mlx.mlx_ptr, display->mlx.win_ptr,tmp->dot.x,tmp->dot.y, 0xFF000);
 		else
 		{
-			//printf("fount this here : (%c)\n", display->map[tmp_bloc.y][tmp_bloc.x]);
 			break;
 		}
 		tmp = tmp -> next;
@@ -152,79 +151,17 @@ t_hit		draw_line_2(t_display *display, float beta)
 		}
 		else
 		{
-			// Store the precise float collision coordinates
-			hit.collision.x = tmp->dot.x;
-			hit.collision.y = tmp->dot.y;
-			hit.collision.f_x = tmp->dot.f_x;
-			hit.collision.f_y = tmp->dot.f_y;
+			hit.collision = tmp->dot;
 			hit.distance = to_wall(display, tmp->dot, beta);
 			hit.wall_direction = get_wall_direction(hit.collision, display->player.blocs);
 			if (direction_fix(display, &hit, bloc))
 				break ;
-			/****************************fix-for textures and wall direction***************************************************/
-			// Use float coordinates for more precise calculations
-			// dx = (int)(hit.collision.f_x / 16) - display->player.blocs.x;
-    		// dy = (int)(hit.collision.f_y / 16) - display->player.blocs.y;
-			// if (hit.wall_direction == NORTH || hit.wall_direction == SOUTH)
-			// {
-			// 	bloc = pixel_to_bloc(hit.collision, display);
-			// 	if (bloc.y <= 0 || bloc.y >= display->texture.map_height - 1
-			// 		|| !(display->map[bloc.y][bloc.x]))
-			// 		break;
-			// 	prev_wall_char = display->map[bloc.y - 1][bloc.x];
-			// 	next_wall_char = display->map[bloc.y + 1][bloc.x];
-			// 	if (display->map[bloc.y][bloc.x] == prev_wall_char
-			// 		&& prev_wall_char == next_wall_char)
-			// 	{
-			// 		if ((dx < 0 && dy < 0) || (dx < 0 && dy > 0))
-			// 			hit.wall_direction = EAST;
-			// 		else
-			// 			hit.wall_direction = WEST;
-			// 	}
-			// 	else
-			// 	{
-			// 		normalised_x = fmodf(hit.collision.f_x, 16);
-			// 		if (dx < 0 && dy > 0 && hit.wall_direction == NORTH)
-			// 		{
-			// 			if (normalised_x >= 14.5f && display->map[bloc.y][bloc.x + 1] != '1')
-			// 				hit.wall_direction = EAST;
-			// 			if (normalised_x >= 14.5f && display->map[bloc.y + 1][bloc.x] != '1' && display->map[bloc.y - 1][bloc.x] == '1')
-			// 				hit.wall_direction = EAST;
-			// 		}
-			// 		if (dx < 0 && dy < 0 && hit.wall_direction == SOUTH)
-			// 		{
-			// 			if (normalised_x >= 14.5f && display->map[bloc.y][bloc.x + 1] != '1')
-			// 				hit.wall_direction = EAST;
-			// 			if (normalised_x >= 14.5f && display->map[bloc.y - 1][bloc.x] != '1' && display->map[bloc.y + 1][bloc.x] == '1')
-			// 				hit.wall_direction = EAST;
-			// 		}
-			// 		if (dx > 0 && dy > 0 && hit.wall_direction == NORTH)
-			// 		{
-			// 			if (normalised_x <= 0.5f && display->map[bloc.y][bloc.x - 1] != '1')
-			// 				hit.wall_direction = WEST;
-			// 			if (normalised_x <= 0.5f && display->map[bloc.y + 1][bloc.x] != '1' && display->map[bloc.y - 1][bloc.x] == '1')
-			// 				hit.wall_direction = WEST;
-			// 		}
-			// 		if (dx > 0 && dy < 0 && hit.wall_direction == SOUTH)
-			// 		{
-			// 			if (normalised_x <= 0.5f && display->map[bloc.y][bloc.x - 1] != '1')
-			// 				hit.wall_direction = WEST;
-			// 			if (normalised_x <= 0.5f && display->map[bloc.y - 1][bloc.x] != '1' && display->map[bloc.y + 1][bloc.x] == '1')
-			// 				hit.wall_direction = WEST;
-			// 		}
-			// 	}
-			// }
-			/*************************************************************************************************/
 			return (hit);
 		}
 		if (tmp->next == NULL)
 		{
 			before = tmp;
-			// Store the precise float collision coordinates
-			hit.collision.x = before->dot.x;
-			hit.collision.y = before->dot.y;
-			hit.collision.f_x = before->dot.f_x;
-			hit.collision.f_y = before->dot.f_y;
+			hit.collision = before->dot;
 			hit.distance = to_wall(display, before->dot, beta);
 			hit.wall_direction = get_wall_direction(hit.collision, display->player.blocs);
 			return (hit);
@@ -232,6 +169,5 @@ t_hit		draw_line_2(t_display *display, float beta)
 		}
 		tmp = tmp -> next;
 	}
-	
 	return (hit);
 }
