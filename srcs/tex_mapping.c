@@ -12,7 +12,7 @@
 
 #include "../includes/cub.h"
 
-void    load_textures(t_display *display)
+void    init_xpm_image(t_display *display)
 {
     display->texture.t_north.img_ptr = mlx_xpm_file_to_image(
         display->mlx.mlx_ptr, display->texture.north, 
@@ -36,8 +36,14 @@ void    load_textures(t_display *display)
 		|| !display->texture.t_west.img_ptr)
 	{
 		ft_putstr_fd("Error\nCouldn't load texture\n", 2);
-		exit(1);
+		/*all exit should change into a function that frees everything before exit */
+        exit(1);
 	}
+}
+
+void    load_textures(t_display *display)
+{
+    init_xpm_image(display);
     display->texture.t_north.data = mlx_get_data_addr(
         display->texture.t_north.img_ptr, 
         &display->texture.t_north.bpp,
