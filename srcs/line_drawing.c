@@ -158,6 +158,16 @@ int	direction_fix(t_display *display, t_hit *hit, t_point bloc)
 	}
 	return (0);
 }
+void	init_hit(t_hit *hit)
+{
+	(void)hit;
+	hit->distance = 0;
+	hit->collision.x = 0;
+	hit->collision.y = 0;
+	hit->collision.f_x = 0;
+	hit->collision.f_y = 0;
+	// before = NULL;
+}
 
 void	wall_assign(t_hit *hit, t_line *tmp, t_display *display, float beta)
 {
@@ -175,12 +185,8 @@ t_hit		draw_line_2(t_display *display, float beta)
 	t_point bloc;
 
 	tmp = display->head;
-	hit.distance = 0;
-	hit.collision.x = 0;
-	hit.collision.y = 0;
-	hit.collision.f_x = 0;
-	hit.collision.f_y = 0;
 	before = NULL;
+	init_hit(&hit);
 	while (tmp)
 	{
 		tmp_bloc = pixel_to_bloc(tmp->dot, display);
