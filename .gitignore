@@ -1,0 +1,11 @@
+# Object files
+*.o
+
+# Libraries
+*.a
+
+# Executable
+cub3D
+
+# Test binaries
+minilibx-linux/test/mlx-test

@@ -12,17 +12,16 @@
 
 #include "../includes/cub.h"
 
-void    draw_textured_line(t_line *line, t_hit hit, int line_size, t_display *display)
+void    draw_textured_line(t_line *line, t_hit hit, int line_size, int wall_start, t_display *display)
 {
         t_line *tmp;
 		float uv_x;
 		float uv_y;
 		t_img_texture *texture_to_display;
 		int texture_color;
-		int count;
+		int tex_y;
 
         tmp = line;
-		count = 0;
 		if (hit.wall_direction == NORTH)
 			texture_to_display = &display->texture.t_north;
 		else if (hit.wall_direction == SOUTH)
@@ -37,10 +36,17 @@ void    draw_textured_line(t_line *line, t_hit hit, int line_size, t_display *di
 				uv_x = (float)(hit.collision.x % 16) / SIZE_IMG;
 			else
 				uv_x = (float)(hit.collision.y % 16) / SIZE_IMG;
-            uv_y = (float)(count * 16) / line_size / SIZE_IMG;
+			tex_y = tmp->dot.y - wall_start;
+			if (line_size > 0)
+				uv_y = (float)tex_y / (float)line_size;
+			else
+				uv_y = 0;
+			if (uv_y < 0.0f)
+				uv_y = 0.0f;
+			if (uv_y > 1.0f)
+				uv_y = 1.0f;
             texture_color = sample_texture(texture_to_display, uv_x, uv_y);
             img_pix_put(&display->all, tmp->dot.x, tmp->dot.y, texture_color);
-			count ++;
             tmp = tmp -> next;
         }
 }
