@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 17:41:59 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/25 08:53:29 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/25 08:54:43 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ int	there_is_no_wall(t_display *display, int op, bool is_float)
 	{
 		tmp.x = display->player.pixels.x + roundf(display->player.perp_x) * op;
 		tmp.y = display->player.pixels.y + roundf(display->player.perp_y) * op;
+		tmp.f_x = display->player.pixels.f_x + display->player.perp_x * op;
+		tmp.f_y = display->player.pixels.f_y + display->player.perp_y * op;
 		tmp = pixel_to_bloc(tmp, display);
 	}
 	printf("height %d\n", display->texture.map_height);

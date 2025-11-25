@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 09:08:08 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/19 09:09:33 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/25 08:55:33 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	rotate_player(t_display *display, float angle)
 	tmpy = (display->end.y - display->begin.y) * cos(angle) + (display->end.x - display->begin.x) * sin(angle) + display->begin.y;
 	display->end.x = float_abs(tmpx);
 	display->end.y = float_abs(tmpy);
+	display->end.f_x = float_abs(tmpx);
+	display->end.f_y = float_abs(tmpy);
 }
 
 
