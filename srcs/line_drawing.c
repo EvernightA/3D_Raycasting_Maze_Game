@@ -159,6 +159,13 @@ int	direction_fix(t_display *display, t_hit *hit, t_point bloc)
 	return (0);
 }
 
+void	wall_assign(t_hit *hit, t_line *tmp, t_display *display, float beta)
+{
+	hit->collision = tmp->dot;
+	hit->distance = to_wall(display, tmp->dot, beta);
+	hit->wall_direction = get_wall_direction(hit->collision, display->player.blocs);
+}
+
 t_hit		draw_line_2(t_display *display, float beta)
 {
 	t_line *tmp;
@@ -177,13 +184,12 @@ t_hit		draw_line_2(t_display *display, float beta)
 	while (tmp)
 	{
 		tmp_bloc = pixel_to_bloc(tmp->dot, display);
-		if (display->map[tmp_bloc.y][tmp_bloc.x] == '0' || is_player(display->map[tmp_bloc.y][tmp_bloc.x]))
+		if (display->map[tmp_bloc.y][tmp_bloc.x] == '0'
+			|| is_player(display->map[tmp_bloc.y][tmp_bloc.x]))
 			img_pix_put(&display->rays, tmp->dot.x, tmp->dot.y, 0x00F0);
 		else
 		{
-			hit.collision = tmp->dot;
-			hit.distance = to_wall(display, tmp->dot, beta);
-			hit.wall_direction = get_wall_direction(hit.collision, display->player.blocs);
+			wall_assign(&hit, tmp, display, beta);
 			if (direction_fix(display, &hit, bloc))
 				break ;
 			return (hit);
@@ -191,9 +197,7 @@ t_hit		draw_line_2(t_display *display, float beta)
 		if (tmp->next == NULL)
 		{
 			before = tmp;
-			hit.collision = before->dot;
-			hit.distance = to_wall(display, before->dot, beta);
-			hit.wall_direction = get_wall_direction(hit.collision, display->player.blocs);
+			wall_assign(&hit, before, display, beta);
 			return (hit);
 		}
 		tmp = tmp -> next;
