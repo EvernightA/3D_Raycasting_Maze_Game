@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 10:34:32 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/25 10:35:59 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/26 13:04:50 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ void	direct_fix(float normalised_x, t_hit *hit, t_point bloc, t_display *display
     dy = (int)(hit->collision.f_y / 16) - display->player.blocs.y;
 	prev_wall_char = display->map[bloc.y - 1][bloc.x];
 	next_wall_char = display->map[bloc.y + 1][bloc.x];
+	printf("dx = %d, dy = %d, hitwc = %f, dpy+1 = '%c', dpy-1 = '%c'\n", dx, dy, normalised_x, display->map[bloc.y + 1][bloc.x], display->map[bloc.y - 1][bloc.x]);
 	if (display->map[bloc.y][bloc.x] == prev_wall_char
 	&& prev_wall_char == next_wall_char)
 	{
@@ -176,6 +177,24 @@ void	wall_assign(t_hit *hit, t_line *tmp, t_display *display, float beta)
 	hit->wall_direction = get_wall_direction(hit->collision, display->player.blocs);
 }
 
+int	go_to_next_node(t_line **tmp, t_line **before, t_hit *hit, t_display *display)
+{
+	if ((*tmp)->next == NULL)
+	{
+		*before = *tmp;
+		wall_assign(hit, *before, display, display->beta);
+		return (1);
+	}
+	*tmp = (*tmp)->next;
+	return (0);
+}
+
+int is_walkable(t_display *display, t_point tmp_bloc)
+{
+	return (display->map[tmp_bloc.y][tmp_bloc.x] == '0'
+			|| is_player(display->map[tmp_bloc.y][tmp_bloc.x]));
+}
+
 t_hit		draw_line_2(t_display *display, float beta)
 {
 	t_line *tmp;
@@ -190,23 +209,17 @@ t_hit		draw_line_2(t_display *display, float beta)
 	while (tmp)
 	{
 		tmp_bloc = pixel_to_bloc(tmp->dot, display);
-		if (display->map[tmp_bloc.y][tmp_bloc.x] == '0'
-			|| is_player(display->map[tmp_bloc.y][tmp_bloc.x]))
+		if (is_walkable(display, tmp_bloc))
 			img_pix_put(&display->rays, tmp->dot.x, tmp->dot.y, 0x00F0);
 		else
 		{
 			wall_assign(&hit, tmp, display, beta);
-			if (direction_fix(display, &hit, bloc))
-				break ;
-			return (hit);
+			direction_fix(display, &hit, bloc);
+			break ;
 		}
-		if (tmp->next == NULL)
-		{
-			before = tmp;
-			wall_assign(&hit, before, display, beta);
-			return (hit);
-		}
-		tmp = tmp -> next;
+		display->beta = beta;
+		if (go_to_next_node(&tmp, &before, &hit, display))
+			break ;
 	}
 	return (hit);
 }

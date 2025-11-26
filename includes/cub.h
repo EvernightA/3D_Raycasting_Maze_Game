@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/25 08:32:02 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/26 13:02:54 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,6 +216,7 @@ typedef struct s_display
 	t_img			all;
 	t_img			rays;
 	t_move			key_stat;
+	float			beta;
 }				t_display;
 
 char	**dup_mat(t_display *display,  int height, char **map);
