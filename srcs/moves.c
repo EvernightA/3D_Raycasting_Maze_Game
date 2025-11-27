@@ -60,9 +60,7 @@ int	there_is_no_wall(t_display *display, int op, bool is_float)
 {
 	int	new_x;
 	int	new_y;
-	int	margin;
 
-	margin = 3;
 	if (!is_float)
 	{
 		new_x = display->player.pixels.x + roundf(display->player.delta_x) * op;
@@ -73,13 +71,13 @@ int	there_is_no_wall(t_display *display, int op, bool is_float)
 		new_x = display->player.pixels.x + roundf(display->player.perp_x) * op;
 		new_y = display->player.pixels.y + roundf(display->player.perp_y) * op;
 	}
-	if (is_wall_at(display, new_x - margin, new_y - margin))
+	if (is_wall_at(display, new_x - COLLISION_MARGIN, new_y - COLLISION_MARGIN))
 		return (0);
-	if (is_wall_at(display, new_x + margin, new_y - margin))
+	if (is_wall_at(display, new_x + COLLISION_MARGIN, new_y - COLLISION_MARGIN))
 		return (0);
-	if (is_wall_at(display, new_x - margin, new_y + margin))
+	if (is_wall_at(display, new_x - COLLISION_MARGIN, new_y + COLLISION_MARGIN))
 		return (0);
-	if (is_wall_at(display, new_x + margin, new_y + margin))
+	if (is_wall_at(display, new_x + COLLISION_MARGIN, new_y + COLLISION_MARGIN))
 		return (0);
 	return (1);
 }
