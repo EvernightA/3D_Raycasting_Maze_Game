@@ -1,0 +1,16 @@
+# Object files
+*.o
+
+# Binaries
+cub3D
+
+# Libraries (compiled)
+*.a
+
+# MLX object files
+minilibx-linux/obj/
+minilibx-linux/test/*.o
+
+# Editor
+.vscode/
+_codeql_detected_source_root

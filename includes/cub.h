@@ -29,7 +29,11 @@
 #endif
 
 #ifndef SPEED
-# define  SPEED 5
+# define SPEED 5
+#endif
+
+#ifndef COLLISION_MARGIN
+# define COLLISION_MARGIN 3
 #endif
 
 #ifndef TETA
