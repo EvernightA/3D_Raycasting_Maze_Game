@@ -49,9 +49,9 @@ static int	is_wall_at(t_display *display, int px, int py)
 	bloc.y = py >> display->shifter.size_img;
 	if (bloc.y < 0 || bloc.y >= display->texture.map_height)
 		return (1);
-	if (bloc.x < 0 || !display->map[bloc.y][bloc.x])
+	if (bloc.x < 0 || bloc.x >= display->texture.map_width)
 		return (1);
-	if (display->map[bloc.y][bloc.x] == '1')
+	if (!display->map[bloc.y][bloc.x] || display->map[bloc.y][bloc.x] == '1')
 		return (1);
 	return (0);
 }
