@@ -41,28 +41,47 @@ int releasing_key(int key, void *param)
     return (0);
 }
 
+static int	is_wall_at(t_display *display, int px, int py)
+{
+	t_point	bloc;
+
+	bloc.x = px >> display->shifter.size_img;
+	bloc.y = py >> display->shifter.size_img;
+	if (bloc.y < 0 || bloc.y >= display->texture.map_height)
+		return (1);
+	if (bloc.x < 0 || !display->map[bloc.y][bloc.x])
+		return (1);
+	if (display->map[bloc.y][bloc.x] == '1')
+		return (1);
+	return (0);
+}
+
 int	there_is_no_wall(t_display *display, int op, bool is_float)
 {
-	t_point tmp;
+	int	new_x;
+	int	new_y;
+	int	margin;
 
+	margin = 3;
 	if (!is_float)
 	{
-		tmp.x = display->player.pixels.x + roundf(display->player.delta_x) * op;
-		tmp.y = display->player.pixels.y + roundf(display->player.delta_y) * op;
-		tmp = pixel_to_bloc(tmp, display);
+		new_x = display->player.pixels.x + roundf(display->player.delta_x) * op;
+		new_y = display->player.pixels.y + roundf(display->player.delta_y) * op;
 	}
 	else
 	{
-		tmp.x = display->player.pixels.x + roundf(display->player.perp_x) * op;
-		tmp.y = display->player.pixels.y + roundf(display->player.perp_y) * op;
-		tmp = pixel_to_bloc(tmp, display);
+		new_x = display->player.pixels.x + roundf(display->player.perp_x) * op;
+		new_y = display->player.pixels.y + roundf(display->player.perp_y) * op;
 	}
-	printf("height %d\n", display->texture.map_height);
-	if (display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
-	{
-		return (1);
-	}
-	return (0);
+	if (is_wall_at(display, new_x - margin, new_y - margin))
+		return (0);
+	if (is_wall_at(display, new_x + margin, new_y - margin))
+		return (0);
+	if (is_wall_at(display, new_x - margin, new_y + margin))
+		return (0);
+	if (is_wall_at(display, new_x + margin, new_y + margin))
+		return (0);
+	return (1);
 }
 void	moving(t_display *display, int op, bool is_float)
 {
