@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
+/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/11/25 08:44:39 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/25 13:25:13 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,9 @@ void	init_it(t_display *display)
 	display->shifter.screen_width = shifter(SCRN_WIDTH);
 	display->shifter.sreen_height = shifter(SCRN_HEIGHT);
 	display->shifter.size_img = shifter(SIZE_IMG);
+	///
+	display->end.x = 0;
+	display->end.y = 0;
 }
 
 void	calculus_dir(t_display *display)

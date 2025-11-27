@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
+/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 13:41:39 by mratsima          #+#    #+#             */
-/*   Updated: 2025/11/21 15:52:34 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/25 13:08:22 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,6 @@ void	aff_floor_and_ceiling(t_display *display)
 	j = 0;
 	floor_color = create_trgb(0, display->texture.floor_rgb.red,
 	display->texture.floor_rgb.green, display->texture.floor_rgb.blue);
-	ft_printf("red = %d\n", display->texture.floor_rgb.red);
-	ft_printf("blue = %d\n", display->texture.floor_rgb.blue);
-	ft_printf("green = %d\n", display->texture.floor_rgb.green);
 	ceiling_color = create_trgb(0, display->texture.ceiling_rgb.red,
 		display->texture.ceiling_rgb.green, display->texture.ceiling_rgb.blue);
 	while (j < SCRN_HEIGHT - 1)
