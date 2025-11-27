@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 17:41:59 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/25 21:19:36 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/11/27 11:20:39 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,15 +55,15 @@ int	there_is_no_wall(t_display *display, int op, bool is_float)
 	}
 	else
 	{
-		tmp.x = display->player.pixels.x + roundf(display->player.perp_x) * op;
-		tmp.y = display->player.pixels.y + roundf(display->player.perp_y) * op;
-		tmp.f_x = display->player.pixels.f_x + display->player.perp_x * op;
 		tmp.f_y = display->player.pixels.f_y + display->player.perp_y * op;
+		tmp.f_x = display->player.pixels.f_x + display->player.perp_x * op;
+		tmp.x = (int)tmp.f_x;
+		tmp.y = (int)tmp.f_y;
 		tmp = pixel_to_bloc(tmp, display);
 	}
-	printf("height %d\n", display->texture.map_height);
-	printf("y = %d < height %d  |  x = %d \n", tmp.y, display->texture.map_height, tmp.x);
-	if (tmp.y < display->texture.map_height && tmp.x < display->texture.map_width && display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
+	//printf("height %d\n", display->texture.map_height);
+	//printf("y = %d < height %d  |  x = %d \n", tmp.y, display->texture.map_height, tmp.x);
+	if (tmp.x < display->texture.map_width && display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
 	{
 		return (1);
 	}
