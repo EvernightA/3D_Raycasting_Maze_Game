@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/29 09:32:00 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/29 10:29:31 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,15 +85,7 @@ typedef struct s_img
     int		endian;
 }	t_img;
 
-typedef struct s_bres
-{
-	int delta_x;
-	int delta_y;
-	int x_step;
-	int y_step;
-	int err;
-	int dp;
-}t_bres;
+
 
 typedef struct s_img_texture
 {
@@ -134,6 +126,20 @@ typedef struct s_shift
 	int	screen_width;
 	int	size_img;
 }t_shift;
+
+typedef struct s_bres
+{
+	t_point current;
+	t_line *head;
+	t_line *new_node;
+	t_line	*tail;
+	int delta_x;
+	int delta_y;
+	int x_step;
+	int y_step;
+	int err;
+	int dp;
+}t_bres;
 
 typedef struct s_dda
 {

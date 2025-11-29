@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 13:17:03 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/29 09:27:46 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/29 10:28:57 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,64 +122,50 @@ void	cast_ray(t_point begin,t_display *display, int d)
 	}
 }
 
-//int delta_x;
-//int delta_y;
-//int x_step;
-//int y_step;
-//int err;
-//int dp;
-
-
 t_line	*bresenham_line(t_point *begin, t_point *end)
 {
-	t_bres	utils;
-	t_point current;
-	t_line *head;
-	t_line *new_node;
-	t_line	*tail;
+	t_bres	bres;
 	
-	head = NULL;
-	tail = NULL;
-	utils.delta_x = ft_abs(end->x - begin->x);
-	utils.delta_y = ft_abs(end->y - begin->y);
+	bres.head = NULL;
+	bres.tail = NULL;
+	bres.delta_x = ft_abs(end->x - begin->x);
+	bres.delta_y = ft_abs(end->y - begin->y);
 	if ((begin->x < end->x))
-		utils.x_step = 1;
+		bres.x_step = 1;
 	else
-		utils.x_step = -1;
+		bres.x_step = -1;
 	if ((begin->y < end->y))
-		utils.y_step = 1;
+		bres.y_step = 1;
 	else
-		utils.y_step = -1;
-	utils.err = utils.delta_x - utils.delta_y;
-	current = *begin;
+		bres.y_step = -1;
+	bres.err = bres.delta_x - bres.delta_y;
+	bres.current = *begin;
 	while (1)
 	{
-		new_node = ft_linenew(current);
-		//ft_lineadd_back(&head, new_node);
-		if (head == NULL)
+		bres.new_node = ft_linenew(bres.current);
+		if (bres.head == NULL)
 		{
-			head = new_node;
-			tail = new_node;
+			bres.head = bres.new_node;
+			bres.tail = bres.new_node;
 		}
 		else
 		{
-			tail->next = new_node;
-			tail = new_node;
+			bres.tail->next = bres.new_node;
+			bres.tail = bres.new_node;
 		}
-		if (current.x == end->x && current.y == end->y)
+		if (bres.current.x == end->x && bres.current.y == end->y)
 			break ;
-		utils.dp = 2 * utils.err;
-		if (utils.dp > -utils.delta_y)
+		bres.dp = 2 * bres.err;
+		if (bres.dp > -bres.delta_y)
 		{
-			utils.err -= utils.delta_y;
-			current.x += utils.x_step;
+			bres.err -= bres.delta_y;
+			bres.current.x += bres.x_step;
 		}
-		if (utils.dp < utils.delta_x)
+		if (bres.dp < bres.delta_x)
 		{
-			utils.err += utils.delta_x;
-			current.y += utils.y_step;
+			bres.err += bres.delta_x;
+			bres.current.y += bres.y_step;
 		}
-		//mlx_pixel_put();
 	}
-	return (head);
+	return (bres.head);
 }
