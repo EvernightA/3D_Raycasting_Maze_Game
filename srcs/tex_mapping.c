@@ -69,7 +69,7 @@ void    load_textures(t_display *display)
         &display->texture.t_west.endian);
 }
 
- int	sample_texture(t_img_texture *img_tex, float u, float v)
+int	sample_texture(t_img_texture *img_tex, float u, float v)
 {
 	int		x;
 	int		y;
