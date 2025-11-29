@@ -1,0 +1,10 @@
+# Object files
+*.o
+*.a
+
+# Executables
+cub3D
+
+# OS files
+.DS_Store
+_codeql_detected_source_root
