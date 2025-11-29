@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 13:17:03 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/29 10:28:57 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/29 11:32:14 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,24 +122,44 @@ void	cast_ray(t_point begin,t_display *display, int d)
 	}
 }
 
+void	initialize_bres(t_bres *bres, t_point *begin, t_point *end)
+{
+	bres->head = NULL;
+	bres->tail = NULL;
+	bres->delta_x = ft_abs(end->x - begin->x);
+	bres->delta_y = ft_abs(end->y - begin->y);
+	if ((begin->x < end->x))
+		bres->x_step = 1;
+	else
+		bres->x_step = -1;
+	if ((begin->y < end->y))
+		bres->y_step = 1;
+	else
+		bres->y_step = -1;
+	bres->err = bres->delta_x - bres->delta_y;
+	bres->current = *begin;
+}
+
+void	increment_bres(t_bres *bres)
+{
+	bres->dp = 2 * bres->err;
+	if (bres->dp > -bres->delta_y)
+	{
+		bres->err -= bres->delta_y;
+		bres->current.x += bres->x_step;
+	}
+	if (bres->dp < bres->delta_x)
+	{
+		bres->err += bres->delta_x;
+		bres->current.y += bres->y_step;
+	}
+}
+
 t_line	*bresenham_line(t_point *begin, t_point *end)
 {
 	t_bres	bres;
-	
-	bres.head = NULL;
-	bres.tail = NULL;
-	bres.delta_x = ft_abs(end->x - begin->x);
-	bres.delta_y = ft_abs(end->y - begin->y);
-	if ((begin->x < end->x))
-		bres.x_step = 1;
-	else
-		bres.x_step = -1;
-	if ((begin->y < end->y))
-		bres.y_step = 1;
-	else
-		bres.y_step = -1;
-	bres.err = bres.delta_x - bres.delta_y;
-	bres.current = *begin;
+
+	initialize_bres(&bres, begin, end);
 	while (1)
 	{
 		bres.new_node = ft_linenew(bres.current);
@@ -155,17 +175,7 @@ t_line	*bresenham_line(t_point *begin, t_point *end)
 		}
 		if (bres.current.x == end->x && bres.current.y == end->y)
 			break ;
-		bres.dp = 2 * bres.err;
-		if (bres.dp > -bres.delta_y)
-		{
-			bres.err -= bres.delta_y;
-			bres.current.x += bres.x_step;
-		}
-		if (bres.dp < bres.delta_x)
-		{
-			bres.err += bres.delta_x;
-			bres.current.y += bres.y_step;
-		}
+		increment_bres(&bres);
 	}
 	return (bres.head);
 }
