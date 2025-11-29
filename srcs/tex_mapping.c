@@ -69,21 +69,26 @@ void    load_textures(t_display *display)
         &display->texture.t_west.endian);
 }
 
- int     sample_texture(t_img_texture *img_tex, float u, float v)
+ int	sample_texture(t_img_texture *img_tex, float u, float v)
 {
-    int     x;
-    int     y;
-    int     pixel;
-    char    *addr;
-    
-    x = (int)(u * (img_tex->width - 1));
-    y = (int)(v * (img_tex->height - 1));
-    
-    addr = img_tex->data + (y * img_tex->line_len + x * (img_tex->bpp / 8));
-    
-    pixel = *(unsigned int *)addr;
-    
-    return (pixel);
+	int		x;
+	int		y;
+	int		pixel;
+	char	*addr;
+
+	if (u < 0.0f)
+		u = 0.0f;
+	if (u > 1.0f)
+		u = 1.0f;
+	if (v < 0.0f)
+		v = 0.0f;
+	if (v > 1.0f)
+		v = 1.0f;
+	x = (int)(u * (img_tex->width - 1));
+	y = (int)(v * (img_tex->height - 1));
+	addr = img_tex->data + (y * img_tex->line_len + x * (img_tex->bpp / 8));
+	pixel = *(unsigned int *)addr;
+	return (pixel);
 }
 
 int	straight_line_case(int dx, int dy)
@@ -107,53 +112,56 @@ int	straight_line_case(int dx, int dy)
 	return (-1);
 }
 
-int diagonal_line_direction(int dx, int dy, t_point collision_pixel)
+int	diagonal_line_direction(int dx, int dy, float pixel_x, float pixel_y)
 {
 	if (dx > 0 && dy > 0)
-    {
-        if (collision_pixel.x < collision_pixel.y)
-            return (WEST);
-    }
-    if (dx < 0 && dy > 0)
-    {
-        if ((15 - collision_pixel.x) < collision_pixel.y)
-            return (EAST);
-    }    
-    if (dx > 0 && dy < 0)
-    {
-        if (collision_pixel.x < (15 - collision_pixel.y))
-            return (WEST);
-        else
-            return (SOUTH);
-    }    
-    if (dx < 0 && dy < 0)
-    {
-        if ((15 - collision_pixel.x) < (15 - collision_pixel.y))
-            return (EAST);
-        else
-            return (SOUTH);
-    }
+	{
+		if (pixel_x < pixel_y)
+			return (WEST);
+	}
+	if (dx < 0 && dy > 0)
+	{
+		if ((SIZE_IMG - pixel_x) < pixel_y)
+			return (EAST);
+	}
+	if (dx > 0 && dy < 0)
+	{
+		if (pixel_x < (SIZE_IMG - pixel_y))
+			return (WEST);
+		else
+			return (SOUTH);
+	}
+	if (dx < 0 && dy < 0)
+	{
+		if ((SIZE_IMG - pixel_x) < (SIZE_IMG - pixel_y))
+			return (EAST);
+		else
+			return (SOUTH);
+	}
 	return (NORTH);
 }
 
-int get_wall_direction(t_point collision, t_point player_bloc)
+int	get_wall_direction(t_point collision, t_point player_bloc)
 {
-	t_point	collision_pixel;
-	t_point	collision_bloc;
-	int dx;
-	int dy;
+	float	pixel_x;
+	float	pixel_y;
+	int		collision_bloc_x;
+	int		collision_bloc_y;
+	int		dx;
+	int		dy;
 
-    collision_bloc.x = collision.x / 16;
-    collision_bloc.y = collision.y / 16;
-    collision_pixel.x = collision.x % 16;
-    collision_pixel.y = collision.y % 16;  
-	// just get the coordinates of the vector player->wall 
-	// so we can know which direction the ray has
-	dx = collision_bloc.x - player_bloc.x;
-	dy = collision_bloc.y - player_bloc.y;    
+	collision_bloc_x = (int)(collision.f_x / SIZE_IMG);
+	collision_bloc_y = (int)(collision.f_y / SIZE_IMG);
+	pixel_x = fmodf(collision.f_x, SIZE_IMG);
+	pixel_y = fmodf(collision.f_y, SIZE_IMG);
+	if (pixel_x < 0.0f)
+		pixel_x += SIZE_IMG;
+	if (pixel_y < 0.0f)
+		pixel_y += SIZE_IMG;
+	dx = collision_bloc_x - player_bloc.x;
+	dy = collision_bloc_y - player_bloc.y;
 	if (straight_line_case(dx, dy) != -1)
 		return (straight_line_case(dx, dy));
-    // For diagonal hits, determine by which edge is closer
 	else
-		return (diagonal_line_direction(dx, dy, collision_pixel));
+		return (diagonal_line_direction(dx, dy, pixel_x, pixel_y));
 }

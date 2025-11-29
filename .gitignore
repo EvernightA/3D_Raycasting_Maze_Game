@@ -1,0 +1,9 @@
+# Object files
+*.o
+*.a
+
+# Executables
+cub3D
+
+# OS files
+.DS_Store
