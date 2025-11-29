@@ -1,0 +1,14 @@
+# Object files
+*.o
+
+# Executable
+cub3D
+
+# Library files
+*.a
+
+# Build directories
+libft/*.o
+minilibx-linux/obj/
+minilibx-linux/*.a
+minilibx-linux/test/main.o

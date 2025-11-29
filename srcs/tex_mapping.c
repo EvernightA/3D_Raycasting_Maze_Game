@@ -69,21 +69,62 @@ void    load_textures(t_display *display)
         &display->texture.t_west.endian);
 }
 
- int     sample_texture(t_img_texture *img_tex, float u, float v)
+static int	get_tex_pixel(t_img_texture *img_tex, int x, int y)
 {
-    int     x;
-    int     y;
-    int     pixel;
-    char    *addr;
-    
-    x = (int)(u * (img_tex->width - 1));
-    y = (int)(v * (img_tex->height - 1));
-    
-    addr = img_tex->data + (y * img_tex->line_len + x * (img_tex->bpp / 8));
-    
-    pixel = *(unsigned int *)addr;
-    
-    return (pixel);
+	char	*addr;
+
+	if (x < 0)
+		x = 0;
+	if (x >= img_tex->width)
+		x = img_tex->width - 1;
+	if (y < 0)
+		y = 0;
+	if (y >= img_tex->height)
+		y = img_tex->height - 1;
+	addr = img_tex->data + (y * img_tex->line_len + x * (img_tex->bpp / 8));
+	return (*(unsigned int *)addr);
+}
+
+static int	lerp_color(int c1, int c2, float t)
+{
+	int	r;
+	int	g;
+	int	b;
+
+	r = (int)(((c1 >> 16) & 0xFF) * (1 - t) + ((c2 >> 16) & 0xFF) * t);
+	g = (int)(((c1 >> 8) & 0xFF) * (1 - t) + ((c2 >> 8) & 0xFF) * t);
+	b = (int)((c1 & 0xFF) * (1 - t) + (c2 & 0xFF) * t);
+	return ((r << 16) | (g << 8) | b);
+}
+
+int	sample_texture(t_img_texture *img_tex, float u, float v)
+{
+	float	tx;
+	float	ty;
+	int		x0;
+	int		y0;
+	float	fx;
+	float	fy;
+	int		c00;
+	int		c10;
+	int		c01;
+	int		c11;
+	int		c0;
+	int		c1;
+
+	tx = u * (img_tex->width - 1);
+	ty = v * (img_tex->height - 1);
+	x0 = (int)tx;
+	y0 = (int)ty;
+	fx = tx - x0;
+	fy = ty - y0;
+	c00 = get_tex_pixel(img_tex, x0, y0);
+	c10 = get_tex_pixel(img_tex, x0 + 1, y0);
+	c01 = get_tex_pixel(img_tex, x0, y0 + 1);
+	c11 = get_tex_pixel(img_tex, x0 + 1, y0 + 1);
+	c0 = lerp_color(c00, c10, fx);
+	c1 = lerp_color(c01, c11, fx);
+	return (lerp_color(c0, c1, fy));
 }
 
 int	straight_line_case(int dx, int dy)
