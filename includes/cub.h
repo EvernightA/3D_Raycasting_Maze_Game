@@ -151,6 +151,7 @@ typedef struct s_hit
 	float distance;
 	t_point collision;
 	int wall_direction;
+	float uv_x;
 }	t_hit;
 
 typedef struct s_tex

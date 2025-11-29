@@ -40,10 +40,7 @@ void    draw_textured_line(t_line *line, t_hit hit, int line_size, t_display *di
 		set_texture(&texture_to_display, hit, display);
         while (tmp)
         {
-			if (hit.wall_direction == NORTH || hit.wall_direction == SOUTH)
-				uv_x = fmodf(hit.collision.f_x, SIZE_IMG) / SIZE_IMG;
-			else
-				uv_x = fmodf(hit.collision.f_y, SIZE_IMG) / SIZE_IMG;
+			uv_x = hit.uv_x;
             uv_y = (float)count / line_size;
             texture_color = sample_texture(texture_to_display, uv_x, uv_y);
             img_pix_put(&display->all, tmp->dot.x, tmp->dot.y, texture_color);
@@ -168,6 +165,7 @@ void	init_hit(t_hit *hit)
 	hit->collision.y = 0;
 	hit->collision.f_x = 0;
 	hit->collision.f_y = 0;
+	hit->uv_x = 0;
 	// before = NULL;
 }
 
@@ -176,6 +174,12 @@ void	wall_assign(t_hit *hit, t_line *tmp, t_display *display, float beta)
 	hit->collision = tmp->dot;
 	hit->distance = to_wall(display, tmp->dot, beta);
 	hit->wall_direction = get_wall_direction(hit->collision, display->player.blocs);
+	if (hit->wall_direction == NORTH || hit->wall_direction == SOUTH)
+		hit->uv_x = fmodf(hit->collision.f_x, SIZE_IMG) / SIZE_IMG;
+	else
+		hit->uv_x = fmodf(hit->collision.f_y, SIZE_IMG) / SIZE_IMG;
+	if (hit->uv_x < 0.0f)
+		hit->uv_x += 1.0f;
 }
 
 int	go_to_next_node(t_line **tmp, t_line **before, t_hit *hit, t_display *display)
