@@ -44,7 +44,11 @@ void    draw_textured_line(t_line *line, t_hit hit, int line_size, t_display *di
 				uv_x = fmodf(hit.collision.f_x, SIZE_IMG) / SIZE_IMG;
 			else
 				uv_x = fmodf(hit.collision.f_y, SIZE_IMG) / SIZE_IMG;
+			if (uv_x < 0)
+				uv_x += 1.0f;
             uv_y = (float)count / line_size;
+			if (uv_y > 1.0f)
+				uv_y = 1.0f;
             texture_color = sample_texture(texture_to_display, uv_x, uv_y);
             img_pix_put(&display->all, tmp->dot.x, tmp->dot.y, texture_color);
 			count ++;
