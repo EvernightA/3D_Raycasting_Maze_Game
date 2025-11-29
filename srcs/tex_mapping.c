@@ -87,14 +87,18 @@ static int	get_tex_pixel(t_img_texture *img_tex, int x, int y)
 
 static int	lerp_color(int c1, int c2, float t)
 {
-	int	r;
-	int	g;
-	int	b;
+	float	inv_t;
+	int		a;
+	int		r;
+	int		g;
+	int		b;
 
-	r = (int)(((c1 >> 16) & 0xFF) * (1 - t) + ((c2 >> 16) & 0xFF) * t);
-	g = (int)(((c1 >> 8) & 0xFF) * (1 - t) + ((c2 >> 8) & 0xFF) * t);
-	b = (int)((c1 & 0xFF) * (1 - t) + (c2 & 0xFF) * t);
-	return ((r << 16) | (g << 8) | b);
+	inv_t = 1.0f - t;
+	a = (int)(((c1 >> 24) & 0xFF) * inv_t + ((c2 >> 24) & 0xFF) * t);
+	r = (int)(((c1 >> 16) & 0xFF) * inv_t + ((c2 >> 16) & 0xFF) * t);
+	g = (int)(((c1 >> 8) & 0xFF) * inv_t + ((c2 >> 8) & 0xFF) * t);
+	b = (int)((c1 & 0xFF) * inv_t + (c2 & 0xFF) * t);
+	return ((a << 24) | (r << 16) | (g << 8) | b);
 }
 
 int	sample_texture(t_img_texture *img_tex, float u, float v)
