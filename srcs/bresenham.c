@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 13:17:03 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/25 10:39:07 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/29 09:27:46 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,10 @@ void draw_wall_lines(t_display *display, t_hit hit, int pixel_index, float angle
 	t_point end;
 	
 	(void)angle;
-	/*How we calculate the distance may be the problem ?*/
 	if (hit.distance)
 		line_size =  SIZE_IMG * WALL_UNIT / hit.distance;
 	else
-	{
 		line_size = SCRN_HEIGHT;
-		printf("=====================================================> %f\n", hit.distance);
-	}
-	// if (line_size > SCRN_HEIGHT * 2)
- 	//    line_size = SCRN_HEIGHT * 2;  // fix for the fisheye close
 	begin.y = (SCRN_HEIGHT >> 1) - (line_size >> 1);
 	begin.x = pixel_index;
 	end.x = pixel_index;
@@ -75,79 +69,6 @@ void draw_wall_lines(t_display *display, t_hit hit, int pixel_index, float angle
 		ft_linefree(&display->head);
 		display->head = NULL;
 	}
-}
-
-t_line	*dda_line(t_point *begin, t_point *end)
-{
-	float	dx;
-	float	dy;
-	float	steps;
-	float	x_inc;
-	float	y_inc;
-	float	x;
-	float	y;
-	int		i;
-	t_point	current;
-	t_line	*head;
-	t_line	*new_node;
-	t_line	*tail;
-	
-	head = NULL;
-	tail = NULL;
-	
-	// Use the precise coordinates for calculation
-	dx = end->f_x - begin->f_x;
-	dy = end->f_y - begin->f_y;
-	
-	// Calculate steps - take the larger absolute value
-	if (fabsf(dx) > fabsf(dy))
-		steps = fabsf(dx);
-	else
-		steps = fabsf(dy);
-	
-	// Avoid division by zero
-	if (steps == 0)
-	{
-		new_node = ft_linenew(*begin);
-		return (new_node);
-	}
-	
-	// Calculate increment for each step
-	x_inc = dx / steps;
-	y_inc = dy / steps;
-	
-	// Start at beginning point
-	x = begin->f_x;
-	y = begin->f_y;
-	
-	i = 0;
-	while (i <= (int)steps)
-	{
-		// Store both integer and float versions
-		current.f_x = x;
-		current.f_y = y;
-		current.x = (int)x;  // Just truncate - no rounding!
-		current.y = (int)y;  // Just truncate - no rounding!
-		current.dp = 0;
-		
-		new_node = ft_linenew(current);
-		if (head == NULL)
-		{
-			head = new_node;
-			tail = new_node;
-		}
-		else
-		{
-			tail->next = new_node;
-			tail = new_node;
-		}
-		
-		x += x_inc;
-		y += y_inc;
-		i++;
-	}
-	
-	return (head);
 }
 
 void	cast_ray(t_point begin,t_display *display, int d)

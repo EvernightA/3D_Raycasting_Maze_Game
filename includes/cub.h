@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/27 12:15:53 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/11/29 09:32:00 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,21 @@ typedef struct s_shift
 	int	size_img;
 }t_shift;
 
+typedef struct s_dda
+{
+	float	dx;
+	float	dy;
+	float	steps;
+	float	x_inc;
+	float	y_inc;
+	float	x;
+	float	y;
+	int		i;
+	t_point	current;
+	t_line	*head;
+	t_line	*new_node;
+	t_line	*tail;
+}			t_dda;
 
 typedef struct s_move
 {
@@ -252,6 +267,7 @@ char	**get_map(char *gnl, int fd, int map_height);
 void	get_elements(int fd, t_display *texture, int map_height);
 void	store_texture(char *str, t_display *texture);
 t_line	*bresenham_line(t_point *begin, t_point *end);
+t_line	*dda_line(t_point *begin, t_point *end);
 int		ft_linesize(t_line *line);
 void	ft_lineadd_back(t_line **line, t_line *new);
 t_line	*ft_linenew(t_point content);
