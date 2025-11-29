@@ -118,11 +118,15 @@ int	diagonal_line_direction(int dx, int dy, float pixel_x, float pixel_y)
 	{
 		if (pixel_x < pixel_y)
 			return (WEST);
+		else
+			return (NORTH);
 	}
 	if (dx < 0 && dy > 0)
 	{
 		if ((SIZE_IMG - pixel_x) < pixel_y)
 			return (EAST);
+		else
+			return (NORTH);
 	}
 	if (dx > 0 && dy < 0)
 	{
