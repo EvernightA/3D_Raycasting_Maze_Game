@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/11/25 13:25:13 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/01 09:34:48 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,27 @@ t_point	pixel_to_bloc(t_point pixel, t_display *display)
 }
 
 
+int	something_is_wrong(t_display *display, char **argv, int argc, int *map_height)
+{
+	if (input_error(argc, argv))
+		return (1);
+	if (get_map_height(display, map_height, argv[1]))
+		return (1);
+	if (parsing(map_height, argv[1], display))
+		return (1);
+	if (error_handling(display))
+		return (1);
+	if (get_rgb(&display->texture.floor_rgb, display->texture.f_rgb))
+	{
+		return (1);
+	}
+	if (get_rgb(&display->texture.ceiling_rgb, display->texture.c_rgb))
+	{
+		return (1);
+	}
+	return (0);
+}
+
 
 
 int	main(int argc, char **argv)
@@ -165,23 +186,8 @@ int	main(int argc, char **argv)
 	t_display	display;
 
 	init_it(&display);
-
-	if (input_error(argc, argv))
+	if (something_is_wrong(&display, argv, argc, &map_height))
 		return (1);
-	if (get_map_height(&display, &map_height, argv[1]))
-		return (1);
-	if (parsing(&map_height, argv[1], &display))
-		return (1);
-	if (error_handling(&display))
-		return (1);
-	if (get_rgb(&display.texture.floor_rgb, display.texture.f_rgb))
-	{
-		return (1);
-	}
-	if (get_rgb(&display.texture.ceiling_rgb, display.texture.c_rgb))
-	{
-		return (1);
-	}
 	init_player_position(&display);
 	/************MLX*********/
 	display.mlx.mlx_ptr = mlx_init();
