@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 14:57:44 by mratsima          #+#    #+#             */
-/*   Updated: 2025/12/01 08:04:19 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/01 08:05:37 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	non_numeric_check(char *rgb_part)
 	{
 		if (!ft_isdigit(rgb_part[i]))
 		{
-			// ft_putstr_fd("Error\nWrong rgb value\n", 2);
 			return (1);
 		}
 		i++;
