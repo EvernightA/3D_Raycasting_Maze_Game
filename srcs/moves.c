@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 17:41:59 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/27 11:20:39 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/01 09:50:42 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,6 @@ int	there_is_no_wall(t_display *display, int op, bool is_float)
 		tmp.y = (int)tmp.f_y;
 		tmp = pixel_to_bloc(tmp, display);
 	}
-	//printf("height %d\n", display->texture.map_height);
-	//printf("y = %d < height %d  |  x = %d \n", tmp.y, display->texture.map_height, tmp.x);
 	if (tmp.x < display->texture.map_width && display->map[tmp.y][tmp.x] && display->map[tmp.y][tmp.x] != '1')
 	{
 		return (1);
@@ -96,7 +94,5 @@ int game_engine(t_display *display)
 		orientation_player(display, 1);
 		clean_rendering(display);
 	}
-		//clean_rendering(display);
-
     return (0);
 }

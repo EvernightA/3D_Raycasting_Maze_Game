@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:50:26 by mratsima          #+#    #+#             */
-/*   Updated: 2025/11/25 21:17:30 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/01 09:49:02 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,8 +117,6 @@ void	orientation_player(t_display * display, int operation)
 	display->player.delta_y = sinf (display->player.angle) * SPEED;
 	display->player.perp_x = -sinf(display->player.angle) *  SPEED;
 	display->player.perp_y = cosf(display->player.angle) * SPEED;
-
-	// printf("%f\n", display->player.angle);
 }
 
 void	render_all(t_display *display)
@@ -130,74 +128,31 @@ void	render_all(t_display *display)
 	power_h = display->texture.map_height * display->texture.map_height * 256;
 	power_w  = display->texture.map_width * display->texture.map_width * 256;
 	aff_floor_and_ceiling(display);
-	// Clculer max_distance ici
 	d = sqrt(power_h + power_w);
 	cast_ray(display->begin, display, d);
 	mlx_put_image_to_window(display->mlx2.mlx_ptr, display->mlx2.win_ptr, display->all.mlx_img, 0, 0);
 	mlx_put_image_to_window(display->mlx.mlx_ptr, display->mlx.win_ptr, display->rays.mlx_img, 0, 0);
 	mini_map(display, display->map);
-	//if (display->all.mlx_img && display->rays.mlx_img)
-	//{
-	//	mlx_destroy_image(display->mlx2.mlx_ptr, display->all.mlx_img);
-	//	mlx_destroy_image(display->mlx.mlx_ptr, display->rays.mlx_img);
-	//}
-	//display->all.mlx_img = NULL;
-	//display->rays.mlx_img = NULL;
-}
-
-
-void	tmp_debug(t_point tmp)
-{
-	ft_putstr_fd("x = ", 1);
-	ft_putnbr_fd(tmp.x, 1);
-	ft_putstr_fd("\n", 1);
-	ft_putstr_fd("y = ", 1);
-	ft_putnbr_fd(tmp.y, 1);
-	ft_putstr_fd("\n", 1);
 }
 
 int key_hook(int key, void *param)
 {
 	t_display *display;
-	// t_point		tmp;
 
 	display = (t_display *)param;
-	// mlx_clear_window(display->mlx.mlx_ptr, display->mlx.win_ptr);
-	// mlx_clear_window(display->mlx2.mlx_ptr, display->mlx2.win_ptr);
-	
 	if (key == XK_Escape)
 		quit_win(display);
 	else if (key == XK_W || key == XK_w)
-	{
-		// tmp is too see if next is a wall
 		display->key_stat.w_press = true;
-	}
 	else if (key == XK_S || key == XK_s)
-	{
-		// tmp is too see if next is a wall
 		display->key_stat.s_press = true;
-	}
 	else if (key == XK_A || key == XK_a)
-	{
 		display->key_stat.a_press = true;
-	}
 	else if (key == XK_D || key == XK_d)
-	{
 		display->key_stat.d_press = true;
-	}
 	else if (key == XK_Left)
-	{
 		display->key_stat.left_press = true;
-	}
 	else if (key == XK_Right)
-	{
 		display->key_stat.right_press = true;
-	}
-	
 	return (0);
 }
-/*
-The problem is not the forgottten  frees of bresenham
-nor the pixel put
-nor the mlx_clear window
-*/
