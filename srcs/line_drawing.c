@@ -33,6 +33,7 @@ void    draw_textured_line(t_line *line, t_hit hit, int line_size, t_display *di
 		t_img_texture *texture_to_display;
 		int texture_color;
 		int count;
+		float tex_coord;
 
         tmp = line;
 		count = 0;
@@ -41,9 +42,17 @@ void    draw_textured_line(t_line *line, t_hit hit, int line_size, t_display *di
         while (tmp)
         {
 			if (hit.wall_direction == NORTH || hit.wall_direction == SOUTH)
-				uv_x = fmodf(hit.collision.f_x, SIZE_IMG) / SIZE_IMG;
+				tex_coord = hit.collision.f_x;
 			else
-				uv_x = fmodf(hit.collision.f_y, SIZE_IMG) / SIZE_IMG;
+				tex_coord = hit.collision.f_y;
+			
+			// Normalize texture coordinate to [0, SIZE_IMG) range
+			uv_x = tex_coord - floorf(tex_coord / SIZE_IMG) * SIZE_IMG;
+			// Ensure positive value and normalize to [0, 1]
+			if (uv_x < 0)
+				uv_x += SIZE_IMG;
+			uv_x /= SIZE_IMG;
+			
             uv_y = (float)count / line_size;
             texture_color = sample_texture(texture_to_display, uv_x, uv_y);
             img_pix_put(&display->all, tmp->dot.x, tmp->dot.y, texture_color);
@@ -143,7 +152,6 @@ void	direct_fix(float normalised_x, t_hit *hit, t_point bloc, t_display *display
 		east_case(normalised_x, hit, bloc, display);
 		west_case(normalised_x, hit, bloc, display);
 	}
-	printf("wall_dir = %d, dx = %d, dy = %d, hitwc = %f, dpy+1 = '%c', dpy-1 = '%c'\n", hit->wall_direction, dx, dy, normalised_x, display->map[bloc.y + 1][bloc.x], display->map[bloc.y - 1][bloc.x]);
 }
 
 int	direction_fix(t_display *display, t_hit *hit, t_point bloc)
