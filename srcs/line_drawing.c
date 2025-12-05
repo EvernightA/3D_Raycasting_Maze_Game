@@ -37,7 +37,7 @@ void    draw_textured_line(t_line *line, t_hit hit, int line_size, t_display *di
 
         tmp = line;
 		count = 0;
-		texture_to_display = &display->texture.t_north;;
+		texture_to_display = &display->texture.t_north;
 		set_texture(&texture_to_display, hit, display);
         while (tmp)
         {
