@@ -48,9 +48,7 @@ void    draw_textured_line(t_line *line, t_hit hit, int line_size, t_display *di
 			
 			// Normalize texture coordinate to [0, SIZE_IMG) range
 			uv_x = tex_coord - floorf(tex_coord / SIZE_IMG) * SIZE_IMG;
-			// Ensure positive value and normalize to [0, 1]
-			if (uv_x < 0)
-				uv_x += SIZE_IMG;
+			// Normalize to [0, 1]
 			uv_x /= SIZE_IMG;
 			
             uv_y = (float)count / line_size;
