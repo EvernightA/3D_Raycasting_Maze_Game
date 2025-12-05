@@ -76,8 +76,28 @@ void    load_textures(t_display *display)
     int     pixel;
     char    *addr;
     
+    // Clamp u and v to [0, 1] range to prevent out-of-bounds access
+    if (u < 0.0f)
+        u = 0.0f;
+    if (u > 1.0f)
+        u = 1.0f;
+    if (v < 0.0f)
+        v = 0.0f;
+    if (v > 1.0f)
+        v = 1.0f;
+    
     x = (int)(u * (img_tex->width - 1));
     y = (int)(v * (img_tex->height - 1));
+    
+    // Additional bounds check to ensure we don't exceed texture dimensions
+    if (x < 0)
+        x = 0;
+    if (x >= img_tex->width)
+        x = img_tex->width - 1;
+    if (y < 0)
+        y = 0;
+    if (y >= img_tex->height)
+        y = img_tex->height - 1;
     
     addr = img_tex->data + (y * img_tex->line_len + x * (img_tex->bpp / 8));
     
