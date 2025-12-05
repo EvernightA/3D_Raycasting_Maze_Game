@@ -58,8 +58,10 @@ void draw_wall_lines(t_display *display, t_hit hit, int pixel_index, float angle
 	end.x = pixel_index;
 	begin.f_x = pixel_index;
 	end.f_x = pixel_index;
+	begin.f_y = (SCRN_HEIGHT >> 1) - (line_size >> 1);
 	end.y = (SCRN_HEIGHT >> 1) + (line_size >> 1);
-	line = bresenham_line(&begin, &end);
+	end.f_y = (SCRN_HEIGHT >> 1) + (line_size >> 1);
+	line = dda_line(&begin, &end);
 	draw_textured_line(line, hit, line_size, display);
 	ft_linefree(&line);
 	if (display->head)
