@@ -31,7 +31,6 @@ void	rotate_player(t_display *display, float angle)
 	tmpx = (display->end.x - display->begin.x) * cos(angle) - (display->end.y - display->begin.y) * sin(angle) + display->begin.x;
 	tmpy = (display->end.y - display->begin.y) * cos(angle) + (display->end.x - display->begin.x) * sin(angle) + display->begin.y;
 	
-	printf("rx = %f, ry= %f\n", tmpx, tmpy);
 	display->end.x = fabs(tmpx);
 	display->end.y = fabs(tmpy);
 	display->end.f_x = fabs(tmpx);

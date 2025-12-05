@@ -76,6 +76,10 @@ void    load_textures(t_display *display)
     int     pixel;
     char    *addr;
     
+    // Clamp u and v to [0, 1] range to prevent out-of-bounds access
+    u = fmaxf(0.0f, fminf(1.0f, u));
+    v = fmaxf(0.0f, fminf(1.0f, v));
+    
     x = (int)(u * (img_tex->width - 1));
     y = (int)(v * (img_tex->height - 1));
     
