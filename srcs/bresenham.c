@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 13:17:03 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/01 09:39:51 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/05 08:34:13 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,39 +72,15 @@ void draw_wall_lines(t_display *display, t_hit hit, int pixel_index, float angle
 void	cast_ray(t_point begin,t_display *display, int d)
 {
 	t_point true_end;
+	t_hit 	hit;
 	float	angle;
 	int pixel_index;
-	// float distance;
-	t_hit hit;
 
-	/*
-		Dans cette fonction nous mettons angle = -FOV/2 pour que la direction principale se trouve au milieu
-	*/
-	/*PIXEL INDEX IS USED TO TRACK WHICH SCREEN LINE WE SHOULD DRAW*/
 	pixel_index = 0;
 	angle = -FOV / 2;
 	while (angle <= FOV / 2)
 	{
 		true_end = calculate_end(begin, display->player.angle + angle, d);
-		/*
-			Nous avons ajouter l'orientation duplayer a l'angle pour dessiner des rayons dans ltes cotes environnants
-			Notons que player.angle est update a chaque fois que Left ou right est presEE
-
-
-			Ex :
-
-			itereation 1:
-
-			player_angle = 0;
-			angle = -MPI / 3;
-			
-			calcule de end pour l'angle new = 0 - MPI/3;
-			On cree une ligne grace a bresenham pour new
-			On dessine la ligne
-
-			On fait ca pour chaque iteration
-		*/
-
 		if (display->head)
 			ft_linefree(&display->head);
 		display->head = dda_line(&begin, &true_end);

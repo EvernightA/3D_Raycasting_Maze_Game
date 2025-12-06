@@ -1,7 +1,7 @@
-NO ./textures/n.xpm
-SO ./textures/s.xpm
-EA ./textures/e.xpm
-WE ./textures/pl.xpm
+NO ./textures/clear.xpm
+SO ./textures/clear.xpm
+EA ./textures/gray.xpm
+WE ./textures/gray.xpm
 
 C 135,206,235
 F 0,128,0
