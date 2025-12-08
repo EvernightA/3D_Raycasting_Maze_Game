@@ -3,7 +3,7 @@ SO ./textures/clear.xpm
 EA ./textures/gray.xpm
 WE ./textures/gray.xpm
 
-C 135,206,235
+C 135,206, 235
 F 0,128,0
 
         1111111111111111111111111

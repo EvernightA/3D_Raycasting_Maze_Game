@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/12/01 10:30:41 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/08 11:34:09 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,7 +197,10 @@ int	main(int argc, char **argv)
 
 	init_it(&display);
 	if (something_is_wrong(&display, argv, argc, &map_height))
+	{
+		free_tex_map(&display);
 		return (1);
+	}	
 	init_player_position(&display);
 	/************MLX*********/
 	display.mlx.mlx_ptr = mlx_init();
