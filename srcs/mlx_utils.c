@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:50:26 by mratsima          #+#    #+#             */
-/*   Updated: 2025/12/08 11:37:34 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/08 14:14:57 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,33 +70,22 @@ void	 player_move (t_display *display, int op, bool is_float)
 		// Update float coordinates first (these are the precise positions)
 		display->player.pixels.f_x = display->player.pixels.f_x + display->player.delta_x * op;
 		display->player.pixels.f_y = display->player.pixels.f_y + display->player.delta_y * op;
-		// Derive integer coordinates from float (just truncate)
-		display->player.pixels.x = (int)display->player.pixels.f_x;
-		display->player.pixels.y = (int)display->player.pixels.f_y;
-		// Update begin position to match player position exactly
-		display->begin.f_x = display->player.pixels.f_x;
-		display->begin.f_y = display->player.pixels.f_y;
-		display->begin.x = display->player.pixels.x;
-		display->begin.y = display->player.pixels.y;
-		display->player.blocs = pixel_to_bloc(display->player.pixels, display);
-		display->map[display->player.blocs.y][display->player.blocs.x] = display->player.orientation;
 	}
 	else
 	{
-		// Update float coordinates first (these are the precise positions)
 		display->player.pixels.f_x = display->player.pixels.f_x  + display->player.perp_x * op;
 		display->player.pixels.f_y = display->player.pixels.f_y  + display->player.perp_y * op;
-		// Derive integer coordinates from float (just truncate)
-		display->player.pixels.x = (int)display->player.pixels.f_x;
-		display->player.pixels.y = (int)display->player.pixels.f_y;
-		// Update begin position to match player position exactly
-		display->begin.f_x = display->player.pixels.f_x;
-		display->begin.f_y = display->player.pixels.f_y;
-		display->begin.x = display->player.pixels.x;
-		display->begin.y = display->player.pixels.y;
-		display->player.blocs = pixel_to_bloc(display->player.pixels, display);
-		display->map[display->player.blocs.y][display->player.blocs.x] = display->player.orientation;
 	}
+	// Derive integer coordinates from float (just truncate)
+	display->player.pixels.x = (int)display->player.pixels.f_x;
+	display->player.pixels.y = (int)display->player.pixels.f_y;
+	// Update begin position to match player position exactly
+	display->begin.f_x = display->player.pixels.f_x;
+	display->begin.f_y = display->player.pixels.f_y;
+	display->begin.x = display->player.pixels.x;
+	display->begin.y = display->player.pixels.y;
+	display->player.blocs = pixel_to_bloc(display->player.pixels, display);
+	display->map[display->player.blocs.y][display->player.blocs.x] = display->player.orientation;
 }
 
 void	orientation_player(t_display * display, int operation)
@@ -129,8 +118,6 @@ void	render_all(t_display *display)
 	d = sqrt(power_h + power_w);
 	cast_ray(display->begin, display, d);
 	mlx_put_image_to_window(display->mlx2.mlx_ptr, display->mlx2.win_ptr, display->all.mlx_img, 0, 0);
-	//mlx_put_image_to_window(display->mlx.mlx_ptr, display->mlx.win_ptr, display->rays.mlx_img, 0, 0);
-	//mini_map(display, display->map);
 }
 
 int key_hook(int key, void *param)

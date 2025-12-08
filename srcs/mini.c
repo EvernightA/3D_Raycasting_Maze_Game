@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 09:38:12 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/01 10:15:49 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/08 14:04:03 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	mini_map(t_display *display, char **map)
 			else if (is_player(map[i][j]))
 			{
 				mlx_pixel_put(display->mlx.mlx_ptr, display->mlx.win_ptr, display->player.pixels.x * 1, display->player.pixels.y * 1, 0xFF00);
-			
 			}
 			j++;
 		}

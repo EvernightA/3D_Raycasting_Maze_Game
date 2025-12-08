@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 11:42:50 by mratsima          #+#    #+#             */
-/*   Updated: 2025/12/08 13:59:55 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/08 14:03:32 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,17 +202,15 @@ int	main(int argc, char **argv)
 	}	
 	init_player_position(&display);
 	display.mlx2.mlx_ptr = mlx_init();
-	//if (!display.mlx.mlx_ptr)
-	//	return (1);
 	if (!display.mlx2.mlx_ptr)
 		return (1);
-	mlx_do_key_autorepeatoff(display.mlx2.mlx_ptr);/*Cette fonction annule l'auto repetition des touches*/
+	mlx_do_key_autorepeatoff(display.mlx2.mlx_ptr);
 	display.mlx2.win_ptr = mlx_new_window(display.mlx2.mlx_ptr, SCRN_WIDTH, SCRN_HEIGHT, "cub3D");
 	img_initialization(&display);
 	load_textures(&display);
 	mlx_functions(&display);
 	mlx_loop(display.mlx2.mlx_ptr);
-	mlx_do_key_autorepeaton(display.mlx2.mlx_ptr);/*Cette fonction les reactive*/
+	mlx_do_key_autorepeaton(display.mlx2.mlx_ptr);
 	free_texture(&display);
 	return (0);
 }
