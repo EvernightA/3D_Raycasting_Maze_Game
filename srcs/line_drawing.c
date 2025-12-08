@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 10:34:32 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/27 12:16:25 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/08 11:17:48 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,6 @@ void	direct_fix(float normalised_x, t_hit *hit, t_point bloc, t_display *display
     dy = (int)(hit->collision.f_y / 16) - display->player.blocs.y;
 	prev_wall_char = display->map[bloc.y - 1][bloc.x];
 	next_wall_char = display->map[bloc.y + 1][bloc.x];
-	// printf("wall_dir = %d, dx = %d, dy = %d, hitwc = %f, dpy+1 = '%c', dpy-1 = '%c'\n", hit->wall_direction, dx, dy, normalised_x, display->map[bloc.y + 1][bloc.x], display->map[bloc.y - 1][bloc.x]);
 	if (display->map[bloc.y][bloc.x] == prev_wall_char
 	&& prev_wall_char == next_wall_char)
 	{
@@ -143,7 +142,6 @@ void	direct_fix(float normalised_x, t_hit *hit, t_point bloc, t_display *display
 		east_case(normalised_x, hit, bloc, display);
 		west_case(normalised_x, hit, bloc, display);
 	}
-	printf("wall_dir = %d, dx = %d, dy = %d, hitwc = %f, dpy+1 = '%c', dpy-1 = '%c'\n", hit->wall_direction, dx, dy, normalised_x, display->map[bloc.y + 1][bloc.x], display->map[bloc.y - 1][bloc.x]);
 }
 
 int	direction_fix(t_display *display, t_hit *hit, t_point bloc)
