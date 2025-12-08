@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/08 11:41:57 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/08 13:03:36 by fsamy-an         ###   ########.fr       */
+/*   Created: 2025/12/08 11:42:50 by mratsima          #+#    #+#             */
+/*   Updated: 2025/12/08 13:59:55 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,7 +196,10 @@ int	main(int argc, char **argv)
 
 	init_it(&display);
 	if (something_is_wrong(&display, argv, argc, &map_height))
+	{
+		free_tex_map(&display);
 		return (1);
+	}	
 	init_player_position(&display);
 	display.mlx2.mlx_ptr = mlx_init();
 	//if (!display.mlx.mlx_ptr)

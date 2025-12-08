@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 14:57:44 by mratsima          #+#    #+#             */
-/*   Updated: 2025/12/01 08:05:37 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/08 11:35:04 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,11 @@ int	get_rgb(t_rgb *rgb, char *og_rgb)
 		i++;
 	str_rgb = ft_strtrim(&og_rgb[i], " \t\n");
 	split_rgb = ft_split(str_rgb, ',');
-	if (not_enough_values(split_rgb) || non_numeric_values(split_rgb) 
+	if (not_enough_values(split_rgb) || non_numeric_values(split_rgb)
 	|| overflowing_values(split_rgb))
 	{
+		free(str_rgb);
+		free_split(split_rgb);
 		ft_putstr_fd("Error\nWrong rgb value\n", 2);
 		return (1);
 	}	
@@ -86,6 +88,5 @@ int	get_rgb(t_rgb *rgb, char *og_rgb)
 	rgb->blue = ft_atoll(split_rgb[2]);
 	free(str_rgb);
 	free_split(split_rgb);
-	// printf("rgb = %d, %d, %d\n", rgb->red, rgb->green, rgb->blue);
 	return (0);
 }
