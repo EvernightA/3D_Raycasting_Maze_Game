@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tex_mapping.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
+/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 11:37:27 by mratsima          #+#    #+#             */
-/*   Updated: 2025/11/22 10:20:20 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/08 11:28:38 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,19 @@
 void    init_xpm_image(t_display *display)
 {
     display->texture.t_north.img_ptr = mlx_xpm_file_to_image(
-        display->mlx.mlx_ptr, display->texture.north, 
+        display->mlx2.mlx_ptr, display->texture.north, 
         &display->texture.t_north.width, &display->texture.t_north.height);
 
 	display->texture.t_south.img_ptr = mlx_xpm_file_to_image(
-        display->mlx.mlx_ptr, display->texture.south, 
+        display->mlx2.mlx_ptr, display->texture.south, 
         &display->texture.t_south.width, &display->texture.t_south.height);
 	
 	display->texture.t_east.img_ptr = mlx_xpm_file_to_image(
-        display->mlx.mlx_ptr, display->texture.east, 
+        display->mlx2.mlx_ptr, display->texture.east, 
         &display->texture.t_east.width, &display->texture.t_east.height);
 
 	display->texture.t_west.img_ptr = mlx_xpm_file_to_image(
-        display->mlx.mlx_ptr, display->texture.west, 
+        display->mlx2.mlx_ptr, display->texture.west, 
         &display->texture.t_west.width, &display->texture.t_west.height);
 
     if (!display->texture.t_north.img_ptr

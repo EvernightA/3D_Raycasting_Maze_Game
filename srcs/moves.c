@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 17:41:59 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/01 09:50:42 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/08 11:34:22 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	clean_rendering(t_display *display)
 {
 	//clear_img(display);
-   	clear_rays(display);
-	mlx_clear_window(display->mlx.mlx_ptr, display->mlx.win_ptr);
+   	//clear_rays(display);
+	mlx_clear_window(display->mlx2.mlx_ptr, display->mlx2.win_ptr);
 	render_all(display);
 }
 
