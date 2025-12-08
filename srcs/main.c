@@ -5,11 +5,10 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/12/08 11:34:09 by mratsima         ###   ########.fr       */
+/*   Created: 2025/12/08 11:42:50 by mratsima          #+#    #+#             */
+/*   Updated: 2025/12/08 11:43:42 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../includes/cub.h"
 
