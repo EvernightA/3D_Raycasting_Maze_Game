@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 13:17:03 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/05 08:34:13 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/08 12:53:37 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,6 @@ static int	ft_abs(int n)
 
 t_point calculate_end(t_point begin, float angle, int max_distance)
 {
-	// angle deja en radian
-	/*
-	Formule de deplacement
-
-	déplacement_horizontal (Δx) = cos(θ) × d
-	déplacement_vertical   (Δy) = sin(θ) × d
-	
-	C'est comme un calcul pour l'orientation
-	*/
 	t_point end;
 	
 	end.x = begin.x + cos(angle) * max_distance;

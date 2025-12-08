@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 22:36:20 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/10/30 21:16:33 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/08 13:57:14 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,18 @@ int	is_unknown(char c)
 	return (0);
 }
 
-int	player_error(int count)
+int	player_error(int count, t_display *display)
 {
 	if (count == 0)
 	{
 		ft_putstr_fd("Error\nNo player found in the map\n", 2);
+		free_tex_map(display);
 		return (1);
 	}
 	else if (count > 1)
 	{
 		ft_putstr_fd("Error\nMultiple player found\n", 2);
+		free_tex_map(display);
 		return (1);
 	}
 	return (0);

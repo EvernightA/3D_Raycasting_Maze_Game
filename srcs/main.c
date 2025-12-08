@@ -5,11 +5,10 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/12/08 11:32:57 by fsamy-an         ###   ########.fr       */
+/*   Created: 2025/12/08 11:41:57 by fsamy-an          #+#    #+#             */
+/*   Updated: 2025/12/08 13:03:36 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../includes/cub.h"
 
@@ -205,7 +204,7 @@ int	main(int argc, char **argv)
 	if (!display.mlx2.mlx_ptr)
 		return (1);
 	mlx_do_key_autorepeatoff(display.mlx2.mlx_ptr);/*Cette fonction annule l'auto repetition des touches*/
-	display.mlx2.win_ptr = mlx_new_window(display.mlx2.mlx_ptr, SCRN_WIDTH, SCRN_HEIGHT, "render");
+	display.mlx2.win_ptr = mlx_new_window(display.mlx2.mlx_ptr, SCRN_WIDTH, SCRN_HEIGHT, "cub3D");
 	img_initialization(&display);
 	load_textures(&display);
 	mlx_functions(&display);

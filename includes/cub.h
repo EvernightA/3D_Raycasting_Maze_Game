@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/01 08:51:41 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/08 13:58:00 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 #endif
 
 #ifndef SPEED
-# define  SPEED 5
+# define  SPEED 1.5
 #endif
 
 #ifndef TETA
@@ -250,7 +250,7 @@ void	filter_texture(t_display *display);
 
 int		is_player(char c);
 int		is_unknown(char c);
-int		player_error(int count);
+int		player_error(int count, t_display *display);
 int		player_in_str(char *str);
 int		matrix_height(char **matrix);
 
@@ -297,7 +297,7 @@ int player_in_str(char *str);
 int	parsing(int *map_height, char *file, t_display *display);
 
 void	img_initialization(t_display *display);
-void	mini_map(t_display *display, char **map);
+//void	mini_map(t_display *display, char **map);
 void	draw_line(t_display *display);
 void	rotate_player(t_display *display, float angle);
 

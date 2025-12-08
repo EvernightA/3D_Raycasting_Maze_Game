@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
+/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 11:17:34 by mratsima          #+#    #+#             */
-/*   Updated: 2025/12/01 08:11:06 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/08 13:36:29 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	count_lines(char *gnl, char *tmp, int *count, int fd)
 	{
 		if (tmp[0] != '1' && tmp[0] != '0' && tmp[0] != '\n')
 		{
-			printf("tmp = %c\n", tmp[0]);
+			//printf("tmp = %c\n", tmp[0]);
 			free(tmp);
 			printf("Error\nError in map\n");
 			while (gnl)
