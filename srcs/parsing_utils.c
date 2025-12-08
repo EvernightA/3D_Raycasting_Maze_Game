@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 10:27:44 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/01 10:11:54 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/08 09:25:10 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,24 +43,24 @@ void	store_texture(char *str, t_display *display)
 }
 
 
-void	get_clean_texture(char *texture)
+void	get_clean_texture(char **texture)
 {
 	char *tmp;
 	
 	tmp = NULL;
-	tmp = ft_strtrim(texture, "\n");
-	free(texture);
-	texture = ft_strdup(tmp);
+	tmp = ft_strtrim((*texture), "\n");
+	free(*texture);
+	(*texture) = ft_strdup(tmp);
 	free(tmp);
 	tmp = NULL;
 }
 
 void	filter_texture(t_display *display)
 {
-	get_clean_texture(display->texture.north);
-	get_clean_texture(display->texture.south);
-	get_clean_texture(display->texture.east);
-	get_clean_texture(display->texture.west);
+	get_clean_texture(&display->texture.north);
+	get_clean_texture(&display->texture.south);
+	get_clean_texture(&display->texture.east);
+	get_clean_texture(&display->texture.west);
 }
 
 int	parsing(int *map_height, char *file, t_display *display)
