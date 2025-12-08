@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/12/01 10:30:41 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/08 11:32:57 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,11 +181,11 @@ int	something_is_wrong(t_display *display, char **argv, int argc, int *map_heigh
 void	mlx_functions(t_display *display)
 {
 	render_all(display);
-	mlx_hook(display->mlx.win_ptr, 17, 0, quit_win, display);
-	mlx_hook(display->mlx.win_ptr, 2, 1L<<0, key_hook, display);
-	mlx_hook(display->mlx.win_ptr, 3, 1L<<1, releasing_key, display);
-	mini_map(display, display->map);
-	mlx_loop_hook(display->mlx.mlx_ptr, &game_engine, display);
+	mlx_hook(display->mlx2.win_ptr, 17, 0, quit_win, display);
+	mlx_hook(display->mlx2.win_ptr, 2, 1L<<0, key_hook, display);
+	mlx_hook(display->mlx2.win_ptr, 3, 1L<<1, releasing_key, display);
+	//mini_map(display, display->map);
+	mlx_loop_hook(display->mlx2.mlx_ptr, &game_engine, display);
 }
 
 
@@ -199,21 +199,18 @@ int	main(int argc, char **argv)
 	if (something_is_wrong(&display, argv, argc, &map_height))
 		return (1);
 	init_player_position(&display);
-	/************MLX*********/
-	display.mlx.mlx_ptr = mlx_init();
 	display.mlx2.mlx_ptr = mlx_init();
-	if (!display.mlx.mlx_ptr)
-		return (1);
+	//if (!display.mlx.mlx_ptr)
+	//	return (1);
 	if (!display.mlx2.mlx_ptr)
 		return (1);
-	mlx_do_key_autorepeatoff(display.mlx.mlx_ptr);/*Cette fonction annule l'auto repetition des touches*/
-	display.mlx.win_ptr = mlx_new_window(display.mlx.mlx_ptr, SCRN_WIDTH, SCRN_HEIGHT, "cub3d");
+	mlx_do_key_autorepeatoff(display.mlx2.mlx_ptr);/*Cette fonction annule l'auto repetition des touches*/
 	display.mlx2.win_ptr = mlx_new_window(display.mlx2.mlx_ptr, SCRN_WIDTH, SCRN_HEIGHT, "render");
 	img_initialization(&display);
 	load_textures(&display);
 	mlx_functions(&display);
-	mlx_loop(display.mlx.mlx_ptr);
-	mlx_do_key_autorepeaton(display.mlx.mlx_ptr);/*Cette fonction les reactive*/
+	mlx_loop(display.mlx2.mlx_ptr);
+	mlx_do_key_autorepeaton(display.mlx2.mlx_ptr);/*Cette fonction les reactive*/
 	free_texture(&display);
 	return (0);
 }

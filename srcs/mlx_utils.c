@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:50:26 by mratsima          #+#    #+#             */
-/*   Updated: 2025/12/01 10:21:31 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/08 11:37:34 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,19 @@ void	rad_to_deg(double rad)
 
 int	quit_win(t_display *display)
 {
-	mlx_do_key_autorepeaton(display->mlx.mlx_ptr);/*Cette fonction les reactive faut toujours reactiver a chaque fois*/
-	mlx_destroy_image(display->mlx.mlx_ptr, display->texture.floor_img);
-	mlx_destroy_image(display->mlx.mlx_ptr, display->texture.wall_img);
-	mlx_destroy_image(display->mlx.mlx_ptr, display->rays.mlx_img);
-	mlx_destroy_image(display->mlx.mlx_ptr, display->texture.t_east.img_ptr);
-	mlx_destroy_image(display->mlx.mlx_ptr, display->texture.t_north.img_ptr);
-	mlx_destroy_image(display->mlx.mlx_ptr, display->texture.t_west.img_ptr);
-	mlx_destroy_image(display->mlx.mlx_ptr, display->texture.t_south.img_ptr);
+	mlx_do_key_autorepeaton(display->mlx2.mlx_ptr);/*Cette fonction les reactive faut toujours reactiver a chaque fois*/
+	mlx_destroy_image(display->mlx2.mlx_ptr, display->texture.floor_img);
+	mlx_destroy_image(display->mlx2.mlx_ptr, display->texture.wall_img);
+	//mlx_destroy_image(display->mlx.mlx_ptr, display->rays.mlx_img);
+	mlx_destroy_image(display->mlx2.mlx_ptr, display->texture.t_east.img_ptr);
+	mlx_destroy_image(display->mlx2.mlx_ptr, display->texture.t_north.img_ptr);
+	mlx_destroy_image(display->mlx2.mlx_ptr, display->texture.t_west.img_ptr);
+	mlx_destroy_image(display->mlx2.mlx_ptr, display->texture.t_south.img_ptr);
 
 	mlx_destroy_image(display->mlx2.mlx_ptr, display->all.mlx_img);
-	mlx_destroy_window(display->mlx.mlx_ptr, display->mlx.win_ptr);
 	mlx_destroy_window(display->mlx2.mlx_ptr, display->mlx2.win_ptr);
-	mlx_destroy_display(display->mlx.mlx_ptr);
+	//mlx_destroy_display(display->mlx.mlx_ptr);
 	mlx_destroy_display(display->mlx2.mlx_ptr);
-	free(display->mlx.mlx_ptr);
 	free(display->mlx2.mlx_ptr);
 
 	free(display->texture.c_rgb);
@@ -131,8 +129,8 @@ void	render_all(t_display *display)
 	d = sqrt(power_h + power_w);
 	cast_ray(display->begin, display, d);
 	mlx_put_image_to_window(display->mlx2.mlx_ptr, display->mlx2.win_ptr, display->all.mlx_img, 0, 0);
-	mlx_put_image_to_window(display->mlx.mlx_ptr, display->mlx.win_ptr, display->rays.mlx_img, 0, 0);
-	mini_map(display, display->map);
+	//mlx_put_image_to_window(display->mlx.mlx_ptr, display->mlx.win_ptr, display->rays.mlx_img, 0, 0);
+	//mini_map(display, display->map);
 }
 
 int key_hook(int key, void *param)
