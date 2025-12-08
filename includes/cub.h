@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/01 08:51:41 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/08 13:56:12 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@
 
 
 #ifndef M_PI
-# define M_PI 3.14159265358979 
+# define M_PI 3.14159265358979
 #endif
 
 #ifndef SPEED
-# define  SPEED 5
+# define  SPEED 1.5
 #endif
 
 #ifndef TETA
@@ -209,10 +209,10 @@ typedef struct s_player
 
 	float	delta_x;
 	float	delta_y;
-	
+
 	float	perp_x;
 	float	perp_y;
-	
+
 	float	angle;
 	float	dir;
 	float	rl_angle;

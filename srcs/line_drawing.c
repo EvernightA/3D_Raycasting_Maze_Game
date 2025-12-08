@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   line_drawing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 10:34:32 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/08 11:31:16 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/08 14:43:05 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,14 +75,15 @@ void	east_case(float normalised_x, t_hit *hit, t_point bloc, t_display *display)
 {
 	int dx;
 	int dy;
-	
+
 	dx = (int)(hit->collision.f_x / 16) - display->player.blocs.x;
     dy = (int)(hit->collision.f_y / 16) - display->player.blocs.y;
 	if (dx < 0 && dy > 0 && hit->wall_direction == NORTH)
 	{
-		if (normalised_x >= 14.5f && display->map[bloc.y][bloc.x + 1] != '1')
+		if (normalised_x >= 15.5f && display->map[bloc.y][bloc.x + 1] != '1')
 			hit->wall_direction = EAST;
-		if (normalised_x >= 14.5f && display->map[bloc.y + 1][bloc.x] != '1' && display->map[bloc.y - 1][bloc.x] == '1')
+		if (normalised_x >= 15.5f && display->map[bloc.y + 1][bloc.x] == '1' && display->map[bloc.y - 1][bloc.x] != '1'
+			&& display->map[bloc.y][bloc.x + 1] != '1' && display->map[bloc.y][bloc.x - 1] == '1')
 			hit->wall_direction = EAST;
 	}
 	if (dx < 0 && dy < 0 && hit->wall_direction == SOUTH)
@@ -98,14 +99,15 @@ void west_case(float normalised_x, t_hit *hit, t_point bloc, t_display *display)
 {
 	int dx;
 	int dy;
-	
+
 	dx = (int)(hit->collision.f_x / 16) - display->player.blocs.x;
     dy = (int)(hit->collision.f_y / 16) - display->player.blocs.y;
 	if (dx > 0 && dy > 0 && hit->wall_direction == NORTH)
 	{
-		if (normalised_x <= 1.0f && display->map[bloc.y][bloc.x - 1] != '1')
+		if (normalised_x <= 0.5f && display->map[bloc.y][bloc.x - 1] != '1')
 			hit->wall_direction = WEST;
-		if (normalised_x <= 1.0f && display->map[bloc.y + 1][bloc.x] != '1' && display->map[bloc.y - 1][bloc.x] == '1')
+		if (normalised_x <= 0.5f && display->map[bloc.y + 1][bloc.x] == '1' && display->map[bloc.y - 1][bloc.x] != '1'
+			&& display->map[bloc.y][bloc.x + 1] == '1' && display->map[bloc.y][bloc.x - 1] != '1')
 			hit->wall_direction = WEST;
 	}
 	if (dx > 0 && dy < 0 && hit->wall_direction == SOUTH)
@@ -142,6 +144,7 @@ void	direct_fix(float normalised_x, t_hit *hit, t_point bloc, t_display *display
 		east_case(normalised_x, hit, bloc, display);
 		west_case(normalised_x, hit, bloc, display);
 	}
+	printf("wall_dir = %d, dx = %d, dy = %d, hitwc = %f, dpy+1 = '%c', dpy-1 = '%c', dpx+1='%c', dpx-1 = '%c'\n", hit->wall_direction, dx, dy, normalised_x, display->map[bloc.y + 1][bloc.x], display->map[bloc.y - 1][bloc.x], display->map[bloc.y][bloc.x + 1], display->map[bloc.y][bloc.x - 1]);
 }
 
 int	direction_fix(t_display *display, t_hit *hit, t_point bloc)
