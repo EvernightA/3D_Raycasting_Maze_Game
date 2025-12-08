@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 16:00:37 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/19 13:42:19 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/08 11:37:59 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,23 @@
 void	free_tex_map(t_display *display)
 {
 	free(display->texture.c_rgb);
+	display->texture.c_rgb = 0;
 	free(display->texture.f_rgb);
+	display->texture.f_rgb = 0;
 	if (display->map)
 		free_split(display->map);
+	display->map = 0;
 	if (display->texture.dup_map)
 		free_split(display->texture.dup_map);
+	display->texture.dup_map = 0;
 	free(display->texture.east);
+	display->texture.east = 0;
 	free(display->texture.north);
+	display->texture.north = 0;
 	free(display->texture.south);
+	display->texture.south = 0;
 	free(display->texture.west);
+	display->texture.west = 0;
 }
 
 int		closed_error(char	**map)
