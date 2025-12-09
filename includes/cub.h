@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/09 10:54:27 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/09 11:13:51 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -320,5 +320,13 @@ void	aff_floor_and_ceiling(t_display *display);
 
 int 	get_wall_direction(t_point collision, t_point player_pos);
 void	free_tex_map(t_display *display);
+void	init_player_pos(t_display *display, int i, int j);
+void	init_it(t_display *display);
+void	init_direction(t_display *display, int x_dir, int y_dir, float angle);
+int	input_error(int argc, char **argv);
+void	calculus_dir(t_display *display);
+
+
+
 
 #endif

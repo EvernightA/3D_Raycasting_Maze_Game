@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 11:42:50 by mratsima          #+#    #+#             */
-/*   Updated: 2025/12/09 11:04:58 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/09 11:12:54 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,27 +28,7 @@ void	print_split(char **split)
 		i++;
 	}
 }
-void	init_direction(t_display *display, int x_dir, int y_dir, float angle)
-{
-	display->player.direction.x = x_dir;
-	display->player.direction.y = y_dir;
-	display->player.angle = angle;
-}
 
-void	init_player_pos(t_display *display, int i, int j)
-{
-	display->player.blocs.x = i;
-	display->player.blocs.y = j;
-	display->begin.x = i * 16 + (16 >> 1);
-	display->begin.y = j * 16 + (16 >> 1);
-	display->begin.f_x = i * 16 + (16 >> 1);
-	display->begin.f_y = j * 16 + (16 >> 1);
-	display->player.pixels.x = i * 16 + (16 >> 1);
-	display->player.pixels.y = j * 16 + (16 >> 1);
-	display->player.pixels.f_x = i * 16 + (16 >> 1);
-	display->player.pixels.f_y = j * 16 + (16 >> 1);
-	display->player.fov = 60;
-}
 
 void	see_it(t_display *display)
 {
@@ -62,56 +42,11 @@ void	see_it(t_display *display)
 	print_split(display->map);
 }
 
-void	init_it(t_display *display)
-{
-	display->texture.north = NULL;
-	display->texture.south = NULL;
-	display->texture.east = NULL;
-	display->texture.west = NULL;
-	display->texture.f_rgb = NULL;
-	display->texture.c_rgb = NULL;
-	display->map = NULL;
-	display->head = NULL;
-	display->texture.dup_map = NULL;
-	display->key_stat.a_press = false;
-	display->key_stat.d_press = false;
-	display->key_stat.left_press = false;
-	display->key_stat.right_press = false;
-	display->key_stat.w_press = false;
-	display->key_stat.s_press = false;
-	display->shifter.screen_width = shifter(SCRN_WIDTH);
-	display->shifter.sreen_height = shifter(SCRN_HEIGHT);
-	display->shifter.size_img = shifter(SIZE_IMG);
-	///
-	display->end.x = 0;
-	display->end.y = 0;
-}
 
-void	calculus_dir(t_display *display)
-{
-	display->player.delta_x = cos(display->player.angle) * SPEED;
-	display->player.delta_y = sin(display->player.angle) * SPEED;
-	display->player.perp_x = -display->player.delta_y;
-	display->player.perp_y = display->player.delta_x;
-}
 
-static int	input_error(int argc, char **argv)
-{
-	char	*tmp;
 
-	if (argc != 2)
-	{
-		ft_putstr_fd("Error\nUsage: ./cub3D <path to the map>\n", 2);
-		return (1);
-	}
-	tmp = ft_strnstr(argv[1], ".cub", ft_strlen(argv[1]));
-	if (tmp == NULL || ft_strncmp(".cub", tmp, 4) != 0)
-	{
-		ft_putstr_fd("Error\nInvalid extension for map\n", 2);
-		return (1);
-	}
-	return (0);
-}
+
+
 
 void	orientation_init(t_display *display, int i, int j)
 {
