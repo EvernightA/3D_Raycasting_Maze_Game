@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:50:26 by mratsima          #+#    #+#             */
-/*   Updated: 2025/12/09 13:31:36 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/09 13:40:25 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	quit_win(t_display *display)
 	free_split(display->map);
 	exit(0);
 }
+
 void	player_move(t_display *display, int op, bool is_float)
 {
 	if (!is_float)
@@ -58,7 +59,8 @@ void	player_move(t_display *display, int op, bool is_float)
 	display->begin.x = display->player.pixels.x;
 	display->begin.y = display->player.pixels.y;
 	display->player.blocs = pixel_to_bloc(display->player.pixels, display);
-	display->map[display->player.blocs.y][display->player.blocs.x] = display->player.orientation;
+	display->map[display->player.blocs.y]
+	[display->player.blocs.x] = display->player.orientation;
 }
 
 void	orientation_player(t_display *display, int operation)

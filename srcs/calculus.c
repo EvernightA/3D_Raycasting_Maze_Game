@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 09:17:26 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/09 11:11:57 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/09 13:39:47 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,16 @@ void	calculus_dir(t_display *display)
 	display->player.delta_y = sin(display->player.angle) * SPEED;
 	display->player.perp_x = -display->player.delta_y;
 	display->player.perp_y = display->player.delta_x;
+}
+float	to_wall(t_display *display, t_point collision, float beta)
+{
+	float	distance;
+	int		dx;
+	int		dy;
+
+	dx = display->player.pixels.x - collision.x;
+	dy = display->player.pixels.y - collision.y;
+	distance = sqrt(pow(abs(dx), 2) + pow(abs(dy), 2));
+	distance = distance * cos(beta);
+	return (distance);
 }
