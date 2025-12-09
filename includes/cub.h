@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/09 18:19:10 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/09 18:35:23 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -325,5 +325,8 @@ int					rgb_error(char **split_rgb, char *str_rgb);
 int					overflowing_values(char **split_rgb);
 int					non_numeric_values(char **split_rgb);
 int					not_enough_values(char **split_rgb);
-
+void				east_case(float normalised_x, t_hit *hit, t_point bloc,
+					t_display *display);
+void				west_case(float normalised_x, t_hit *hit, t_point bloc,
+					t_display *display);
 #endif

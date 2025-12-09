@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 10:34:32 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/09 18:19:54 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/09 18:34:56 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	draw_textured_line(t_line *line, t_hit hit, int line_size,
 	tmp = line;
 	count = 0;
 	texture_to_display = &display->texture.t_north;
-	;
 	set_texture(&texture_to_display, hit, display);
 	while (tmp)
 	{
@@ -73,95 +72,6 @@ void	draw_line(t_display *display)
 			break ;
 		}
 		tmp = tmp->next;
-	}
-}
-
-void	east_case(float normalised_x, t_hit *hit, t_point bloc,
-		t_display *display)
-{
-	int dx;
-	int dy;
-	int wall_above;
-	int wall_below;
-	int wall_right;
-
-	dx = (int)(hit->collision.f_x / 16) - display->player.blocs.x;
-	dy = (int)(hit->collision.f_y / 16) - display->player.blocs.y;
-	if (dx < 0 && dy > 0 && hit->wall_direction == NORTH)
-	{
-		if (display->map[bloc. y][bloc.x + 1] != '1')
-		{
-			wall_above = (display->map[bloc.y - 1][bloc.x] == '1');
-			wall_below = (display->map[bloc.y + 1][bloc.x] == '1');
-			wall_right = (display->map[bloc.y][bloc.x + 1] == '1');
-			if (abs(bloc.x - display->player.blocs.x) < 2
-				&& !wall_above && !wall_right && normalised_x >= 15.0f && normalised_x <= 15.7f)
-				return;
-			if ((wall_above || wall_below) && normalised_x >= 15.0f)
-				hit->wall_direction = EAST;
-			else if (normalised_x >= 15.0f)
-				hit->wall_direction = EAST;
-		}
-	}
-	if (dx < 0 && dy < 0 && hit->wall_direction == SOUTH)
-	{
-		if (display->map[bloc.y][bloc.x + 1] != '1')
-		{
-			wall_above = (display->map[bloc.y - 1][bloc.x] == '1');
-			wall_below = (display->map[bloc.y + 1][bloc.x] == '1');
-			wall_right = (display->map[bloc. y][bloc.x + 1] == '1');
-			if (abs(bloc.x - display->player. blocs.x) < 2
-				&& !wall_below && !wall_right && normalised_x >= 15.0f && normalised_x <= 15.7f)
-				return;
-			if ((wall_above || wall_below) && normalised_x >= 15.0f)
-				hit->wall_direction = EAST;
-			else if (normalised_x >= 15.0f)
-				hit->wall_direction = EAST;
-		}
-	}
-}
-
-void	west_case(float normalised_x, t_hit *hit, t_point bloc, t_display *display)
-{
-	int dx;
-	int dy;
-	int wall_above;
-	int wall_below;
-	int wall_left;
-
-	dx = (int)(hit->collision.f_x / 16) - display->player.blocs.x;
-	dy = (int)(hit->collision.f_y / 16) - display->player.blocs.y;
-	if (dx > 0 && dy > 0 && hit->wall_direction == NORTH)
-	{
-		if (display->map[bloc. y][bloc.x - 1] != '1')
-		{
-			wall_above = (display->map[bloc.y - 1][bloc.x] == '1');
-			wall_below = (display->map[bloc.y + 1][bloc.x] == '1');
-			wall_left = (display->map[bloc.y][bloc.x - 1] == '1');
-			if (abs(bloc.x - display->player. blocs.x) < 2
-				&& !wall_above && !wall_left && normalised_x >= 0.3f && normalised_x <= 1.0f)
-				return;
-			if ((wall_above || wall_below) && normalised_x <= 1.0f)
-				hit->wall_direction = WEST;
-			else if (normalised_x <= 1.0f)
-				hit->wall_direction = WEST;
-		}
-	}
-	if (dx > 0 && dy < 0 && hit->wall_direction == SOUTH)
-	{
-		if (display->map[bloc.y][bloc.x - 1] != '1')
-		{
-			wall_above = (display->map[bloc.y - 1][bloc.x] == '1');
-			wall_below = (display->map[bloc. y + 1][bloc.x] == '1');
-			wall_left = (display->map[bloc.y][bloc.x - 1] == '1');
-			if (abs(bloc.x - display->player.blocs.x) < 2
-				&& !wall_below && !wall_left && normalised_x >= 0.3f && normalised_x <= 1.0f)
-				return;
-			if ((wall_above || wall_below) && normalised_x <= 1.0f)
-				hit->wall_direction = WEST;
-			else if (normalised_x <= 1.0f)
-				hit->wall_direction = WEST;
-		}
 	}
 }
 

@@ -2,7 +2,7 @@ CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror -g
 
-NAME = cub3D 
+NAME = cub3D
 
 MLXFLAGS =  -Lminilibx-linux ./minilibx-linux/libmlx_Linux.a ./libft/libft.a -lX11 -lXext -lm
 
@@ -33,6 +33,8 @@ SRCS =  $(SRCS_DIR)main.c 				\
 		$(SRCS_DIR)color_utils.c		\
 		$(SRCS_DIR)parsing_utils.c		\
 		$(SRCS_DIR)dda.c	        	\
+		$(SRCS_DIR)east_fix.c        	\
+		$(SRCS_DIR)west_fix.c        	\
 		$(SRCS_DIR)line_drawing.c
 
 
