@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
+/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/09 18:19:10 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/09 18:29:02 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -236,7 +236,7 @@ typedef struct s_display
 }					t_display;
 
 char				**dup_mat(t_display *display, int height, char **map);
-
+int					ft_abs(int n);
 size_t				find_len_max(char **map);
 int					map_invalid(int i, int j, int k, char **map);
 char				*ft_strdup_x(char *s, int len);

@@ -3,14 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   frees.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
+/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:22:27 by mratsima          #+#    #+#             */
-/*   Updated: 2025/10/08 07:51:36 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/09 18:28:34 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
+
+int	ft_abs(int n)
+{
+	if (n < 0)
+	{
+		return (-n);
+	}
+	return (n);
+}
 
 void	free_split(char **split)
 {
