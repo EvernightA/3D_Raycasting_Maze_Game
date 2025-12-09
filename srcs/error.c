@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:28:34 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/08 13:58:10 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/09 09:30:17 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ int	closed__map_error(char *str)
 		|| ft_strnstr(str, "N ", ft_strlen(str)) || ft_strnstr(str, "E ",
 			ft_strlen(str)) || ft_strnstr(str, "S ", ft_strlen(str))
 		|| ft_strnstr(str, "W ", ft_strlen(str)) || ft_strnstr(str, "N\n",
-			ft_strlen(str)) || ft_strnstr(str, "E\n", ft_strlen(str)) ||
-		ft_strnstr(str, "S\n", ft_strlen(str)) || ft_strnstr(str, "W\n",
-				ft_strlen(str)) || str[ft_strlen(str) - 1] == '0')
+			ft_strlen(str)) || ft_strnstr(str, "E\n", ft_strlen(str))
+		|| ft_strnstr(str, "S\n", ft_strlen(str)) || ft_strnstr(str, "W\n",
+			ft_strlen(str)) || str[ft_strlen(str) - 1] == '0')
 	{
 		ft_putstr_fd("Error\nUnclosed map found\n", 2);
 		return (1);
