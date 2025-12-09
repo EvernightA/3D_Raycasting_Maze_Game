@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 10:34:32 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/08 14:43:05 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/09 10:57:28 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,47 +75,97 @@ void	east_case(float normalised_x, t_hit *hit, t_point bloc, t_display *display)
 {
 	int dx;
 	int dy;
+	int wall_above;
+	int wall_below;
 
 	dx = (int)(hit->collision.f_x / 16) - display->player.blocs.x;
-    dy = (int)(hit->collision.f_y / 16) - display->player.blocs.y;
+	dy = (int)(hit->collision.f_y / 16) - display->player.blocs.y;
+
 	if (dx < 0 && dy > 0 && hit->wall_direction == NORTH)
 	{
-		if (normalised_x >= 15.5f && display->map[bloc.y][bloc.x + 1] != '1')
-			hit->wall_direction = EAST;
-		if (normalised_x >= 15.5f && display->map[bloc.y + 1][bloc.x] == '1' && display->map[bloc.y - 1][bloc.x] != '1'
-			&& display->map[bloc.y][bloc.x + 1] != '1' && display->map[bloc.y][bloc.x - 1] == '1')
-			hit->wall_direction = EAST;
+		if (display->map[bloc. y][bloc.x + 1] != '1')
+		{
+			wall_above = (display->map[bloc.y - 1][bloc.x] == '1');
+			wall_below = (display->map[bloc.y + 1][bloc.x] == '1');
+
+			// Very close (within 1 block) - use stricter threshold
+			if (abs(dy) <= 1 && (wall_above || wall_below) && normalised_x >= 15.3f)
+				hit->wall_direction = EAST;
+			// Medium distance (2-3 blocks) - use wider threshold for edges
+			else if (abs(dy) <= 3 && (wall_above || wall_below) && normalised_x >= 15.0f)
+				hit->wall_direction = EAST;
+			// Far from wall OR isolated - use stricter threshold for corners
+			else if (normalised_x >= 15.5f)
+				hit->wall_direction = EAST;
+		}
 	}
+
 	if (dx < 0 && dy < 0 && hit->wall_direction == SOUTH)
 	{
-		if (normalised_x >= 15.0f && display->map[bloc.y][bloc.x + 1] != '1')
-			hit->wall_direction = EAST;
-		if (normalised_x >= 15.0f && display->map[bloc.y - 1][bloc.x] != '1' && display->map[bloc.y + 1][bloc.x] == '1')
-			hit->wall_direction = EAST;
+		if (display->map[bloc.y][bloc.x + 1] != '1')
+		{
+			wall_above = (display->map[bloc.y - 1][bloc.x] == '1');
+			wall_below = (display->map[bloc.y + 1][bloc. x] == '1');
+
+			// Very close (within 1 block) - use stricter threshold
+			if (abs(dy) <= 1 && (wall_above || wall_below) && normalised_x >= 15.3f)
+				hit->wall_direction = EAST;
+			// Medium distance (2-3 blocks) - use wider threshold for edges
+			else if (abs(dy) <= 3 && (wall_above || wall_below) && normalised_x >= 15.0f)
+				hit->wall_direction = EAST;
+			// Far from wall OR isolated - use stricter threshold for corners
+			else if (normalised_x >= 15.5f)
+				hit->wall_direction = EAST;
+		}
 	}
 }
 
-void west_case(float normalised_x, t_hit *hit, t_point bloc, t_display *display)
+void	west_case(float normalised_x, t_hit *hit, t_point bloc, t_display *display)
 {
 	int dx;
 	int dy;
+	int wall_above;
+	int wall_below;
 
 	dx = (int)(hit->collision.f_x / 16) - display->player.blocs.x;
-    dy = (int)(hit->collision.f_y / 16) - display->player.blocs.y;
+	dy = (int)(hit->collision.f_y / 16) - display->player.blocs.y;
+
 	if (dx > 0 && dy > 0 && hit->wall_direction == NORTH)
 	{
-		if (normalised_x <= 0.5f && display->map[bloc.y][bloc.x - 1] != '1')
-			hit->wall_direction = WEST;
-		if (normalised_x <= 0.5f && display->map[bloc.y + 1][bloc.x] == '1' && display->map[bloc.y - 1][bloc.x] != '1'
-			&& display->map[bloc.y][bloc.x + 1] == '1' && display->map[bloc.y][bloc.x - 1] != '1')
-			hit->wall_direction = WEST;
+		if (display->map[bloc. y][bloc.x - 1] != '1')
+		{
+			wall_above = (display->map[bloc.y - 1][bloc.x] == '1');
+			wall_below = (display->map[bloc.y + 1][bloc.x] == '1');
+
+			// Very close (within 1 block) - use stricter threshold
+			if (abs(dy) <= 1 && (wall_above || wall_below) && normalised_x <= 0.7f)
+				hit->wall_direction = WEST;
+			// Medium distance (2-3 blocks) - use wider threshold for edges
+			else if (abs(dy) <= 3 && (wall_above || wall_below) && normalised_x <= 1.0f)
+				hit->wall_direction = WEST;
+			// Far from wall OR isolated - use stricter threshold for corners
+			else if (normalised_x <= 0.5f)
+				hit->wall_direction = WEST;
+		}
 	}
+
 	if (dx > 0 && dy < 0 && hit->wall_direction == SOUTH)
 	{
-		if (normalised_x <= 1.0f && display->map[bloc.y][bloc.x - 1] != '1')
-			hit->wall_direction = WEST;
-		if (normalised_x <= 1.0f && display->map[bloc.y - 1][bloc.x] != '1' && display->map[bloc.y + 1][bloc.x] == '1')
-			hit->wall_direction = WEST;
+		if (display->map[bloc.y][bloc.x - 1] != '1')
+		{
+			wall_above = (display->map[bloc.y - 1][bloc.x] == '1');
+			wall_below = (display->map[bloc.y + 1][bloc.x] == '1');
+
+			// Very close (within 1 block) - use stricter threshold
+			if (abs(dy) <= 1 && (wall_above || wall_below) && normalised_x <= 0.7f)
+				hit->wall_direction = WEST;
+			// Medium distance (2-3 blocks) - use wider threshold for edges
+			else if (abs(dy) <= 3 && (wall_above || wall_below) && normalised_x <= 1.0f)
+				hit->wall_direction = WEST;
+			// Far from wall OR isolated - use stricter threshold for corners
+			else if (normalised_x <= 0.5f)
+				hit->wall_direction = WEST;
+		}
 	}
 }
 
