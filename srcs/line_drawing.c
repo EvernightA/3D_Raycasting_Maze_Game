@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 10:34:32 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/09 15:01:00 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/09 16:14:20 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	east_case(float normalised_x, t_hit *hit, t_point bloc, t_display *display)
 			else if ((wall_above || wall_below) && normalised_x >= 15.0f)
 				hit->wall_direction = EAST;
 			// Isolated corners - very strict
-			else if (normalised_x >= 15.5f)
+			else if (normalised_x >= 15.0f)
 				hit->wall_direction = EAST;
 		}
 	}
@@ -114,7 +114,7 @@ void	east_case(float normalised_x, t_hit *hit, t_point bloc, t_display *display)
 			else if ((wall_above || wall_below) && normalised_x >= 15.0f)
 				hit->wall_direction = EAST;
 			// Isolated corners - very strict
-			else if (normalised_x >= 15.5f)
+			else if (normalised_x >= 15.0f)
 				hit->wall_direction = EAST;
 		}
 	}
@@ -144,7 +144,7 @@ void	west_case(float normalised_x, t_hit *hit, t_point bloc, t_display *display)
 			else if ((wall_above || wall_below) && normalised_x <= 1.0f)
 				hit->wall_direction = WEST;
 			// Isolated corners - very strict
-			else if (normalised_x <= 0.5f)
+			else if (normalised_x <= 1.0f)
 				hit->wall_direction = WEST;
 		}
 	}
@@ -163,7 +163,7 @@ void	west_case(float normalised_x, t_hit *hit, t_point bloc, t_display *display)
 			else if ((wall_above || wall_below) && normalised_x <= 1.0f)
 				hit->wall_direction = WEST;
 			// Isolated corners - very strict
-			else if (normalised_x <= 0.5f)
+			else if (normalised_x <= 1.0f)
 				hit->wall_direction = WEST;
 		}
 	}
