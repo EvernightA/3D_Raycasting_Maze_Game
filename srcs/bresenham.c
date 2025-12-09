@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 13:17:03 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/09 10:49:03 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/09 18:29:27 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ void	initialize_bres(t_bres *bres, t_point *begin, t_point *end)
 {
 	bres->head = NULL;
 	bres->tail = NULL;
-	bres->delta_x = abs(end->x - begin->x);
-	bres->delta_y = abs(end->y - begin->y);
+	bres->delta_x = ft_abs(end->x - begin->x);
+	bres->delta_y = ft_abs(end->y - begin->y);
 	if ((begin->x < end->x))
 		bres->x_step = 1;
 	else
