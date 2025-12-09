@@ -14,7 +14,7 @@
 
 void	mini_map(t_display *display, char **map)
 {
-	int i;
+	int	i;
 	int	j;
 
 	i = 0;
@@ -26,14 +26,18 @@ void	mini_map(t_display *display, char **map)
 		{
 			if (map[i][j] == '1')
 			{
-				mlx_put_image_to_window(display->mlx.mlx_ptr, display->mlx.win_ptr, display->texture.wall_img, j * SIZE_IMG, i * SIZE_IMG);	
+				mlx_put_image_to_window(display->mlx.mlx_ptr,
+					display->mlx.win_ptr, display->texture.wall_img, j
+					* SIZE_IMG, i * SIZE_IMG);
 			}
 			else if (map[i][j] == '0')
 			{
 			}
 			else if (is_player(map[i][j]))
 			{
-				mlx_pixel_put(display->mlx.mlx_ptr, display->mlx.win_ptr, display->player.pixels.x * 1, display->player.pixels.y * 1, 0xFF00);
+				mlx_pixel_put(display->mlx.mlx_ptr, display->mlx.win_ptr,
+					display->player.pixels.x * 1, display->player.pixels.y * 1,
+					0xFF00);
 			}
 			j++;
 		}
@@ -41,5 +45,3 @@ void	mini_map(t_display *display, char **map)
 	}
 	// free_split(map);
 }
-
-

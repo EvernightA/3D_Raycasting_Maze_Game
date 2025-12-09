@@ -47,9 +47,9 @@ int	player_error(int count, t_display *display)
 	return (0);
 }
 
-int player_in_str(char *str)
+int	player_in_str(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])

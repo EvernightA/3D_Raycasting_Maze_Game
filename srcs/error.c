@@ -12,24 +12,26 @@
 
 #include "../includes/cub.h"
 
-int		closed__map_error(char *str)
+int	closed__map_error(char *str)
 {
-	if (ft_strnstr(str, " 0", ft_strlen(str)) || ft_strnstr(str, "0 ", ft_strlen(str))
-	|| ft_strnstr(str, "0\n", ft_strlen(str)) || ft_strnstr(str, "\n0", ft_strlen(str))
-	|| ft_strnstr(str, "\t0", ft_strlen(str)) || ft_strnstr(str, "0\t", ft_strlen(str))
-	|| ft_strnstr(str, "0N ",ft_strlen(str)) || ft_strnstr(str, "0E ", ft_strlen(str))
-	|| ft_strnstr(str, "0S ",ft_strlen(str)) || ft_strnstr(str, "0W ", ft_strlen(str))
-	|| ft_strnstr(str, "0N\n",ft_strlen(str)) || ft_strnstr(str, "0E\n", ft_strlen(str))
-	|| ft_strnstr(str, "0S\n",ft_strlen(str)) || ft_strnstr(str, "0W\n", ft_strlen(str))
-	|| ft_strnstr(str, "0N\t",ft_strlen(str)) || ft_strnstr(str, "0E\t", ft_strlen(str))
-	|| ft_strnstr(str, "0S\t",ft_strlen(str)) || ft_strnstr(str, "0W\t", ft_strlen(str))
-	|| ft_strnstr(str, "N ",ft_strlen(str)) || ft_strnstr(str, "E ", ft_strlen(str))
-	|| ft_strnstr(str, "S ",ft_strlen(str)) || ft_strnstr(str, "W ", ft_strlen(str))
-	|| ft_strnstr(str, "N\n",ft_strlen(str)) || ft_strnstr(str, "E\n", ft_strlen(str))
-	|| ft_strnstr(str, "S\n",ft_strlen(str)) || ft_strnstr(str, "W\n", ft_strlen(str))
-	|| str[ft_strlen(str) - 1] == '0'
-)
-
+	if (ft_strnstr(str, " 0", ft_strlen(str)) || ft_strnstr(str, "0 ",
+			ft_strlen(str)) || ft_strnstr(str, "0\n", ft_strlen(str))
+		|| ft_strnstr(str, "\n0", ft_strlen(str)) || ft_strnstr(str, "\t0",
+			ft_strlen(str)) || ft_strnstr(str, "0\t", ft_strlen(str))
+		|| ft_strnstr(str, "0N ", ft_strlen(str)) || ft_strnstr(str, "0E ",
+			ft_strlen(str)) || ft_strnstr(str, "0S ", ft_strlen(str))
+		|| ft_strnstr(str, "0W ", ft_strlen(str)) || ft_strnstr(str, "0N\n",
+			ft_strlen(str)) || ft_strnstr(str, "0E\n", ft_strlen(str))
+		|| ft_strnstr(str, "0S\n", ft_strlen(str)) || ft_strnstr(str, "0W\n",
+			ft_strlen(str)) || ft_strnstr(str, "0N\t", ft_strlen(str))
+		|| ft_strnstr(str, "0E\t", ft_strlen(str)) || ft_strnstr(str, "0S\t",
+			ft_strlen(str)) || ft_strnstr(str, "0W\t", ft_strlen(str))
+		|| ft_strnstr(str, "N ", ft_strlen(str)) || ft_strnstr(str, "E ",
+			ft_strlen(str)) || ft_strnstr(str, "S ", ft_strlen(str))
+		|| ft_strnstr(str, "W ", ft_strlen(str)) || ft_strnstr(str, "N\n",
+			ft_strlen(str)) || ft_strnstr(str, "E\n", ft_strlen(str)) ||
+		ft_strnstr(str, "S\n", ft_strlen(str)) || ft_strnstr(str, "W\n",
+				ft_strlen(str)) || str[ft_strlen(str) - 1] == '0')
 	{
 		ft_putstr_fd("Error\nUnclosed map found\n", 2);
 		return (1);
@@ -37,7 +39,7 @@ int		closed__map_error(char *str)
 	return (0);
 }
 
-int unknown_error(t_display *display, int *j, int i, int *count)
+int	unknown_error(t_display *display, int *j, int i, int *count)
 {
 	if (is_unknown(display->map[i][*j]))
 	{
@@ -55,9 +57,9 @@ int unknown_error(t_display *display, int *j, int i, int *count)
 
 int	multiple_player_check(t_display *display)
 {
-	int		i;
-	int		j;
-	int			count;
+	int	i;
+	int	j;
+	int	count;
 
 	i = 0;
 	count = 0;
@@ -87,8 +89,9 @@ int	error_handling(t_display *display)
 
 	if (multiple_player_check(display) || texture_error(display))
 		return (1);
-	tmp = dup_mat(display,display->texture.map_height, display->map);
-	display->texture.dup_map = dup_mat(display,display->texture.map_height, display->map);
+	tmp = dup_mat(display, display->texture.map_height, display->map);
+	display->texture.dup_map = dup_mat(display, display->texture.map_height,
+			display->map);
 	if (matrix_height(tmp) <= 2)
 	{
 		ft_putstr_fd("Error\nWhat kind of psych are u?\n", 2);

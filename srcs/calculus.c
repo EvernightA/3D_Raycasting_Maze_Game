@@ -12,8 +12,7 @@
 
 #include "../includes/cub.h"
 
-
-int		shifter(int	number)
+int	shifter(int number)
 {
 	int	i;
 
@@ -27,5 +26,5 @@ int		shifter(int	number)
 		i++;
 	}
 	printf("Not valid number for size\n");
-	return(0);
+	return (0);
 }

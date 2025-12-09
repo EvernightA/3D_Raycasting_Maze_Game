@@ -37,7 +37,7 @@ void	update_current(t_dda *dda)
 	dda->current.dp = 0;
 }
 
-int initialize(t_dda *dda, t_point *begin, t_point *end)
+int	initialize(t_dda *dda, t_point *begin, t_point *end)
 {
 	dda->head = NULL;
 	dda->tail = NULL;
@@ -54,7 +54,7 @@ int initialize(t_dda *dda, t_point *begin, t_point *end)
 
 t_line	*dda_line(t_point *begin, t_point *end)
 {
-	t_dda dda;
+	t_dda	dda;
 
 	if (!initialize(&dda, begin, end))
 		return (0);

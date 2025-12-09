@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/08 13:58:00 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/08 14:50:24 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@
 #endif
 
 #ifndef SCRN_WIDTH
- #define SCRN_WIDTH 512
+ #define SCRN_WIDTH 1024
 #endif
 
 #ifndef SCRN_HEIGHT
- #define SCRN_HEIGHT 512
+ #define SCRN_HEIGHT 912
 #endif
 
 #ifndef WALL_UNIT

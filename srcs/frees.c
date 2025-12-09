@@ -38,4 +38,3 @@ void	free_texture(t_display *display)
 	free(display->texture.west);
 	free(display->texture.south);
 }
-

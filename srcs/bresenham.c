@@ -6,12 +6,11 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 13:17:03 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/08 12:53:37 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/08 14:48:22 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
-
 
 static int	ft_abs(int n)
 {
@@ -20,28 +19,28 @@ static int	ft_abs(int n)
 	return (n);
 }
 
-t_point calculate_end(t_point begin, float angle, int max_distance)
+t_point	calculate_end(t_point begin, float angle, int max_distance)
 {
-	t_point end;
-	
+	t_point	end;
+
 	end.x = begin.x + cos(angle) * max_distance;
 	end.y = begin.y + sin(angle) * max_distance;
 	end.f_x = begin.f_x + cos(angle) * max_distance;
 	end.f_y = begin.f_y + sin(angle) * max_distance;
-	
 	return (end);
 }
 
-void draw_wall_lines(t_display *display, t_hit hit, int pixel_index, float angle)
+void	draw_wall_lines(t_display *display, t_hit hit, int pixel_index,
+		float angle)
 {
-	t_line *line;
-	int line_size;
-	t_point begin;
-	t_point end;
-	
+	t_line	*line;
+	int		line_size;
+	t_point	begin;
+	t_point	end;
+
 	(void)angle;
 	if (hit.distance)
-		line_size =  SIZE_IMG * WALL_UNIT / hit.distance;
+		line_size = SIZE_IMG * WALL_UNIT / hit.distance;
 	else
 		line_size = SCRN_HEIGHT;
 	begin.y = (SCRN_HEIGHT >> 1) - (line_size >> 1);
@@ -60,12 +59,12 @@ void draw_wall_lines(t_display *display, t_hit hit, int pixel_index, float angle
 	}
 }
 
-void	cast_ray(t_point begin,t_display *display, int d)
+void	cast_ray(t_point begin, t_display *display, int d)
 {
-	t_point true_end;
-	t_hit 	hit;
+	t_point	true_end;
+	t_hit	hit;
 	float	angle;
-	int pixel_index;
+	int		pixel_index;
 
 	pixel_index = 0;
 	angle = -FOV / 2;

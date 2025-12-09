@@ -6,15 +6,17 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 11:42:50 by mratsima          #+#    #+#             */
-/*   Updated: 2025/12/08 14:03:32 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/09 09:00:42 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-void print_split(char **split)
+void	print_split(char **split)
 {
-	int i = 0;
+	int	i;
+
+	i = 0;
 	if (!split)
 	{
 		printf("(null)\n");
@@ -32,15 +34,15 @@ void	init_direction(t_display *display, int x_dir, int y_dir, float angle)
 	display->player.direction.y = y_dir;
 	display->player.angle = angle;
 }
- 
+
 void	init_player_pos(t_display *display, int i, int j)
 {
 	display->player.blocs.x = i;
 	display->player.blocs.y = j;
-	display->begin.x = i  * 16 + (16 >> 1);
-	display->begin.y = j  * 16 + (16 >> 1);
-	display->begin.f_x = i  * 16 + (16 >> 1);
-	display->begin.f_y = j  * 16 + (16 >> 1);
+	display->begin.x = i * 16 + (16 >> 1);
+	display->begin.y = j * 16 + (16 >> 1);
+	display->begin.f_x = i * 16 + (16 >> 1);
+	display->begin.f_y = j * 16 + (16 >> 1);
 	display->player.pixels.x = i * 16 + (16 >> 1);
 	display->player.pixels.y = j * 16 + (16 >> 1);
 	display->player.pixels.f_x = i * 16 + (16 >> 1);
@@ -50,7 +52,7 @@ void	init_player_pos(t_display *display, int i, int j)
 
 void	see_it(t_display *display)
 {
-	printf("North : %s\n",display->texture.north);
+	printf("North : %s\n", display->texture.north);
 	printf("East : %s\n", display->texture.east);
 	printf("West : %s\n", display->texture.west);
 	printf("South : %s\n", display->texture.south);
@@ -65,10 +67,10 @@ void	init_it(t_display *display)
 	display->texture.north = NULL;
 	display->texture.south = NULL;
 	display->texture.east = NULL;
-	display->texture.west =  NULL;
+	display->texture.west = NULL;
 	display->texture.f_rgb = NULL;
 	display->texture.c_rgb = NULL;
-	display->map =NULL;
+	display->map = NULL;
 	display->head = NULL;
 	display->texture.dup_map = NULL;
 	display->key_stat.a_press = false;
@@ -87,19 +89,19 @@ void	init_it(t_display *display)
 
 void	calculus_dir(t_display *display)
 {
-	display->player.delta_x = cos (display->player.angle) * SPEED;
-	display->player.delta_y = sin (display->player.angle) * SPEED;
+	display->player.delta_x = cos(display->player.angle) * SPEED;
+	display->player.delta_y = sin(display->player.angle) * SPEED;
 	display->player.perp_x = -display->player.delta_y;
 	display->player.perp_y = display->player.delta_x;
 }
 
 static int	input_error(int argc, char **argv)
 {
-	char *tmp;
+	char	*tmp;
 
 	if (argc != 2)
 	{
-		ft_putstr_fd("Error\nUsage: ./cub3D <path to the map>\n",2);
+		ft_putstr_fd("Error\nUsage: ./cub3D <path to the map>\n", 2);
 		return (1);
 	}
 	tmp = ft_strnstr(argv[1], ".cub", ft_strlen(argv[1]));
@@ -111,10 +113,22 @@ static int	input_error(int argc, char **argv)
 	return (0);
 }
 
+void	orientation_init(t_display *display, int i, int j)
+{
+	if (display->map[j][i] == 'N')
+		init_direction(display, 0, 1, 3 * M_PI / 2);
+	else if (display->map[j][i] == 'S')
+		init_direction(display, 0, 1, M_PI / 2);
+	else if (display->map[j][i] == 'E')
+		init_direction(display, 1, 0, 0);
+	else if (display->map[j][i] == 'W')
+		init_direction(display, -1, 0, M_PI);
+}
+
 void	init_player_position(t_display *display)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	j = 0;
 	while (display->map[j])
@@ -125,14 +139,7 @@ void	init_player_position(t_display *display)
 			if (is_player(display->map[j][i]))
 			{
 				init_player_pos(display, i, j);
-				if (display->map[j][i] == 'N')
-					init_direction(display, 0, 1, 3 * M_PI/2);
-				else if (display->map[j][i] == 'S')
-					init_direction(display, 0, 1, M_PI / 2);
-				else  if (display->map[j][i] == 'E')
-					init_direction(display, 1, 0, 0);
-				else if (display->map[j][i] == 'W')
-					init_direction(display, -1, 0, M_PI);
+				orientation_init(display, i, j);
 				display->player.orientation = display->map[j][i];
 				calculus_dir(display);
 				return ;
@@ -145,17 +152,17 @@ void	init_player_position(t_display *display)
 
 t_point	pixel_to_bloc(t_point pixel, t_display *display)
 {
-	t_point bloc;
+	t_point	bloc;
 
-	bloc.x = pixel.x >> display->shifter.size_img;// size = 16
-	bloc.y = pixel.y >> display->shifter.size_img;// size = 16
-	bloc.f_x = pixel.x >> display->shifter.size_img;// size = 16
-	bloc.f_y = pixel.y >> display->shifter.size_img;// size = 16
+	bloc.x = pixel.x >> display->shifter.size_img;   // size = 16
+	bloc.y = pixel.y >> display->shifter.size_img;   // size = 16
+	bloc.f_x = pixel.x >> display->shifter.size_img; // size = 16
+	bloc.f_y = pixel.y >> display->shifter.size_img; // size = 16
 	return (bloc);
 }
 
-
-int	something_is_wrong(t_display *display, char **argv, int argc, int *map_height)
+int	something_is_wrong(t_display *display, char **argv, int argc,
+		int *map_height)
 {
 	if (input_error(argc, argv))
 		return (1);
@@ -176,36 +183,35 @@ int	something_is_wrong(t_display *display, char **argv, int argc, int *map_heigh
 	return (0);
 }
 
-
 void	mlx_functions(t_display *display)
 {
 	render_all(display);
 	mlx_hook(display->mlx2.win_ptr, 17, 0, quit_win, display);
-	mlx_hook(display->mlx2.win_ptr, 2, 1L<<0, key_hook, display);
-	mlx_hook(display->mlx2.win_ptr, 3, 1L<<1, releasing_key, display);
-	//mini_map(display, display->map);
+	mlx_hook(display->mlx2.win_ptr, 2, 1L << 0, key_hook, display);
+	mlx_hook(display->mlx2.win_ptr, 3, 1L << 1, releasing_key, display);
+	// mini_map(display, display->map);
 	mlx_loop_hook(display->mlx2.mlx_ptr, &game_engine, display);
 }
 
-
 int	main(int argc, char **argv)
 {
-	(void)argv;
-	int map_height;
+	int			map_height;
 	t_display	display;
 
+	(void)argv;
 	init_it(&display);
 	if (something_is_wrong(&display, argv, argc, &map_height))
 	{
 		free_tex_map(&display);
 		return (1);
-	}	
+	}
 	init_player_position(&display);
 	display.mlx2.mlx_ptr = mlx_init();
 	if (!display.mlx2.mlx_ptr)
 		return (1);
 	mlx_do_key_autorepeatoff(display.mlx2.mlx_ptr);
-	display.mlx2.win_ptr = mlx_new_window(display.mlx2.mlx_ptr, SCRN_WIDTH, SCRN_HEIGHT, "cub3D");
+	display.mlx2.win_ptr = mlx_new_window(display.mlx2.mlx_ptr, SCRN_WIDTH,
+			SCRN_HEIGHT, "cub3D");
 	img_initialization(&display);
 	load_textures(&display);
 	mlx_functions(&display);

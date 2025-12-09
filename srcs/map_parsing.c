@@ -14,8 +14,8 @@
 
 char	**get_map(char *gnl, int fd, int map_height)
 {
-	char **map;
-	int i;
+	char	**map;
+	int		i;
 
 	i = 0;
 	map = (char **)ft_calloc(map_height + 1, sizeof(char *));
@@ -40,7 +40,7 @@ void	count_lines(char *gnl, char *tmp, int *count, int fd)
 	{
 		if (tmp[0] != '1' && tmp[0] != '0' && tmp[0] != '\n')
 		{
-			//printf("tmp = %c\n", tmp[0]);
+			// printf("tmp = %c\n", tmp[0]);
 			free(tmp);
 			printf("Error\nError in map\n");
 			while (gnl)
@@ -48,7 +48,7 @@ void	count_lines(char *gnl, char *tmp, int *count, int fd)
 				free(gnl);
 				gnl = get_next_line(fd);
 			}
-			exit (1);
+			exit(1);
 		}
 		(*count)++;
 		free(gnl);
@@ -65,9 +65,9 @@ void	count_lines(char *gnl, char *tmp, int *count, int fd)
 
 int	count_map_lines(int fd)
 {
-	int count;
-	char *gnl;
-	char *tmp;
+	int		count;
+	char	*gnl;
+	char	*tmp;
 
 	count = 0;
 	gnl = get_next_line(fd);
@@ -99,14 +99,14 @@ void	get_elements(int fd, t_display *display, int map_height)
 		{
 			free(tmp);
 			display->map = get_map(str, fd, map_height);
-			break;
+			break ;
 		}
 		if (str)
 		{
 			store_texture(str, display);
 		}
 		else
-			break;
+			break ;
 		free(str);
 		free(tmp);
 	}

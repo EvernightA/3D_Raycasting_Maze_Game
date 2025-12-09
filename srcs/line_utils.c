@@ -39,8 +39,8 @@ t_line	*ft_linenew(t_point content)
 	new_node = (t_line *)malloc(sizeof(t_line));
 	if (new_node == NULL)
 		return (NULL);
-	new_node -> dot = content;
-	new_node -> next = NULL;
+	new_node->dot = content;
+	new_node->next = NULL;
 	return (new_node);
 }
 
@@ -48,17 +48,17 @@ void	ft_lineadd_back(t_line **line, t_line *new)
 {
 	t_line	*tmp;
 
-	if (*line == NULL )
+	if (*line == NULL)
 	{
 		*line = new;
 		return ;
 	}
 	tmp = *line;
-	while (tmp -> next != NULL)
+	while (tmp->next != NULL)
 	{
-		tmp = tmp -> next;
+		tmp = tmp->next;
 	}
-	tmp -> next = new;
+	tmp->next = new;
 }
 
 int	ft_linesize(t_line *line)
@@ -69,22 +69,21 @@ int	ft_linesize(t_line *line)
 	while (line != NULL)
 	{
 		i++;
-		line = line -> next;
+		line = line->next;
 	}
 	return (i);
 }
 
-
 void	print_list(t_line *head)
 {
-	t_line *tmp;
+	t_line	*tmp;
 
 	tmp = head;
 	while (tmp)
 	{
-		printf("x = %d\n",tmp ->dot.x);
-		printf("y = %d\n",tmp ->dot.y);
-		//printf("-----------------------\n");
-		tmp = tmp -> next;
+		printf("x = %d\n", tmp->dot.x);
+		printf("y = %d\n", tmp->dot.y);
+		// printf("-----------------------\n");
+		tmp = tmp->next;
 	}
 }

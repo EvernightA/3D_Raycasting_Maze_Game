@@ -29,24 +29,25 @@ size_t	find_len_max(char **map)
 	}
 	return (max);
 }
-int map_invalid(int i, int j, int k, char **map)
+int	map_invalid(int i, int j, int k, char **map)
 {
-	// check up and down 
+	// check up and down
 	if ((map[i][k] == 'X' && (map[j][k] == '0' || is_player(map[j][k])))
-	|| (map[j][k] == 'X' && (map[i][k] == '0' || is_player(map[i][k]))))
+		|| (map[j][k] == 'X' && (map[i][k] == '0' || is_player(map[i][k]))))
 	{
 		return (1);
 	}
 	// check up and dowwn
-	if (((is_player(map[i][k]) && map[j][k] == 'X') || (is_player(map[j][k]) && map[i][k] == 'X'))
-	|| ((is_player(map[j][k]) && map[j][k] == 'X') || (is_player(map[i][k]) && map[j][k] == 'X')))
+	if (((is_player(map[i][k]) && map[j][k] == 'X') || (is_player(map[j][k])
+				&& map[i][k] == 'X')) || ((is_player(map[j][k])
+				&& map[j][k] == 'X') || (is_player(map[i][k])
+				&& map[j][k] == 'X')))
 	{
 		return (1);
 	}
 	// check up and down
 	if ((map[j][k] == ' ' && (map[i][k] == '0' || is_player(map[i][k])))
-	|| (map[i][k] == ' ' && (map[j][k] == '0' || is_player(map[j][k])))
-	)
+		|| (map[i][k] == ' ' && (map[j][k] == '0' || is_player(map[j][k]))))
 	{
 		return (1);
 	}
@@ -59,10 +60,10 @@ int map_invalid(int i, int j, int k, char **map)
 
 char	*ft_strdup_x(char *s, int len)
 {
-	char		*new;
-	char		*tmp;
-	int			i;
-	int 		j;
+	char	*new;
+	char	*tmp;
+	int		i;
+	int		j;
 
 	tmp = (char *)s;
 	new = (char *)ft_calloc(len + 2, sizeof(char));
@@ -92,9 +93,9 @@ char	*ft_strdup_x(char *s, int len)
 	return (new);
 }
 
-char	**dup_mat(t_display *display,  int height, char **map)
+char	**dup_mat(t_display *display, int height, char **map)
 {
-	int 	i;
+	int		i;
 	char	**tmp;
 	int		max_len;
 

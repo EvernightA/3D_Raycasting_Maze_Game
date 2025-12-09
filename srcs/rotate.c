@@ -12,9 +12,9 @@
 
 #include "../includes/cub.h"
 
-int float_abs(float number)
+int	float_abs(float number)
 {
-    if (number < 0)
+	if (number < 0)
 	{
 		return (-number);
 	}
@@ -23,14 +23,15 @@ int float_abs(float number)
 
 void	rotate_player(t_display *display, float angle)
 {
-	float tmpx;
-	float tmpy;
+	float	tmpx;
+	float	tmpy;
 
 	tmpx = 0.0;
 	tmpy = 0.0;
-	tmpx = (display->end.x - display->begin.x) * cos(angle) - (display->end.y - display->begin.y) * sin(angle) + display->begin.x;
-	tmpy = (display->end.y - display->begin.y) * cos(angle) + (display->end.x - display->begin.x) * sin(angle) + display->begin.y;
-	
+	tmpx = (display->end.x - display->begin.x) * cos(angle) - (display->end.y
+			- display->begin.y) * sin(angle) + display->begin.x;
+	tmpy = (display->end.y - display->begin.y) * cos(angle) + (display->end.x
+			- display->begin.x) * sin(angle) + display->begin.y;
 	display->end.x = fabs(tmpx);
 	display->end.y = fabs(tmpy);
 	display->end.f_x = fabs(tmpx);

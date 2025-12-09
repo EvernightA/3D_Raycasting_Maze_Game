@@ -10,33 +10,30 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../includes/cub.h"
 
 void	rad_to_deg(double rad)
 {
 	printf("angle en deg = %f\n", 180 * rad / M_PI);
 	// printf("cos = %f, sin = %f\n", cos(rad), sin(rad));
-
 }
 
 int	quit_win(t_display *display)
 {
-	mlx_do_key_autorepeaton(display->mlx2.mlx_ptr);/*Cette fonction les reactive faut toujours reactiver a chaque fois*/
+	mlx_do_key_autorepeaton(display->mlx2.mlx_ptr);
+		/*Cette fonction les reactive faut toujours reactiver a chaque fois*/
 	mlx_destroy_image(display->mlx2.mlx_ptr, display->texture.floor_img);
 	mlx_destroy_image(display->mlx2.mlx_ptr, display->texture.wall_img);
-	//mlx_destroy_image(display->mlx.mlx_ptr, display->rays.mlx_img);
+	// mlx_destroy_image(display->mlx.mlx_ptr, display->rays.mlx_img);
 	mlx_destroy_image(display->mlx2.mlx_ptr, display->texture.t_east.img_ptr);
 	mlx_destroy_image(display->mlx2.mlx_ptr, display->texture.t_north.img_ptr);
 	mlx_destroy_image(display->mlx2.mlx_ptr, display->texture.t_west.img_ptr);
 	mlx_destroy_image(display->mlx2.mlx_ptr, display->texture.t_south.img_ptr);
-
 	mlx_destroy_image(display->mlx2.mlx_ptr, display->all.mlx_img);
 	mlx_destroy_window(display->mlx2.mlx_ptr, display->mlx2.win_ptr);
-	//mlx_destroy_display(display->mlx.mlx_ptr);
+	// mlx_destroy_display(display->mlx.mlx_ptr);
 	mlx_destroy_display(display->mlx2.mlx_ptr);
 	free(display->mlx2.mlx_ptr);
-
 	free(display->texture.c_rgb);
 	free(display->texture.f_rgb);
 	free(display->texture.north);
@@ -45,15 +42,15 @@ int	quit_win(t_display *display)
 	free(display->texture.west);
 	free_split(display->texture.dup_map);
 	free_split(display->map);
-	//free(display->all.);
+	// free(display->all.);
 	exit(0);
 }
 
-float to_wall(t_display *display, t_point collision, float beta)
+float	to_wall(t_display *display, t_point collision, float beta)
 {
-	float distance;
-	int dx;
-	int dy;
+	float	distance;
+	int		dx;
+	int		dy;
 
 	dx = display->player.pixels.x - collision.x;
 	dy = display->player.pixels.y - collision.y;
@@ -62,19 +59,22 @@ float to_wall(t_display *display, t_point collision, float beta)
 	return (distance);
 }
 
-
-void	 player_move (t_display *display, int op, bool is_float)
+void	player_move(t_display *display, int op, bool is_float)
 {
 	if (!is_float)
 	{
 		// Update float coordinates first (these are the precise positions)
-		display->player.pixels.f_x = display->player.pixels.f_x + display->player.delta_x * op;
-		display->player.pixels.f_y = display->player.pixels.f_y + display->player.delta_y * op;
+		display->player.pixels.f_x = display->player.pixels.f_x
+			+ display->player.delta_x * op;
+		display->player.pixels.f_y = display->player.pixels.f_y
+			+ display->player.delta_y * op;
 	}
 	else
 	{
-		display->player.pixels.f_x = display->player.pixels.f_x  + display->player.perp_x * op;
-		display->player.pixels.f_y = display->player.pixels.f_y  + display->player.perp_y * op;
+		display->player.pixels.f_x = display->player.pixels.f_x
+			+ display->player.perp_x * op;
+		display->player.pixels.f_y = display->player.pixels.f_y
+			+ display->player.perp_y * op;
 	}
 	// Derive integer coordinates from float (just truncate)
 	display->player.pixels.x = (int)display->player.pixels.f_x;
@@ -88,7 +88,7 @@ void	 player_move (t_display *display, int op, bool is_float)
 	display->map[display->player.blocs.y][display->player.blocs.x] = display->player.orientation;
 }
 
-void	orientation_player(t_display * display, int operation)
+void	orientation_player(t_display *display, int operation)
 {
 	rotate_player(display, TETA * operation);
 	display->player.angle = display->player.angle + TETA * operation;
@@ -100,9 +100,9 @@ void	orientation_player(t_display * display, int operation)
 	{
 		display->player.angle = 0;
 	}
-	display->player.delta_x = cosf (display->player.angle) * SPEED;
-	display->player.delta_y = sinf (display->player.angle) * SPEED;
-	display->player.perp_x = -sinf(display->player.angle) *  SPEED;
+	display->player.delta_x = cosf(display->player.angle) * SPEED;
+	display->player.delta_y = sinf(display->player.angle) * SPEED;
+	display->player.perp_x = -sinf(display->player.angle) * SPEED;
 	display->player.perp_y = cosf(display->player.angle) * SPEED;
 }
 
@@ -113,16 +113,17 @@ void	render_all(t_display *display)
 	int	power_w;
 
 	power_h = display->texture.map_height * display->texture.map_height * 256;
-	power_w  = display->texture.map_width * display->texture.map_width * 256;
+	power_w = display->texture.map_width * display->texture.map_width * 256;
 	aff_floor_and_ceiling(display);
 	d = sqrt(power_h + power_w);
 	cast_ray(display->begin, display, d);
-	mlx_put_image_to_window(display->mlx2.mlx_ptr, display->mlx2.win_ptr, display->all.mlx_img, 0, 0);
+	mlx_put_image_to_window(display->mlx2.mlx_ptr, display->mlx2.win_ptr,
+		display->all.mlx_img, 0, 0);
 }
 
-int key_hook(int key, void *param)
+int	key_hook(int key, void *param)
 {
-	t_display *display;
+	t_display	*display;
 
 	display = (t_display *)param;
 	if (key == XK_Escape)

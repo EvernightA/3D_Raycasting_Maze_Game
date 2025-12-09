@@ -17,19 +17,19 @@ int	create_trgb(int t, int r, int g, int b)
 	return (t << 24 | r << 16 | g << 8 | b);
 }
 
-
 void	aff_floor_and_ceiling(t_display *display)
 {
-	int i;
-	int j;
-	int ceiling_color;
-	int floor_color;
+	int	i;
+	int	j;
+	int	ceiling_color;
+	int	floor_color;
 
 	j = 0;
 	floor_color = create_trgb(0, display->texture.floor_rgb.red,
-	display->texture.floor_rgb.green, display->texture.floor_rgb.blue);
+			display->texture.floor_rgb.green, display->texture.floor_rgb.blue);
 	ceiling_color = create_trgb(0, display->texture.ceiling_rgb.red,
-		display->texture.ceiling_rgb.green, display->texture.ceiling_rgb.blue);
+			display->texture.ceiling_rgb.green,
+			display->texture.ceiling_rgb.blue);
 	while (j < SCRN_HEIGHT - 1)
 	{
 		i = 0;
