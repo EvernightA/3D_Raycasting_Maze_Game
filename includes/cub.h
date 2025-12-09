@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/08 13:56:12 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/09 11:07:38 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@
 #endif
 
 #ifndef SCRN_WIDTH
- #define SCRN_WIDTH 512
+ #define SCRN_WIDTH 800
 #endif
 
 #ifndef SCRN_HEIGHT
- #define SCRN_HEIGHT 512
+ #define SCRN_HEIGHT 600
 #endif
 
 #ifndef WALL_UNIT
