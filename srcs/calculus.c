@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 09:17:26 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/09 18:29:41 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/09 18:32:40 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	shifter(int number)
 		}
 		i++;
 	}
-	printf("Not valid number for size\n");
 	return (0);
 }
 
