@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 17:41:59 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/08 11:34:22 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/09 13:32:00 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,22 @@
 
 void	clean_rendering(t_display *display)
 {
-	// clear_img(display);
-	// clear_rays(display);
 	mlx_clear_window(display->mlx2.mlx_ptr, display->mlx2.win_ptr);
 	render_all(display);
+}
+
+
+float	to_wall(t_display *display, t_point collision, float beta)
+{
+	float	distance;
+	int		dx;
+	int		dy;
+
+	dx = display->player.pixels.x - collision.x;
+	dy = display->player.pixels.y - collision.y;
+	distance = sqrt(pow(abs(dx), 2) + pow(abs(dy), 2));
+	distance = distance * cos(beta);
+	return (distance);
 }
 
 int	releasing_key(int key, void *param)

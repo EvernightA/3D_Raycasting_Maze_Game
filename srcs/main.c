@@ -6,59 +6,11 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 11:42:50 by mratsima          #+#    #+#             */
-/*   Updated: 2025/12/09 11:12:54 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/09 13:21:23 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
-
-void	print_split(char **split)
-{
-	int	i;
-
-	i = 0;
-	if (!split)
-	{
-		printf("(null)\n");
-		return ;
-	}
-	while (split[i])
-	{
-		printf("%s", split[i]);
-		i++;
-	}
-}
-
-
-void	see_it(t_display *display)
-{
-	printf("North : %s\n", display->texture.north);
-	printf("East : %s\n", display->texture.east);
-	printf("West : %s\n", display->texture.west);
-	printf("South : %s\n", display->texture.south);
-	printf("c_rgb : %s\n", display->texture.c_rgb);
-	printf("f_rgb : %s\n", display->texture.f_rgb);
-	printf("map = \n");
-	print_split(display->map);
-}
-
-
-
-
-
-
-
-void	orientation_init(t_display *display, int i, int j)
-{
-	if (display->map[j][i] == 'N')
-		init_direction(display, 0, 1, 3 * M_PI / 2);
-	else if (display->map[j][i] == 'S')
-		init_direction(display, 0, 1, M_PI / 2);
-	else if (display->map[j][i] == 'E')
-		init_direction(display, 1, 0, 0);
-	else if (display->map[j][i] == 'W')
-		init_direction(display, -1, 0, M_PI);
-}
 
 void	init_player_position(t_display *display)
 {
@@ -94,28 +46,6 @@ t_point	pixel_to_bloc(t_point pixel, t_display *display)
 	bloc.f_x = pixel.x >> display->shifter.size_img;
 	bloc.f_y = pixel.y >> display->shifter.size_img;
 	return (bloc);
-}
-
-int	something_is_wrong(t_display *display, char **argv, int argc,
-		int *map_height)
-{
-	if (input_error(argc, argv))
-		return (1);
-	if (get_map_height(display, map_height, argv[1]))
-		return (1);
-	if (parsing(map_height, argv[1], display))
-		return (1);
-	if (error_handling(display))
-		return (1);
-	if (get_rgb(&display->texture.floor_rgb, display->texture.f_rgb))
-	{
-		return (1);
-	}
-	if (get_rgb(&display->texture.ceiling_rgb, display->texture.c_rgb))
-	{
-		return (1);
-	}
-	return (0);
 }
 
 void	mlx_functions(t_display *display)
