@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 16:00:37 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/09 13:20:32 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/09 14:01:26 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,21 +63,6 @@ int	closed_error(char **map)
 	return (0);
 }
 
-void	print_map(char **map)
-{
-	int	i;
-
-	i = 0;
-	if (!map)
-		return ;
-	while (map[i])
-	{
-		ft_putstr_fd(map[i], 1);
-		ft_putstr_fd("\n", 1);
-		i++;
-	}
-}
-
 int	texture_error(t_display *display)
 {
 	char	*tmp;
@@ -122,6 +107,20 @@ int	something_is_wrong(t_display *display, char **argv, int argc,
 	if (get_rgb(&display->texture.ceiling_rgb, display->texture.c_rgb))
 	{
 		return (1);
+	}
+	return (0);
+}
+
+int	successive_commas(int *i, char *og_rgb)
+{
+	while (og_rgb[*i])
+	{
+		if (og_rgb[*i] == ',' && og_rgb[(*i) + 1] == ',')
+		{
+			ft_putstr_fd("Error\nWrong rgb value(successive commas)\n", 2);
+			return (1);
+		}
+		(*i)++;
 	}
 	return (0);
 }

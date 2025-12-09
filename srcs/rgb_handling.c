@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rgb_handling.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
+/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 14:57:44 by mratsima          #+#    #+#             */
-/*   Updated: 2025/12/08 11:35:04 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/09 14:09:58 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,6 @@ int	non_numeric_check(char *rgb_part)
 			return (1);
 		}
 		i++;
-	}
-	return (0);
-}
-
-int	successive_commas(int *i, char *og_rgb)
-{
-	while (og_rgb[*i])
-	{
-		if (og_rgb[*i] == ',' && og_rgb[(*i) + 1] == ',')
-		{
-			ft_putstr_fd("Error\nWrong rgb value(successive commas)\n", 2);
-			return (1);
-		}
-		(*i)++;
 	}
 	return (0);
 }
@@ -75,14 +61,8 @@ int	get_rgb(t_rgb *rgb, char *og_rgb)
 		i++;
 	str_rgb = ft_strtrim(&og_rgb[i], " \t\n");
 	split_rgb = ft_split(str_rgb, ',');
-	if (not_enough_values(split_rgb) || non_numeric_values(split_rgb)
-		|| overflowing_values(split_rgb))
-	{
-		free(str_rgb);
-		free_split(split_rgb);
-		ft_putstr_fd("Error\nWrong rgb value\n", 2);
+	if (rgb_error(split_rgb, str_rgb))
 		return (1);
-	}
 	rgb->red = ft_atoll(split_rgb[0]);
 	rgb->green = ft_atoll(split_rgb[1]);
 	rgb->blue = ft_atoll(split_rgb[2]);

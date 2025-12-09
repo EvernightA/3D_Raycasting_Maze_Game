@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 10:27:44 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/09 09:12:51 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/09 13:49:14 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,29 +60,6 @@ void	filter_texture(t_display *display)
 	get_clean_texture(&display->texture.south);
 	get_clean_texture(&display->texture.east);
 	get_clean_texture(&display->texture.west);
-}
-
-int	parsing(int *map_height, char *file, t_display *display)
-{
-	int	fd;
-
-	fd = open(file, O_RDONLY);
-	if (fd < 0)
-	{
-		ft_putstr_fd("Error\nNo such file or directory\n", 2);
-		return (1);
-	}
-	get_elements(fd, display, *map_height);
-	if (!display->texture.c_rgb || !display->texture.f_rgb
-		|| !display->texture.north || !display->texture.south
-		|| !display->texture.east || !display->texture.west || !display->map)
-	{
-		ft_putstr_fd("Error\nMissing or Invalid identifier\n", 2);
-		free_tex_map(display);
-		return (1);
-	}
-	filter_texture(display);
-	return (0);
 }
 
 int	get_map_height(t_display *display, int *map_height, char *file)
