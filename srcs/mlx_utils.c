@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:50:26 by mratsima          #+#    #+#             */
-/*   Updated: 2025/12/09 19:05:37 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/09 19:37:07 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,22 @@ int	quit_win(t_display *display)
 {
 	mlx_do_key_autorepeaton(display->mlx2.mlx_ptr);
 	if (display->texture.t_east.img_ptr)
-		mlx_destroy_image(display->mlx2.mlx_ptr, display->texture.t_east.img_ptr);
+		mlx_destroy_image(display->mlx2.mlx_ptr,
+			display->texture.t_east.img_ptr);
 	if (display->texture.t_north.img_ptr)
-		mlx_destroy_image(display->mlx2.mlx_ptr, display->texture.t_north.img_ptr);
+		mlx_destroy_image(display->mlx2.mlx_ptr,
+			display->texture.t_north.img_ptr);
 	if (display->texture.t_north.img_ptr)
-		mlx_destroy_image(display->mlx2.mlx_ptr, display->texture.t_west.img_ptr);
+		mlx_destroy_image(display->mlx2.mlx_ptr,
+			display->texture.t_west.img_ptr);
 	if (display->texture.t_north.img_ptr)
-		mlx_destroy_image(display->mlx2.mlx_ptr, display->texture.t_south.img_ptr);
+		mlx_destroy_image(display->mlx2.mlx_ptr,
+			display->texture.t_south.img_ptr);
 	mlx_destroy_image(display->mlx2.mlx_ptr, display->all.mlx_img);
 	mlx_destroy_window(display->mlx2.mlx_ptr, display->mlx2.win_ptr);
 	mlx_destroy_display(display->mlx2.mlx_ptr);
 	free(display->mlx2.mlx_ptr);
-	free(display->texture.c_rgb);
-	free(display->texture.f_rgb);
-	free(display->texture.north);
-	free(display->texture.south);
-	free(display->texture.east);
-	free(display->texture.west);
-	free_split(display->texture.dup_map);
-	free_split(display->map);
+	free_tex_map(display);
 	exit(0);
 }
 
