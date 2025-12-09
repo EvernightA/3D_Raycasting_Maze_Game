@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/09 19:11:40 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/09 19:28:16 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -327,4 +327,6 @@ void				east_case(float normalised_x, t_hit *hit, t_point bloc,
 void				west_case(float normalised_x, t_hit *hit, t_point bloc,
 					t_display *display);
 int					direction_fix(t_display *display, t_hit *hit, t_point bloc);
+void				init_xpm_image(t_display *display);
+void				load_textures(t_display *display);
 #endif
