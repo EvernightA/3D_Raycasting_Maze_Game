@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/09 19:28:16 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/09 19:33:16 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -231,6 +231,13 @@ typedef struct s_display
 	t_move			key_stat;
 	float			beta;
 }					t_display;
+
+typedef struct s_tex_utils
+{
+	t_line			*tmp;
+	t_img_texture	*texture_to_display;
+	int				count;
+}					t_tex_utils;
 
 char				**dup_mat(t_display *display, int height, char **map);
 int					ft_abs(int n);

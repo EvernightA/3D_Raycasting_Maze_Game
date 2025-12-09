@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 18:38:28 by mratsima          #+#    #+#             */
-/*   Updated: 2025/12/09 18:38:52 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/09 19:34:32 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,28 +29,27 @@ void	set_texture(t_img_texture **texture_to_display, t_hit hit,
 void	draw_textured_line(t_line *line, t_hit hit, int line_size,
 		t_display *display)
 {
-	t_line			*tmp;
-	float			uv_x;
-	float			uv_y;
-	t_img_texture	*texture_to_display;
-	int				texture_color;
-	int				count;
+	t_tex_utils	utils;
+	float		uv_x;
+	float		uv_y;
+	int			texture_color;
 
-	tmp = line;
-	count = 0;
-	texture_to_display = &display->texture.t_north;
-	set_texture(&texture_to_display, hit, display);
-	while (tmp)
+	utils.tmp = line;
+	utils.count = 0;
+	utils.texture_to_display = &display->texture.t_north;
+	set_texture(&utils.texture_to_display, hit, display);
+	while (utils.tmp)
 	{
 		if (hit.wall_direction == NORTH || hit.wall_direction == SOUTH)
 			uv_x = fmodf(hit.collision.f_x, SIZE_IMG) / SIZE_IMG;
 		else
 			uv_x = fmodf(hit.collision.f_y, SIZE_IMG) / SIZE_IMG;
-		uv_y = (float)count / line_size;
-		texture_color = sample_texture(texture_to_display, uv_x, uv_y);
-		img_pix_put(&display->all, tmp->dot.x, tmp->dot.y, texture_color);
-		count++;
-		tmp = tmp->next;
+		uv_y = (float)utils.count / line_size;
+		texture_color = sample_texture(utils.texture_to_display, uv_x, uv_y);
+		img_pix_put(&display->all, utils.tmp->dot.x, utils.tmp->dot.y,
+			texture_color);
+		utils.count++;
+		utils.tmp = utils.tmp->next;
 	}
 }
 
