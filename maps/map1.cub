@@ -1,7 +1,7 @@
-NO ./textures/mina.xpm
-SO ./textures/mina.xpm
-EA ./textures/mina.xpm
-WE ./textures/mina.xpm
+NO ./textures/bozaka.xpm
+SO ./textures/bozaka.xpm
+EA ./textures/bozaka.xpm
+WE ./textures/bozaka.xpm
 
 C 135,206,235
 F 0,128,0
