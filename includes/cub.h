@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/09 18:47:52 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/09 19:33:16 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,8 +172,6 @@ typedef struct s_hit
 
 typedef struct s_tex
 {
-	void			*wall_img;
-	void			*floor_img;
 	char			*north;
 	char			*south;
 	char			*east;
@@ -186,7 +184,6 @@ typedef struct s_tex
 	char			*f_rgb;
 	t_rgb			ceiling_rgb;
 	t_rgb			floor_rgb;
-	// char	**map;
 	char			**dup_map;
 	int				map_height;
 	int				map_width;
@@ -234,6 +231,13 @@ typedef struct s_display
 	t_move			key_stat;
 	float			beta;
 }					t_display;
+
+typedef struct s_tex_utils
+{
+	t_line			*tmp;
+	t_img_texture	*texture_to_display;
+	int				count;
+}					t_tex_utils;
 
 char				**dup_mat(t_display *display, int height, char **map);
 int					ft_abs(int n);
@@ -330,4 +334,6 @@ void				east_case(float normalised_x, t_hit *hit, t_point bloc,
 void				west_case(float normalised_x, t_hit *hit, t_point bloc,
 					t_display *display);
 int					direction_fix(t_display *display, t_hit *hit, t_point bloc);
+void				init_xpm_image(t_display *display);
+void				load_textures(t_display *display);
 #endif
