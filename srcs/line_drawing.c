@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 10:34:32 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/09 16:14:20 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/09 17:22:01 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,12 @@ void	east_case(float normalised_x, t_hit *hit, t_point bloc, t_display *display)
 	int dy;
 	int wall_above;
 	int wall_below;
+	int wall_left;
+	int wall_right;
 
+
+	(void)wall_left;
+	(void)wall_right;
 	dx = (int)(hit->collision.f_x / 16) - display->player.blocs. x;
 	dy = (int)(hit->collision.f_y / 16) - display->player.blocs.y;
 
@@ -87,31 +92,26 @@ void	east_case(float normalised_x, t_hit *hit, t_point bloc, t_display *display)
 		{
 			wall_above = (display->map[bloc.y - 1][bloc. x] == '1');
 			wall_below = (display->map[bloc.y + 1][bloc.x] == '1');
-
-			// True edge (walls both sides) - correct aggressively
-			if (wall_above && wall_below && normalised_x >= 15.0f)
-				hit->wall_direction = EAST;
-			// Partial edge (wall on one side) - moderate correction
-			else if ((wall_above || wall_below) && normalised_x >= 15.0f)
+			wall_left = (display->map[bloc.y][bloc.x - 1] == '1');
+			wall_right = (display->map[bloc.y][bloc.x + 1] == '1');
+			if (!wall_above && !wall_right && normalised_x >= 15.0f && normalised_x <= 15.5f)
+				return;
+			if ((wall_above || wall_below) && normalised_x >= 15.0f)
 				hit->wall_direction = EAST;
 			// Isolated corners - very strict
-			else if (normalised_x >= 15.0f)
+			else if (normalised_x >= 15.5f)
 				hit->wall_direction = EAST;
 		}
 	}
-
 	if (dx < 0 && dy < 0 && hit->wall_direction == SOUTH)
 	{
 		if (display->map[bloc. y][bloc.x + 1] != '1')
 		{
 			wall_above = (display->map[bloc.y - 1][bloc.x] == '1');
 			wall_below = (display->map[bloc.y + 1][bloc.x] == '1');
-
-			// True edge (walls both sides) - correct aggressively
-			if (wall_above && wall_below && normalised_x >= 15.0f)
-				hit->wall_direction = EAST;
-			// Partial edge (wall on one side) - moderate correction
-			else if ((wall_above || wall_below) && normalised_x >= 15.0f)
+			wall_left = (display->map[bloc.y][bloc.x - 1] == '1');
+			wall_right = (display->map[bloc.y][bloc.x + 1] == '1');
+			if ((wall_above || wall_below) && normalised_x >= 15.0f)
 				hit->wall_direction = EAST;
 			// Isolated corners - very strict
 			else if (normalised_x >= 15.0f)
@@ -126,6 +126,12 @@ void	west_case(float normalised_x, t_hit *hit, t_point bloc, t_display *display)
 	int dy;
 	int wall_above;
 	int wall_below;
+		int wall_left;
+	int wall_right;
+
+
+	(void)wall_left;
+	(void)wall_right;
 
 	dx = (int)(hit->collision.f_x / 16) - display->player.blocs.x;
 	dy = (int)(hit->collision.f_y / 16) - display->player.blocs.y;
@@ -136,12 +142,11 @@ void	west_case(float normalised_x, t_hit *hit, t_point bloc, t_display *display)
 		{
 			wall_above = (display->map[bloc.y - 1][bloc.x] == '1');
 			wall_below = (display->map[bloc.y + 1][bloc.x] == '1');
+			wall_left = (display->map[bloc.y][bloc.x - 1] == '1');
+			wall_right = (display->map[bloc.y][bloc.x + 1] == '1');
 
 			// True edge (walls both sides) - correct aggressively
-			if (wall_above && wall_below && normalised_x <= 1.0f)
-				hit->wall_direction = WEST;
-			// Partial edge (wall on one side) - moderate correction
-			else if ((wall_above || wall_below) && normalised_x <= 1.0f)
+			if ((wall_above || wall_below) && normalised_x <= 1.0f)
 				hit->wall_direction = WEST;
 			// Isolated corners - very strict
 			else if (normalised_x <= 1.0f)
@@ -155,12 +160,10 @@ void	west_case(float normalised_x, t_hit *hit, t_point bloc, t_display *display)
 		{
 			wall_above = (display->map[bloc.y - 1][bloc.x] == '1');
 			wall_below = (display->map[bloc.y + 1][bloc.x] == '1');
+			wall_left = (display->map[bloc.y][bloc.x - 1] == '1');
+			wall_right = (display->map[bloc.y][bloc.x + 1] == '1');
 
-			// True edge (walls both sides) - correct aggressively
-			if (wall_above && wall_below && normalised_x <= 1.0f)
-				hit->wall_direction = WEST;
-			// Partial edge (wall on one side) - moderate correction
-			else if ((wall_above || wall_below) && normalised_x <= 1.0f)
+			if ((wall_above || wall_below) && normalised_x <= 1.0f)
 				hit->wall_direction = WEST;
 			// Isolated corners - very strict
 			else if (normalised_x <= 1.0f)
