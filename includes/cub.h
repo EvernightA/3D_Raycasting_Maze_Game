@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/09 14:17:22 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/09 18:19:10 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,13 @@
 #  define FOV 1.0472
 # endif
 
-# ifndef SCRN_WIDTH
-#  define SCRN_WIDTH 1024
-# endif
+#ifndef SCRN_WIDTH
+ #define SCRN_WIDTH 800
+#endif
 
-# ifndef SCRN_HEIGHT
-#  define SCRN_HEIGHT 912
-# endif
+#ifndef SCRN_HEIGHT
+ #define SCRN_HEIGHT 600
+#endif
 
 # ifndef WALL_UNIT
 #  define WALL_UNIT 600
