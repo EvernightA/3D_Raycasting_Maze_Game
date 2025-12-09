@@ -35,6 +35,7 @@ SRCS =  $(SRCS_DIR)main.c 				\
 		$(SRCS_DIR)dda.c	        	\
 		$(SRCS_DIR)east_fix.c        	\
 		$(SRCS_DIR)west_fix.c        	\
+		$(SRCS_DIR)line_drawing_utils.c	\
 		$(SRCS_DIR)line_drawing.c
 
 
