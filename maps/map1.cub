@@ -1,7 +1,7 @@
-NO ./textures/bozaka.xpm
-SO ./textures/bozaka.xpm
-EA ./textures/bozaka.xpm
-WE ./textures/bozaka.xpm
+NO ./textures/saitama.xpm
+SO ./textures/saitama.xpm
+EA ./textures/saitama.xpm
+WE ./textures/saitama.xpm
 
 C 135,206,235
 F 0,128,0
