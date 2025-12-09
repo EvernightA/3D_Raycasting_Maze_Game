@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
+/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 16:00:37 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/08 11:37:59 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/09 10:55:13 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ int	closed_error(char **map)
 	int	j;
 	int	k;
 
-	i = 0; // columns
-	j = 1; // columns
+	i = 0;
+	j = 1;
 	if (player_in_str(map[0]))
 	{
 		return (1);
@@ -72,7 +72,6 @@ void	print_map(char **map)
 		return ;
 	while (map[i])
 	{
-		// printf("%s",map[i]);
 		ft_putstr_fd(map[i], 1);
 		ft_putstr_fd("\n", 1);
 		i++;
@@ -94,13 +93,8 @@ int	texture_error(t_display *display)
 			ft_strlen(display->texture.west));
 	tmp3 = ft_strnstr(display->texture.east, ".xpm",
 			ft_strlen(display->texture.east));
-	if (tmp == NULL || tmp1 == NULL || tmp2 == NULL || tmp3 == NULL)
-	{
-		free_tex_map(display);
-		ft_putstr_fd("Error\nInvalid extension for texture\n", 2);
-		return (1);
-	}
-	if (ft_strncmp(tmp, ".xpm", 5) != 0 || ft_strncmp(tmp1, ".xpm", 5) != 0
+	if (tmp == NULL || tmp1 == NULL || tmp2 == NULL || tmp3 == NULL
+		|| ft_strncmp(tmp, ".xpm", 5) != 0 || ft_strncmp(tmp1, ".xpm", 5) != 0
 		|| ft_strncmp(tmp2, ".xpm", 5) != 0 || ft_strncmp(tmp3, ".xpm", 5) != 0)
 	{
 		free_tex_map(display);

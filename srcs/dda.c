@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
+/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 09:26:52 by mratsima          #+#    #+#             */
-/*   Updated: 2025/11/29 09:58:27 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/09 10:50:12 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int	initialize(t_dda *dda, t_point *begin, t_point *end)
 {
 	dda->head = NULL;
 	dda->tail = NULL;
-	// Use the precise coordinates for calculation
 	dda->dx = end->f_x - begin->f_x;
 	dda->dy = end->f_y - begin->f_y;
 	if (!calculate_steps_and_increment(dda, begin))

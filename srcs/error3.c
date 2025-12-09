@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 22:31:11 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/11/24 19:10:14 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/09 11:02:40 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,14 @@ size_t	find_len_max(char **map)
 	}
 	return (max);
 }
+
 int	map_invalid(int i, int j, int k, char **map)
 {
-	// check up and down
 	if ((map[i][k] == 'X' && (map[j][k] == '0' || is_player(map[j][k])))
 		|| (map[j][k] == 'X' && (map[i][k] == '0' || is_player(map[i][k]))))
 	{
 		return (1);
 	}
-	// check up and dowwn
 	if (((is_player(map[i][k]) && map[j][k] == 'X') || (is_player(map[j][k])
 				&& map[i][k] == 'X')) || ((is_player(map[j][k])
 				&& map[j][k] == 'X') || (is_player(map[i][k])
@@ -45,7 +44,6 @@ int	map_invalid(int i, int j, int k, char **map)
 	{
 		return (1);
 	}
-	// check up and down
 	if ((map[j][k] == ' ' && (map[i][k] == '0' || is_player(map[i][k])))
 		|| (map[i][k] == ' ' && (map[j][k] == '0' || is_player(map[j][k]))))
 	{
@@ -56,6 +54,17 @@ int	map_invalid(int i, int j, int k, char **map)
 		return (1);
 	}
 	return (0);
+}
+
+void	new_affectation(int *j, int i, int len, char *new)
+{
+	*j = i;
+	while (*j < len - 1)
+	{
+		new[*j] = 'X';
+		(*j)++;
+	}
+	new[*j] = '\n';
 }
 
 char	*ft_strdup_x(char *s, int len)
@@ -74,22 +83,13 @@ char	*ft_strdup_x(char *s, int len)
 	{
 		if (tmp[i] == '\n' || tmp[i] == '\0')
 		{
-			j = i;
-			while (j < len - 1)
-			{
-				new[j] = 'X';
-				j++;
-			}
-			new[j] = '\n';
+			new_affectation(&j, i, len, new);
 			return (new);
 		}
 		else
-		{
 			new[i] = tmp[i];
-		}
 		i++;
 	}
-	new[i + 1] = '\0';
 	return (new);
 }
 

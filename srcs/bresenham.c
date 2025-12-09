@@ -6,29 +6,11 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 13:17:03 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/08 14:48:22 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/09 10:49:03 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
-
-static int	ft_abs(int n)
-{
-	if (n < 0)
-		return (-n);
-	return (n);
-}
-
-t_point	calculate_end(t_point begin, float angle, int max_distance)
-{
-	t_point	end;
-
-	end.x = begin.x + cos(angle) * max_distance;
-	end.y = begin.y + sin(angle) * max_distance;
-	end.f_x = begin.f_x + cos(angle) * max_distance;
-	end.f_y = begin.f_y + sin(angle) * max_distance;
-	return (end);
-}
 
 void	draw_wall_lines(t_display *display, t_hit hit, int pixel_index,
 		float angle)
@@ -74,7 +56,7 @@ void	cast_ray(t_point begin, t_display *display, int d)
 		if (display->head)
 			ft_linefree(&display->head);
 		display->head = dda_line(&begin, &true_end);
-		hit = draw_line_2(display, angle); // This draw line uses yellow
+		hit = draw_line_2(display, angle);
 		if (display->head)
 		{
 			ft_linefree(&display->head);
@@ -90,8 +72,8 @@ void	initialize_bres(t_bres *bres, t_point *begin, t_point *end)
 {
 	bres->head = NULL;
 	bres->tail = NULL;
-	bres->delta_x = ft_abs(end->x - begin->x);
-	bres->delta_y = ft_abs(end->y - begin->y);
+	bres->delta_x = abs(end->x - begin->x);
+	bres->delta_y = abs(end->y - begin->y);
 	if ((begin->x < end->x))
 		bres->x_step = 1;
 	else

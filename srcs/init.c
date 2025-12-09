@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 12:27:43 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/09 09:27:57 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/09 11:03:22 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ void	img_initialization(t_display *display)
 			"./textures/w.xpm", &x, &y);
 	display->all.mlx_img = mlx_new_image(display->mlx2.mlx_ptr, SCRN_WIDTH,
 			SCRN_HEIGHT);
-	// display->rays.mlx_img = mlx_new_image(display->mlx.mlx_ptr, SCRN_WIDTH,
-			//SCRN_HEIGHT);
 	if (!display->all.mlx_img)
 		return ;
 	display->all.addr = mlx_get_data_addr(display->all.mlx_img,

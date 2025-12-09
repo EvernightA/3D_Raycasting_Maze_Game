@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 09:55:53 by mratsima          #+#    #+#             */
-/*   Updated: 2025/11/24 18:54:06 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/09 11:04:32 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ void	print_list(t_line *head)
 	{
 		printf("x = %d\n", tmp->dot.x);
 		printf("y = %d\n", tmp->dot.y);
-		// printf("-----------------------\n");
 		tmp = tmp->next;
 	}
 }

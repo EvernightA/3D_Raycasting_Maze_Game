@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 11:42:50 by mratsima          #+#    #+#             */
-/*   Updated: 2025/12/09 09:00:42 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/09 11:04:58 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,10 +154,10 @@ t_point	pixel_to_bloc(t_point pixel, t_display *display)
 {
 	t_point	bloc;
 
-	bloc.x = pixel.x >> display->shifter.size_img;   // size = 16
-	bloc.y = pixel.y >> display->shifter.size_img;   // size = 16
-	bloc.f_x = pixel.x >> display->shifter.size_img; // size = 16
-	bloc.f_y = pixel.y >> display->shifter.size_img; // size = 16
+	bloc.x = pixel.x >> display->shifter.size_img;
+	bloc.y = pixel.y >> display->shifter.size_img;
+	bloc.f_x = pixel.x >> display->shifter.size_img;
+	bloc.f_y = pixel.y >> display->shifter.size_img;
 	return (bloc);
 }
 
@@ -189,7 +189,6 @@ void	mlx_functions(t_display *display)
 	mlx_hook(display->mlx2.win_ptr, 17, 0, quit_win, display);
 	mlx_hook(display->mlx2.win_ptr, 2, 1L << 0, key_hook, display);
 	mlx_hook(display->mlx2.win_ptr, 3, 1L << 1, releasing_key, display);
-	// mini_map(display, display->map);
 	mlx_loop_hook(display->mlx2.mlx_ptr, &game_engine, display);
 }
 
