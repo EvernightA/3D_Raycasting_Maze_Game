@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tex_mapping.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 11:37:27 by mratsima          #+#    #+#             */
-/*   Updated: 2025/12/08 13:03:17 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/09 19:06:17 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@ void	init_xpm_image(t_display *display)
 		|| !display->texture.t_east.img_ptr || !display->texture.t_west.img_ptr)
 	{
 		ft_putstr_fd("Error\nCouldn't load texture\n", 2);
-		/*all exit should change into a function that frees everything before exit */
-		exit(1);
+		quit_win(display);
 	}
 }
 

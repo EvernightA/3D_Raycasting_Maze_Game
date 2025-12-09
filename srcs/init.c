@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 12:27:43 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/09 13:28:14 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/09 19:19:16 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,6 @@
 
 void	img_initialization(t_display *display)
 {
-	int	x;
-	int	y;
-
-	display->texture.wall_img = mlx_xpm_file_to_image(display->mlx2.mlx_ptr,
-			"./textures/f.xpm", &x, &y);
-	display->texture.floor_img = mlx_xpm_file_to_image(display->mlx2.mlx_ptr,
-			"./textures/w.xpm", &x, &y);
 	display->all.mlx_img = mlx_new_image(display->mlx2.mlx_ptr, SCRN_WIDTH,
 			SCRN_HEIGHT);
 	if (!display->all.mlx_img)

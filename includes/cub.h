@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/09 18:47:52 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/09 19:11:40 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,8 +172,6 @@ typedef struct s_hit
 
 typedef struct s_tex
 {
-	void			*wall_img;
-	void			*floor_img;
 	char			*north;
 	char			*south;
 	char			*east;
@@ -186,7 +184,6 @@ typedef struct s_tex
 	char			*f_rgb;
 	t_rgb			ceiling_rgb;
 	t_rgb			floor_rgb;
-	// char	**map;
 	char			**dup_map;
 	int				map_height;
 	int				map_width;
