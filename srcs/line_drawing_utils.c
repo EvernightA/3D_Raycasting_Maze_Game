@@ -44,6 +44,8 @@ void	draw_textured_line(t_line *line, t_hit hit, int line_size,
 			uv_x = fmodf(hit.collision.f_x, SIZE_IMG) / SIZE_IMG;
 		else
 			uv_x = fmodf(hit.collision.f_y, SIZE_IMG) / SIZE_IMG;
+		if (hit.wall_direction == SOUTH || hit.wall_direction == WEST)
+			uv_x = 1.0f - uv_x;
 		uv_y = (float)utils.count / line_size;
 		texture_color = sample_texture(utils.texture_to_display, uv_x, uv_y);
 		img_pix_put(&display->all, utils.tmp->dot.x, utils.tmp->dot.y,
