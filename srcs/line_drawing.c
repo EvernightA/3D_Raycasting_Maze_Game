@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 10:34:32 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/10 10:04:21 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/10 10:18:59 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,22 @@ static void	calc_exact_hit(t_hit *hit, t_display *display, float beta)
 
 void wall_assign(t_hit *hit, t_line *tmp, t_display *display, float beta, t_point bloc)
 {
+	int og_dir;
+
     hit->collision = tmp->dot;
     hit->wall_direction = get_wall_direction(hit->collision, display->player.blocs);
+	og_dir = hit->wall_direction;
 	direction_fix(display, hit, bloc);
+	if (hit->wall_direction != og_dir)
+	{
+		// When changing to EAST, snap f_x to the right edge of the block
+		if (hit->wall_direction == EAST)
+		    hit->collision.f_x = (bloc.x + 1) * 16.0f;  // Right edge
+
+		// When changing to WEST, snap f_x to the left edge of the block
+		if (hit->wall_direction == WEST)
+		    hit->collision.f_x = bloc.x * 16.0f;  // Left edge
+	}
 	calc_exact_hit(hit, display, beta);
     hit->distance = to_wall(display, hit->collision, beta);
 }
