@@ -42,7 +42,10 @@ static void	calc_exact_hit(t_hit *hit, t_display *display, float beta, t_point b
 			hit->collision.f_y = display->player.pixels.f_y + ray_dir_y * t;
 		}
 		else
+		{
 			hit->collision.f_x = wall_edge;
+			hit->collision.f_y = display->player.pixels.f_y;
+		}
 	}
 	else if (hit->wall_direction == EAST)
 	{
@@ -54,7 +57,10 @@ static void	calc_exact_hit(t_hit *hit, t_display *display, float beta, t_point b
 			hit->collision.f_y = display->player.pixels.f_y + ray_dir_y * t;
 		}
 		else
+		{
 			hit->collision.f_x = wall_edge;
+			hit->collision.f_y = display->player.pixels.f_y;
+		}
 	}
 	else if (hit->wall_direction == NORTH)
 	{
@@ -66,7 +72,10 @@ static void	calc_exact_hit(t_hit *hit, t_display *display, float beta, t_point b
 			hit->collision.f_y = wall_edge;
 		}
 		else
+		{
+			hit->collision.f_x = display->player.pixels.f_x;
 			hit->collision.f_y = wall_edge;
+		}
 	}
 	else if (hit->wall_direction == SOUTH)
 	{
@@ -78,7 +87,10 @@ static void	calc_exact_hit(t_hit *hit, t_display *display, float beta, t_point b
 			hit->collision.f_y = wall_edge;
 		}
 		else
+		{
+			hit->collision.f_x = display->player.pixels.f_x;
 			hit->collision.f_y = wall_edge;
+		}
 	}
 }
 
