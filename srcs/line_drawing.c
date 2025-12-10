@@ -116,7 +116,10 @@ t_hit	draw_line_2(t_display *display, float beta)
 			orig_dir = hit.wall_direction;
 			direction_fix(display, &hit, bloc);
 			if (hit.wall_direction != orig_dir)
+			{
 				calc_exact_hit(&hit, display, beta);
+				hit.distance = to_wall(display, hit.collision, beta);
+			}
 			break ;
 		}
 		display->beta = beta;
