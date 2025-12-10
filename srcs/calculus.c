@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calculus.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 09:17:26 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/09 18:32:40 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/10 08:51:51 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,12 @@ void	calculus_dir(t_display *display)
 float	to_wall(t_display *display, t_point collision, float beta)
 {
 	float	distance;
-	int		dx;
-	int		dy;
+	float		dx;
+	float		dy;
 
-	dx = display->player.pixels.x - collision.x;
-	dy = display->player.pixels.y - collision.y;
-	distance = sqrt(pow(ft_abs(dx), 2) + pow(ft_abs(dy), 2));
-	distance = distance * cos(beta);
+	dx = display->player.pixels.f_x - collision.f_x;
+	dy = display->player.pixels.f_y - collision.f_y;
+	distance = sqrtf(dx * dx + dy * dy);
+	distance = distance * cosf(beta);
 	return (distance);
 }

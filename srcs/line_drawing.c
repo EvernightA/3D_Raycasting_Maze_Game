@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 10:34:32 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/09 18:49:42 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/10 08:50:18 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,53 @@ void	init_hit(t_hit *hit)
 	hit->collision.f_y = 0;
 }
 
-void	wall_assign(t_hit *hit, t_line *tmp, t_display *display, float beta)
+#define EPSILON 1e-6f
+
+static void	calc_exact_hit(t_hit *hit, t_display *display, float beta)
 {
-	hit->collision = tmp->dot;
-	hit->distance = to_wall(display, tmp->dot, beta);
-	hit->wall_direction = get_wall_direction(hit->collision,
-			display->player.blocs);
+	float	ray_dir_x;
+	float	ray_dir_y;
+	float	wall_edge;
+	float	t;
+
+	ray_dir_x = cosf(display->player.angle + beta);
+	ray_dir_y = sinf(display->player.angle + beta);
+	if (hit->wall_direction == WEST && fabsf(ray_dir_x) > EPSILON)
+	{
+		wall_edge = (hit->collision.x / SIZE_IMG) * SIZE_IMG;
+		t = (wall_edge - display->player.pixels.f_x) / ray_dir_x;
+		hit->collision.f_x = wall_edge;
+		hit->collision.f_y = display->player.pixels.f_y + ray_dir_y * t;
+	}
+	else if (hit->wall_direction == EAST && fabsf(ray_dir_x) > EPSILON)
+	{
+		wall_edge = (hit->collision.x / SIZE_IMG + 1) * SIZE_IMG;
+		t = (wall_edge - display->player.pixels.f_x) / ray_dir_x;
+		hit->collision.f_x = wall_edge;
+		hit->collision.f_y = display->player.pixels.f_y + ray_dir_y * t;
+	}
+	else if (hit->wall_direction == NORTH && fabsf(ray_dir_y) > EPSILON)
+	{
+		wall_edge = (hit->collision.y / SIZE_IMG) * SIZE_IMG;
+		t = (wall_edge - display->player.pixels.f_y) / ray_dir_y;
+		hit->collision.f_x = display->player.pixels.f_x + ray_dir_x * t;
+		hit->collision.f_y = wall_edge;
+	}
+	else if (hit->wall_direction == SOUTH && fabsf(ray_dir_y) > EPSILON)
+	{
+		wall_edge = (hit->collision.y / SIZE_IMG + 1) * SIZE_IMG;
+		t = (wall_edge - display->player.pixels.f_y) / ray_dir_y;
+		hit->collision.f_x = display->player.pixels.f_x + ray_dir_x * t;
+		hit->collision.f_y = wall_edge;
+	}
+}
+
+void wall_assign(t_hit *hit, t_line *tmp, t_display *display, float beta)
+{
+    hit->collision = tmp->dot;
+    hit->wall_direction = get_wall_direction(hit->collision, display->player.blocs);
+    calc_exact_hit(hit, display, beta);  // Add this line
+    hit->distance = to_wall(display, hit->collision, beta);
 }
 
 int	go_to_next_node(t_line **tmp, t_line **before, t_hit *hit,

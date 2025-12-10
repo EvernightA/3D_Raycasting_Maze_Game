@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 18:38:28 by mratsima          #+#    #+#             */
-/*   Updated: 2025/12/09 19:34:32 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/10 08:54:06 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	draw_textured_line(t_line *line, t_hit hit, int line_size,
 	float		uv_y;
 	int			texture_color;
 
+	if (line_size <= 0)
+		return;
 	utils.tmp = line;
 	utils.count = 0;
 	utils.texture_to_display = &display->texture.t_north;

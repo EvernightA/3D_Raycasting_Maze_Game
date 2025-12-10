@@ -1,80 +1,48 @@
-[ ] parsing
+-[x]Step 1: Understand the Problem The DDA algorithm -[ ]steps through pixels, giving you quantized positions. For texture sampling, you need the exact mathematical intersection point.
 
-## Error handling
-[ ] Your program must take as a first argument a scene description file with the .cub
-	extension.
+-[x]Step 2: Create calc_exact_hit() function in line_drawing.c
 
-[ ] The map must be composed of only 6 possible characters: 0 for an empty space,
-	for a wall, and N,S,E or W for the player’s start position and spawning
-	orientation. (HANDLE SPACES)
+C
+#define EPSILON 1e-6f
 
-[ ] The map must be closed/surrounded by walls, if not the program must return
-	an error.
+static void calc_exact_hit(t_hit *hit, t_display *display, float beta)
+{
+    float ray_dir_x = cosf(display->player.angle + beta);
+    float ray_dir_y = sinf(display->player.angle + beta);
+    float wall_edge, t;
 
-[ ] Except for the map content, each type of element can be separated by one or
-	more empty lines.
+    // For each wall direction, calculate the exact edge and intersection
+    if (hit->wall_direction == WEST && fabsf(ray_dir_x) > EPSILON)
+    {
+        wall_edge = (hit->collision.x / SIZE_IMG) * SIZE_IMG;
+        t = (wall_edge - display->player.pixels.f_x) / ray_dir_x;
+        hit->collision.f_x = wall_edge;
+        hit->collision.f_y = display->player.pixels.f_y + ray_dir_y * t;
+    }
+    // Repeat for EAST, NORTH, SOUTH with appropriate edge calculations
+}
+-[x]Step 3: Modify wall_assign() to call the new function
 
-[ ] Except for the map content which always has to be the last, each type of
-	element can be set in any order in the file.
+C
+void wall_assign(t_hit *hit, t_line *tmp, t_display *display, float beta)
+{
+    hit->collision = tmp->dot;
+    hit->wall_direction = get_wall_direction(hit->collision, display->player.blocs);
+    calc_exact_hit(hit, display, beta);  // Add this line
+    hit->distance = to_wall(display, hit->collision, beta);
+}
+-[x]Step 4: Update to_wall() to use float coordinates Change collision.x → collision.f_x and collision.y → collision.f_y.
 
-[ ]	Except for the map, each type of information from an element can be separated
-	by one or more spaces.
+-[x]Step 5: Add UV bounds checking in sample_texture()
 
-[ ]	The map must be parsed as it looks in the file. Spaces are a valid part of the
-	map and are up to you to handle. You must be able to parse any kind of map,
-	as long as it respects the rules of the map.
+C
+u = fmaxf(0.0f, fminf(1.0f, u));
+v = fmaxf(0.0f, fminf(1.0f, v));
+-[x]Step 6: Add early return in draw_textured_line()
 
-[ ] Except for the map, each element must begin with its type identifier (composed
-	by one or two characters), followed by its specific information in a strict order:
-		∗ North texture:
-		NO ./path_to_the_north_texture
-		· identifier: NO
-		· path to the north texture
-		∗ South texture:
-		SO ./path_to_the_south_texture
-		· identifier: SO
-		· path to the south texture
-		∗ West texture:
-		WE ./path_to_the_west_texture
-		· identifier: WE
-		· path to the west texture
-		∗ East texture:
-		EA ./path_to_the_east_texture
-		· identifier: EA
-		· path to the east texture
-		∗ Floor color:
-		F 220,100,0
-		· identifier: F
-		· R,G,B colors in range [0,255]: 0, 255, 255
-		∗ Ceiling color:
-		C 225,30,0
-		· identifier: C
-		· R,G,B colors in range [0,255]: 0, 255, 255
+C
+if (line_size <= 0)
+    return;
+The key math: t = (wall_edge - player_pos) / ray_dir gives you the distance along the ray, then exact_pos = player_pos + ray_dir * t gives the precise intersection point.
 
-
-[ ] error message:  "Error\n" followed by an explicit error message
-of your choice.
-
-
-[x] Find a good algo for raycasting
-	->bresenham
-[ ] Downloading textures
-
-[ ] Player movement
-	The left and right arrow keys of the keyboard must allow you to look left and
-	right in the maze.
-	The W, A, S, and D keys must allow you to move the point of view through
-	the maze.
-
-[x] Window management
-	Pressing ESC must close the window and quit the program cleanly.
-	Clicking on the red cross on the window’s frame must close the window and
-	quit the program cleanly.
-	The use of images of the minilibX library is strongly recommended.
-
-[ ] ideaaaa!!!!!
-only one bresenham then iter on the bresenham result to have the other lines
-
-[ ] F and F
-
-[ ]make the player change orientation
+New prompt
