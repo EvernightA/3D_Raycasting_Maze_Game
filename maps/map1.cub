@@ -1,10 +1,10 @@
-NO ./textures/saitama.xpm
-SO ./textures/saitama.xpm
-EA ./textures/saitama.xpm
-WE ./textures/saitama.xpm
+NO ./textures/star.xpm
+SO ./textures/star.xpm
+EA ./textures/star.xpm
+WE ./textures/star.xpm
 
-C 135,206,235
-F 0,128,0
+C 0,0,0
+F 0,0,0
 
         1111111111111111111111111
         1000000000110000000000001

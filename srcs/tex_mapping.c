@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tex_mapping.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
+/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 11:37:27 by mratsima          #+#    #+#             */
-/*   Updated: 2025/12/09 19:27:35 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/10 07:52:48 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
