@@ -29,17 +29,29 @@ static void	calc_exact_hit(t_hit *hit, t_display *display, float beta, t_point b
 	float	ray_dir_y;
 	float	wall_edge;
 	float	t;
+	float	min_y;
+	float	max_y;
+	float	min_x;
+	float	max_x;
 
 	ray_dir_x = cosf(display->player.angle + beta);
 	ray_dir_y = sinf(display->player.angle + beta);
+	min_x = bloc.x * SIZE_IMG;
+	max_x = (bloc.x + 1) * SIZE_IMG;
+	min_y = bloc.y * SIZE_IMG;
+	max_y = (bloc.y + 1) * SIZE_IMG;
 	if (hit->wall_direction == WEST)
 	{
-		wall_edge = bloc.x * SIZE_IMG;
+		wall_edge = min_x;
 		if (fabsf(ray_dir_x) > EPSILON)
 		{
 			t = (wall_edge - display->player.pixels.f_x) / ray_dir_x;
 			hit->collision.f_x = wall_edge;
 			hit->collision.f_y = display->player.pixels.f_y + ray_dir_y * t;
+			if (hit->collision.f_y < min_y)
+				hit->collision.f_y = min_y;
+			else if (hit->collision.f_y > max_y)
+				hit->collision.f_y = max_y;
 		}
 		else
 		{
@@ -49,12 +61,16 @@ static void	calc_exact_hit(t_hit *hit, t_display *display, float beta, t_point b
 	}
 	else if (hit->wall_direction == EAST)
 	{
-		wall_edge = (bloc.x + 1) * SIZE_IMG;
+		wall_edge = max_x;
 		if (fabsf(ray_dir_x) > EPSILON)
 		{
 			t = (wall_edge - display->player.pixels.f_x) / ray_dir_x;
 			hit->collision.f_x = wall_edge;
 			hit->collision.f_y = display->player.pixels.f_y + ray_dir_y * t;
+			if (hit->collision.f_y < min_y)
+				hit->collision.f_y = min_y;
+			else if (hit->collision.f_y > max_y)
+				hit->collision.f_y = max_y;
 		}
 		else
 		{
@@ -64,12 +80,16 @@ static void	calc_exact_hit(t_hit *hit, t_display *display, float beta, t_point b
 	}
 	else if (hit->wall_direction == NORTH)
 	{
-		wall_edge = bloc.y * SIZE_IMG;
+		wall_edge = min_y;
 		if (fabsf(ray_dir_y) > EPSILON)
 		{
 			t = (wall_edge - display->player.pixels.f_y) / ray_dir_y;
 			hit->collision.f_x = display->player.pixels.f_x + ray_dir_x * t;
 			hit->collision.f_y = wall_edge;
+			if (hit->collision.f_x < min_x)
+				hit->collision.f_x = min_x;
+			else if (hit->collision.f_x > max_x)
+				hit->collision.f_x = max_x;
 		}
 		else
 		{
@@ -79,12 +99,16 @@ static void	calc_exact_hit(t_hit *hit, t_display *display, float beta, t_point b
 	}
 	else if (hit->wall_direction == SOUTH)
 	{
-		wall_edge = (bloc.y + 1) * SIZE_IMG;
+		wall_edge = max_y;
 		if (fabsf(ray_dir_y) > EPSILON)
 		{
 			t = (wall_edge - display->player.pixels.f_y) / ray_dir_y;
 			hit->collision.f_x = display->player.pixels.f_x + ray_dir_x * t;
 			hit->collision.f_y = wall_edge;
+			if (hit->collision.f_x < min_x)
+				hit->collision.f_x = min_x;
+			else if (hit->collision.f_x > max_x)
+				hit->collision.f_x = max_x;
 		}
 		else
 		{
