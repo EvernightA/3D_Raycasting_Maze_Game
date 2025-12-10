@@ -21,12 +21,52 @@ void	init_hit(t_hit *hit)
 	hit->collision.f_y = 0;
 }
 
+static void	calc_exact_hit(t_hit *hit, t_display *display, float beta)
+{
+	float	ray_dir_x;
+	float	ray_dir_y;
+	float	wall_edge;
+	float	t;
+
+	ray_dir_x = cos(display->player.angle + beta);
+	ray_dir_y = sin(display->player.angle + beta);
+	if (hit->wall_direction == WEST && ray_dir_x != 0)
+	{
+		wall_edge = (hit->collision.x / SIZE_IMG) * SIZE_IMG;
+		t = (wall_edge - display->player.pixels.f_x) / ray_dir_x;
+		hit->collision.f_x = wall_edge;
+		hit->collision.f_y = display->player.pixels.f_y + ray_dir_y * t;
+	}
+	else if (hit->wall_direction == EAST && ray_dir_x != 0)
+	{
+		wall_edge = (hit->collision.x / SIZE_IMG + 1) * SIZE_IMG;
+		t = (wall_edge - display->player.pixels.f_x) / ray_dir_x;
+		hit->collision.f_x = wall_edge;
+		hit->collision.f_y = display->player.pixels.f_y + ray_dir_y * t;
+	}
+	else if (hit->wall_direction == NORTH && ray_dir_y != 0)
+	{
+		wall_edge = (hit->collision.y / SIZE_IMG) * SIZE_IMG;
+		t = (wall_edge - display->player.pixels.f_y) / ray_dir_y;
+		hit->collision.f_x = display->player.pixels.f_x + ray_dir_x * t;
+		hit->collision.f_y = wall_edge;
+	}
+	else if (hit->wall_direction == SOUTH && ray_dir_y != 0)
+	{
+		wall_edge = (hit->collision.y / SIZE_IMG + 1) * SIZE_IMG;
+		t = (wall_edge - display->player.pixels.f_y) / ray_dir_y;
+		hit->collision.f_x = display->player.pixels.f_x + ray_dir_x * t;
+		hit->collision.f_y = wall_edge;
+	}
+}
+
 void	wall_assign(t_hit *hit, t_line *tmp, t_display *display, float beta)
 {
 	hit->collision = tmp->dot;
-	hit->distance = to_wall(display, tmp->dot, beta);
 	hit->wall_direction = get_wall_direction(hit->collision,
 			display->player.blocs);
+	calc_exact_hit(hit, display, beta);
+	hit->distance = to_wall(display, hit->collision, beta);
 }
 
 int	go_to_next_node(t_line **tmp, t_line **before, t_hit *hit,
