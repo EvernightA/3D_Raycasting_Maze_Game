@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 10:34:32 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/10 08:50:18 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/10 10:04:21 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,21 +62,22 @@ static void	calc_exact_hit(t_hit *hit, t_display *display, float beta)
 	}
 }
 
-void wall_assign(t_hit *hit, t_line *tmp, t_display *display, float beta)
+void wall_assign(t_hit *hit, t_line *tmp, t_display *display, float beta, t_point bloc)
 {
     hit->collision = tmp->dot;
     hit->wall_direction = get_wall_direction(hit->collision, display->player.blocs);
-    calc_exact_hit(hit, display, beta);  // Add this line
+	direction_fix(display, hit, bloc);
+	calc_exact_hit(hit, display, beta);
     hit->distance = to_wall(display, hit->collision, beta);
 }
 
 int	go_to_next_node(t_line **tmp, t_line **before, t_hit *hit,
-		t_display *display)
+		t_display *display, t_point bloc)
 {
 	if ((*tmp)->next == NULL)
 	{
 		*before = *tmp;
-		wall_assign(hit, *before, display, display->beta);
+		wall_assign(hit, *before, display, display->beta, bloc);
 		return (1);
 	}
 	*tmp = (*tmp)->next;
@@ -105,12 +106,12 @@ t_hit	draw_line_2(t_display *display, float beta)
 		tmp_bloc = pixel_to_bloc(tmp->dot, display);
 		if (!is_walkable(display, tmp_bloc))
 		{
-			wall_assign(&hit, tmp, display, beta);
-			direction_fix(display, &hit, bloc);
+			wall_assign(&hit, tmp, display, beta, bloc);
+			// direction_fix(display, &hit, bloc);
 			break ;
 		}
 		display->beta = beta;
-		if (go_to_next_node(&tmp, &before, &hit, display))
+		if (go_to_next_node(&tmp, &before, &hit, display, bloc))
 			break ;
 	}
 	return (hit);
