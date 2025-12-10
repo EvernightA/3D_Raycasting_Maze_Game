@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 10:34:32 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/10 10:18:59 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/10 14:10:51 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,18 @@ void	init_hit(t_hit *hit)
 
 #define EPSILON 1e-6f
 
-static void	calc_exact_hit(t_hit *hit, t_display *display, float beta, t_point bloc)
+static float	clamp(float value, float min, float max)
 {
-	float	ray_dir_x;
-	float	ray_dir_y;
+	if (value < min)
+		return (min);
+	if (value > max)
+		return (max);
+	return (value);
+}
+
+static void	calc_hit_horizontal(t_hit *hit, t_display *display,
+				float ray_dir[2], float bounds[4])
+{
 	float	wall_edge;
 	float	t;
 	float	min_y;
@@ -34,88 +42,58 @@ static void	calc_exact_hit(t_hit *hit, t_display *display, float beta, t_point b
 	float	min_x;
 	float	max_x;
 
-	ray_dir_x = cosf(display->player.angle + beta);
-	ray_dir_y = sinf(display->player.angle + beta);
-	min_x = bloc.x * SIZE_IMG;
-	max_x = (bloc.x + 1) * SIZE_IMG;
-	min_y = bloc.y * SIZE_IMG;
-	max_y = (bloc.y + 1) * SIZE_IMG;
 	if (hit->wall_direction == WEST)
+		wall_edge = bounds[0];
+	else
+		wall_edge = bounds[1];
+	hit->collision.f_x = wall_edge;
+	if (fabsf(ray_dir[0]) > EPSILON)
 	{
-		wall_edge = min_x;
-		if (fabsf(ray_dir_x) > EPSILON)
-		{
-			t = (wall_edge - display->player.pixels.f_x) / ray_dir_x;
-			hit->collision.f_x = wall_edge;
-			hit->collision.f_y = display->player.pixels.f_y + ray_dir_y * t;
-			if (hit->collision.f_y < min_y)
-				hit->collision.f_y = min_y;
-			else if (hit->collision.f_y > max_y)
-				hit->collision.f_y = max_y;
-		}
-		else
-		{
-			hit->collision.f_x = wall_edge;
-			hit->collision.f_y = display->player.pixels.f_y;
-		}
+		t = (wall_edge - display->player.pixels.f_x) / ray_dir[0];
+		hit->collision. f_y = display->player. pixels.f_y + ray_dir[1] * t;
+		hit->collision.f_y = clamp(hit->collision.f_y, bounds[2], bounds[3]);
 	}
-	else if (hit->wall_direction == EAST)
+	else
+		hit->collision.f_y = display->player.pixels.f_y;
+}
+
+static void	calc_hit_vertical(t_hit *hit, t_display *display,
+				float ray_dir[2], float bounds[4])
+{
+	float	wall_edge;
+	float	t;
+
+	if (hit->wall_direction == NORTH)
+		wall_edge = bounds[2];
+	else
+		wall_edge = bounds[3];
+	hit->collision. f_y = wall_edge;
+	if (fabsf(ray_dir[1]) > EPSILON)
 	{
-		wall_edge = max_x;
-		if (fabsf(ray_dir_x) > EPSILON)
-		{
-			t = (wall_edge - display->player.pixels.f_x) / ray_dir_x;
-			hit->collision.f_x = wall_edge;
-			hit->collision.f_y = display->player.pixels.f_y + ray_dir_y * t;
-			if (hit->collision.f_y < min_y)
-				hit->collision.f_y = min_y;
-			else if (hit->collision.f_y > max_y)
-				hit->collision.f_y = max_y;
-		}
-		else
-		{
-			hit->collision.f_x = wall_edge;
-			hit->collision.f_y = display->player.pixels.f_y;
-		}
+		t = (wall_edge - display->player.pixels.f_y) / ray_dir[1];
+		hit->collision.f_x = display->player.pixels.f_x + ray_dir[0] * t;
+		hit->collision.f_x = clamp(hit->collision.f_x, bounds[0], bounds[1]);
 	}
-	else if (hit->wall_direction == NORTH)
-	{
-		wall_edge = min_y;
-		if (fabsf(ray_dir_y) > EPSILON)
-		{
-			t = (wall_edge - display->player.pixels.f_y) / ray_dir_y;
-			hit->collision.f_x = display->player.pixels.f_x + ray_dir_x * t;
-			hit->collision.f_y = wall_edge;
-			if (hit->collision.f_x < min_x)
-				hit->collision.f_x = min_x;
-			else if (hit->collision.f_x > max_x)
-				hit->collision.f_x = max_x;
-		}
-		else
-		{
-			hit->collision.f_x = display->player.pixels.f_x;
-			hit->collision.f_y = wall_edge;
-		}
-	}
-	else if (hit->wall_direction == SOUTH)
-	{
-		wall_edge = max_y;
-		if (fabsf(ray_dir_y) > EPSILON)
-		{
-			t = (wall_edge - display->player.pixels.f_y) / ray_dir_y;
-			hit->collision.f_x = display->player.pixels.f_x + ray_dir_x * t;
-			hit->collision.f_y = wall_edge;
-			if (hit->collision.f_x < min_x)
-				hit->collision.f_x = min_x;
-			else if (hit->collision.f_x > max_x)
-				hit->collision.f_x = max_x;
-		}
-		else
-		{
-			hit->collision.f_x = display->player.pixels.f_x;
-			hit->collision.f_y = wall_edge;
-		}
-	}
+	else
+		hit->collision.f_x = display->player. pixels.f_x;
+}
+
+static void	calc_exact_hit(t_hit *hit, t_display *display,
+				float beta, t_point bloc)
+{
+	float	ray_dir[2];
+	float	bounds[4];
+
+	ray_dir[0] = cosf(display->player.angle + beta);
+	ray_dir[1] = sinf(display->player.angle + beta);
+	bounds[0] = bloc.x * SIZE_IMG;
+	bounds[1] = (bloc.x + 1) * SIZE_IMG;
+	bounds[2] = bloc.y * SIZE_IMG;
+	bounds[3] = (bloc.y + 1) * SIZE_IMG;
+	if (hit->wall_direction == WEST || hit->wall_direction == EAST)
+		calc_hit_horizontal(hit, display, ray_dir, bounds);
+	else
+		calc_hit_vertical(hit, display, ray_dir, bounds);
 }
 
 void wall_assign(t_hit *hit, t_line *tmp, t_display *display, float beta, t_point bloc)
