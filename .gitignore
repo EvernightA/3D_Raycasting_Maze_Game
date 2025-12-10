@@ -1,0 +1,17 @@
+# Object files
+*.o
+
+# Libraries
+*.a
+
+# Executables
+cub3D
+
+# MinilibX build artifacts
+minilibx-linux/obj/
+minilibx-linux/test/main.o
+minilibx-linux/test/mlx-test
+
+# libft build artifacts  
+libft/*.o
+libft/*.a
