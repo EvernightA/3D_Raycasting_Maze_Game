@@ -108,7 +108,6 @@ t_hit	draw_line_2(t_display *display, float beta)
 		if (!is_walkable(display, tmp_bloc))
 		{
 			wall_assign(&hit, tmp, display, beta, bloc);
-			// direction_fix(display, &hit, bloc);
 			break ;
 		}
 		display->beta = beta;
