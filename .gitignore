@@ -1,0 +1,13 @@
+# Object files
+*.o
+
+# Compiled binary
+cub3D
+
+# Library archives
+*.a
+
+# MinilibX build artifacts
+minilibx-linux/obj/
+minilibx-linux/test/mlx-test
+minilibx-linux/test/*.o

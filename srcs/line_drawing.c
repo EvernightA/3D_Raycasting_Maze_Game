@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 10:34:32 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/10 14:01:51 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/10 14:10:51 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,10 @@ static void	calc_hit_horizontal(t_hit *hit, t_display *display,
 {
 	float	wall_edge;
 	float	t;
+	float	min_y;
+	float	max_y;
+	float	min_x;
+	float	max_x;
 
 	if (hit->wall_direction == WEST)
 		wall_edge = bounds[0];
