@@ -21,6 +21,8 @@ void	init_hit(t_hit *hit)
 	hit->collision.f_y = 0;
 }
 
+#define EPSILON 1e-6f
+
 static void	calc_exact_hit(t_hit *hit, t_display *display, float beta)
 {
 	float	ray_dir_x;
@@ -28,30 +30,30 @@ static void	calc_exact_hit(t_hit *hit, t_display *display, float beta)
 	float	wall_edge;
 	float	t;
 
-	ray_dir_x = cos(display->player.angle + beta);
-	ray_dir_y = sin(display->player.angle + beta);
-	if (hit->wall_direction == WEST && ray_dir_x != 0)
+	ray_dir_x = cosf(display->player.angle + beta);
+	ray_dir_y = sinf(display->player.angle + beta);
+	if (hit->wall_direction == WEST && fabsf(ray_dir_x) > EPSILON)
 	{
 		wall_edge = (hit->collision.x / SIZE_IMG) * SIZE_IMG;
 		t = (wall_edge - display->player.pixels.f_x) / ray_dir_x;
 		hit->collision.f_x = wall_edge;
 		hit->collision.f_y = display->player.pixels.f_y + ray_dir_y * t;
 	}
-	else if (hit->wall_direction == EAST && ray_dir_x != 0)
+	else if (hit->wall_direction == EAST && fabsf(ray_dir_x) > EPSILON)
 	{
 		wall_edge = (hit->collision.x / SIZE_IMG + 1) * SIZE_IMG;
 		t = (wall_edge - display->player.pixels.f_x) / ray_dir_x;
 		hit->collision.f_x = wall_edge;
 		hit->collision.f_y = display->player.pixels.f_y + ray_dir_y * t;
 	}
-	else if (hit->wall_direction == NORTH && ray_dir_y != 0)
+	else if (hit->wall_direction == NORTH && fabsf(ray_dir_y) > EPSILON)
 	{
 		wall_edge = (hit->collision.y / SIZE_IMG) * SIZE_IMG;
 		t = (wall_edge - display->player.pixels.f_y) / ray_dir_y;
 		hit->collision.f_x = display->player.pixels.f_x + ray_dir_x * t;
 		hit->collision.f_y = wall_edge;
 	}
-	else if (hit->wall_direction == SOUTH && ray_dir_y != 0)
+	else if (hit->wall_direction == SOUTH && fabsf(ray_dir_y) > EPSILON)
 	{
 		wall_edge = (hit->collision.y / SIZE_IMG + 1) * SIZE_IMG;
 		t = (wall_edge - display->player.pixels.f_y) / ray_dir_y;
