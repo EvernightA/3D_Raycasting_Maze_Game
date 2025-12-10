@@ -32,33 +32,53 @@ static void	calc_exact_hit(t_hit *hit, t_display *display, float beta, t_point b
 
 	ray_dir_x = cosf(display->player.angle + beta);
 	ray_dir_y = sinf(display->player.angle + beta);
-	if (hit->wall_direction == WEST && fabsf(ray_dir_x) > EPSILON)
+	if (hit->wall_direction == WEST)
 	{
 		wall_edge = bloc.x * SIZE_IMG;
-		t = (wall_edge - display->player.pixels.f_x) / ray_dir_x;
-		hit->collision.f_x = wall_edge;
-		hit->collision.f_y = display->player.pixels.f_y + ray_dir_y * t;
+		if (fabsf(ray_dir_x) > EPSILON)
+		{
+			t = (wall_edge - display->player.pixels.f_x) / ray_dir_x;
+			hit->collision.f_x = wall_edge;
+			hit->collision.f_y = display->player.pixels.f_y + ray_dir_y * t;
+		}
+		else
+			hit->collision.f_x = wall_edge;
 	}
-	else if (hit->wall_direction == EAST && fabsf(ray_dir_x) > EPSILON)
+	else if (hit->wall_direction == EAST)
 	{
 		wall_edge = (bloc.x + 1) * SIZE_IMG;
-		t = (wall_edge - display->player.pixels.f_x) / ray_dir_x;
-		hit->collision.f_x = wall_edge;
-		hit->collision.f_y = display->player.pixels.f_y + ray_dir_y * t;
+		if (fabsf(ray_dir_x) > EPSILON)
+		{
+			t = (wall_edge - display->player.pixels.f_x) / ray_dir_x;
+			hit->collision.f_x = wall_edge;
+			hit->collision.f_y = display->player.pixels.f_y + ray_dir_y * t;
+		}
+		else
+			hit->collision.f_x = wall_edge;
 	}
-	else if (hit->wall_direction == NORTH && fabsf(ray_dir_y) > EPSILON)
+	else if (hit->wall_direction == NORTH)
 	{
 		wall_edge = bloc.y * SIZE_IMG;
-		t = (wall_edge - display->player.pixels.f_y) / ray_dir_y;
-		hit->collision.f_x = display->player.pixels.f_x + ray_dir_x * t;
-		hit->collision.f_y = wall_edge;
+		if (fabsf(ray_dir_y) > EPSILON)
+		{
+			t = (wall_edge - display->player.pixels.f_y) / ray_dir_y;
+			hit->collision.f_x = display->player.pixels.f_x + ray_dir_x * t;
+			hit->collision.f_y = wall_edge;
+		}
+		else
+			hit->collision.f_y = wall_edge;
 	}
-	else if (hit->wall_direction == SOUTH && fabsf(ray_dir_y) > EPSILON)
+	else if (hit->wall_direction == SOUTH)
 	{
 		wall_edge = (bloc.y + 1) * SIZE_IMG;
-		t = (wall_edge - display->player.pixels.f_y) / ray_dir_y;
-		hit->collision.f_x = display->player.pixels.f_x + ray_dir_x * t;
-		hit->collision.f_y = wall_edge;
+		if (fabsf(ray_dir_y) > EPSILON)
+		{
+			t = (wall_edge - display->player.pixels.f_y) / ray_dir_y;
+			hit->collision.f_x = display->player.pixels.f_x + ray_dir_x * t;
+			hit->collision.f_y = wall_edge;
+		}
+		else
+			hit->collision.f_y = wall_edge;
 	}
 }
 
