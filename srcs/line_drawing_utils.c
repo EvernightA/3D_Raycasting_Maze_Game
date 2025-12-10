@@ -34,6 +34,8 @@ void	draw_textured_line(t_line *line, t_hit hit, int line_size,
 	float		uv_y;
 	int			texture_color;
 
+	if (line_size <= 0)
+		return ;
 	utils.tmp = line;
 	utils.count = 0;
 	utils.texture_to_display = &display->texture.t_north;

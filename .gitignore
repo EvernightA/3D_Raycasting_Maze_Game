@@ -1,0 +1,15 @@
+# Compiled object files
+*.o
+
+# Compiled static libraries
+*.a
+
+# Executable
+cub3D
+
+# MinilibX build artifacts
+minilibx-linux/obj/
+minilibx-linux/libmlx.a
+minilibx-linux/libmlx_Linux.a
+minilibx-linux/test/mlx-test
+minilibx-linux/test/main.o

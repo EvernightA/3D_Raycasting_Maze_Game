@@ -19,6 +19,8 @@ int	sample_texture(t_img_texture *img_tex, float u, float v)
 	int		pixel;
 	char	*addr;
 
+	u = fmaxf(0.0f, fminf(1.0f, u));
+	v = fmaxf(0.0f, fminf(1.0f, v));
 	x = (int)(u * (img_tex->width - 1));
 	y = (int)(v * (img_tex->height - 1));
 	addr = img_tex->data + (y * img_tex->line_len + x * (img_tex->bpp / 8));
