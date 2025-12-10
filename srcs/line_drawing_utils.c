@@ -38,7 +38,7 @@ void	draw_textured_line(t_line *line, t_hit hit, int line_size,
 	if (line_size <= 0)
 		return;
 	actual_line_size = ft_linesize(line);
-	if (actual_line_size <= 0)
+	if (actual_line_size <= 1)
 		return;
 	utils.tmp = line;
 	utils.count = 0;
