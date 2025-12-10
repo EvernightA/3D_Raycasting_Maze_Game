@@ -79,6 +79,14 @@ void wall_assign(t_hit *hit, t_line *tmp, t_display *display, float beta, t_poin
 		// When changing to WEST, snap f_x to the left edge of the block
 		if (hit->wall_direction == WEST)
 		    hit->collision.f_x = bloc.x * 16.0f;  // Left edge
+
+		// When changing to NORTH, snap f_y to the top edge of the block
+		if (hit->wall_direction == NORTH)
+		    hit->collision.f_y = bloc.y * 16.0f;  // Top edge
+
+		// When changing to SOUTH, snap f_y to the bottom edge of the block
+		if (hit->wall_direction == SOUTH)
+		    hit->collision.f_y = (bloc.y + 1) * 16.0f;  // Bottom edge
 	}
 	calc_exact_hit(hit, display, beta);
     hit->distance = to_wall(display, hit->collision, beta);
@@ -117,6 +125,7 @@ t_hit	draw_line_2(t_display *display, float beta)
 	while (tmp)
 	{
 		tmp_bloc = pixel_to_bloc(tmp->dot, display);
+		bloc = tmp_bloc;
 		if (!is_walkable(display, tmp_bloc))
 		{
 			wall_assign(&hit, tmp, display, beta, bloc);
