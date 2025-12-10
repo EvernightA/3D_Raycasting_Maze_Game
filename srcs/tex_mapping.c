@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 11:37:27 by mratsima          #+#    #+#             */
-/*   Updated: 2025/12/09 19:27:35 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/10 08:52:56 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	sample_texture(t_img_texture *img_tex, float u, float v)
 
 	x = (int)(u * (img_tex->width - 1));
 	y = (int)(v * (img_tex->height - 1));
+	u = fmaxf(0.0f, fminf(1.0f, u));
+	v = fmaxf(0.0f, fminf(1.0f, v));
 	addr = img_tex->data + (y * img_tex->line_len + x * (img_tex->bpp / 8));
 	pixel = *(unsigned int *)addr;
 	return (pixel);
