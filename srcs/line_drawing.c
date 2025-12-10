@@ -66,30 +66,30 @@ void wall_assign(t_hit *hit, t_line *tmp, t_display *display, float beta, t_poin
 {
 	int og_dir;
 
-    hit->collision = tmp->dot;
-    hit->wall_direction = get_wall_direction(hit->collision, display->player.blocs);
+	hit->collision = tmp->dot;
+	hit->wall_direction = get_wall_direction(hit->collision, display->player.blocs);
 	og_dir = hit->wall_direction;
 	direction_fix(display, hit, bloc);
 	if (hit->wall_direction != og_dir)
 	{
 		// When changing to EAST, snap f_x to the right edge of the block
 		if (hit->wall_direction == EAST)
-		    hit->collision.f_x = (bloc.x + 1) * SIZE_IMG;
+			hit->collision.f_x = (bloc.x + 1) * SIZE_IMG;
 
 		// When changing to WEST, snap f_x to the left edge of the block
 		if (hit->wall_direction == WEST)
-		    hit->collision.f_x = bloc.x * SIZE_IMG;
+			hit->collision.f_x = bloc.x * SIZE_IMG;
 
 		// When changing to NORTH, snap f_y to the top edge of the block
 		if (hit->wall_direction == NORTH)
-		    hit->collision.f_y = bloc.y * SIZE_IMG;
+			hit->collision.f_y = bloc.y * SIZE_IMG;
 
 		// When changing to SOUTH, snap f_y to the bottom edge of the block
 		if (hit->wall_direction == SOUTH)
-		    hit->collision.f_y = (bloc.y + 1) * SIZE_IMG;
+			hit->collision.f_y = (bloc.y + 1) * SIZE_IMG;
 	}
 	calc_exact_hit(hit, display, beta);
-    hit->distance = to_wall(display, hit->collision, beta);
+	hit->distance = to_wall(display, hit->collision, beta);
 }
 
 int	go_to_next_node(t_line **tmp, t_line **before, t_hit *hit,
