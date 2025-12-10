@@ -60,6 +60,11 @@ static void	calc_exact_hit(t_hit *hit, t_display *display, float beta)
 		hit->collision.f_x = display->player.pixels.f_x + ray_dir_x * t;
 		hit->collision.f_y = wall_edge;
 	}
+	else
+	{
+		hit->collision.f_x = (float)hit->collision.x;
+		hit->collision.f_y = (float)hit->collision.y;
+	}
 }
 
 void	wall_assign(t_hit *hit, t_line *tmp, t_display *display, float beta)
@@ -97,6 +102,7 @@ t_hit	draw_line_2(t_display *display, float beta)
 	t_point	tmp_bloc;
 	t_hit	hit;
 	t_point	bloc;
+	int		orig_dir;
 
 	tmp = display->head;
 	before = NULL;
@@ -107,7 +113,10 @@ t_hit	draw_line_2(t_display *display, float beta)
 		if (!is_walkable(display, tmp_bloc))
 		{
 			wall_assign(&hit, tmp, display, beta);
+			orig_dir = hit.wall_direction;
 			direction_fix(display, &hit, bloc);
+			if (hit.wall_direction != orig_dir)
+				calc_exact_hit(&hit, display, beta);
 			break ;
 		}
 		display->beta = beta;
