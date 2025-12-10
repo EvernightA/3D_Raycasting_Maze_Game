@@ -23,7 +23,7 @@ void	init_hit(t_hit *hit)
 
 #define EPSILON 1e-6f
 
-static void	calc_exact_hit(t_hit *hit, t_display *display, float beta)
+static void	calc_exact_hit(t_hit *hit, t_display *display, float beta, t_point bloc)
 {
 	float	ray_dir_x;
 	float	ray_dir_y;
@@ -34,28 +34,28 @@ static void	calc_exact_hit(t_hit *hit, t_display *display, float beta)
 	ray_dir_y = sinf(display->player.angle + beta);
 	if (hit->wall_direction == WEST && fabsf(ray_dir_x) > EPSILON)
 	{
-		wall_edge = (hit->collision.x / SIZE_IMG) * SIZE_IMG;
+		wall_edge = bloc.x * SIZE_IMG;
 		t = (wall_edge - display->player.pixels.f_x) / ray_dir_x;
 		hit->collision.f_x = wall_edge;
 		hit->collision.f_y = display->player.pixels.f_y + ray_dir_y * t;
 	}
 	else if (hit->wall_direction == EAST && fabsf(ray_dir_x) > EPSILON)
 	{
-		wall_edge = (hit->collision.x / SIZE_IMG + 1) * SIZE_IMG;
+		wall_edge = (bloc.x + 1) * SIZE_IMG;
 		t = (wall_edge - display->player.pixels.f_x) / ray_dir_x;
 		hit->collision.f_x = wall_edge;
 		hit->collision.f_y = display->player.pixels.f_y + ray_dir_y * t;
 	}
 	else if (hit->wall_direction == NORTH && fabsf(ray_dir_y) > EPSILON)
 	{
-		wall_edge = (hit->collision.y / SIZE_IMG) * SIZE_IMG;
+		wall_edge = bloc.y * SIZE_IMG;
 		t = (wall_edge - display->player.pixels.f_y) / ray_dir_y;
 		hit->collision.f_x = display->player.pixels.f_x + ray_dir_x * t;
 		hit->collision.f_y = wall_edge;
 	}
 	else if (hit->wall_direction == SOUTH && fabsf(ray_dir_y) > EPSILON)
 	{
-		wall_edge = (hit->collision.y / SIZE_IMG + 1) * SIZE_IMG;
+		wall_edge = (bloc.y + 1) * SIZE_IMG;
 		t = (wall_edge - display->player.pixels.f_y) / ray_dir_y;
 		hit->collision.f_x = display->player.pixels.f_x + ray_dir_x * t;
 		hit->collision.f_y = wall_edge;
@@ -67,7 +67,7 @@ void wall_assign(t_hit *hit, t_line *tmp, t_display *display, float beta, t_poin
 	hit->collision = tmp->dot;
 	hit->wall_direction = get_wall_direction(hit->collision, display->player.blocs);
 	direction_fix(display, hit, bloc);
-	calc_exact_hit(hit, display, beta);
+	calc_exact_hit(hit, display, beta, bloc);
 	hit->distance = to_wall(display, hit->collision, beta);
 }
 
@@ -108,7 +108,6 @@ t_hit	draw_line_2(t_display *display, float beta)
 		if (!is_walkable(display, tmp_bloc))
 		{
 			wall_assign(&hit, tmp, display, beta, bloc);
-			// direction_fix(display, &hit, bloc);
 			break ;
 		}
 		display->beta = beta;
