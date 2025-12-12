@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/12 09:24:17 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/12 10:33:30 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -259,6 +259,7 @@ typedef struct s_ray
 	float			perp_wall_dist;
 	float			wall_x;
 	int				wall_dir;
+	float			angle_offset;
 }					t_ray;
 
 char				**dup_mat(t_display *display, int height, char **map);
