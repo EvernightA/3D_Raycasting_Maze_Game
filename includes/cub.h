@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/09 19:33:16 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/12 09:29:38 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@
 # endif
 
 # ifndef SPEED
-#  define SPEED 1.5
+#  define SPEED 0.25
 # endif
 
 # ifndef TETA
-#  define TETA 0.0872664626
+#  define TETA 0.0174533
 # endif
 
 # ifndef SIZE_IMG
