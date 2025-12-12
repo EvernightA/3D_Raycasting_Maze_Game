@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   line_drawing_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: copilot                                     +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/09 18:38:28 by mratsima          #+#    #+#             */
-/*   Updated: 2025/12/12 00:00:00 by copilot          ###   ########.fr       */
+/*   Created: 2025/12/12 11:16:27 by mratsima          #+#    #+#             */
+/*   Updated: 2025/12/12 12:45:14 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
-
-t_img_texture	*get_texture_for_wall(t_display *display, int wall_dir);
 
 static void	calculate_line_bounds(t_ray *ray, int *draw_start, int *draw_end,
 				int *line_height)
@@ -50,31 +48,25 @@ static int	calculate_tex_x(t_ray *ray, t_img_texture *tex)
 void	draw_wall_stripe(t_display *display, int x, t_ray *ray)
 {
 	t_img_texture	*tex;
-	int				draw_start;
-	int				draw_end;
-	int				line_height;
-	int				y;
-	int				tex_x;
-	int				tex_y;
-	float			step;
-	float			tex_pos;
-	int				color;
+	t_draw_utils	draw;
 
 	tex = get_texture_for_wall(display, ray->wall_dir);
-	calculate_line_bounds(ray, &draw_start, &draw_end, &line_height);
-	tex_x = calculate_tex_x(ray, tex);
-	step = (float)tex->height / (float)line_height;
-	tex_pos = (draw_start - SCRN_HEIGHT / 2 + line_height / 2) * step;
-	y = draw_start;
-	while (y < draw_end)
+	calculate_line_bounds(ray, &draw.draw_start,
+		&draw.draw_end, &draw.line_height);
+	draw.tex_x = calculate_tex_x(ray, tex);
+	draw.step = (float)tex->height / (float)draw.line_height;
+	draw.tex_pos = (draw.draw_start - SCRN_HEIGHT / 2 + draw.line_height / 2)
+		* draw.step;
+	draw.y = draw.draw_start;
+	while (draw.y < draw.draw_end)
 	{
-		tex_y = (int)tex_pos;
-		if (tex_y >= tex->height)
-			tex_y = tex->height - 1;
-		tex_pos += step;
-		color = sample_texture(tex, tex_x, tex_y);
-		img_pix_put(&display->all, x, y, color);
-		y++;
+		draw.tex_y = (int)draw.tex_pos;
+		if (draw.tex_y >= tex->height)
+			draw.tex_y = tex->height - 1;
+		draw.tex_pos += draw.step;
+		draw.color = sample_texture(tex, draw.tex_x, draw.tex_y);
+		img_pix_put(&display->all, x, draw.y, draw.color);
+		draw.y++;
 	}
 }
 

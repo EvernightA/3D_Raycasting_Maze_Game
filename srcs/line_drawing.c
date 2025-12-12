@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   line_drawing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: copilot                                     +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/20 10:34:32 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/12 00:00:00 by copilot          ###   ########.fr       */
+/*   Created: 2025/12/12 11:16:11 by mratsima          #+#    #+#             */
+/*   Updated: 2025/12/12 11:21:26 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-static void	init_ray_direction(t_ray *ray, t_display *display, float angle)
+void	init_ray_direction(t_ray *ray, t_display *display, float angle)
 {
 	ray->dir_x = cosf(display->player.angle + angle);
 	ray->dir_y = sinf(display->player.angle + angle);
@@ -28,7 +28,7 @@ static void	init_ray_direction(t_ray *ray, t_display *display, float angle)
 		ray->delta_dist_y = fabsf(1.0f / ray->dir_y);
 }
 
-static void	init_step_and_side_dist(t_ray *ray, t_display *display)
+void	init_step_and_side_dist(t_ray *ray, t_display *display)
 {
 	float	pos_in_cell_x;
 	float	pos_in_cell_y;
@@ -57,7 +57,7 @@ static void	init_step_and_side_dist(t_ray *ray, t_display *display)
 	}
 }
 
-static int	is_valid_map_pos(t_ray *ray, t_display *display)
+int	is_valid_map_pos(t_ray *ray, t_display *display)
 {
 	if (ray->map_y < 0 || ray->map_y >= display->texture.map_height)
 		return (0);
@@ -68,7 +68,7 @@ static int	is_valid_map_pos(t_ray *ray, t_display *display)
 	return (1);
 }
 
-static void	perform_dda(t_ray *ray, t_display *display)
+void	perform_dda(t_ray *ray, t_display *display)
 {
 	int	hit;
 
@@ -107,7 +107,7 @@ static void	perform_dda(t_ray *ray, t_display *display)
 **   - step_y > 0: ray moves down, hits NORTH face of wall cell
 **   - step_y < 0: ray moves up, hits SOUTH face of wall cell
 */
-static void	calculate_wall_dist_and_x(t_ray *ray, t_display *display)
+void	calculate_wall_dist_and_x(t_ray *ray, t_display *display)
 {
 	if (ray->side == 0)
 	{
@@ -130,13 +130,4 @@ static void	calculate_wall_dist_and_x(t_ray *ray, t_display *display)
 			ray->wall_dir = SOUTH;
 	}
 	ray->wall_x -= floorf(ray->wall_x);
-}
-
-void	cast_single_ray(t_display *display, t_ray *ray, float angle)
-{
-	ray->angle_offset = angle;
-	init_ray_direction(ray, display, angle);
-	init_step_and_side_dist(ray, display);
-	perform_dda(ray, display);
-	calculate_wall_dist_and_x(ray, display);
 }

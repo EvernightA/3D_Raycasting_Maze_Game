@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 09:17:26 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/10 08:51:51 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/12 11:16:59 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ void	calculus_dir(t_display *display)
 float	to_wall(t_display *display, t_point collision, float beta)
 {
 	float	distance;
-	float		dx;
-	float		dy;
+	float	dx;
+	float	dy;
 
 	dx = display->player.pixels.f_x - collision.f_x;
 	dy = display->player.pixels.f_y - collision.f_y;

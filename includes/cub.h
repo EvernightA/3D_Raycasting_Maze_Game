@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/12 10:33:30 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/12 12:41:15 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -262,6 +262,19 @@ typedef struct s_ray
 	float			angle_offset;
 }					t_ray;
 
+typedef struct s_draw_utils
+{
+	int				draw_start;
+	int				draw_end;
+	int				line_height;
+	int				y;
+	int				tex_x;
+	int				tex_y;
+	float			step;
+	float			tex_pos;
+	int				color;
+}					t_draw_utils;
+
 char				**dup_mat(t_display *display, int height, char **map);
 int					ft_abs(int n);
 size_t				find_len_max(char **map);
@@ -348,4 +361,10 @@ void				init_xpm_image(t_display *display);
 void				cast_all_rays(t_display *display);
 void				cast_single_ray(t_display *display, t_ray *ray, float angle);
 void				draw_wall_stripe(t_display *display, int x, t_ray *ray);
+void				init_ray_direction(t_ray *ray, t_display *display, float angle);
+void				init_step_and_side_dist(t_ray *ray, t_display *display);
+int					is_valid_map_pos(t_ray *ray, t_display *display);
+void				perform_dda(t_ray *ray, t_display *display);
+void				calculate_wall_dist_and_x(t_ray *ray, t_display *display);
+t_img_texture		*get_texture_for_wall(t_display *display, int wall_dir);
 #endif
