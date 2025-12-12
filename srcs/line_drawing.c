@@ -19,11 +19,11 @@ static void	init_ray_direction(t_ray *ray, t_display *display, float angle)
 	ray->map_x = (int)(display->player.pixels.f_x / SIZE_IMG);
 	ray->map_y = (int)(display->player.pixels.f_y / SIZE_IMG);
 	if (ray->dir_x == 0)
-		ray->delta_dist_x = 1e30f;
+		ray->delta_dist_x = LARGE_DIST;
 	else
 		ray->delta_dist_x = fabsf(1.0f / ray->dir_x);
 	if (ray->dir_y == 0)
-		ray->delta_dist_y = 1e30f;
+		ray->delta_dist_y = LARGE_DIST;
 	else
 		ray->delta_dist_y = fabsf(1.0f / ray->dir_y);
 }
@@ -57,6 +57,17 @@ static void	init_step_and_side_dist(t_ray *ray, t_display *display)
 	}
 }
 
+static int	is_valid_map_pos(t_ray *ray, t_display *display)
+{
+	if (ray->map_y < 0 || ray->map_y >= display->texture.map_height)
+		return (0);
+	if (ray->map_x < 0 || ray->map_x >= display->texture.map_width)
+		return (0);
+	if (!display->map[ray->map_y][ray->map_x])
+		return (0);
+	return (1);
+}
+
 static void	perform_dda(t_ray *ray, t_display *display)
 {
 	int	hit;
@@ -76,8 +87,7 @@ static void	perform_dda(t_ray *ray, t_display *display)
 			ray->map_y += ray->step_y;
 			ray->side = 1;
 		}
-		if (ray->map_y >= 0 && ray->map_y < display->texture.map_height
-			&& ray->map_x >= 0 && display->map[ray->map_y][ray->map_x])
+		if (is_valid_map_pos(ray, display))
 		{
 			if (display->map[ray->map_y][ray->map_x] == '1')
 				hit = 1;
@@ -87,6 +97,16 @@ static void	perform_dda(t_ray *ray, t_display *display)
 	}
 }
 
+/*
+** Calculate perpendicular wall distance and texture x coordinate.
+** Wall direction logic:
+** - When ray hits a vertical wall (side == 0):
+**   - step_x > 0: ray moves right, hits WEST face of wall cell
+**   - step_x < 0: ray moves left, hits EAST face of wall cell
+** - When ray hits a horizontal wall (side == 1):
+**   - step_y > 0: ray moves down, hits NORTH face of wall cell
+**   - step_y < 0: ray moves up, hits SOUTH face of wall cell
+*/
 static void	calculate_wall_dist_and_x(t_ray *ray, t_display *display)
 {
 	if (ray->side == 0)

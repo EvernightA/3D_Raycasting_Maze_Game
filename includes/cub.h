@@ -58,6 +58,10 @@
 #  define MAX_DISTANCE 600
 # endif
 
+# ifndef LARGE_DIST
+#  define LARGE_DIST 1e30f
+# endif
+
 # ifndef NORTH
 #  define NORTH 0
 # endif
