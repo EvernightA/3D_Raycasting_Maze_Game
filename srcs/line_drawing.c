@@ -134,6 +134,7 @@ static void	calculate_wall_dist_and_x(t_ray *ray, t_display *display)
 
 void	cast_single_ray(t_display *display, t_ray *ray, float angle)
 {
+	ray->angle_offset = angle;
 	init_ray_direction(ray, display, angle);
 	init_step_and_side_dist(ray, display);
 	perform_dda(ray, display);

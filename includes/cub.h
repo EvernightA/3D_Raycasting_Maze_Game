@@ -259,6 +259,7 @@ typedef struct s_ray
 	float			perp_wall_dist;
 	float			wall_x;
 	int				wall_dir;
+	float			angle_offset;
 }					t_ray;
 
 char				**dup_mat(t_display *display, int height, char **map);

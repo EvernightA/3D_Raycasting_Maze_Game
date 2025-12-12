@@ -17,8 +17,11 @@ t_img_texture	*get_texture_for_wall(t_display *display, int wall_dir);
 static void	calculate_line_bounds(t_ray *ray, int *draw_start, int *draw_end,
 				int *line_height)
 {
-	if (ray->perp_wall_dist > 0)
-		*line_height = (int)(SCRN_HEIGHT / ray->perp_wall_dist);
+	float	corrected_dist;
+
+	corrected_dist = ray->perp_wall_dist * cosf(ray->angle_offset);
+	if (corrected_dist > 0)
+		*line_height = (int)(SCRN_HEIGHT / corrected_dist);
 	else
 		*line_height = SCRN_HEIGHT;
 	*draw_start = -(*line_height) / 2 + SCRN_HEIGHT / 2;
