@@ -3,119 +3,93 @@
 /*                                                        :::      ::::::::   */
 /*   line_drawing_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
+/*   By: copilot                                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 18:38:28 by mratsima          #+#    #+#             */
-/*   Updated: 2025/12/10 08:54:06 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/12 00:00:00 by copilot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-void	set_texture(t_img_texture **texture_to_display, t_hit hit,
-		t_display *display)
+t_img_texture	*get_texture_for_wall(t_display *display, int wall_dir);
+
+static void	calculate_line_bounds(t_ray *ray, int *draw_start, int *draw_end,
+				int *line_height)
 {
-	(void)texture_to_display;
-	if (hit.wall_direction == NORTH)
-		*texture_to_display = &display->texture.t_north;
-	else if (hit.wall_direction == SOUTH)
-		*texture_to_display = &display->texture.t_south;
-	else if (hit.wall_direction == EAST)
-		*texture_to_display = &display->texture.t_east;
+	float	corrected_dist;
+
+	corrected_dist = ray->perp_wall_dist * cosf(ray->angle_offset);
+	if (corrected_dist > 0)
+		*line_height = (int)(SCRN_HEIGHT / corrected_dist);
 	else
-		*texture_to_display = &display->texture.t_west;
+		*line_height = SCRN_HEIGHT;
+	*draw_start = -(*line_height) / 2 + SCRN_HEIGHT / 2;
+	if (*draw_start < 0)
+		*draw_start = 0;
+	*draw_end = (*line_height) / 2 + SCRN_HEIGHT / 2;
+	if (*draw_end >= SCRN_HEIGHT)
+		*draw_end = SCRN_HEIGHT - 1;
 }
 
-void	draw_textured_line(t_line *line, t_hit hit, int line_size,
-		t_display *display)
+static int	calculate_tex_x(t_ray *ray, t_img_texture *tex)
 {
-	t_tex_utils	utils;
-	float		uv_x;
-	float		uv_y;
-	int			texture_color;
+	int	tex_x;
 
-	if (line_size <= 0)
-		return;
-	utils.tmp = line;
-	utils.count = 0;
-	utils.texture_to_display = &display->texture.t_north;
-	set_texture(&utils.texture_to_display, hit, display);
-	while (utils.tmp)
-	{
-		if (hit.wall_direction == NORTH || hit.wall_direction == SOUTH)
-			uv_x = fmodf(hit.collision.f_x, SIZE_IMG) / SIZE_IMG;
-		else
-			uv_x = fmodf(hit.collision.f_y, SIZE_IMG) / SIZE_IMG;
-		uv_y = (float)utils.count / line_size;
-		texture_color = sample_texture(utils.texture_to_display, uv_x, uv_y);
-		img_pix_put(&display->all, utils.tmp->dot.x, utils.tmp->dot.y,
-			texture_color);
-		utils.count++;
-		utils.tmp = utils.tmp->next;
-	}
+	tex_x = (int)(ray->wall_x * tex->width);
+	if ((ray->side == 0 && ray->dir_x > 0)
+		|| (ray->side == 1 && ray->dir_y < 0))
+		tex_x = tex->width - tex_x - 1;
+	if (tex_x < 0)
+		tex_x = 0;
+	if (tex_x >= tex->width)
+		tex_x = tex->width - 1;
+	return (tex_x);
 }
 
-void	draw_line(t_display *display)
+void	draw_wall_stripe(t_display *display, int x, t_ray *ray)
 {
-	t_line	*tmp;
-	t_point	tmp_bloc;
+	t_img_texture	*tex;
+	int				draw_start;
+	int				draw_end;
+	int				line_height;
+	int				y;
+	int				tex_x;
+	int				tex_y;
+	float			step;
+	float			tex_pos;
+	int				color;
 
-	tmp = display->head;
-	while (tmp)
+	tex = get_texture_for_wall(display, ray->wall_dir);
+	calculate_line_bounds(ray, &draw_start, &draw_end, &line_height);
+	tex_x = calculate_tex_x(ray, tex);
+	step = (float)tex->height / (float)line_height;
+	tex_pos = (draw_start - SCRN_HEIGHT / 2 + line_height / 2) * step;
+	y = draw_start;
+	while (y < draw_end)
 	{
-		tmp_bloc = pixel_to_bloc(tmp->dot, display);
-		if (display->map[tmp_bloc.y][tmp_bloc.x] == '0'
-			|| is_player(display->map[tmp_bloc.y][tmp_bloc.x]))
-			mlx_pixel_put(display->mlx.mlx_ptr, display->mlx.win_ptr,
-				tmp->dot.x, tmp->dot.y, 0xFF000);
-		else
-		{
-			break ;
-		}
-		tmp = tmp->next;
-	}
-}
-
-void	direct_fix(float normalised_x, t_hit *hit, t_point bloc,
-		t_display *display)
-{
-	char	prev_wall_char;
-	char	next_wall_char;
-	int		dx;
-	int		dy;
-
-	dx = (int)(hit->collision.f_x / 16) - display->player.blocs.x;
-	dy = (int)(hit->collision.f_y / 16) - display->player.blocs.y;
-	prev_wall_char = display->map[bloc.y - 1][bloc.x];
-	next_wall_char = display->map[bloc.y + 1][bloc.x];
-	if (display->map[bloc.y][bloc.x] == prev_wall_char
-		&& prev_wall_char == next_wall_char)
-	{
-		if ((dx < 0 && dy < 0) || (dx < 0 && dy > 0))
-			hit->wall_direction = EAST;
-		else
-			hit->wall_direction = WEST;
-	}
-	else
-	{
-		normalised_x = fmodf(hit->collision.f_x, 16);
-		east_case(normalised_x, hit, bloc, display);
-		west_case(normalised_x, hit, bloc, display);
+		tex_y = (int)tex_pos;
+		if (tex_y >= tex->height)
+			tex_y = tex->height - 1;
+		tex_pos += step;
+		color = sample_texture(tex, tex_x, tex_y);
+		img_pix_put(&display->all, x, y, color);
+		y++;
 	}
 }
 
-int	direction_fix(t_display *display, t_hit *hit, t_point bloc)
+void	cast_all_rays(t_display *display)
 {
-	float	normalised_x;
+	t_ray	ray;
+	float	angle;
+	int		x;
 
-	normalised_x = 0;
-	if (hit->wall_direction == NORTH || hit->wall_direction == SOUTH)
+	x = 0;
+	while (x < SCRN_WIDTH)
 	{
-		bloc = pixel_to_bloc(hit->collision, display);
-		if (bloc.y <= 0 || bloc.y >= display->texture.map_height - 1
-			|| !(display->map[bloc.y][bloc.x]))
-			return (1);
-		direct_fix(normalised_x, hit, bloc, display);
+		angle = -FOV / 2.0f + ((float)x / (float)SCRN_WIDTH) * FOV;
+		cast_single_ray(display, &ray, angle);
+		draw_wall_stripe(display, x, &ray);
+		x++;
 	}
-	return (0);
 }

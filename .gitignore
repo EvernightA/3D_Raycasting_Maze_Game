@@ -1,0 +1,22 @@
+# Object files
+*.o
+
+# Binary
+cub3D
+
+# Library archives
+*.a
+
+# Minilibx build artifacts
+minilibx-linux/obj/
+minilibx-linux/test/mlx-test
+
+# Editor files
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+_codeql_detected_source_root

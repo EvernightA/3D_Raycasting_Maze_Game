@@ -3,146 +3,140 @@
 /*                                                        :::      ::::::::   */
 /*   line_drawing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
+/*   By: copilot                                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 10:34:32 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/10 14:01:51 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/12 00:00:00 by copilot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-void	init_hit(t_hit *hit)
+static void	init_ray_direction(t_ray *ray, t_display *display, float angle)
 {
-	hit->distance = 0;
-	hit->collision.x = 0;
-	hit->collision.y = 0;
-	hit->collision.f_x = 0;
-	hit->collision.f_y = 0;
-}
-
-#define EPSILON 1e-6f
-
-static float	clamp(float value, float min, float max)
-{
-	if (value < min)
-		return (min);
-	if (value > max)
-		return (max);
-	return (value);
-}
-
-static void	calc_hit_horizontal(t_hit *hit, t_display *display,
-				float ray_dir[2], float bounds[4])
-{
-	float	wall_edge;
-	float	t;
-
-	if (hit->wall_direction == WEST)
-		wall_edge = bounds[0];
+	ray->dir_x = cosf(display->player.angle + angle);
+	ray->dir_y = sinf(display->player.angle + angle);
+	ray->map_x = (int)(display->player.pixels.f_x / SIZE_IMG);
+	ray->map_y = (int)(display->player.pixels.f_y / SIZE_IMG);
+	if (ray->dir_x == 0)
+		ray->delta_dist_x = LARGE_DIST;
 	else
-		wall_edge = bounds[1];
-	hit->collision.f_x = wall_edge;
-	if (fabsf(ray_dir[0]) > EPSILON)
+		ray->delta_dist_x = fabsf(1.0f / ray->dir_x);
+	if (ray->dir_y == 0)
+		ray->delta_dist_y = LARGE_DIST;
+	else
+		ray->delta_dist_y = fabsf(1.0f / ray->dir_y);
+}
+
+static void	init_step_and_side_dist(t_ray *ray, t_display *display)
+{
+	float	pos_in_cell_x;
+	float	pos_in_cell_y;
+
+	pos_in_cell_x = display->player.pixels.f_x / SIZE_IMG - ray->map_x;
+	pos_in_cell_y = display->player.pixels.f_y / SIZE_IMG - ray->map_y;
+	if (ray->dir_x < 0)
 	{
-		t = (wall_edge - display->player.pixels.f_x) / ray_dir[0];
-		hit->collision. f_y = display->player. pixels.f_y + ray_dir[1] * t;
-		hit->collision.f_y = clamp(hit->collision.f_y, bounds[2], bounds[3]);
+		ray->step_x = -1;
+		ray->side_dist_x = pos_in_cell_x * ray->delta_dist_x;
 	}
 	else
-		hit->collision.f_y = display->player.pixels.f_y;
-}
-
-static void	calc_hit_vertical(t_hit *hit, t_display *display,
-				float ray_dir[2], float bounds[4])
-{
-	float	wall_edge;
-	float	t;
-
-	if (hit->wall_direction == NORTH)
-		wall_edge = bounds[2];
-	else
-		wall_edge = bounds[3];
-	hit->collision. f_y = wall_edge;
-	if (fabsf(ray_dir[1]) > EPSILON)
 	{
-		t = (wall_edge - display->player.pixels.f_y) / ray_dir[1];
-		hit->collision.f_x = display->player.pixels.f_x + ray_dir[0] * t;
-		hit->collision.f_x = clamp(hit->collision.f_x, bounds[0], bounds[1]);
+		ray->step_x = 1;
+		ray->side_dist_x = (1.0f - pos_in_cell_x) * ray->delta_dist_x;
+	}
+	if (ray->dir_y < 0)
+	{
+		ray->step_y = -1;
+		ray->side_dist_y = pos_in_cell_y * ray->delta_dist_y;
 	}
 	else
-		hit->collision.f_x = display->player. pixels.f_x;
-}
-
-static void	calc_exact_hit(t_hit *hit, t_display *display,
-				float beta, t_point bloc)
-{
-	float	ray_dir[2];
-	float	bounds[4];
-
-	ray_dir[0] = cosf(display->player.angle + beta);
-	ray_dir[1] = sinf(display->player.angle + beta);
-	bounds[0] = bloc.x * SIZE_IMG;
-	bounds[1] = (bloc.x + 1) * SIZE_IMG;
-	bounds[2] = bloc.y * SIZE_IMG;
-	bounds[3] = (bloc.y + 1) * SIZE_IMG;
-	if (hit->wall_direction == WEST || hit->wall_direction == EAST)
-		calc_hit_horizontal(hit, display, ray_dir, bounds);
-	else
-		calc_hit_vertical(hit, display, ray_dir, bounds);
-}
-
-void wall_assign(t_hit *hit, t_line *tmp, t_display *display, float beta, t_point bloc)
-{
-	hit->collision = tmp->dot;
-	hit->wall_direction = get_wall_direction(hit->collision, display->player.blocs);
-	direction_fix(display, hit, bloc);
-	calc_exact_hit(hit, display, beta, bloc);
-	hit->distance = to_wall(display, hit->collision, beta);
-}
-
-int	go_to_next_node(t_line **tmp, t_line **before, t_hit *hit,
-		t_display *display, t_point bloc)
-{
-	if ((*tmp)->next == NULL)
 	{
-		*before = *tmp;
-		wall_assign(hit, *before, display, display->beta, bloc);
-		return (1);
+		ray->step_y = 1;
+		ray->side_dist_y = (1.0f - pos_in_cell_y) * ray->delta_dist_y;
 	}
-	*tmp = (*tmp)->next;
-	return (0);
 }
 
-int	is_walkable(t_display *display, t_point tmp_bloc)
+static int	is_valid_map_pos(t_ray *ray, t_display *display)
 {
-	return (display->map[tmp_bloc.y][tmp_bloc.x] == '0'
-		|| is_player(display->map[tmp_bloc.y][tmp_bloc.x]));
+	if (ray->map_y < 0 || ray->map_y >= display->texture.map_height)
+		return (0);
+	if (ray->map_x < 0 || ray->map_x >= display->texture.map_width)
+		return (0);
+	if (!display->map[ray->map_y][ray->map_x])
+		return (0);
+	return (1);
 }
 
-t_hit	draw_line_2(t_display *display, float beta)
+static void	perform_dda(t_ray *ray, t_display *display)
 {
-	t_line	*tmp;
-	t_line	*before;
-	t_point	tmp_bloc;
-	t_hit	hit;
-	t_point	bloc;
+	int	hit;
 
-	tmp = display->head;
-	before = NULL;
-	init_hit(&hit);
-	while (tmp)
+	hit = 0;
+	while (hit == 0)
 	{
-		tmp_bloc = pixel_to_bloc(tmp->dot, display);
-		bloc = tmp_bloc;
-		if (!is_walkable(display, tmp_bloc))
+		if (ray->side_dist_x < ray->side_dist_y)
 		{
-			wall_assign(&hit, tmp, display, beta, bloc);
-			break ;
+			ray->side_dist_x += ray->delta_dist_x;
+			ray->map_x += ray->step_x;
+			ray->side = 0;
 		}
-		display->beta = beta;
-		if (go_to_next_node(&tmp, &before, &hit, display, bloc))
-			break ;
+		else
+		{
+			ray->side_dist_y += ray->delta_dist_y;
+			ray->map_y += ray->step_y;
+			ray->side = 1;
+		}
+		if (is_valid_map_pos(ray, display))
+		{
+			if (display->map[ray->map_y][ray->map_x] == '1')
+				hit = 1;
+		}
+		else
+			hit = 1;
 	}
-	return (hit);
+}
+
+/*
+** Calculate perpendicular wall distance and texture x coordinate.
+** Wall direction logic:
+** - When ray hits a vertical wall (side == 0):
+**   - step_x > 0: ray moves right, hits WEST face of wall cell
+**   - step_x < 0: ray moves left, hits EAST face of wall cell
+** - When ray hits a horizontal wall (side == 1):
+**   - step_y > 0: ray moves down, hits NORTH face of wall cell
+**   - step_y < 0: ray moves up, hits SOUTH face of wall cell
+*/
+static void	calculate_wall_dist_and_x(t_ray *ray, t_display *display)
+{
+	if (ray->side == 0)
+	{
+		ray->perp_wall_dist = ray->side_dist_x - ray->delta_dist_x;
+		ray->wall_x = display->player.pixels.f_y / SIZE_IMG
+			+ ray->perp_wall_dist * ray->dir_y;
+		if (ray->step_x > 0)
+			ray->wall_dir = WEST;
+		else
+			ray->wall_dir = EAST;
+	}
+	else
+	{
+		ray->perp_wall_dist = ray->side_dist_y - ray->delta_dist_y;
+		ray->wall_x = display->player.pixels.f_x / SIZE_IMG
+			+ ray->perp_wall_dist * ray->dir_x;
+		if (ray->step_y > 0)
+			ray->wall_dir = NORTH;
+		else
+			ray->wall_dir = SOUTH;
+	}
+	ray->wall_x -= floorf(ray->wall_x);
+}
+
+void	cast_single_ray(t_display *display, t_ray *ray, float angle)
+{
+	ray->angle_offset = angle;
+	init_ray_direction(ray, display, angle);
+	init_step_and_side_dist(ray, display);
+	perform_dda(ray, display);
+	calculate_wall_dist_and_x(ray, display);
 }
