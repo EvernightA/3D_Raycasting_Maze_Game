@@ -82,15 +82,8 @@ void	orientation_player(t_display *display, int operation)
 
 void	render_all(t_display *display)
 {
-	int	d;
-	int	power_h;
-	int	power_w;
-
-	power_h = display->texture.map_height * display->texture.map_height * 256;
-	power_w = display->texture.map_width * display->texture.map_width * 256;
 	aff_floor_and_ceiling(display);
-	d = sqrt(power_h + power_w);
-	cast_ray(display->begin, display, d);
+	cast_all_rays(display);
 	mlx_put_image_to_window(display->mlx2.mlx_ptr, display->mlx2.win_ptr,
 		display->all.mlx_img, 0, 0);
 }

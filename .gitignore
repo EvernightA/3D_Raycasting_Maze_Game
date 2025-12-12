@@ -1,0 +1,28 @@
+# Object files
+*.o
+
+# Binary
+cub3D
+
+# Library archives
+*.a
+
+# Minilibx build artifacts
+minilibx-linux/obj/
+minilibx-linux/libmlx.a
+minilibx-linux/libmlx_Linux.a
+minilibx-linux/test/main.o
+minilibx-linux/test/mlx-test
+
+# Libft build artifacts
+libft/*.o
+libft/libft.a
+
+# Editor files
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store

@@ -12,62 +12,6 @@
 
 #include "../includes/cub.h"
 
-void	draw_wall_lines(t_display *display, t_hit hit, int pixel_index,
-		float angle)
-{
-	t_line	*line;
-	int		line_size;
-	t_point	begin;
-	t_point	end;
-
-	(void)angle;
-	if (hit.distance)
-		line_size = SIZE_IMG * WALL_UNIT / hit.distance;
-	else
-		line_size = SCRN_HEIGHT;
-	begin.y = (SCRN_HEIGHT >> 1) - (line_size >> 1);
-	begin.x = pixel_index;
-	end.x = pixel_index;
-	begin.f_x = pixel_index;
-	end.f_x = pixel_index;
-	end.y = (SCRN_HEIGHT >> 1) + (line_size >> 1);
-	line = bresenham_line(&begin, &end);
-	draw_textured_line(line, hit, line_size, display);
-	ft_linefree(&line);
-	if (display->head)
-	{
-		ft_linefree(&display->head);
-		display->head = NULL;
-	}
-}
-
-void	cast_ray(t_point begin, t_display *display, int d)
-{
-	t_point	true_end;
-	t_hit	hit;
-	float	angle;
-	int		pixel_index;
-
-	pixel_index = 0;
-	angle = -FOV / 2;
-	while (angle <= FOV / 2)
-	{
-		true_end = calculate_end(begin, display->player.angle + angle, d);
-		if (display->head)
-			ft_linefree(&display->head);
-		display->head = dda_line(&begin, &true_end);
-		hit = draw_line_2(display, angle);
-		if (display->head)
-		{
-			ft_linefree(&display->head);
-			display->head = NULL;
-		}
-		draw_wall_lines(display, hit, pixel_index, angle);
-		angle += (FOV / SCRN_WIDTH);
-		pixel_index++;
-	}
-}
-
 void	initialize_bres(t_bres *bres, t_point *begin, t_point *end)
 {
 	bres->head = NULL;
