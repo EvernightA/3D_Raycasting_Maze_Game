@@ -1,0 +1,26 @@
+var searchData=
+[
+  ['c_5frgb_0',['c_rgb',['../structs__tex.html#aaf57ad4f5a492b213ea32b3519cee7f3',1,'s_tex']]],
+  ['calculate_5fend_1',['calculate_end',['../cub_8h.html#abcd4ed8f4ce9ea8d0c636feeb0ca5abc',1,'calculate_end(t_point begin, float angle, int max_distance):&#160;calculus.c'],['../calculus_8c.html#abcd4ed8f4ce9ea8d0c636feeb0ca5abc',1,'calculate_end(t_point begin, float angle, int max_distance):&#160;calculus.c']]],
+  ['calculate_5fsteps_5fand_5fincrement_2',['calculate_steps_and_increment',['../dda_8c.html#a93788eb183244fa68d16eb403b4e475b',1,'dda.c']]],
+  ['calculate_5fwall_5fdist_5fand_5fx_3',['calculate_wall_dist_and_x',['../cub_8h.html#a25e6d2a693f516f5ae240e28e98646ff',1,'calculate_wall_dist_and_x(t_ray *ray, t_display *display):&#160;line_drawing.c'],['../line__drawing_8c.html#a25e6d2a693f516f5ae240e28e98646ff',1,'calculate_wall_dist_and_x(t_ray *ray, t_display *display):&#160;line_drawing.c']]],
+  ['calculus_2ec_4',['calculus.c',['../calculus_8c.html',1,'']]],
+  ['calculus_5fdir_5',['calculus_dir',['../cub_8h.html#a3a5af9c1ec9c677b1e7a8edde0ffbc19',1,'calculus_dir(t_display *display):&#160;calculus.c'],['../calculus_8c.html#a3a5af9c1ec9c677b1e7a8edde0ffbc19',1,'calculus_dir(t_display *display):&#160;calculus.c']]],
+  ['cast_5fall_5frays_6',['cast_all_rays',['../line__drawing__utils_8c.html#ada861e7baf2193d34560bf95ea916cbe',1,'cast_all_rays(t_display *display):&#160;line_drawing_utils.c'],['../cub_8h.html#ada861e7baf2193d34560bf95ea916cbe',1,'cast_all_rays(t_display *display):&#160;line_drawing_utils.c']]],
+  ['cast_5fsingle_5fray_7',['cast_single_ray',['../cub_8h.html#a478aa2df2ec184af940933de86181d39',1,'cast_single_ray(t_display *display, t_ray *ray, float angle):&#160;line_drawing_utils2.c'],['../line__drawing__utils2_8c.html#a478aa2df2ec184af940933de86181d39',1,'cast_single_ray(t_display *display, t_ray *ray, float angle):&#160;line_drawing_utils2.c']]],
+  ['ceiling_5frgb_8',['ceiling_rgb',['../structs__tex.html#a4ce42ad9c3ef9ffb6293d3346a8545a6',1,'s_tex']]],
+  ['clean_5frendering_9',['clean_rendering',['../moves_8c.html#a4be872b3b4627002864edef0f4a3d238',1,'moves.c']]],
+  ['clear_5fimg_10',['clear_img',['../cub_8h.html#ad0549d630ffe3a1aa0b8a55289e2e696',1,'clear_img(t_display *display):&#160;img.c'],['../img_8c.html#ad0549d630ffe3a1aa0b8a55289e2e696',1,'clear_img(t_display *display):&#160;img.c']]],
+  ['clear_5frays_11',['clear_rays',['../cub_8h.html#a099bd61a5ad6b2fe2d9268bba0242830',1,'clear_rays(t_display *display):&#160;img.c'],['../img_8c.html#a099bd61a5ad6b2fe2d9268bba0242830',1,'clear_rays(t_display *display):&#160;img.c']]],
+  ['closed_5f_5fmap_5ferror_12',['closed__map_error',['../error_8c.html#aa3b76ee7b8232e24c30078fafb0dffb7',1,'error.c']]],
+  ['closed_5ferror_13',['closed_error',['../error2_8c.html#a186c69b486f0381677458fd47e6fa4ee',1,'closed_error(char **map):&#160;error2.c'],['../cub_8h.html#a186c69b486f0381677458fd47e6fa4ee',1,'closed_error(char **map):&#160;error2.c']]],
+  ['collision_14',['collision',['../structs__hit.html#a958872bef1be7c195fc4bd8324ee71f0',1,'s_hit']]],
+  ['color_15',['color',['../structs__draw__utils.html#a5097605b2b2e924fb2b550ea98dea50a',1,'s_draw_utils']]],
+  ['color_5futils_2ec_16',['color_utils.c',['../color__utils_8c.html',1,'']]],
+  ['count_17',['count',['../structs__tex__utils.html#a5a5275127a41f72c93efd8f45d512d84',1,'s_tex_utils']]],
+  ['count_5flines_18',['count_lines',['../map__parsing_8c.html#a5f0d95d5d797d3d1b3dcb1aa083ca5b4',1,'map_parsing.c']]],
+  ['count_5fmap_5flines_19',['count_map_lines',['../map__parsing_8c.html#aebdfad619c081f7f2aa6ab471e5debdf',1,'count_map_lines(int fd):&#160;map_parsing.c'],['../cub_8h.html#aebdfad619c081f7f2aa6ab471e5debdf',1,'count_map_lines(int fd):&#160;map_parsing.c']]],
+  ['create_5ftrgb_20',['create_trgb',['../color__utils_8c.html#a455b37ed598383058a5faba3c5900f24',1,'color_utils.c']]],
+  ['cub_2eh_21',['cub.h',['../cub_8h.html',1,'']]],
+  ['current_22',['current',['../structs__bres.html#ab8c0f210b3503462b4fcbae86784941d',1,'s_bres::current'],['../structs__dda.html#add84e216a80dd8e156b670ddaa067128',1,'s_dda::current']]]
+];

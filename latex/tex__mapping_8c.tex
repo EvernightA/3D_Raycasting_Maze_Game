@@ -1,0 +1,65 @@
+\doxysection{srcs/tex\+\_\+mapping.c File Reference}
+\hypertarget{tex__mapping_8c}{}\label{tex__mapping_8c}\index{srcs/tex\_mapping.c@{srcs/tex\_mapping.c}}
+{\ttfamily \#include "{}../includes/cub.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{tex__mapping_8c_ac4388e15152dcb6e6b1ce3dfd5c2d216}{sample\+\_\+texture}} (\mbox{\hyperlink{cub_8h_a26826566628048bb2153a6452151f119}{t\+\_\+img\+\_\+texture}} \texorpdfstring{$\ast$}{*}img\+\_\+tex, int tex\+\_\+x, int tex\+\_\+y)
+\begin{DoxyCompactList}\small\item\em Grab a Color from Your Wallpaper! 🎨 \end{DoxyCompactList}\item 
+\mbox{\hyperlink{cub_8h_a26826566628048bb2153a6452151f119}{t\+\_\+img\+\_\+texture}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{tex__mapping_8c_a59ac4af96a4712760c9a8d9581d9d5ef}{get\+\_\+texture\+\_\+for\+\_\+wall}} (\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}display, int wall\+\_\+dir)
+\begin{DoxyCompactList}\small\item\em Pick the Right Wallpaper for Each Wall! 🧭 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{tex__mapping_8c_a59ac4af96a4712760c9a8d9581d9d5ef}\label{tex__mapping_8c_a59ac4af96a4712760c9a8d9581d9d5ef} 
+\index{tex\_mapping.c@{tex\_mapping.c}!get\_texture\_for\_wall@{get\_texture\_for\_wall}}
+\index{get\_texture\_for\_wall@{get\_texture\_for\_wall}!tex\_mapping.c@{tex\_mapping.c}}
+\doxysubsubsection{\texorpdfstring{get\_texture\_for\_wall()}{get\_texture\_for\_wall()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{cub_8h_a26826566628048bb2153a6452151f119}{t\+\_\+img\+\_\+texture}} \texorpdfstring{$\ast$}{*} get\+\_\+texture\+\_\+for\+\_\+wall (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}}]{display,  }\item[{int}]{wall\+\_\+dir }\end{DoxyParamCaption})}
+
+
+
+Pick the Right Wallpaper for Each Wall! 🧭 
+
+Imagine you\textquotesingle{}re decorating a room and each wall needs different wallpaper. The north wall gets stripes, the south wall gets flowers, etc. This function is like your decorator helper that knows which wallpaper goes where!
+
+Based on which direction the wall is facing (north, south, east, west), it picks the matching texture. It\textquotesingle{}s like having a smart assistant that always chooses the right wallpaper roll for each wall.
+
+
+\begin{DoxyParams}{Parameters}
+{\em display} & Your whole room setup with all the wallpapers \\
+\hline
+{\em wall\+\_\+dir} & Which way the wall is facing (like a compass\+: N, S, E, W) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The perfect wallpaper roll for that wall direction 
+\end{DoxyReturn}
+\Hypertarget{tex__mapping_8c_ac4388e15152dcb6e6b1ce3dfd5c2d216}\label{tex__mapping_8c_ac4388e15152dcb6e6b1ce3dfd5c2d216} 
+\index{tex\_mapping.c@{tex\_mapping.c}!sample\_texture@{sample\_texture}}
+\index{sample\_texture@{sample\_texture}!tex\_mapping.c@{tex\_mapping.c}}
+\doxysubsubsection{\texorpdfstring{sample\_texture()}{sample\_texture()}}
+{\footnotesize\ttfamily int sample\+\_\+texture (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_a26826566628048bb2153a6452151f119}{t\+\_\+img\+\_\+texture}} \texorpdfstring{$\ast$}{*}}]{img\+\_\+tex,  }\item[{int}]{tex\+\_\+x,  }\item[{int}]{tex\+\_\+y }\end{DoxyParamCaption})}
+
+
+
+Grab a Color from Your Wallpaper! 🎨 
+
+Imagine you have a big wallpaper with lots of pretty colors. When you want to paint a wall, you need to pick just the right color from the right spot on the wallpaper. That\textquotesingle{}s what this function does!
+
+It takes coordinates (like "{}3 steps across, 5 steps up"{}) and finds the color at that exact spot on the texture. If you ask for a spot outside the wallpaper, it just uses the closest edge color instead.
+
+It\textquotesingle{}s like having a magic color-\/picker that never misses the wallpaper!
+
+
+\begin{DoxyParams}{Parameters}
+{\em img\+\_\+tex} & The wallpaper (texture) you\textquotesingle{}re picking colors from \\
+\hline
+{\em tex\+\_\+x} & How far across the wallpaper (left to right) \\
+\hline
+{\em tex\+\_\+y} & How far up the wallpaper (bottom to top) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The color number at that spot on the wallpaper 
+\end{DoxyReturn}

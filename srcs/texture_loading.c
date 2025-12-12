@@ -6,12 +6,28 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 19:26:50 by mratsima          #+#    #+#             */
-/*   Updated: 2025/12/09 19:27:42 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/12 13:17:27 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
+/**
+ * @brief Load XPM Textures - Getting Your Wall Pictures Ready! 🖼️
+ *
+ * Imagine you have a bunch of wallpaper rolls for your room. Before you can
+ * put them up, you need to unroll them and get them ready. That's what this
+ * function does for your game walls!
+ *
+ * It takes the picture files you specified (north, south, east, west walls)
+ * and loads them into the computer's memory so the game can use them.
+ * Each picture becomes a special "texture" that the computer can show on walls.
+ *
+ * If any picture can't be loaded (like if the file is missing), it tells you
+ * there's a problem and stops the game.
+ *
+ * @param display Where all your game pictures and settings are stored
+ */
 void	init_xpm_image(t_display *display)
 {
 	display->texture.t_north.img_ptr = mlx_xpm_file_to_image(
@@ -34,6 +50,19 @@ void	init_xpm_image(t_display *display)
 	}
 }
 
+/**
+ * @brief Get Texture Data - Unlocking the Picture Secrets! 🔓
+ *
+ * Now that you have your wallpaper rolls ready, you need to open them up
+ * and see what's inside! This function takes each loaded picture and
+ * gets the actual colors and pixels that make up the image.
+ *
+ * It's like taking a photograph and finding out what color each tiny
+ * dot should be. The computer stores this information so it can quickly
+ * grab colors when drawing walls.
+ *
+ * @param display Where all your game pictures and settings are stored
+ */
 void	load_textures(t_display *display)
 {
 	init_xpm_image(display);

@@ -6,12 +6,31 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 11:16:27 by mratsima          #+#    #+#             */
-/*   Updated: 2025/12/12 12:45:14 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/12 13:17:27 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
+/**
+ * @brief Measure How Big Your Wall Slice Should Be! 📏
+ *
+ * Imagine you're cutting a piece of cake. The farther away the cake is,
+ * the smaller slice you get, right? This function figures out how tall
+ * a wall should look on your screen based on how far away it is.
+ *
+ * It also decides where on the screen to put the wall - right in the middle,
+ * from floor to ceiling. If the wall would go off the top or bottom of your
+ * screen, it trims it so it fits perfectly.
+ *
+ * The function fixes a special "fish-eye" problem where things look curved
+ * when they should be straight, by using a math trick with angles.
+ *
+ * @param ray Your laser pointer showing how far away the wall is
+ * @param draw_start Where to start painting the wall (from the top)
+ * @param draw_end Where to stop painting the wall (to the bottom)
+ * @param line_height How tall the wall should be on your screen
+ */
 static void	calculate_line_bounds(t_ray *ray, int *draw_start, int *draw_end,
 				int *line_height)
 {
@@ -30,6 +49,25 @@ static void	calculate_line_bounds(t_ray *ray, int *draw_start, int *draw_end,
 		*draw_end = SCRN_HEIGHT - 1;
 }
 
+/**
+ * @brief Figure Out Where to Look on the Wallpaper! 📍
+ *
+ * Imagine you're painting a wall and you need to copy a pattern from wallpaper.
+ * But the wall is taller than the wallpaper is wide, so you have to wrap it
+ * around. This function figures out exactly which part of the wallpaper
+ * pattern should go on your wall.
+ *
+ * It takes where you hit the wall and calculates "how far along the wallpaper
+ * should I look?" Sometimes it flips the pattern if you're looking at the
+ * wall from the other side (like seeing the back of the wallpaper).
+ *
+ * It's like having a magic map that tells you "for this spot on the wall,
+ * copy this exact spot from the wallpaper!"
+ *
+ * @param ray Your laser pointer showing where you hit the wall
+ * @param tex The wallpaper you're copying from
+ * @return Where to look on the wallpaper (left to right position)
+ */
 static int	calculate_tex_x(t_ray *ray, t_img_texture *tex)
 {
 	int	tex_x;
@@ -45,6 +83,26 @@ static int	calculate_tex_x(t_ray *ray, t_img_texture *tex)
 	return (tex_x);
 }
 
+/**
+ * @brief Paint a Strip of Wall with Pretty Wallpaper! 🎨
+ *
+ * Imagine you're decorating a long wall, but you do it one tiny section at a time.
+ * This function paints just one vertical sliver of wall (like a candy cane stripe)
+ * at a specific spot on your screen.
+ *
+ * It figures out:
+ * - Which wallpaper to use for this wall
+ * - How tall the stripe should be (based on how far away you are)
+ * - Where on the screen to paint it
+ * - Which part of the wallpaper to copy for each pixel
+ *
+ * It's like having a tiny painter robot that carefully copies wallpaper
+ * patterns onto your 3D walls, one stripe at a time!
+ *
+ * @param display Your whole 3D world with walls and wallpapers
+ * @param x Which column on the screen to paint (like 100th pixel from the left)
+ * @param ray Your laser pointer showing exactly where and how far the wall is
+ */
 void	draw_wall_stripe(t_display *display, int x, t_ray *ray)
 {
 	t_img_texture	*tex;

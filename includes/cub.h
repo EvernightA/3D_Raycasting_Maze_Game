@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/12 12:41:15 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/12 13:17:28 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,13 +89,13 @@ typedef struct s_img
 
 typedef struct s_img_texture
 {
-	void			*img_ptr;
-	char			*data;
-	int				width;
-	int				height;
-	int				bpp;
-	int				line_len;
-	int				endian;
+	void			*img_ptr;  // The magic picture holder for your wallpaper
+	char			*data;     // Secret codes that make up all the colors
+	int				width;     // How wide your wallpaper is (in dots)
+	int				height;    // How tall your wallpaper is (in dots)
+	int				bpp;       // How many color numbers each dot uses
+	int				line_len;  // How many numbers in one row of dots
+	int				endian;    // Which way the computer reads the numbers
 }					t_img_texture;
 
 typedef struct s_point
@@ -176,21 +176,21 @@ typedef struct s_hit
 
 typedef struct s_tex
 {
-	char			*north;
-	char			*south;
-	char			*east;
-	char			*west;
-	t_img_texture	t_north;
-	t_img_texture	t_south;
-	t_img_texture	t_east;
-	t_img_texture	t_west;
-	char			*c_rgb;
-	char			*f_rgb;
-	t_rgb			ceiling_rgb;
-	t_rgb			floor_rgb;
-	char			**dup_map;
-	int				map_height;
-	int				map_width;
+	char			*north;        // File path to your north wall wallpaper
+	char			*south;        // File path to your south wall wallpaper
+	char			*east;         // File path to your east wall wallpaper
+	char			*west;         // File path to your west wall wallpaper
+	t_img_texture	t_north;      // The actual north wallpaper picture
+	t_img_texture	t_south;      // The actual south wallpaper picture
+	t_img_texture	t_east;       // The actual east wallpaper picture
+	t_img_texture	t_west;       // The actual west wallpaper picture
+	char			*c_rgb;        // Color code for the ceiling paint
+	char			*f_rgb;        // Color code for the floor paint
+	t_rgb			ceiling_rgb;   // Mixed ceiling paint color
+	t_rgb			floor_rgb;     // Mixed floor paint color
+	char			**dup_map;     // A copy of your room's floor plan
+	int				map_height;    // How many rows in your floor plan
+	int				map_width;     // How many columns in your floor plan
 }					t_tex;
 
 typedef struct s_mlx
@@ -264,15 +264,15 @@ typedef struct s_ray
 
 typedef struct s_draw_utils
 {
-	int				draw_start;
-	int				draw_end;
-	int				line_height;
-	int				y;
-	int				tex_x;
-	int				tex_y;
-	float			step;
-	float			tex_pos;
-	int				color;
+	int				draw_start;   // Where to begin painting your wall stripe
+	int				draw_end;     // Where to stop painting your wall stripe
+	int				line_height;  // How tall your wall stripe should be
+	int				y;            // Which row you're currently painting
+	int				tex_x;        // Which column of wallpaper to copy from
+	int				tex_y;        // Which row of wallpaper to copy from
+	float			step;         // How much to move down the wallpaper each screen row
+	float			tex_pos;      // Your current position on the wallpaper
+	int				color;        // The color you're painting with
 }					t_draw_utils;
 
 char				**dup_mat(t_display *display, int height, char **map);

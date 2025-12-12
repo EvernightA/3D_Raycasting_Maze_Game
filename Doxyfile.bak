@@ -1,0 +1,43 @@
+# Doxyfile for Cub3D project
+
+# Project settings
+PROJECT_NAME           = "Cub3D"
+PROJECT_NUMBER         = "1.0"
+PROJECT_BRIEF          = "A 3D raycasting game engine"
+
+# Input settings
+INPUT                  = srcs includes
+RECURSIVE              = YES
+EXCLUDE_PATTERNS       = */minilibx-linux/* */libft/*
+
+# Output settings
+OUTPUT_DIRECTORY       = docs
+HTML_OUTPUT            = html
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO
+GENERATE_MAN           = NO
+GENERATE_RTF           = NO
+GENERATE_XML           = NO
+
+# Extraction settings
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = NO
+EXTRACT_STATIC         = NO
+EXTRACT_LOCAL_CLASSES  = NO
+
+# Build settings
+HAVE_DOT               = NO
+UML_LOOK               = NO
+CALL_GRAPH             = NO
+CALLER_GRAPH           = NO
+
+# Warnings
+WARNINGS               = YES
+WARN_IF_UNDOCUMENTED   = NO
+WARN_IF_DOC_ERROR      = YES
+
+# Preprocessor settings
+ENABLE_PREPROCESSING   = YES
+MACRO_EXPANSION        = YES
+EXPAND_ONLY_PREDEF     = YES
+PREDEFINED             = "M_PI=3.14159265358979"

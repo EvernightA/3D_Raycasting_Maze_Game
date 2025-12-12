@@ -1,0 +1,168 @@
+\doxysection{srcs/line\+\_\+drawing.c File Reference}
+\hypertarget{line__drawing_8c}{}\label{line__drawing_8c}\index{srcs/line\_drawing.c@{srcs/line\_drawing.c}}
+{\ttfamily \#include "{}../includes/cub.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{line__drawing_8c_aea0f426affb717aea1fd09540178a22a}{init\+\_\+ray\+\_\+direction}} (\mbox{\hyperlink{cub_8h_a249ca701a99a7da39d83c6270adac2ec}{t\+\_\+ray}} \texorpdfstring{$\ast$}{*}ray, \mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}display, float angle)
+\begin{DoxyCompactList}\small\item\em Set Up Your Laser Beam Direction! 🧭 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{line__drawing_8c_a5446f480addd79729fd3abbe553b5ff9}{init\+\_\+step\+\_\+and\+\_\+side\+\_\+dist}} (\mbox{\hyperlink{cub_8h_a249ca701a99a7da39d83c6270adac2ec}{t\+\_\+ray}} \texorpdfstring{$\ast$}{*}ray, \mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}display)
+\begin{DoxyCompactList}\small\item\em Plan Your Beam\textquotesingle{}s First Steps! 🚶‍♂️ \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{line__drawing_8c_a219e24a6fb85a7cc4187510a07c99587}{is\+\_\+valid\+\_\+map\+\_\+pos}} (\mbox{\hyperlink{cub_8h_a249ca701a99a7da39d83c6270adac2ec}{t\+\_\+ray}} \texorpdfstring{$\ast$}{*}ray, \mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}display)
+\begin{DoxyCompactList}\small\item\em Check if You\textquotesingle{}re Still on the Map! 🗺️ \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{line__drawing_8c_a34aa07489c4d2660a97d876005bfcffe}{perform\+\_\+dda}} (\mbox{\hyperlink{cub_8h_a249ca701a99a7da39d83c6270adac2ec}{t\+\_\+ray}} \texorpdfstring{$\ast$}{*}ray, \mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}display)
+\begin{DoxyCompactList}\small\item\em March Through the Grid Until You Hit a Wall! 🏃‍♀️ \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{line__drawing_8c_a25e6d2a693f516f5ae240e28e98646ff}{calculate\+\_\+wall\+\_\+dist\+\_\+and\+\_\+x}} (\mbox{\hyperlink{cub_8h_a249ca701a99a7da39d83c6270adac2ec}{t\+\_\+ray}} \texorpdfstring{$\ast$}{*}ray, \mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}display)
+\begin{DoxyCompactList}\small\item\em Measure Your Discovery and Plan the Wall Art! 📐 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{line__drawing_8c_a25e6d2a693f516f5ae240e28e98646ff}\label{line__drawing_8c_a25e6d2a693f516f5ae240e28e98646ff} 
+\index{line\_drawing.c@{line\_drawing.c}!calculate\_wall\_dist\_and\_x@{calculate\_wall\_dist\_and\_x}}
+\index{calculate\_wall\_dist\_and\_x@{calculate\_wall\_dist\_and\_x}!line\_drawing.c@{line\_drawing.c}}
+\doxysubsubsection{\texorpdfstring{calculate\_wall\_dist\_and\_x()}{calculate\_wall\_dist\_and\_x()}}
+{\footnotesize\ttfamily void calculate\+\_\+wall\+\_\+dist\+\_\+and\+\_\+x (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_a249ca701a99a7da39d83c6270adac2ec}{t\+\_\+ray}} \texorpdfstring{$\ast$}{*}}]{ray,  }\item[{\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}}]{display }\end{DoxyParamCaption})}
+
+
+
+Measure Your Discovery and Plan the Wall Art! 📐 
+
+Congratulations! Your laser found a wall. Now you need to\+:
+\begin{DoxyEnumerate}
+\item Measure exactly how far away it is (the "{}perpendicular distance"{})
+\item Figure out which direction the wall is facing (north/south/east/west)
+\item Calculate where on the wallpaper to look for the pattern
+\end{DoxyEnumerate}
+
+The "{}perpendicular distance"{} is like measuring with a ruler held straight out from you, not along the crooked laser path. This makes sure walls look the right size no matter what angle you\textquotesingle{}re looking from.
+
+The wall direction helps pick the right wallpaper, and wall\+\_\+x tells you "{}copy this part of the pattern here!"{}
+
+
+\begin{DoxyParams}{Parameters}
+{\em ray} & Your laser beam with all the discovery information \\
+\hline
+{\em display} & Your game world with the player\textquotesingle{}s position \\
+\hline
+\end{DoxyParams}
+\Hypertarget{line__drawing_8c_aea0f426affb717aea1fd09540178a22a}\label{line__drawing_8c_aea0f426affb717aea1fd09540178a22a} 
+\index{line\_drawing.c@{line\_drawing.c}!init\_ray\_direction@{init\_ray\_direction}}
+\index{init\_ray\_direction@{init\_ray\_direction}!line\_drawing.c@{line\_drawing.c}}
+\doxysubsubsection{\texorpdfstring{init\_ray\_direction()}{init\_ray\_direction()}}
+{\footnotesize\ttfamily void init\+\_\+ray\+\_\+direction (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_a249ca701a99a7da39d83c6270adac2ec}{t\+\_\+ray}} \texorpdfstring{$\ast$}{*}}]{ray,  }\item[{\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}}]{display,  }\item[{float}]{angle }\end{DoxyParamCaption})}
+
+
+
+Set Up Your Laser Beam Direction! 🧭 
+
+Imagine you\textquotesingle{}re holding a flashlight and you want to point it in a specific direction. This function tells your laser beam which way to go!
+
+It calculates\+:
+\begin{DoxyItemize}
+\item Which direction the beam should travel (using math with angles)
+\item Which grid square you\textquotesingle{}re starting from (like "{}\+I\textquotesingle{}m in square 5,7"{})
+\item How far it needs to go to hit the next grid line in each direction
+\end{DoxyItemize}
+
+The "{}large distance"{} trick is like saying "{}if you\textquotesingle{}re going perfectly straight, you won\textquotesingle{}t hit any grid lines, so pretend the next one is super far away!"{}
+
+
+\begin{DoxyParams}{Parameters}
+{\em ray} & Your laser beam that needs direction instructions \\
+\hline
+{\em display} & Your game world with the player and map \\
+\hline
+{\em angle} & How much to turn from straight ahead (like "{}turn 45 degrees right"{}) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{line__drawing_8c_a5446f480addd79729fd3abbe553b5ff9}\label{line__drawing_8c_a5446f480addd79729fd3abbe553b5ff9} 
+\index{line\_drawing.c@{line\_drawing.c}!init\_step\_and\_side\_dist@{init\_step\_and\_side\_dist}}
+\index{init\_step\_and\_side\_dist@{init\_step\_and\_side\_dist}!line\_drawing.c@{line\_drawing.c}}
+\doxysubsubsection{\texorpdfstring{init\_step\_and\_side\_dist()}{init\_step\_and\_side\_dist()}}
+{\footnotesize\ttfamily void init\+\_\+step\+\_\+and\+\_\+side\+\_\+dist (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_a249ca701a99a7da39d83c6270adac2ec}{t\+\_\+ray}} \texorpdfstring{$\ast$}{*}}]{ray,  }\item[{\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}}]{display }\end{DoxyParamCaption})}
+
+
+
+Plan Your Beam\textquotesingle{}s First Steps! 🚶‍♂️ 
+
+Now that your laser knows which way it\textquotesingle{}s going, it needs to figure out how to start walking through the grid. This is like planning your first few steps when you start a journey.
+
+The function checks\+:
+\begin{DoxyItemize}
+\item How far into the current square you are (like "{}\+I\textquotesingle{}m 3/4 of the way across"{})
+\item Which direction to step first (left/right or up/down)
+\item How far to the next grid line in each direction
+\end{DoxyItemize}
+
+It\textquotesingle{}s like a hiker checking their map and saying "{}\+First I need to walk 2 more meters, then I\textquotesingle{}ll hit the next trail marker!"{}
+
+
+\begin{DoxyParams}{Parameters}
+{\em ray} & Your laser beam with direction info \\
+\hline
+{\em display} & Your game world with the player\textquotesingle{}s position \\
+\hline
+\end{DoxyParams}
+\Hypertarget{line__drawing_8c_a219e24a6fb85a7cc4187510a07c99587}\label{line__drawing_8c_a219e24a6fb85a7cc4187510a07c99587} 
+\index{line\_drawing.c@{line\_drawing.c}!is\_valid\_map\_pos@{is\_valid\_map\_pos}}
+\index{is\_valid\_map\_pos@{is\_valid\_map\_pos}!line\_drawing.c@{line\_drawing.c}}
+\doxysubsubsection{\texorpdfstring{is\_valid\_map\_pos()}{is\_valid\_map\_pos()}}
+{\footnotesize\ttfamily int is\+\_\+valid\+\_\+map\+\_\+pos (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_a249ca701a99a7da39d83c6270adac2ec}{t\+\_\+ray}} \texorpdfstring{$\ast$}{*}}]{ray,  }\item[{\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}}]{display }\end{DoxyParamCaption})}
+
+
+
+Check if You\textquotesingle{}re Still on the Map! 🗺️ 
+
+Imagine you\textquotesingle{}re exploring and you need to make sure you don\textquotesingle{}t fall off the edge of the world! This function checks if your laser beam is still pointing at a valid part of the map.
+
+It makes sure\+:
+\begin{DoxyItemize}
+\item You\textquotesingle{}re not above the top of the map
+\item You\textquotesingle{}re not below the bottom of the map
+\item You\textquotesingle{}re not left of the left edge
+\item You\textquotesingle{}re not right of the right edge
+\item The square you\textquotesingle{}re looking at actually exists
+\end{DoxyItemize}
+
+It\textquotesingle{}s like having a safety net that says "{}\+Don\textquotesingle{}t go there -\/ it\textquotesingle{}s not safe!"{}
+
+
+\begin{DoxyParams}{Parameters}
+{\em ray} & Your laser beam showing which square it\textquotesingle{}s checking \\
+\hline
+{\em display} & Your game world with map boundaries \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+TRUE if the square is safe to look at, FALSE if it\textquotesingle{}s off the map 
+\end{DoxyReturn}
+\Hypertarget{line__drawing_8c_a34aa07489c4d2660a97d876005bfcffe}\label{line__drawing_8c_a34aa07489c4d2660a97d876005bfcffe} 
+\index{line\_drawing.c@{line\_drawing.c}!perform\_dda@{perform\_dda}}
+\index{perform\_dda@{perform\_dda}!line\_drawing.c@{line\_drawing.c}}
+\doxysubsubsection{\texorpdfstring{perform\_dda()}{perform\_dda()}}
+{\footnotesize\ttfamily void perform\+\_\+dda (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_a249ca701a99a7da39d83c6270adac2ec}{t\+\_\+ray}} \texorpdfstring{$\ast$}{*}}]{ray,  }\item[{\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}}]{display }\end{DoxyParamCaption})}
+
+
+
+March Through the Grid Until You Hit a Wall! 🏃‍♀️ 
+
+This is the exciting part -\/ your laser beam starts running through the grid like a speedy explorer! It keeps jumping from one grid line to another until it finds a wall to bounce off.
+
+At each step, it\+:
+\begin{DoxyEnumerate}
+\item Checks which direction is closer (left/right or up/down)
+\item Jumps to the next grid line in that direction
+\item Looks around and says "{}\+Is there a wall here?"{}
+\item If it finds a wall, it stops and celebrates!
+\item If it goes off the map, it stops too
+\end{DoxyEnumerate}
+
+It\textquotesingle{}s like playing tag in a giant checkerboard -\/ keep running until someone yells "{}\+You\textquotesingle{}re it!"{} (or in this case, "{}\+Wall!"{})
+
+
+\begin{DoxyParams}{Parameters}
+{\em ray} & Your laser beam that will explore the grid \\
+\hline
+{\em display} & Your game world with walls and open spaces \\
+\hline
+\end{DoxyParams}

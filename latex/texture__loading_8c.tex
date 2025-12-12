@@ -1,0 +1,53 @@
+\doxysection{srcs/texture\+\_\+loading.c File Reference}
+\hypertarget{texture__loading_8c}{}\label{texture__loading_8c}\index{srcs/texture\_loading.c@{srcs/texture\_loading.c}}
+{\ttfamily \#include "{}../includes/cub.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{texture__loading_8c_afecd1c0aed66318daf61f35e4fee469e}{init\+\_\+xpm\+\_\+image}} (\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}display)
+\begin{DoxyCompactList}\small\item\em Load XPM Textures -\/ Getting Your Wall Pictures Ready! 🖼️ \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{texture__loading_8c_ac6ded22c327b72ed2408872c8f244ff4}{load\+\_\+textures}} (\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}display)
+\begin{DoxyCompactList}\small\item\em Get Texture Data -\/ Unlocking the Picture Secrets! 🔓 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{texture__loading_8c_afecd1c0aed66318daf61f35e4fee469e}\label{texture__loading_8c_afecd1c0aed66318daf61f35e4fee469e} 
+\index{texture\_loading.c@{texture\_loading.c}!init\_xpm\_image@{init\_xpm\_image}}
+\index{init\_xpm\_image@{init\_xpm\_image}!texture\_loading.c@{texture\_loading.c}}
+\doxysubsubsection{\texorpdfstring{init\_xpm\_image()}{init\_xpm\_image()}}
+{\footnotesize\ttfamily void init\+\_\+xpm\+\_\+image (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}}]{display }\end{DoxyParamCaption})}
+
+
+
+Load XPM Textures -\/ Getting Your Wall Pictures Ready! 🖼️ 
+
+Imagine you have a bunch of wallpaper rolls for your room. Before you can put them up, you need to unroll them and get them ready. That\textquotesingle{}s what this function does for your game walls!
+
+It takes the picture files you specified (north, south, east, west walls) and loads them into the computer\textquotesingle{}s memory so the game can use them. Each picture becomes a special "{}texture"{} that the computer can show on walls.
+
+If any picture can\textquotesingle{}t be loaded (like if the file is missing), it tells you there\textquotesingle{}s a problem and stops the game.
+
+
+\begin{DoxyParams}{Parameters}
+{\em display} & Where all your game pictures and settings are stored \\
+\hline
+\end{DoxyParams}
+\Hypertarget{texture__loading_8c_ac6ded22c327b72ed2408872c8f244ff4}\label{texture__loading_8c_ac6ded22c327b72ed2408872c8f244ff4} 
+\index{texture\_loading.c@{texture\_loading.c}!load\_textures@{load\_textures}}
+\index{load\_textures@{load\_textures}!texture\_loading.c@{texture\_loading.c}}
+\doxysubsubsection{\texorpdfstring{load\_textures()}{load\_textures()}}
+{\footnotesize\ttfamily void load\+\_\+textures (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}}]{display }\end{DoxyParamCaption})}
+
+
+
+Get Texture Data -\/ Unlocking the Picture Secrets! 🔓 
+
+Now that you have your wallpaper rolls ready, you need to open them up and see what\textquotesingle{}s inside! This function takes each loaded picture and gets the actual colors and pixels that make up the image.
+
+It\textquotesingle{}s like taking a photograph and finding out what color each tiny dot should be. The computer stores this information so it can quickly grab colors when drawing walls.
+
+
+\begin{DoxyParams}{Parameters}
+{\em display} & Where all your game pictures and settings are stored \\
+\hline
+\end{DoxyParams}

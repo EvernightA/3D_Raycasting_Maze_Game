@@ -1,0 +1,97 @@
+\doxysection{srcs/dda.c File Reference}
+\hypertarget{dda_8c}{}\label{dda_8c}\index{srcs/dda.c@{srcs/dda.c}}
+
+
+DDA (Digital Differential Analyzer) Algorithm Implementation 🌱  
+
+
+{\ttfamily \#include "{}../includes/cub.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{dda_8c_a93788eb183244fa68d16eb403b4e475b}{calculate\+\_\+steps\+\_\+and\+\_\+increment}} (\mbox{\hyperlink{cub_8h_ac078a7fc0ee4585843f7c69f36cd305e}{t\+\_\+dda}} \texorpdfstring{$\ast$}{*}dda, \mbox{\hyperlink{cub_8h_abf8063a0a45283ae6e7e17678404e394}{t\+\_\+point}} \texorpdfstring{$\ast$}{*}begin)
+\begin{DoxyCompactList}\small\item\em DDA Line Drawing -\/ Like Walking in a Grid Garden! 🌱 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{dda_8c_a3d7a9a93d6d2da1ce597146314b82109}{update\+\_\+current}} (\mbox{\hyperlink{cub_8h_ac078a7fc0ee4585843f7c69f36cd305e}{t\+\_\+dda}} \texorpdfstring{$\ast$}{*}dda)
+\begin{DoxyCompactList}\small\item\em Update Current Position -\/ Taking a Step in Your Walk! 👣 \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{dda_8c_a3996247eca45616d8f91fb07488e0c75}{initialize}} (\mbox{\hyperlink{cub_8h_ac078a7fc0ee4585843f7c69f36cd305e}{t\+\_\+dda}} \texorpdfstring{$\ast$}{*}dda, \mbox{\hyperlink{cub_8h_abf8063a0a45283ae6e7e17678404e394}{t\+\_\+point}} \texorpdfstring{$\ast$}{*}begin, \mbox{\hyperlink{cub_8h_abf8063a0a45283ae6e7e17678404e394}{t\+\_\+point}} \texorpdfstring{$\ast$}{*}end)
+\begin{DoxyCompactList}\small\item\em Initialize DDA -\/ Getting Ready for Your Garden Walk! 🎒 \end{DoxyCompactList}\item 
+\mbox{\hyperlink{cub_8h_a139e96a69bb6c58269ae9acc2ef01331}{t\+\_\+line}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{dda_8c_aa9c98971a984a8dda9ae2cb8a5477291}{dda\+\_\+line}} (\mbox{\hyperlink{cub_8h_abf8063a0a45283ae6e7e17678404e394}{t\+\_\+point}} \texorpdfstring{$\ast$}{*}begin, \mbox{\hyperlink{cub_8h_abf8063a0a45283ae6e7e17678404e394}{t\+\_\+point}} \texorpdfstring{$\ast$}{*}end)
+\begin{DoxyCompactList}\small\item\em DDA Line Drawing -\/ Walking Through the Garden! 🚶‍♀️ \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+DDA (Digital Differential Analyzer) Algorithm Implementation 🌱 
+
+This file contains functions for implementing the DDA line drawing algorithm, which is used in raycasting to determine wall intersections. Think of it as walking through a garden grid to find where you hit a flower bed (wall)! 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{dda_8c_a93788eb183244fa68d16eb403b4e475b}\label{dda_8c_a93788eb183244fa68d16eb403b4e475b} 
+\index{dda.c@{dda.c}!calculate\_steps\_and\_increment@{calculate\_steps\_and\_increment}}
+\index{calculate\_steps\_and\_increment@{calculate\_steps\_and\_increment}!dda.c@{dda.c}}
+\doxysubsubsection{\texorpdfstring{calculate\_steps\_and\_increment()}{calculate\_steps\_and\_increment()}}
+{\footnotesize\ttfamily int calculate\+\_\+steps\+\_\+and\+\_\+increment (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_ac078a7fc0ee4585843f7c69f36cd305e}{t\+\_\+dda}} \texorpdfstring{$\ast$}{*}}]{dda,  }\item[{\mbox{\hyperlink{cub_8h_abf8063a0a45283ae6e7e17678404e394}{t\+\_\+point}} \texorpdfstring{$\ast$}{*}}]{begin }\end{DoxyParamCaption})}
+
+
+
+DDA Line Drawing -\/ Like Walking in a Grid Garden! 🌱 
+
+Imagine you\textquotesingle{}re in a big garden divided into square patches. You want to walk from one flower (start point) to another flower (end point). But you can only walk along the edges of the patches, like a grid.
+
+DDA (Digital Differential Analyzer) is like planning your walk\+:
+\begin{DoxyItemize}
+\item It figures out how many steps you need to take
+\item It calculates how much you move left/right (x\+\_\+inc) and up/down (y\+\_\+inc) each step
+\item It\textquotesingle{}s like saying "{}for every 2 steps right, I need to take 1 step up"{}
+\end{DoxyItemize}
+
+The function returns how many big steps you need, and how much to move each time. If the start and end are the same spot, it just puts one flower there. \Hypertarget{dda_8c_aa9c98971a984a8dda9ae2cb8a5477291}\label{dda_8c_aa9c98971a984a8dda9ae2cb8a5477291} 
+\index{dda.c@{dda.c}!dda\_line@{dda\_line}}
+\index{dda\_line@{dda\_line}!dda.c@{dda.c}}
+\doxysubsubsection{\texorpdfstring{dda\_line()}{dda\_line()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{cub_8h_a139e96a69bb6c58269ae9acc2ef01331}{t\+\_\+line}} \texorpdfstring{$\ast$}{*} dda\+\_\+line (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_abf8063a0a45283ae6e7e17678404e394}{t\+\_\+point}} \texorpdfstring{$\ast$}{*}}]{begin,  }\item[{\mbox{\hyperlink{cub_8h_abf8063a0a45283ae6e7e17678404e394}{t\+\_\+point}} \texorpdfstring{$\ast$}{*}}]{end }\end{DoxyParamCaption})}
+
+
+
+DDA Line Drawing -\/ Walking Through the Garden! 🚶‍♀️ 
+
+This is the main walking function! You start at your first flower and take small steps until you reach the second flower. At each step, you\+:
+\begin{DoxyEnumerate}
+\item Remember where you are (update\+\_\+current)
+\item Add a new point to your path (like leaving breadcrumbs)
+\item Move a little bit left/right and up/down
+\item Count your step
+\end{DoxyEnumerate}
+
+It\textquotesingle{}s like walking from one flower to another, stopping at every patch along the way to make a dotted line path through the garden!
+
+The function returns a linked list of all the points you visited. \Hypertarget{dda_8c_a3996247eca45616d8f91fb07488e0c75}\label{dda_8c_a3996247eca45616d8f91fb07488e0c75} 
+\index{dda.c@{dda.c}!initialize@{initialize}}
+\index{initialize@{initialize}!dda.c@{dda.c}}
+\doxysubsubsection{\texorpdfstring{initialize()}{initialize()}}
+{\footnotesize\ttfamily int initialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_ac078a7fc0ee4585843f7c69f36cd305e}{t\+\_\+dda}} \texorpdfstring{$\ast$}{*}}]{dda,  }\item[{\mbox{\hyperlink{cub_8h_abf8063a0a45283ae6e7e17678404e394}{t\+\_\+point}} \texorpdfstring{$\ast$}{*}}]{begin,  }\item[{\mbox{\hyperlink{cub_8h_abf8063a0a45283ae6e7e17678404e394}{t\+\_\+point}} \texorpdfstring{$\ast$}{*}}]{end }\end{DoxyParamCaption})}
+
+
+
+Initialize DDA -\/ Getting Ready for Your Garden Walk! 🎒 
+
+This is like packing your backpack before starting your walk\+:
+\begin{DoxyItemize}
+\item It figures out how far you need to go left/right (dx) and up/down (dy)
+\item It plans how many steps you\textquotesingle{}ll take and how much to move each step
+\item It sets your starting position
+\item It gets your step counter ready (i = 0)
+\end{DoxyItemize}
+
+If you don\textquotesingle{}t need to move at all, it just says "{}you\textquotesingle{}re already there!"{} \Hypertarget{dda_8c_a3d7a9a93d6d2da1ce597146314b82109}\label{dda_8c_a3d7a9a93d6d2da1ce597146314b82109} 
+\index{dda.c@{dda.c}!update\_current@{update\_current}}
+\index{update\_current@{update\_current}!dda.c@{dda.c}}
+\doxysubsubsection{\texorpdfstring{update\_current()}{update\_current()}}
+{\footnotesize\ttfamily void update\+\_\+current (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_ac078a7fc0ee4585843f7c69f36cd305e}{t\+\_\+dda}} \texorpdfstring{$\ast$}{*}}]{dda }\end{DoxyParamCaption})}
+
+
+
+Update Current Position -\/ Taking a Step in Your Walk! 👣 
+
+This is like stopping at each patch in the garden and remembering where you are. It takes your current floating-\/point position (like 2.\+7, 3.\+2) and rounds it down to whole numbers (like 2, 3) so you know which garden patch you\textquotesingle{}re in.
+
+It\textquotesingle{}s like saying "{}\+I\textquotesingle{}m at patch number 2 across and 3 up in the garden!"{} 

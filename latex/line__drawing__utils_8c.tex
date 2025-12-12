@@ -1,0 +1,50 @@
+\doxysection{srcs/line\+\_\+drawing\+\_\+utils.c File Reference}
+\hypertarget{line__drawing__utils_8c}{}\label{line__drawing__utils_8c}\index{srcs/line\_drawing\_utils.c@{srcs/line\_drawing\_utils.c}}
+{\ttfamily \#include "{}../includes/cub.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{line__drawing__utils_8c_ae9f0ed6623b52627dc40b73b5da9afef}{draw\+\_\+wall\+\_\+stripe}} (\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}display, int x, \mbox{\hyperlink{cub_8h_a249ca701a99a7da39d83c6270adac2ec}{t\+\_\+ray}} \texorpdfstring{$\ast$}{*}ray)
+\begin{DoxyCompactList}\small\item\em Paint a Strip of Wall with Pretty Wallpaper! 🎨 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{line__drawing__utils_8c_ada861e7baf2193d34560bf95ea916cbe}{cast\+\_\+all\+\_\+rays}} (\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}display)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{line__drawing__utils_8c_ada861e7baf2193d34560bf95ea916cbe}\label{line__drawing__utils_8c_ada861e7baf2193d34560bf95ea916cbe} 
+\index{line\_drawing\_utils.c@{line\_drawing\_utils.c}!cast\_all\_rays@{cast\_all\_rays}}
+\index{cast\_all\_rays@{cast\_all\_rays}!line\_drawing\_utils.c@{line\_drawing\_utils.c}}
+\doxysubsubsection{\texorpdfstring{cast\_all\_rays()}{cast\_all\_rays()}}
+{\footnotesize\ttfamily void cast\+\_\+all\+\_\+rays (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}}]{display }\end{DoxyParamCaption})}
+
+\Hypertarget{line__drawing__utils_8c_ae9f0ed6623b52627dc40b73b5da9afef}\label{line__drawing__utils_8c_ae9f0ed6623b52627dc40b73b5da9afef} 
+\index{line\_drawing\_utils.c@{line\_drawing\_utils.c}!draw\_wall\_stripe@{draw\_wall\_stripe}}
+\index{draw\_wall\_stripe@{draw\_wall\_stripe}!line\_drawing\_utils.c@{line\_drawing\_utils.c}}
+\doxysubsubsection{\texorpdfstring{draw\_wall\_stripe()}{draw\_wall\_stripe()}}
+{\footnotesize\ttfamily void draw\+\_\+wall\+\_\+stripe (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}}]{display,  }\item[{int}]{x,  }\item[{\mbox{\hyperlink{cub_8h_a249ca701a99a7da39d83c6270adac2ec}{t\+\_\+ray}} \texorpdfstring{$\ast$}{*}}]{ray }\end{DoxyParamCaption})}
+
+
+
+Paint a Strip of Wall with Pretty Wallpaper! 🎨 
+
+Imagine you\textquotesingle{}re decorating a long wall, but you do it one tiny section at a time. This function paints just one vertical sliver of wall (like a candy cane stripe) at a specific spot on your screen.
+
+It figures out\+:
+\begin{DoxyItemize}
+\item Which wallpaper to use for this wall
+\item How tall the stripe should be (based on how far away you are)
+\item Where on the screen to paint it
+\item Which part of the wallpaper to copy for each pixel
+\end{DoxyItemize}
+
+It\textquotesingle{}s like having a tiny painter robot that carefully copies wallpaper patterns onto your 3D walls, one stripe at a time!
+
+
+\begin{DoxyParams}{Parameters}
+{\em display} & Your whole 3D world with walls and wallpapers \\
+\hline
+{\em x} & Which column on the screen to paint (like 100th pixel from the left) \\
+\hline
+{\em ray} & Your laser pointer showing exactly where and how far the wall is \\
+\hline
+\end{DoxyParams}

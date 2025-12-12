@@ -1,0 +1,1189 @@
+\doxysection{includes/cub.h File Reference}
+\hypertarget{cub_8h}{}\label{cub_8h}\index{includes/cub.h@{includes/cub.h}}
+{\ttfamily \#include "{}../libft/libft.\+h"{}}\newline
+{\ttfamily \#include "{}../minilibx-\/linux/mlx.\+h"{}}\newline
+{\ttfamily \#include $<$X11/keysym.\+h$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structs__img}{s\+\_\+img}}
+\item 
+struct \mbox{\hyperlink{structs__img__texture}{s\+\_\+img\+\_\+texture}}
+\item 
+struct \mbox{\hyperlink{structs__point}{s\+\_\+point}}
+\item 
+struct \mbox{\hyperlink{structs__line}{s\+\_\+line}}
+\item 
+struct \mbox{\hyperlink{structs__rgb}{s\+\_\+rgb}}
+\item 
+struct \mbox{\hyperlink{structs__shift}{s\+\_\+shift}}
+\item 
+struct \mbox{\hyperlink{structs__bres}{s\+\_\+bres}}
+\item 
+struct \mbox{\hyperlink{structs__dda}{s\+\_\+dda}}
+\item 
+struct \mbox{\hyperlink{structs__move}{s\+\_\+move}}
+\item 
+struct \mbox{\hyperlink{structs__hit}{s\+\_\+hit}}
+\item 
+struct \mbox{\hyperlink{structs__tex}{s\+\_\+tex}}
+\item 
+struct \mbox{\hyperlink{structs__mlx}{s\+\_\+mlx}}
+\item 
+struct \mbox{\hyperlink{structs__player}{s\+\_\+player}}
+\item 
+struct \mbox{\hyperlink{structs__display}{s\+\_\+display}}
+\item 
+struct \mbox{\hyperlink{structs__tex__utils}{s\+\_\+tex\+\_\+utils}}
+\item 
+struct \mbox{\hyperlink{structs__ray}{s\+\_\+ray}}
+\item 
+struct \mbox{\hyperlink{structs__draw__utils}{s\+\_\+draw\+\_\+utils}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{cub_8h_ae71449b1cc6e6250b91f539153a7a0d3}{M\+\_\+\+PI}}~3.\+14159265358979
+\item 
+\#define \mbox{\hyperlink{cub_8h_aac3553b3932cbfeeac4526ce7ca0336b}{SPEED}}~0.\+25
+\item 
+\#define \mbox{\hyperlink{cub_8h_a88a57684ddf4d51b4852e3e2ca1b772d}{TETA}}~0.\+0174532925
+\item 
+\#define \mbox{\hyperlink{cub_8h_aee75d0130ade17390942add50c7eac24}{SIZE\+\_\+\+IMG}}~16
+\item 
+\#define \mbox{\hyperlink{cub_8h_afab1d6380725d86a389fb84b888b091d}{FOV}}~1.\+0472
+\item 
+\#define \mbox{\hyperlink{cub_8h_aca7db62828683b1ee5d9896e5487a8b6}{SCRN\+\_\+\+WIDTH}}~800
+\item 
+\#define \mbox{\hyperlink{cub_8h_a79eaece5e13d519433aafbada54b81f1}{SCRN\+\_\+\+HEIGHT}}~600
+\item 
+\#define \mbox{\hyperlink{cub_8h_abf0395d8d9a864b5905d56b9687d9405}{WALL\+\_\+\+UNIT}}~600
+\item 
+\#define \mbox{\hyperlink{cub_8h_a08e4da5f3d0c7936fa52467f40e4b6aa}{MAX\+\_\+\+DISTANCE}}~600
+\item 
+\#define \mbox{\hyperlink{cub_8h_af058b0d3b097e612583090a01af8e9ce}{LARGE\+\_\+\+DIST}}~1e30f
+\item 
+\#define \mbox{\hyperlink{cub_8h_a1711232abf72723b5216c206e6bbb175}{NORTH}}~0
+\item 
+\#define \mbox{\hyperlink{cub_8h_af3830320fe6287f717dca9669f417950}{SOUTH}}~1
+\item 
+\#define \mbox{\hyperlink{cub_8h_a072a1ef1143314441742097b799be322}{EAST}}~2
+\item 
+\#define \mbox{\hyperlink{cub_8h_a755da365a2f771fdb9e15af22fee7d74}{WEST}}~3
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structs__img}{s\+\_\+img}} \mbox{\hyperlink{cub_8h_aa2823d71a465849891fd044a6371f982}{t\+\_\+img}}
+\item 
+typedef struct \mbox{\hyperlink{structs__img__texture}{s\+\_\+img\+\_\+texture}} \mbox{\hyperlink{cub_8h_a26826566628048bb2153a6452151f119}{t\+\_\+img\+\_\+texture}}
+\item 
+typedef struct \mbox{\hyperlink{structs__point}{s\+\_\+point}} \mbox{\hyperlink{cub_8h_abf8063a0a45283ae6e7e17678404e394}{t\+\_\+point}}
+\item 
+typedef struct \mbox{\hyperlink{structs__line}{s\+\_\+line}} \mbox{\hyperlink{cub_8h_a139e96a69bb6c58269ae9acc2ef01331}{t\+\_\+line}}
+\item 
+typedef struct \mbox{\hyperlink{structs__rgb}{s\+\_\+rgb}} \mbox{\hyperlink{cub_8h_a1058cba65d7a503cf8cd102022882f80}{t\+\_\+rgb}}
+\item 
+typedef struct \mbox{\hyperlink{structs__shift}{s\+\_\+shift}} \mbox{\hyperlink{cub_8h_ae32e278473ccf5eb69b33f8d6daee253}{t\+\_\+shift}}
+\item 
+typedef struct \mbox{\hyperlink{structs__bres}{s\+\_\+bres}} \mbox{\hyperlink{cub_8h_a1525e11c3053dfecdfa47217bcf9b938}{t\+\_\+bres}}
+\item 
+typedef struct \mbox{\hyperlink{structs__dda}{s\+\_\+dda}} \mbox{\hyperlink{cub_8h_ac078a7fc0ee4585843f7c69f36cd305e}{t\+\_\+dda}}
+\item 
+typedef struct \mbox{\hyperlink{structs__move}{s\+\_\+move}} \mbox{\hyperlink{cub_8h_a792c0199f76a92790f5e4f928ffd0de2}{t\+\_\+move}}
+\item 
+typedef struct \mbox{\hyperlink{structs__hit}{s\+\_\+hit}} \mbox{\hyperlink{cub_8h_a5adba0a1600843208f0bd925f29b928d}{t\+\_\+hit}}
+\item 
+typedef struct \mbox{\hyperlink{structs__tex}{s\+\_\+tex}} \mbox{\hyperlink{cub_8h_a63899d66e8b5c19e8fb0940b9cb9c6b8}{t\+\_\+tex}}
+\item 
+typedef struct \mbox{\hyperlink{structs__mlx}{s\+\_\+mlx}} \mbox{\hyperlink{cub_8h_aa4b254cf8df8527dff8ecd057b280110}{t\+\_\+mlx}}
+\item 
+typedef struct \mbox{\hyperlink{structs__player}{s\+\_\+player}} \mbox{\hyperlink{cub_8h_aef4e2e456f5bf835fd3145850f889c4a}{t\+\_\+player}}
+\item 
+typedef struct \mbox{\hyperlink{structs__display}{s\+\_\+display}} \mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}}
+\item 
+typedef struct \mbox{\hyperlink{structs__tex__utils}{s\+\_\+tex\+\_\+utils}} \mbox{\hyperlink{cub_8h_ace6bd274fac90c94609a959bfa594465}{t\+\_\+tex\+\_\+utils}}
+\item 
+typedef struct \mbox{\hyperlink{structs__ray}{s\+\_\+ray}} \mbox{\hyperlink{cub_8h_a249ca701a99a7da39d83c6270adac2ec}{t\+\_\+ray}}
+\item 
+typedef struct \mbox{\hyperlink{structs__draw__utils}{s\+\_\+draw\+\_\+utils}} \mbox{\hyperlink{cub_8h_a467743de4aba3ccb37f696222cdaa97f}{t\+\_\+draw\+\_\+utils}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{cub_8h_a14ffe653b7c946f08d9674426262a537}{dup\+\_\+mat}} (\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}display, int height, char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}map)
+\item 
+int \mbox{\hyperlink{cub_8h_aa7c4f303aebd3737b7cc180a9e7608f1}{ft\+\_\+abs}} (int n)
+\item 
+size\+\_\+t \mbox{\hyperlink{cub_8h_abc0e2cd4d0291c103c66bfa65d0c8d1c}{find\+\_\+len\+\_\+max}} (char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}map)
+\item 
+int \mbox{\hyperlink{cub_8h_a0a3627880a446997c76db8c337d0e1aa}{map\+\_\+invalid}} (int i, int j, int k, char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}map)
+\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{cub_8h_a33f9e440ea6cde6906a3f0e8cee2bc00}{ft\+\_\+strdup\+\_\+x}} (char \texorpdfstring{$\ast$}{*}s, int len)
+\item 
+void \mbox{\hyperlink{cub_8h_aadfbd503381599d7dc3615d12ac1ddc6}{filter\+\_\+texture}} (\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}display)
+\item 
+int \mbox{\hyperlink{cub_8h_a0f9e84e04bc150af9d66ab2228e00576}{is\+\_\+player}} (char c)
+\item 
+int \mbox{\hyperlink{cub_8h_a18bf5135983f2a95166f72cac39659c5}{is\+\_\+unknown}} (char c)
+\item 
+int \mbox{\hyperlink{cub_8h_a6c93c77330cf89c2b2a23ad499e8aa47}{player\+\_\+error}} (int count, \mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}display)
+\item 
+int \mbox{\hyperlink{cub_8h_adea13faaf453b1ad646a52ed3178165a}{player\+\_\+in\+\_\+str}} (char \texorpdfstring{$\ast$}{*}str)
+\item 
+int \mbox{\hyperlink{cub_8h_a1dbd22f9579e0b4249309db479bcfb70}{matrix\+\_\+height}} (char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}matrix)
+\item 
+void \mbox{\hyperlink{cub_8h_a1187c0d962c39fc8bfef708b8b8d9db2}{rad\+\_\+to\+\_\+deg}} (double rad)
+\item 
+void \mbox{\hyperlink{cub_8h_a914127c28ff0ab4995dab99c22b1b15a}{render\+\_\+all}} (\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}display)
+\item 
+void \mbox{\hyperlink{cub_8h_a9304a3f59719ff1ddb9c5aaf28a5d60a}{orientation\+\_\+player}} (\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}display, int operation)
+\item 
+int \mbox{\hyperlink{cub_8h_a4a0cc4f7f6f86080cf430be1d2d0f067}{float\+\_\+abs}} (float number)
+\item 
+int \mbox{\hyperlink{cub_8h_ae85773d9101edf39a71fa662c10e9053}{get\+\_\+map\+\_\+height}} (\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}display, int \texorpdfstring{$\ast$}{*}map\+\_\+height, char \texorpdfstring{$\ast$}{*}file)
+\item 
+void \mbox{\hyperlink{cub_8h_a674706d120a0e7b6142305d0acf074f7}{print\+\_\+map}} (char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}map)
+\item 
+int \mbox{\hyperlink{cub_8h_aebdfad619c081f7f2aa6ab471e5debdf}{count\+\_\+map\+\_\+lines}} (int fd)
+\item 
+char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{cub_8h_a0f52b1f3177566572e6821fe7dce72de}{get\+\_\+map}} (char \texorpdfstring{$\ast$}{*}gnl, int fd, int map\+\_\+height)
+\item 
+void \mbox{\hyperlink{cub_8h_acdc3d2fd752e4db9867a19c594e051e0}{get\+\_\+elements}} (int fd, \mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}texture, int map\+\_\+height)
+\item 
+void \mbox{\hyperlink{cub_8h_af5e5ebf6524d05af6d28e4b5475c49cc}{store\+\_\+texture}} (char \texorpdfstring{$\ast$}{*}str, \mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}texture)
+\item 
+\mbox{\hyperlink{cub_8h_a139e96a69bb6c58269ae9acc2ef01331}{t\+\_\+line}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{cub_8h_a31924276690781ff39e4e7473b690f6f}{bresenham\+\_\+line}} (\mbox{\hyperlink{cub_8h_abf8063a0a45283ae6e7e17678404e394}{t\+\_\+point}} \texorpdfstring{$\ast$}{*}begin, \mbox{\hyperlink{cub_8h_abf8063a0a45283ae6e7e17678404e394}{t\+\_\+point}} \texorpdfstring{$\ast$}{*}end)
+\begin{DoxyCompactList}\small\item\em Bresenham Line Drawing -\/ Connecting the Dots! ✏️ \end{DoxyCompactList}\item 
+\mbox{\hyperlink{cub_8h_a139e96a69bb6c58269ae9acc2ef01331}{t\+\_\+line}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{cub_8h_aa9c98971a984a8dda9ae2cb8a5477291}{dda\+\_\+line}} (\mbox{\hyperlink{cub_8h_abf8063a0a45283ae6e7e17678404e394}{t\+\_\+point}} \texorpdfstring{$\ast$}{*}begin, \mbox{\hyperlink{cub_8h_abf8063a0a45283ae6e7e17678404e394}{t\+\_\+point}} \texorpdfstring{$\ast$}{*}end)
+\begin{DoxyCompactList}\small\item\em DDA Line Drawing -\/ Walking Through the Garden! 🚶‍♀️ \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{cub_8h_a04bd85bed73db8359c6a384293d0be83}{ft\+\_\+linesize}} (\mbox{\hyperlink{cub_8h_a139e96a69bb6c58269ae9acc2ef01331}{t\+\_\+line}} \texorpdfstring{$\ast$}{*}line)
+\item 
+void \mbox{\hyperlink{cub_8h_a66b102f0ed40e240591df229a561bd33}{ft\+\_\+lineadd\+\_\+back}} (\mbox{\hyperlink{cub_8h_a139e96a69bb6c58269ae9acc2ef01331}{t\+\_\+line}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}line, \mbox{\hyperlink{cub_8h_a139e96a69bb6c58269ae9acc2ef01331}{t\+\_\+line}} \texorpdfstring{$\ast$}{*}new)
+\item 
+\mbox{\hyperlink{cub_8h_a139e96a69bb6c58269ae9acc2ef01331}{t\+\_\+line}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{cub_8h_aa2160add26ed6ceecac37466d66c905c}{ft\+\_\+linenew}} (\mbox{\hyperlink{cub_8h_abf8063a0a45283ae6e7e17678404e394}{t\+\_\+point}} content)
+\item 
+void \mbox{\hyperlink{cub_8h_aacad071179190c91593065e354ea4759}{ft\+\_\+linefree}} (\mbox{\hyperlink{cub_8h_a139e96a69bb6c58269ae9acc2ef01331}{t\+\_\+line}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}line)
+\item 
+void \mbox{\hyperlink{cub_8h_aae77763c14a7545a5a4ecb36d644bea1}{print\+\_\+list}} (\mbox{\hyperlink{cub_8h_a139e96a69bb6c58269ae9acc2ef01331}{t\+\_\+line}} \texorpdfstring{$\ast$}{*}head)
+\item 
+int \mbox{\hyperlink{cub_8h_a99afb791b7c9c8d9b0dc0ed0876efc2e}{error\+\_\+handling}} (\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}texture)
+\item 
+int \mbox{\hyperlink{cub_8h_aaed1df998ec081d089da675998aa9b84}{texture\+\_\+error}} (\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}texture)
+\item 
+int \mbox{\hyperlink{cub_8h_a5f125bc4c5eb963e2eccd92c08310187}{releasing\+\_\+key}} (int key, void \texorpdfstring{$\ast$}{*}param)
+\item 
+\mbox{\hyperlink{cub_8h_a5adba0a1600843208f0bd925f29b928d}{t\+\_\+hit}} \mbox{\hyperlink{cub_8h_a92fbfeaecafeff054e806b043823afda}{draw\+\_\+line\+\_\+2}} (\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}display, float beta)
+\item 
+void \mbox{\hyperlink{cub_8h_a78d40f055a354e7e00795d051a5f2c57}{free\+\_\+texture}} (\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}texture)
+\item 
+void \mbox{\hyperlink{cub_8h_ae94c97dba3d76a56f1a8d3b2496d5b20}{free\+\_\+split}} (char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}split)
+\item 
+int \mbox{\hyperlink{cub_8h_a785131858cf35b5edefb649259aaeecb}{quit\+\_\+win}} (\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}mlx)
+\item 
+int \mbox{\hyperlink{cub_8h_aaf4bef1ec670cc4374ac9185e3ea4614}{key\+\_\+hook}} (int key, void \texorpdfstring{$\ast$}{*}param)
+\item 
+long long \mbox{\hyperlink{cub_8h_a83dba2b7dba0de8cb420f234a6efc827}{ft\+\_\+atoll}} (const char \texorpdfstring{$\ast$}{*}ptr)
+\item 
+int \mbox{\hyperlink{cub_8h_ad616cd3eb6d6894095585fee6028dd04}{get\+\_\+rgb}} (\mbox{\hyperlink{cub_8h_a1058cba65d7a503cf8cd102022882f80}{t\+\_\+rgb}} \texorpdfstring{$\ast$}{*}rgb, char \texorpdfstring{$\ast$}{*}str\+\_\+rgb)
+\item 
+int \mbox{\hyperlink{cub_8h_a186c69b486f0381677458fd47e6fa4ee}{closed\+\_\+error}} (char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}map)
+\item 
+int \mbox{\hyperlink{cub_8h_a7391b1eebadf52def3de66a661e19cfe}{parsing}} (int \texorpdfstring{$\ast$}{*}map\+\_\+height, char \texorpdfstring{$\ast$}{*}file, \mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}display)
+\item 
+void \mbox{\hyperlink{cub_8h_a83bf0433d299ba447627d2d424d04737}{img\+\_\+initialization}} (\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}display)
+\item 
+void \mbox{\hyperlink{cub_8h_afeb904d7c4314df13a0415f57f771089}{rotate\+\_\+player}} (\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}display, float angle)
+\item 
+\mbox{\hyperlink{cub_8h_abf8063a0a45283ae6e7e17678404e394}{t\+\_\+point}} \mbox{\hyperlink{cub_8h_abcd4ed8f4ce9ea8d0c636feeb0ca5abc}{calculate\+\_\+end}} (\mbox{\hyperlink{cub_8h_abf8063a0a45283ae6e7e17678404e394}{t\+\_\+point}} begin, float angle, int max\+\_\+distance)
+\item 
+\mbox{\hyperlink{cub_8h_abf8063a0a45283ae6e7e17678404e394}{t\+\_\+point}} \mbox{\hyperlink{cub_8h_a88c2557827b5ab9502c72e476beb0204}{pixel\+\_\+to\+\_\+bloc}} (\mbox{\hyperlink{cub_8h_abf8063a0a45283ae6e7e17678404e394}{t\+\_\+point}} pixel, \mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}display)
+\item 
+int \mbox{\hyperlink{cub_8h_a9e92c3c142027c098bc3606588d978d9}{shifter}} (int number)
+\item 
+void \mbox{\hyperlink{cub_8h_a2daedd5348b61728a4693577a13991fd}{img\+\_\+pix\+\_\+put}} (\mbox{\hyperlink{cub_8h_aa2823d71a465849891fd044a6371f982}{t\+\_\+img}} \texorpdfstring{$\ast$}{*}img, int x, int y, int color)
+\item 
+void \mbox{\hyperlink{cub_8h_ad0549d630ffe3a1aa0b8a55289e2e696}{clear\+\_\+img}} (\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}display)
+\item 
+void \mbox{\hyperlink{cub_8h_a099bd61a5ad6b2fe2d9268bba0242830}{clear\+\_\+rays}} (\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}display)
+\item 
+int \mbox{\hyperlink{cub_8h_a5bf0660d25812b1a40fd725878a0c133}{game\+\_\+engine}} (\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}display)
+\item 
+void \mbox{\hyperlink{cub_8h_a064b9912b87049f9a2bf651f43eb3e95}{player\+\_\+move}} (\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}display, int op, bool is\+\_\+float)
+\item 
+void \mbox{\hyperlink{cub_8h_ac6ded22c327b72ed2408872c8f244ff4}{load\+\_\+textures}} (\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}display)
+\begin{DoxyCompactList}\small\item\em Get Texture Data -\/ Unlocking the Picture Secrets! 🔓 \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{cub_8h_ac4388e15152dcb6e6b1ce3dfd5c2d216}{sample\+\_\+texture}} (\mbox{\hyperlink{cub_8h_a26826566628048bb2153a6452151f119}{t\+\_\+img\+\_\+texture}} \texorpdfstring{$\ast$}{*}img\+\_\+tex, int tex\+\_\+x, int tex\+\_\+y)
+\begin{DoxyCompactList}\small\item\em Grab a Color from Your Wallpaper! 🎨 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{cub_8h_a35ee55438220af9e36e3a662d5db8721}{aff\+\_\+floor\+\_\+and\+\_\+ceiling}} (\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}display)
+\item 
+void \mbox{\hyperlink{cub_8h_aaefe208d210969f7c66355d6cdc5868c}{free\+\_\+tex\+\_\+map}} (\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}display)
+\item 
+void \mbox{\hyperlink{cub_8h_af4452b741522093395c618b8f53cf43d}{init\+\_\+player\+\_\+pos}} (\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}display, int i, int j)
+\item 
+void \mbox{\hyperlink{cub_8h_af729231a840eb688df953d42ae5f67bd}{init\+\_\+it}} (\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}display)
+\item 
+void \mbox{\hyperlink{cub_8h_a16d0b14b6d55635e80900939901395d5}{init\+\_\+direction}} (\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}display, int x\+\_\+dir, int y\+\_\+dir, float angle)
+\item 
+int \mbox{\hyperlink{cub_8h_a4bc04126aa7f54fa74dd76aa163be41f}{input\+\_\+error}} (int argc, char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}argv)
+\item 
+void \mbox{\hyperlink{cub_8h_a3a5af9c1ec9c677b1e7a8edde0ffbc19}{calculus\+\_\+dir}} (\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}display)
+\item 
+void \mbox{\hyperlink{cub_8h_a50be973c5c657ad8783dd8abfeba36a0}{orientation\+\_\+init}} (\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}display, int i, int j)
+\item 
+int \mbox{\hyperlink{cub_8h_a486e858d259a70e546f528c1db7844df}{something\+\_\+is\+\_\+wrong}} (\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}display, char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}argv, int argc, int \texorpdfstring{$\ast$}{*}map\+\_\+height)
+\item 
+int \mbox{\hyperlink{cub_8h_a38c2d7218dec7f29e4f5969ae5a80372}{successive\+\_\+commas}} (int \texorpdfstring{$\ast$}{*}i, char \texorpdfstring{$\ast$}{*}og\+\_\+rgb)
+\item 
+int \mbox{\hyperlink{cub_8h_ac17848a5e2d60e3b0d5d2e59b84934e1}{rgb\+\_\+error}} (char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}split\+\_\+rgb, char \texorpdfstring{$\ast$}{*}str\+\_\+rgb)
+\item 
+int \mbox{\hyperlink{cub_8h_a34e52c58df884bb27d2354b928ad3d91}{overflowing\+\_\+values}} (char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}split\+\_\+rgb)
+\item 
+int \mbox{\hyperlink{cub_8h_a9354691e220c382cc82770f5afcc926e}{non\+\_\+numeric\+\_\+values}} (char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}split\+\_\+rgb)
+\item 
+int \mbox{\hyperlink{cub_8h_af0679f1874e6a6c84c9647a1578bc5c1}{not\+\_\+enough\+\_\+values}} (char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}split\+\_\+rgb)
+\item 
+void \mbox{\hyperlink{cub_8h_afecd1c0aed66318daf61f35e4fee469e}{init\+\_\+xpm\+\_\+image}} (\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}display)
+\begin{DoxyCompactList}\small\item\em Load XPM Textures -\/ Getting Your Wall Pictures Ready! 🖼️ \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{cub_8h_ada861e7baf2193d34560bf95ea916cbe}{cast\+\_\+all\+\_\+rays}} (\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}display)
+\item 
+void \mbox{\hyperlink{cub_8h_a478aa2df2ec184af940933de86181d39}{cast\+\_\+single\+\_\+ray}} (\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}display, \mbox{\hyperlink{cub_8h_a249ca701a99a7da39d83c6270adac2ec}{t\+\_\+ray}} \texorpdfstring{$\ast$}{*}ray, float angle)
+\begin{DoxyCompactList}\small\item\em Cast a Single Ray -\/ Shoot Your Laser Pointer! 🔦 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{cub_8h_ae9f0ed6623b52627dc40b73b5da9afef}{draw\+\_\+wall\+\_\+stripe}} (\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}display, int x, \mbox{\hyperlink{cub_8h_a249ca701a99a7da39d83c6270adac2ec}{t\+\_\+ray}} \texorpdfstring{$\ast$}{*}ray)
+\begin{DoxyCompactList}\small\item\em Paint a Strip of Wall with Pretty Wallpaper! 🎨 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{cub_8h_aea0f426affb717aea1fd09540178a22a}{init\+\_\+ray\+\_\+direction}} (\mbox{\hyperlink{cub_8h_a249ca701a99a7da39d83c6270adac2ec}{t\+\_\+ray}} \texorpdfstring{$\ast$}{*}ray, \mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}display, float angle)
+\begin{DoxyCompactList}\small\item\em Set Up Your Laser Beam Direction! 🧭 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{cub_8h_a5446f480addd79729fd3abbe553b5ff9}{init\+\_\+step\+\_\+and\+\_\+side\+\_\+dist}} (\mbox{\hyperlink{cub_8h_a249ca701a99a7da39d83c6270adac2ec}{t\+\_\+ray}} \texorpdfstring{$\ast$}{*}ray, \mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}display)
+\begin{DoxyCompactList}\small\item\em Plan Your Beam\textquotesingle{}s First Steps! 🚶‍♂️ \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{cub_8h_a219e24a6fb85a7cc4187510a07c99587}{is\+\_\+valid\+\_\+map\+\_\+pos}} (\mbox{\hyperlink{cub_8h_a249ca701a99a7da39d83c6270adac2ec}{t\+\_\+ray}} \texorpdfstring{$\ast$}{*}ray, \mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}display)
+\begin{DoxyCompactList}\small\item\em Check if You\textquotesingle{}re Still on the Map! 🗺️ \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{cub_8h_a34aa07489c4d2660a97d876005bfcffe}{perform\+\_\+dda}} (\mbox{\hyperlink{cub_8h_a249ca701a99a7da39d83c6270adac2ec}{t\+\_\+ray}} \texorpdfstring{$\ast$}{*}ray, \mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}display)
+\begin{DoxyCompactList}\small\item\em March Through the Grid Until You Hit a Wall! 🏃‍♀️ \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{cub_8h_a25e6d2a693f516f5ae240e28e98646ff}{calculate\+\_\+wall\+\_\+dist\+\_\+and\+\_\+x}} (\mbox{\hyperlink{cub_8h_a249ca701a99a7da39d83c6270adac2ec}{t\+\_\+ray}} \texorpdfstring{$\ast$}{*}ray, \mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}display)
+\begin{DoxyCompactList}\small\item\em Measure Your Discovery and Plan the Wall Art! 📐 \end{DoxyCompactList}\item 
+\mbox{\hyperlink{cub_8h_a26826566628048bb2153a6452151f119}{t\+\_\+img\+\_\+texture}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{cub_8h_a59ac4af96a4712760c9a8d9581d9d5ef}{get\+\_\+texture\+\_\+for\+\_\+wall}} (\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}display, int wall\+\_\+dir)
+\begin{DoxyCompactList}\small\item\em Pick the Right Wallpaper for Each Wall! 🧭 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{cub_8h_a072a1ef1143314441742097b799be322}\label{cub_8h_a072a1ef1143314441742097b799be322} 
+\index{cub.h@{cub.h}!EAST@{EAST}}
+\index{EAST@{EAST}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{EAST}{EAST}}
+{\footnotesize\ttfamily \#define EAST~2}
+
+\Hypertarget{cub_8h_afab1d6380725d86a389fb84b888b091d}\label{cub_8h_afab1d6380725d86a389fb84b888b091d} 
+\index{cub.h@{cub.h}!FOV@{FOV}}
+\index{FOV@{FOV}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{FOV}{FOV}}
+{\footnotesize\ttfamily \#define FOV~1.\+0472}
+
+\Hypertarget{cub_8h_af058b0d3b097e612583090a01af8e9ce}\label{cub_8h_af058b0d3b097e612583090a01af8e9ce} 
+\index{cub.h@{cub.h}!LARGE\_DIST@{LARGE\_DIST}}
+\index{LARGE\_DIST@{LARGE\_DIST}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{LARGE\_DIST}{LARGE\_DIST}}
+{\footnotesize\ttfamily \#define LARGE\+\_\+\+DIST~1e30f}
+
+\Hypertarget{cub_8h_ae71449b1cc6e6250b91f539153a7a0d3}\label{cub_8h_ae71449b1cc6e6250b91f539153a7a0d3} 
+\index{cub.h@{cub.h}!M\_PI@{M\_PI}}
+\index{M\_PI@{M\_PI}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{M\_PI}{M\_PI}}
+{\footnotesize\ttfamily \#define M\+\_\+\+PI~3.\+14159265358979}
+
+\Hypertarget{cub_8h_a08e4da5f3d0c7936fa52467f40e4b6aa}\label{cub_8h_a08e4da5f3d0c7936fa52467f40e4b6aa} 
+\index{cub.h@{cub.h}!MAX\_DISTANCE@{MAX\_DISTANCE}}
+\index{MAX\_DISTANCE@{MAX\_DISTANCE}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_DISTANCE}{MAX\_DISTANCE}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+DISTANCE~600}
+
+\Hypertarget{cub_8h_a1711232abf72723b5216c206e6bbb175}\label{cub_8h_a1711232abf72723b5216c206e6bbb175} 
+\index{cub.h@{cub.h}!NORTH@{NORTH}}
+\index{NORTH@{NORTH}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{NORTH}{NORTH}}
+{\footnotesize\ttfamily \#define NORTH~0}
+
+\Hypertarget{cub_8h_a79eaece5e13d519433aafbada54b81f1}\label{cub_8h_a79eaece5e13d519433aafbada54b81f1} 
+\index{cub.h@{cub.h}!SCRN\_HEIGHT@{SCRN\_HEIGHT}}
+\index{SCRN\_HEIGHT@{SCRN\_HEIGHT}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{SCRN\_HEIGHT}{SCRN\_HEIGHT}}
+{\footnotesize\ttfamily \#define SCRN\+\_\+\+HEIGHT~600}
+
+\Hypertarget{cub_8h_aca7db62828683b1ee5d9896e5487a8b6}\label{cub_8h_aca7db62828683b1ee5d9896e5487a8b6} 
+\index{cub.h@{cub.h}!SCRN\_WIDTH@{SCRN\_WIDTH}}
+\index{SCRN\_WIDTH@{SCRN\_WIDTH}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{SCRN\_WIDTH}{SCRN\_WIDTH}}
+{\footnotesize\ttfamily \#define SCRN\+\_\+\+WIDTH~800}
+
+\Hypertarget{cub_8h_aee75d0130ade17390942add50c7eac24}\label{cub_8h_aee75d0130ade17390942add50c7eac24} 
+\index{cub.h@{cub.h}!SIZE\_IMG@{SIZE\_IMG}}
+\index{SIZE\_IMG@{SIZE\_IMG}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{SIZE\_IMG}{SIZE\_IMG}}
+{\footnotesize\ttfamily \#define SIZE\+\_\+\+IMG~16}
+
+\Hypertarget{cub_8h_af3830320fe6287f717dca9669f417950}\label{cub_8h_af3830320fe6287f717dca9669f417950} 
+\index{cub.h@{cub.h}!SOUTH@{SOUTH}}
+\index{SOUTH@{SOUTH}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{SOUTH}{SOUTH}}
+{\footnotesize\ttfamily \#define SOUTH~1}
+
+\Hypertarget{cub_8h_aac3553b3932cbfeeac4526ce7ca0336b}\label{cub_8h_aac3553b3932cbfeeac4526ce7ca0336b} 
+\index{cub.h@{cub.h}!SPEED@{SPEED}}
+\index{SPEED@{SPEED}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{SPEED}{SPEED}}
+{\footnotesize\ttfamily \#define SPEED~0.\+25}
+
+\Hypertarget{cub_8h_a88a57684ddf4d51b4852e3e2ca1b772d}\label{cub_8h_a88a57684ddf4d51b4852e3e2ca1b772d} 
+\index{cub.h@{cub.h}!TETA@{TETA}}
+\index{TETA@{TETA}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{TETA}{TETA}}
+{\footnotesize\ttfamily \#define TETA~0.\+0174532925}
+
+\Hypertarget{cub_8h_abf0395d8d9a864b5905d56b9687d9405}\label{cub_8h_abf0395d8d9a864b5905d56b9687d9405} 
+\index{cub.h@{cub.h}!WALL\_UNIT@{WALL\_UNIT}}
+\index{WALL\_UNIT@{WALL\_UNIT}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{WALL\_UNIT}{WALL\_UNIT}}
+{\footnotesize\ttfamily \#define WALL\+\_\+\+UNIT~600}
+
+\Hypertarget{cub_8h_a755da365a2f771fdb9e15af22fee7d74}\label{cub_8h_a755da365a2f771fdb9e15af22fee7d74} 
+\index{cub.h@{cub.h}!WEST@{WEST}}
+\index{WEST@{WEST}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{WEST}{WEST}}
+{\footnotesize\ttfamily \#define WEST~3}
+
+
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{cub_8h_a1525e11c3053dfecdfa47217bcf9b938}\label{cub_8h_a1525e11c3053dfecdfa47217bcf9b938} 
+\index{cub.h@{cub.h}!t\_bres@{t\_bres}}
+\index{t\_bres@{t\_bres}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{t\_bres}{t\_bres}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structs__bres}{s\+\_\+bres}} \mbox{\hyperlink{cub_8h_a1525e11c3053dfecdfa47217bcf9b938}{t\+\_\+bres}}}
+
+\Hypertarget{cub_8h_ac078a7fc0ee4585843f7c69f36cd305e}\label{cub_8h_ac078a7fc0ee4585843f7c69f36cd305e} 
+\index{cub.h@{cub.h}!t\_dda@{t\_dda}}
+\index{t\_dda@{t\_dda}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{t\_dda}{t\_dda}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structs__dda}{s\+\_\+dda}} \mbox{\hyperlink{cub_8h_ac078a7fc0ee4585843f7c69f36cd305e}{t\+\_\+dda}}}
+
+\Hypertarget{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}\label{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682} 
+\index{cub.h@{cub.h}!t\_display@{t\_display}}
+\index{t\_display@{t\_display}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{t\_display}{t\_display}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structs__display}{s\+\_\+display}} \mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}}}
+
+\Hypertarget{cub_8h_a467743de4aba3ccb37f696222cdaa97f}\label{cub_8h_a467743de4aba3ccb37f696222cdaa97f} 
+\index{cub.h@{cub.h}!t\_draw\_utils@{t\_draw\_utils}}
+\index{t\_draw\_utils@{t\_draw\_utils}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{t\_draw\_utils}{t\_draw\_utils}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structs__draw__utils}{s\+\_\+draw\+\_\+utils}} \mbox{\hyperlink{cub_8h_a467743de4aba3ccb37f696222cdaa97f}{t\+\_\+draw\+\_\+utils}}}
+
+\Hypertarget{cub_8h_a5adba0a1600843208f0bd925f29b928d}\label{cub_8h_a5adba0a1600843208f0bd925f29b928d} 
+\index{cub.h@{cub.h}!t\_hit@{t\_hit}}
+\index{t\_hit@{t\_hit}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{t\_hit}{t\_hit}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structs__hit}{s\+\_\+hit}} \mbox{\hyperlink{cub_8h_a5adba0a1600843208f0bd925f29b928d}{t\+\_\+hit}}}
+
+\Hypertarget{cub_8h_aa2823d71a465849891fd044a6371f982}\label{cub_8h_aa2823d71a465849891fd044a6371f982} 
+\index{cub.h@{cub.h}!t\_img@{t\_img}}
+\index{t\_img@{t\_img}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{t\_img}{t\_img}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structs__img}{s\+\_\+img}} \mbox{\hyperlink{cub_8h_aa2823d71a465849891fd044a6371f982}{t\+\_\+img}}}
+
+\Hypertarget{cub_8h_a26826566628048bb2153a6452151f119}\label{cub_8h_a26826566628048bb2153a6452151f119} 
+\index{cub.h@{cub.h}!t\_img\_texture@{t\_img\_texture}}
+\index{t\_img\_texture@{t\_img\_texture}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{t\_img\_texture}{t\_img\_texture}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structs__img__texture}{s\+\_\+img\+\_\+texture}} \mbox{\hyperlink{cub_8h_a26826566628048bb2153a6452151f119}{t\+\_\+img\+\_\+texture}}}
+
+\Hypertarget{cub_8h_a139e96a69bb6c58269ae9acc2ef01331}\label{cub_8h_a139e96a69bb6c58269ae9acc2ef01331} 
+\index{cub.h@{cub.h}!t\_line@{t\_line}}
+\index{t\_line@{t\_line}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{t\_line}{t\_line}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structs__line}{s\+\_\+line}} \mbox{\hyperlink{cub_8h_a139e96a69bb6c58269ae9acc2ef01331}{t\+\_\+line}}}
+
+\Hypertarget{cub_8h_aa4b254cf8df8527dff8ecd057b280110}\label{cub_8h_aa4b254cf8df8527dff8ecd057b280110} 
+\index{cub.h@{cub.h}!t\_mlx@{t\_mlx}}
+\index{t\_mlx@{t\_mlx}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{t\_mlx}{t\_mlx}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structs__mlx}{s\+\_\+mlx}} \mbox{\hyperlink{cub_8h_aa4b254cf8df8527dff8ecd057b280110}{t\+\_\+mlx}}}
+
+\Hypertarget{cub_8h_a792c0199f76a92790f5e4f928ffd0de2}\label{cub_8h_a792c0199f76a92790f5e4f928ffd0de2} 
+\index{cub.h@{cub.h}!t\_move@{t\_move}}
+\index{t\_move@{t\_move}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{t\_move}{t\_move}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structs__move}{s\+\_\+move}} \mbox{\hyperlink{cub_8h_a792c0199f76a92790f5e4f928ffd0de2}{t\+\_\+move}}}
+
+\Hypertarget{cub_8h_aef4e2e456f5bf835fd3145850f889c4a}\label{cub_8h_aef4e2e456f5bf835fd3145850f889c4a} 
+\index{cub.h@{cub.h}!t\_player@{t\_player}}
+\index{t\_player@{t\_player}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{t\_player}{t\_player}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structs__player}{s\+\_\+player}} \mbox{\hyperlink{cub_8h_aef4e2e456f5bf835fd3145850f889c4a}{t\+\_\+player}}}
+
+\Hypertarget{cub_8h_abf8063a0a45283ae6e7e17678404e394}\label{cub_8h_abf8063a0a45283ae6e7e17678404e394} 
+\index{cub.h@{cub.h}!t\_point@{t\_point}}
+\index{t\_point@{t\_point}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{t\_point}{t\_point}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structs__point}{s\+\_\+point}} \mbox{\hyperlink{cub_8h_abf8063a0a45283ae6e7e17678404e394}{t\+\_\+point}}}
+
+\Hypertarget{cub_8h_a249ca701a99a7da39d83c6270adac2ec}\label{cub_8h_a249ca701a99a7da39d83c6270adac2ec} 
+\index{cub.h@{cub.h}!t\_ray@{t\_ray}}
+\index{t\_ray@{t\_ray}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{t\_ray}{t\_ray}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structs__ray}{s\+\_\+ray}} \mbox{\hyperlink{cub_8h_a249ca701a99a7da39d83c6270adac2ec}{t\+\_\+ray}}}
+
+\Hypertarget{cub_8h_a1058cba65d7a503cf8cd102022882f80}\label{cub_8h_a1058cba65d7a503cf8cd102022882f80} 
+\index{cub.h@{cub.h}!t\_rgb@{t\_rgb}}
+\index{t\_rgb@{t\_rgb}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{t\_rgb}{t\_rgb}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structs__rgb}{s\+\_\+rgb}} \mbox{\hyperlink{cub_8h_a1058cba65d7a503cf8cd102022882f80}{t\+\_\+rgb}}}
+
+\Hypertarget{cub_8h_ae32e278473ccf5eb69b33f8d6daee253}\label{cub_8h_ae32e278473ccf5eb69b33f8d6daee253} 
+\index{cub.h@{cub.h}!t\_shift@{t\_shift}}
+\index{t\_shift@{t\_shift}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{t\_shift}{t\_shift}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structs__shift}{s\+\_\+shift}} \mbox{\hyperlink{cub_8h_ae32e278473ccf5eb69b33f8d6daee253}{t\+\_\+shift}}}
+
+\Hypertarget{cub_8h_a63899d66e8b5c19e8fb0940b9cb9c6b8}\label{cub_8h_a63899d66e8b5c19e8fb0940b9cb9c6b8} 
+\index{cub.h@{cub.h}!t\_tex@{t\_tex}}
+\index{t\_tex@{t\_tex}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{t\_tex}{t\_tex}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structs__tex}{s\+\_\+tex}} \mbox{\hyperlink{cub_8h_a63899d66e8b5c19e8fb0940b9cb9c6b8}{t\+\_\+tex}}}
+
+\Hypertarget{cub_8h_ace6bd274fac90c94609a959bfa594465}\label{cub_8h_ace6bd274fac90c94609a959bfa594465} 
+\index{cub.h@{cub.h}!t\_tex\_utils@{t\_tex\_utils}}
+\index{t\_tex\_utils@{t\_tex\_utils}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{t\_tex\_utils}{t\_tex\_utils}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structs__tex__utils}{s\+\_\+tex\+\_\+utils}} \mbox{\hyperlink{cub_8h_ace6bd274fac90c94609a959bfa594465}{t\+\_\+tex\+\_\+utils}}}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{cub_8h_a35ee55438220af9e36e3a662d5db8721}\label{cub_8h_a35ee55438220af9e36e3a662d5db8721} 
+\index{cub.h@{cub.h}!aff\_floor\_and\_ceiling@{aff\_floor\_and\_ceiling}}
+\index{aff\_floor\_and\_ceiling@{aff\_floor\_and\_ceiling}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{aff\_floor\_and\_ceiling()}{aff\_floor\_and\_ceiling()}}
+{\footnotesize\ttfamily void aff\+\_\+floor\+\_\+and\+\_\+ceiling (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}}]{display }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_a31924276690781ff39e4e7473b690f6f}\label{cub_8h_a31924276690781ff39e4e7473b690f6f} 
+\index{cub.h@{cub.h}!bresenham\_line@{bresenham\_line}}
+\index{bresenham\_line@{bresenham\_line}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{bresenham\_line()}{bresenham\_line()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{cub_8h_a139e96a69bb6c58269ae9acc2ef01331}{t\+\_\+line}} \texorpdfstring{$\ast$}{*} bresenham\+\_\+line (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_abf8063a0a45283ae6e7e17678404e394}{t\+\_\+point}} \texorpdfstring{$\ast$}{*}}]{begin,  }\item[{\mbox{\hyperlink{cub_8h_abf8063a0a45283ae6e7e17678404e394}{t\+\_\+point}} \texorpdfstring{$\ast$}{*}}]{end }\end{DoxyParamCaption})}
+
+
+
+Bresenham Line Drawing -\/ Connecting the Dots! ✏️ 
+
+This is like playing connect-\/the-\/dots, but the computer does it automatically! You start at your first dot and keep coloring squares until you reach the last dot.
+
+At each square, you\+:
+\begin{DoxyEnumerate}
+\item Color it in (add it to your path)
+\item Check if you\textquotesingle{}re at the end (like "{}are we there yet?"{})
+\item If not, take a smart step to the next square using increment\+\_\+bres
+\end{DoxyEnumerate}
+
+It\textquotesingle{}s like having a robot that draws perfect straight lines by carefully choosing which pixels to light up on your screen!
+
+The function returns a chain of all the colored squares (a linked list). \Hypertarget{cub_8h_abcd4ed8f4ce9ea8d0c636feeb0ca5abc}\label{cub_8h_abcd4ed8f4ce9ea8d0c636feeb0ca5abc} 
+\index{cub.h@{cub.h}!calculate\_end@{calculate\_end}}
+\index{calculate\_end@{calculate\_end}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{calculate\_end()}{calculate\_end()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{cub_8h_abf8063a0a45283ae6e7e17678404e394}{t\+\_\+point}} calculate\+\_\+end (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_abf8063a0a45283ae6e7e17678404e394}{t\+\_\+point}}}]{begin,  }\item[{float}]{angle,  }\item[{int}]{max\+\_\+distance }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_a25e6d2a693f516f5ae240e28e98646ff}\label{cub_8h_a25e6d2a693f516f5ae240e28e98646ff} 
+\index{cub.h@{cub.h}!calculate\_wall\_dist\_and\_x@{calculate\_wall\_dist\_and\_x}}
+\index{calculate\_wall\_dist\_and\_x@{calculate\_wall\_dist\_and\_x}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{calculate\_wall\_dist\_and\_x()}{calculate\_wall\_dist\_and\_x()}}
+{\footnotesize\ttfamily void calculate\+\_\+wall\+\_\+dist\+\_\+and\+\_\+x (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_a249ca701a99a7da39d83c6270adac2ec}{t\+\_\+ray}} \texorpdfstring{$\ast$}{*}}]{ray,  }\item[{\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}}]{display }\end{DoxyParamCaption})}
+
+
+
+Measure Your Discovery and Plan the Wall Art! 📐 
+
+Congratulations! Your laser found a wall. Now you need to\+:
+\begin{DoxyEnumerate}
+\item Measure exactly how far away it is (the "{}perpendicular distance"{})
+\item Figure out which direction the wall is facing (north/south/east/west)
+\item Calculate where on the wallpaper to look for the pattern
+\end{DoxyEnumerate}
+
+The "{}perpendicular distance"{} is like measuring with a ruler held straight out from you, not along the crooked laser path. This makes sure walls look the right size no matter what angle you\textquotesingle{}re looking from.
+
+The wall direction helps pick the right wallpaper, and wall\+\_\+x tells you "{}copy this part of the pattern here!"{}
+
+
+\begin{DoxyParams}{Parameters}
+{\em ray} & Your laser beam with all the discovery information \\
+\hline
+{\em display} & Your game world with the player\textquotesingle{}s position \\
+\hline
+\end{DoxyParams}
+\Hypertarget{cub_8h_a3a5af9c1ec9c677b1e7a8edde0ffbc19}\label{cub_8h_a3a5af9c1ec9c677b1e7a8edde0ffbc19} 
+\index{cub.h@{cub.h}!calculus\_dir@{calculus\_dir}}
+\index{calculus\_dir@{calculus\_dir}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{calculus\_dir()}{calculus\_dir()}}
+{\footnotesize\ttfamily void calculus\+\_\+dir (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}}]{display }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_ada861e7baf2193d34560bf95ea916cbe}\label{cub_8h_ada861e7baf2193d34560bf95ea916cbe} 
+\index{cub.h@{cub.h}!cast\_all\_rays@{cast\_all\_rays}}
+\index{cast\_all\_rays@{cast\_all\_rays}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{cast\_all\_rays()}{cast\_all\_rays()}}
+{\footnotesize\ttfamily void cast\+\_\+all\+\_\+rays (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}}]{display }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_a478aa2df2ec184af940933de86181d39}\label{cub_8h_a478aa2df2ec184af940933de86181d39} 
+\index{cub.h@{cub.h}!cast\_single\_ray@{cast\_single\_ray}}
+\index{cast\_single\_ray@{cast\_single\_ray}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{cast\_single\_ray()}{cast\_single\_ray()}}
+{\footnotesize\ttfamily void cast\+\_\+single\+\_\+ray (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}}]{display,  }\item[{\mbox{\hyperlink{cub_8h_a249ca701a99a7da39d83c6270adac2ec}{t\+\_\+ray}} \texorpdfstring{$\ast$}{*}}]{ray,  }\item[{float}]{angle }\end{DoxyParamCaption})}
+
+
+
+Cast a Single Ray -\/ Shoot Your Laser Pointer! 🔦 
+
+Imagine you have a magic laser pointer that shoots out from your eyes and tells you where the walls are. This function shoots just ONE laser beam in a specific direction and figures out exactly where it hits a wall.
+
+The laser beam\+:
+\begin{DoxyEnumerate}
+\item Knows which way it\textquotesingle{}s pointing (angle\+\_\+offset)
+\item Gets ready to travel (init\+\_\+ray\+\_\+direction)
+\item Plans its path through the grid (init\+\_\+step\+\_\+and\+\_\+side\+\_\+dist)
+\item Actually travels until it hits something (perform\+\_\+dda)
+\item Measures how far it went and what it hit (calculate\+\_\+wall\+\_\+dist\+\_\+and\+\_\+x)
+\end{DoxyEnumerate}
+
+It\textquotesingle{}s like having a treasure hunter that explores one path at a time, mapping out your 3D world with laser precision!
+
+
+\begin{DoxyParams}{Parameters}
+{\em display} & Your whole 3D world with walls and floors \\
+\hline
+{\em ray} & Your laser beam that will explore and report back \\
+\hline
+{\em angle} & Which direction to point the laser (like "{}30 degrees to the right"{}) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{cub_8h_ad0549d630ffe3a1aa0b8a55289e2e696}\label{cub_8h_ad0549d630ffe3a1aa0b8a55289e2e696} 
+\index{cub.h@{cub.h}!clear\_img@{clear\_img}}
+\index{clear\_img@{clear\_img}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{clear\_img()}{clear\_img()}}
+{\footnotesize\ttfamily void clear\+\_\+img (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}}]{display }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_a099bd61a5ad6b2fe2d9268bba0242830}\label{cub_8h_a099bd61a5ad6b2fe2d9268bba0242830} 
+\index{cub.h@{cub.h}!clear\_rays@{clear\_rays}}
+\index{clear\_rays@{clear\_rays}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{clear\_rays()}{clear\_rays()}}
+{\footnotesize\ttfamily void clear\+\_\+rays (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}}]{display }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_a186c69b486f0381677458fd47e6fa4ee}\label{cub_8h_a186c69b486f0381677458fd47e6fa4ee} 
+\index{cub.h@{cub.h}!closed\_error@{closed\_error}}
+\index{closed\_error@{closed\_error}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{closed\_error()}{closed\_error()}}
+{\footnotesize\ttfamily int closed\+\_\+error (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{map }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_aebdfad619c081f7f2aa6ab471e5debdf}\label{cub_8h_aebdfad619c081f7f2aa6ab471e5debdf} 
+\index{cub.h@{cub.h}!count\_map\_lines@{count\_map\_lines}}
+\index{count\_map\_lines@{count\_map\_lines}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{count\_map\_lines()}{count\_map\_lines()}}
+{\footnotesize\ttfamily int count\+\_\+map\+\_\+lines (\begin{DoxyParamCaption}\item[{int}]{fd }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_aa9c98971a984a8dda9ae2cb8a5477291}\label{cub_8h_aa9c98971a984a8dda9ae2cb8a5477291} 
+\index{cub.h@{cub.h}!dda\_line@{dda\_line}}
+\index{dda\_line@{dda\_line}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{dda\_line()}{dda\_line()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{cub_8h_a139e96a69bb6c58269ae9acc2ef01331}{t\+\_\+line}} \texorpdfstring{$\ast$}{*} dda\+\_\+line (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_abf8063a0a45283ae6e7e17678404e394}{t\+\_\+point}} \texorpdfstring{$\ast$}{*}}]{begin,  }\item[{\mbox{\hyperlink{cub_8h_abf8063a0a45283ae6e7e17678404e394}{t\+\_\+point}} \texorpdfstring{$\ast$}{*}}]{end }\end{DoxyParamCaption})}
+
+
+
+DDA Line Drawing -\/ Walking Through the Garden! 🚶‍♀️ 
+
+This is the main walking function! You start at your first flower and take small steps until you reach the second flower. At each step, you\+:
+\begin{DoxyEnumerate}
+\item Remember where you are (update\+\_\+current)
+\item Add a new point to your path (like leaving breadcrumbs)
+\item Move a little bit left/right and up/down
+\item Count your step
+\end{DoxyEnumerate}
+
+It\textquotesingle{}s like walking from one flower to another, stopping at every patch along the way to make a dotted line path through the garden!
+
+The function returns a linked list of all the points you visited. \Hypertarget{cub_8h_a92fbfeaecafeff054e806b043823afda}\label{cub_8h_a92fbfeaecafeff054e806b043823afda} 
+\index{cub.h@{cub.h}!draw\_line\_2@{draw\_line\_2}}
+\index{draw\_line\_2@{draw\_line\_2}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{draw\_line\_2()}{draw\_line\_2()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{cub_8h_a5adba0a1600843208f0bd925f29b928d}{t\+\_\+hit}} draw\+\_\+line\+\_\+2 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}}]{display,  }\item[{float}]{beta }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_ae9f0ed6623b52627dc40b73b5da9afef}\label{cub_8h_ae9f0ed6623b52627dc40b73b5da9afef} 
+\index{cub.h@{cub.h}!draw\_wall\_stripe@{draw\_wall\_stripe}}
+\index{draw\_wall\_stripe@{draw\_wall\_stripe}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{draw\_wall\_stripe()}{draw\_wall\_stripe()}}
+{\footnotesize\ttfamily void draw\+\_\+wall\+\_\+stripe (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}}]{display,  }\item[{int}]{x,  }\item[{\mbox{\hyperlink{cub_8h_a249ca701a99a7da39d83c6270adac2ec}{t\+\_\+ray}} \texorpdfstring{$\ast$}{*}}]{ray }\end{DoxyParamCaption})}
+
+
+
+Paint a Strip of Wall with Pretty Wallpaper! 🎨 
+
+Imagine you\textquotesingle{}re decorating a long wall, but you do it one tiny section at a time. This function paints just one vertical sliver of wall (like a candy cane stripe) at a specific spot on your screen.
+
+It figures out\+:
+\begin{DoxyItemize}
+\item Which wallpaper to use for this wall
+\item How tall the stripe should be (based on how far away you are)
+\item Where on the screen to paint it
+\item Which part of the wallpaper to copy for each pixel
+\end{DoxyItemize}
+
+It\textquotesingle{}s like having a tiny painter robot that carefully copies wallpaper patterns onto your 3D walls, one stripe at a time!
+
+
+\begin{DoxyParams}{Parameters}
+{\em display} & Your whole 3D world with walls and wallpapers \\
+\hline
+{\em x} & Which column on the screen to paint (like 100th pixel from the left) \\
+\hline
+{\em ray} & Your laser pointer showing exactly where and how far the wall is \\
+\hline
+\end{DoxyParams}
+\Hypertarget{cub_8h_a14ffe653b7c946f08d9674426262a537}\label{cub_8h_a14ffe653b7c946f08d9674426262a537} 
+\index{cub.h@{cub.h}!dup\_mat@{dup\_mat}}
+\index{dup\_mat@{dup\_mat}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{dup\_mat()}{dup\_mat()}}
+{\footnotesize\ttfamily char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} dup\+\_\+mat (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}}]{display,  }\item[{int}]{height,  }\item[{char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{map }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_a99afb791b7c9c8d9b0dc0ed0876efc2e}\label{cub_8h_a99afb791b7c9c8d9b0dc0ed0876efc2e} 
+\index{cub.h@{cub.h}!error\_handling@{error\_handling}}
+\index{error\_handling@{error\_handling}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{error\_handling()}{error\_handling()}}
+{\footnotesize\ttfamily int error\+\_\+handling (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}}]{texture }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_aadfbd503381599d7dc3615d12ac1ddc6}\label{cub_8h_aadfbd503381599d7dc3615d12ac1ddc6} 
+\index{cub.h@{cub.h}!filter\_texture@{filter\_texture}}
+\index{filter\_texture@{filter\_texture}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{filter\_texture()}{filter\_texture()}}
+{\footnotesize\ttfamily void filter\+\_\+texture (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}}]{display }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_abc0e2cd4d0291c103c66bfa65d0c8d1c}\label{cub_8h_abc0e2cd4d0291c103c66bfa65d0c8d1c} 
+\index{cub.h@{cub.h}!find\_len\_max@{find\_len\_max}}
+\index{find\_len\_max@{find\_len\_max}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{find\_len\_max()}{find\_len\_max()}}
+{\footnotesize\ttfamily size\+\_\+t find\+\_\+len\+\_\+max (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{map }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_a4a0cc4f7f6f86080cf430be1d2d0f067}\label{cub_8h_a4a0cc4f7f6f86080cf430be1d2d0f067} 
+\index{cub.h@{cub.h}!float\_abs@{float\_abs}}
+\index{float\_abs@{float\_abs}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{float\_abs()}{float\_abs()}}
+{\footnotesize\ttfamily int float\+\_\+abs (\begin{DoxyParamCaption}\item[{float}]{number }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_ae94c97dba3d76a56f1a8d3b2496d5b20}\label{cub_8h_ae94c97dba3d76a56f1a8d3b2496d5b20} 
+\index{cub.h@{cub.h}!free\_split@{free\_split}}
+\index{free\_split@{free\_split}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{free\_split()}{free\_split()}}
+{\footnotesize\ttfamily void free\+\_\+split (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{split }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_aaefe208d210969f7c66355d6cdc5868c}\label{cub_8h_aaefe208d210969f7c66355d6cdc5868c} 
+\index{cub.h@{cub.h}!free\_tex\_map@{free\_tex\_map}}
+\index{free\_tex\_map@{free\_tex\_map}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{free\_tex\_map()}{free\_tex\_map()}}
+{\footnotesize\ttfamily void free\+\_\+tex\+\_\+map (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}}]{display }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_a78d40f055a354e7e00795d051a5f2c57}\label{cub_8h_a78d40f055a354e7e00795d051a5f2c57} 
+\index{cub.h@{cub.h}!free\_texture@{free\_texture}}
+\index{free\_texture@{free\_texture}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{free\_texture()}{free\_texture()}}
+{\footnotesize\ttfamily void free\+\_\+texture (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}}]{texture }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_aa7c4f303aebd3737b7cc180a9e7608f1}\label{cub_8h_aa7c4f303aebd3737b7cc180a9e7608f1} 
+\index{cub.h@{cub.h}!ft\_abs@{ft\_abs}}
+\index{ft\_abs@{ft\_abs}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{ft\_abs()}{ft\_abs()}}
+{\footnotesize\ttfamily int ft\+\_\+abs (\begin{DoxyParamCaption}\item[{int}]{n }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_a83dba2b7dba0de8cb420f234a6efc827}\label{cub_8h_a83dba2b7dba0de8cb420f234a6efc827} 
+\index{cub.h@{cub.h}!ft\_atoll@{ft\_atoll}}
+\index{ft\_atoll@{ft\_atoll}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{ft\_atoll()}{ft\_atoll()}}
+{\footnotesize\ttfamily long long ft\+\_\+atoll (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{ptr }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_a66b102f0ed40e240591df229a561bd33}\label{cub_8h_a66b102f0ed40e240591df229a561bd33} 
+\index{cub.h@{cub.h}!ft\_lineadd\_back@{ft\_lineadd\_back}}
+\index{ft\_lineadd\_back@{ft\_lineadd\_back}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{ft\_lineadd\_back()}{ft\_lineadd\_back()}}
+{\footnotesize\ttfamily void ft\+\_\+lineadd\+\_\+back (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_a139e96a69bb6c58269ae9acc2ef01331}{t\+\_\+line}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{line,  }\item[{\mbox{\hyperlink{cub_8h_a139e96a69bb6c58269ae9acc2ef01331}{t\+\_\+line}} \texorpdfstring{$\ast$}{*}}]{new }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_aacad071179190c91593065e354ea4759}\label{cub_8h_aacad071179190c91593065e354ea4759} 
+\index{cub.h@{cub.h}!ft\_linefree@{ft\_linefree}}
+\index{ft\_linefree@{ft\_linefree}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{ft\_linefree()}{ft\_linefree()}}
+{\footnotesize\ttfamily void ft\+\_\+linefree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_a139e96a69bb6c58269ae9acc2ef01331}{t\+\_\+line}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{line }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_aa2160add26ed6ceecac37466d66c905c}\label{cub_8h_aa2160add26ed6ceecac37466d66c905c} 
+\index{cub.h@{cub.h}!ft\_linenew@{ft\_linenew}}
+\index{ft\_linenew@{ft\_linenew}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{ft\_linenew()}{ft\_linenew()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{cub_8h_a139e96a69bb6c58269ae9acc2ef01331}{t\+\_\+line}} \texorpdfstring{$\ast$}{*} ft\+\_\+linenew (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_abf8063a0a45283ae6e7e17678404e394}{t\+\_\+point}}}]{content }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_a04bd85bed73db8359c6a384293d0be83}\label{cub_8h_a04bd85bed73db8359c6a384293d0be83} 
+\index{cub.h@{cub.h}!ft\_linesize@{ft\_linesize}}
+\index{ft\_linesize@{ft\_linesize}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{ft\_linesize()}{ft\_linesize()}}
+{\footnotesize\ttfamily int ft\+\_\+linesize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_a139e96a69bb6c58269ae9acc2ef01331}{t\+\_\+line}} \texorpdfstring{$\ast$}{*}}]{line }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_a33f9e440ea6cde6906a3f0e8cee2bc00}\label{cub_8h_a33f9e440ea6cde6906a3f0e8cee2bc00} 
+\index{cub.h@{cub.h}!ft\_strdup\_x@{ft\_strdup\_x}}
+\index{ft\_strdup\_x@{ft\_strdup\_x}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{ft\_strdup\_x()}{ft\_strdup\_x()}}
+{\footnotesize\ttfamily char \texorpdfstring{$\ast$}{*} ft\+\_\+strdup\+\_\+x (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{s,  }\item[{int}]{len }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_a5bf0660d25812b1a40fd725878a0c133}\label{cub_8h_a5bf0660d25812b1a40fd725878a0c133} 
+\index{cub.h@{cub.h}!game\_engine@{game\_engine}}
+\index{game\_engine@{game\_engine}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{game\_engine()}{game\_engine()}}
+{\footnotesize\ttfamily int game\+\_\+engine (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}}]{display }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_acdc3d2fd752e4db9867a19c594e051e0}\label{cub_8h_acdc3d2fd752e4db9867a19c594e051e0} 
+\index{cub.h@{cub.h}!get\_elements@{get\_elements}}
+\index{get\_elements@{get\_elements}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{get\_elements()}{get\_elements()}}
+{\footnotesize\ttfamily void get\+\_\+elements (\begin{DoxyParamCaption}\item[{int}]{fd,  }\item[{\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}}]{texture,  }\item[{int}]{map\+\_\+height }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_a0f52b1f3177566572e6821fe7dce72de}\label{cub_8h_a0f52b1f3177566572e6821fe7dce72de} 
+\index{cub.h@{cub.h}!get\_map@{get\_map}}
+\index{get\_map@{get\_map}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{get\_map()}{get\_map()}}
+{\footnotesize\ttfamily char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} get\+\_\+map (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{gnl,  }\item[{int}]{fd,  }\item[{int}]{map\+\_\+height }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_ae85773d9101edf39a71fa662c10e9053}\label{cub_8h_ae85773d9101edf39a71fa662c10e9053} 
+\index{cub.h@{cub.h}!get\_map\_height@{get\_map\_height}}
+\index{get\_map\_height@{get\_map\_height}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{get\_map\_height()}{get\_map\_height()}}
+{\footnotesize\ttfamily int get\+\_\+map\+\_\+height (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}}]{display,  }\item[{int \texorpdfstring{$\ast$}{*}}]{map\+\_\+height,  }\item[{char \texorpdfstring{$\ast$}{*}}]{file }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_ad616cd3eb6d6894095585fee6028dd04}\label{cub_8h_ad616cd3eb6d6894095585fee6028dd04} 
+\index{cub.h@{cub.h}!get\_rgb@{get\_rgb}}
+\index{get\_rgb@{get\_rgb}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{get\_rgb()}{get\_rgb()}}
+{\footnotesize\ttfamily int get\+\_\+rgb (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_a1058cba65d7a503cf8cd102022882f80}{t\+\_\+rgb}} \texorpdfstring{$\ast$}{*}}]{rgb,  }\item[{char \texorpdfstring{$\ast$}{*}}]{str\+\_\+rgb }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_a59ac4af96a4712760c9a8d9581d9d5ef}\label{cub_8h_a59ac4af96a4712760c9a8d9581d9d5ef} 
+\index{cub.h@{cub.h}!get\_texture\_for\_wall@{get\_texture\_for\_wall}}
+\index{get\_texture\_for\_wall@{get\_texture\_for\_wall}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{get\_texture\_for\_wall()}{get\_texture\_for\_wall()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{cub_8h_a26826566628048bb2153a6452151f119}{t\+\_\+img\+\_\+texture}} \texorpdfstring{$\ast$}{*} get\+\_\+texture\+\_\+for\+\_\+wall (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}}]{display,  }\item[{int}]{wall\+\_\+dir }\end{DoxyParamCaption})}
+
+
+
+Pick the Right Wallpaper for Each Wall! 🧭 
+
+Imagine you\textquotesingle{}re decorating a room and each wall needs different wallpaper. The north wall gets stripes, the south wall gets flowers, etc. This function is like your decorator helper that knows which wallpaper goes where!
+
+Based on which direction the wall is facing (north, south, east, west), it picks the matching texture. It\textquotesingle{}s like having a smart assistant that always chooses the right wallpaper roll for each wall.
+
+
+\begin{DoxyParams}{Parameters}
+{\em display} & Your whole room setup with all the wallpapers \\
+\hline
+{\em wall\+\_\+dir} & Which way the wall is facing (like a compass\+: N, S, E, W) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The perfect wallpaper roll for that wall direction 
+\end{DoxyReturn}
+\Hypertarget{cub_8h_a83bf0433d299ba447627d2d424d04737}\label{cub_8h_a83bf0433d299ba447627d2d424d04737} 
+\index{cub.h@{cub.h}!img\_initialization@{img\_initialization}}
+\index{img\_initialization@{img\_initialization}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{img\_initialization()}{img\_initialization()}}
+{\footnotesize\ttfamily void img\+\_\+initialization (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}}]{display }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_a2daedd5348b61728a4693577a13991fd}\label{cub_8h_a2daedd5348b61728a4693577a13991fd} 
+\index{cub.h@{cub.h}!img\_pix\_put@{img\_pix\_put}}
+\index{img\_pix\_put@{img\_pix\_put}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{img\_pix\_put()}{img\_pix\_put()}}
+{\footnotesize\ttfamily void img\+\_\+pix\+\_\+put (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_aa2823d71a465849891fd044a6371f982}{t\+\_\+img}} \texorpdfstring{$\ast$}{*}}]{img,  }\item[{int}]{x,  }\item[{int}]{y,  }\item[{int}]{color }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_a16d0b14b6d55635e80900939901395d5}\label{cub_8h_a16d0b14b6d55635e80900939901395d5} 
+\index{cub.h@{cub.h}!init\_direction@{init\_direction}}
+\index{init\_direction@{init\_direction}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{init\_direction()}{init\_direction()}}
+{\footnotesize\ttfamily void init\+\_\+direction (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}}]{display,  }\item[{int}]{x\+\_\+dir,  }\item[{int}]{y\+\_\+dir,  }\item[{float}]{angle }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_af729231a840eb688df953d42ae5f67bd}\label{cub_8h_af729231a840eb688df953d42ae5f67bd} 
+\index{cub.h@{cub.h}!init\_it@{init\_it}}
+\index{init\_it@{init\_it}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{init\_it()}{init\_it()}}
+{\footnotesize\ttfamily void init\+\_\+it (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}}]{display }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_af4452b741522093395c618b8f53cf43d}\label{cub_8h_af4452b741522093395c618b8f53cf43d} 
+\index{cub.h@{cub.h}!init\_player\_pos@{init\_player\_pos}}
+\index{init\_player\_pos@{init\_player\_pos}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{init\_player\_pos()}{init\_player\_pos()}}
+{\footnotesize\ttfamily void init\+\_\+player\+\_\+pos (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}}]{display,  }\item[{int}]{i,  }\item[{int}]{j }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_aea0f426affb717aea1fd09540178a22a}\label{cub_8h_aea0f426affb717aea1fd09540178a22a} 
+\index{cub.h@{cub.h}!init\_ray\_direction@{init\_ray\_direction}}
+\index{init\_ray\_direction@{init\_ray\_direction}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{init\_ray\_direction()}{init\_ray\_direction()}}
+{\footnotesize\ttfamily void init\+\_\+ray\+\_\+direction (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_a249ca701a99a7da39d83c6270adac2ec}{t\+\_\+ray}} \texorpdfstring{$\ast$}{*}}]{ray,  }\item[{\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}}]{display,  }\item[{float}]{angle }\end{DoxyParamCaption})}
+
+
+
+Set Up Your Laser Beam Direction! 🧭 
+
+Imagine you\textquotesingle{}re holding a flashlight and you want to point it in a specific direction. This function tells your laser beam which way to go!
+
+It calculates\+:
+\begin{DoxyItemize}
+\item Which direction the beam should travel (using math with angles)
+\item Which grid square you\textquotesingle{}re starting from (like "{}\+I\textquotesingle{}m in square 5,7"{})
+\item How far it needs to go to hit the next grid line in each direction
+\end{DoxyItemize}
+
+The "{}large distance"{} trick is like saying "{}if you\textquotesingle{}re going perfectly straight, you won\textquotesingle{}t hit any grid lines, so pretend the next one is super far away!"{}
+
+
+\begin{DoxyParams}{Parameters}
+{\em ray} & Your laser beam that needs direction instructions \\
+\hline
+{\em display} & Your game world with the player and map \\
+\hline
+{\em angle} & How much to turn from straight ahead (like "{}turn 45 degrees right"{}) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{cub_8h_a5446f480addd79729fd3abbe553b5ff9}\label{cub_8h_a5446f480addd79729fd3abbe553b5ff9} 
+\index{cub.h@{cub.h}!init\_step\_and\_side\_dist@{init\_step\_and\_side\_dist}}
+\index{init\_step\_and\_side\_dist@{init\_step\_and\_side\_dist}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{init\_step\_and\_side\_dist()}{init\_step\_and\_side\_dist()}}
+{\footnotesize\ttfamily void init\+\_\+step\+\_\+and\+\_\+side\+\_\+dist (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_a249ca701a99a7da39d83c6270adac2ec}{t\+\_\+ray}} \texorpdfstring{$\ast$}{*}}]{ray,  }\item[{\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}}]{display }\end{DoxyParamCaption})}
+
+
+
+Plan Your Beam\textquotesingle{}s First Steps! 🚶‍♂️ 
+
+Now that your laser knows which way it\textquotesingle{}s going, it needs to figure out how to start walking through the grid. This is like planning your first few steps when you start a journey.
+
+The function checks\+:
+\begin{DoxyItemize}
+\item How far into the current square you are (like "{}\+I\textquotesingle{}m 3/4 of the way across"{})
+\item Which direction to step first (left/right or up/down)
+\item How far to the next grid line in each direction
+\end{DoxyItemize}
+
+It\textquotesingle{}s like a hiker checking their map and saying "{}\+First I need to walk 2 more meters, then I\textquotesingle{}ll hit the next trail marker!"{}
+
+
+\begin{DoxyParams}{Parameters}
+{\em ray} & Your laser beam with direction info \\
+\hline
+{\em display} & Your game world with the player\textquotesingle{}s position \\
+\hline
+\end{DoxyParams}
+\Hypertarget{cub_8h_afecd1c0aed66318daf61f35e4fee469e}\label{cub_8h_afecd1c0aed66318daf61f35e4fee469e} 
+\index{cub.h@{cub.h}!init\_xpm\_image@{init\_xpm\_image}}
+\index{init\_xpm\_image@{init\_xpm\_image}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{init\_xpm\_image()}{init\_xpm\_image()}}
+{\footnotesize\ttfamily void init\+\_\+xpm\+\_\+image (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}}]{display }\end{DoxyParamCaption})}
+
+
+
+Load XPM Textures -\/ Getting Your Wall Pictures Ready! 🖼️ 
+
+Imagine you have a bunch of wallpaper rolls for your room. Before you can put them up, you need to unroll them and get them ready. That\textquotesingle{}s what this function does for your game walls!
+
+It takes the picture files you specified (north, south, east, west walls) and loads them into the computer\textquotesingle{}s memory so the game can use them. Each picture becomes a special "{}texture"{} that the computer can show on walls.
+
+If any picture can\textquotesingle{}t be loaded (like if the file is missing), it tells you there\textquotesingle{}s a problem and stops the game.
+
+
+\begin{DoxyParams}{Parameters}
+{\em display} & Where all your game pictures and settings are stored \\
+\hline
+\end{DoxyParams}
+\Hypertarget{cub_8h_a4bc04126aa7f54fa74dd76aa163be41f}\label{cub_8h_a4bc04126aa7f54fa74dd76aa163be41f} 
+\index{cub.h@{cub.h}!input\_error@{input\_error}}
+\index{input\_error@{input\_error}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{input\_error()}{input\_error()}}
+{\footnotesize\ttfamily int input\+\_\+error (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{argv }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_a0f9e84e04bc150af9d66ab2228e00576}\label{cub_8h_a0f9e84e04bc150af9d66ab2228e00576} 
+\index{cub.h@{cub.h}!is\_player@{is\_player}}
+\index{is\_player@{is\_player}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{is\_player()}{is\_player()}}
+{\footnotesize\ttfamily int is\+\_\+player (\begin{DoxyParamCaption}\item[{char}]{c }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_a18bf5135983f2a95166f72cac39659c5}\label{cub_8h_a18bf5135983f2a95166f72cac39659c5} 
+\index{cub.h@{cub.h}!is\_unknown@{is\_unknown}}
+\index{is\_unknown@{is\_unknown}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{is\_unknown()}{is\_unknown()}}
+{\footnotesize\ttfamily int is\+\_\+unknown (\begin{DoxyParamCaption}\item[{char}]{c }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_a219e24a6fb85a7cc4187510a07c99587}\label{cub_8h_a219e24a6fb85a7cc4187510a07c99587} 
+\index{cub.h@{cub.h}!is\_valid\_map\_pos@{is\_valid\_map\_pos}}
+\index{is\_valid\_map\_pos@{is\_valid\_map\_pos}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{is\_valid\_map\_pos()}{is\_valid\_map\_pos()}}
+{\footnotesize\ttfamily int is\+\_\+valid\+\_\+map\+\_\+pos (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_a249ca701a99a7da39d83c6270adac2ec}{t\+\_\+ray}} \texorpdfstring{$\ast$}{*}}]{ray,  }\item[{\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}}]{display }\end{DoxyParamCaption})}
+
+
+
+Check if You\textquotesingle{}re Still on the Map! 🗺️ 
+
+Imagine you\textquotesingle{}re exploring and you need to make sure you don\textquotesingle{}t fall off the edge of the world! This function checks if your laser beam is still pointing at a valid part of the map.
+
+It makes sure\+:
+\begin{DoxyItemize}
+\item You\textquotesingle{}re not above the top of the map
+\item You\textquotesingle{}re not below the bottom of the map
+\item You\textquotesingle{}re not left of the left edge
+\item You\textquotesingle{}re not right of the right edge
+\item The square you\textquotesingle{}re looking at actually exists
+\end{DoxyItemize}
+
+It\textquotesingle{}s like having a safety net that says "{}\+Don\textquotesingle{}t go there -\/ it\textquotesingle{}s not safe!"{}
+
+
+\begin{DoxyParams}{Parameters}
+{\em ray} & Your laser beam showing which square it\textquotesingle{}s checking \\
+\hline
+{\em display} & Your game world with map boundaries \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+TRUE if the square is safe to look at, FALSE if it\textquotesingle{}s off the map 
+\end{DoxyReturn}
+\Hypertarget{cub_8h_aaf4bef1ec670cc4374ac9185e3ea4614}\label{cub_8h_aaf4bef1ec670cc4374ac9185e3ea4614} 
+\index{cub.h@{cub.h}!key\_hook@{key\_hook}}
+\index{key\_hook@{key\_hook}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{key\_hook()}{key\_hook()}}
+{\footnotesize\ttfamily int key\+\_\+hook (\begin{DoxyParamCaption}\item[{int}]{key,  }\item[{void \texorpdfstring{$\ast$}{*}}]{param }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_ac6ded22c327b72ed2408872c8f244ff4}\label{cub_8h_ac6ded22c327b72ed2408872c8f244ff4} 
+\index{cub.h@{cub.h}!load\_textures@{load\_textures}}
+\index{load\_textures@{load\_textures}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{load\_textures()}{load\_textures()}}
+{\footnotesize\ttfamily void load\+\_\+textures (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}}]{display }\end{DoxyParamCaption})}
+
+
+
+Get Texture Data -\/ Unlocking the Picture Secrets! 🔓 
+
+Now that you have your wallpaper rolls ready, you need to open them up and see what\textquotesingle{}s inside! This function takes each loaded picture and gets the actual colors and pixels that make up the image.
+
+It\textquotesingle{}s like taking a photograph and finding out what color each tiny dot should be. The computer stores this information so it can quickly grab colors when drawing walls.
+
+
+\begin{DoxyParams}{Parameters}
+{\em display} & Where all your game pictures and settings are stored \\
+\hline
+\end{DoxyParams}
+\Hypertarget{cub_8h_a0a3627880a446997c76db8c337d0e1aa}\label{cub_8h_a0a3627880a446997c76db8c337d0e1aa} 
+\index{cub.h@{cub.h}!map\_invalid@{map\_invalid}}
+\index{map\_invalid@{map\_invalid}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{map\_invalid()}{map\_invalid()}}
+{\footnotesize\ttfamily int map\+\_\+invalid (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{int}]{j,  }\item[{int}]{k,  }\item[{char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{map }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_a1dbd22f9579e0b4249309db479bcfb70}\label{cub_8h_a1dbd22f9579e0b4249309db479bcfb70} 
+\index{cub.h@{cub.h}!matrix\_height@{matrix\_height}}
+\index{matrix\_height@{matrix\_height}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{matrix\_height()}{matrix\_height()}}
+{\footnotesize\ttfamily int matrix\+\_\+height (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{matrix }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_a9354691e220c382cc82770f5afcc926e}\label{cub_8h_a9354691e220c382cc82770f5afcc926e} 
+\index{cub.h@{cub.h}!non\_numeric\_values@{non\_numeric\_values}}
+\index{non\_numeric\_values@{non\_numeric\_values}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{non\_numeric\_values()}{non\_numeric\_values()}}
+{\footnotesize\ttfamily int non\+\_\+numeric\+\_\+values (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{split\+\_\+rgb }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_af0679f1874e6a6c84c9647a1578bc5c1}\label{cub_8h_af0679f1874e6a6c84c9647a1578bc5c1} 
+\index{cub.h@{cub.h}!not\_enough\_values@{not\_enough\_values}}
+\index{not\_enough\_values@{not\_enough\_values}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{not\_enough\_values()}{not\_enough\_values()}}
+{\footnotesize\ttfamily int not\+\_\+enough\+\_\+values (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{split\+\_\+rgb }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_a50be973c5c657ad8783dd8abfeba36a0}\label{cub_8h_a50be973c5c657ad8783dd8abfeba36a0} 
+\index{cub.h@{cub.h}!orientation\_init@{orientation\_init}}
+\index{orientation\_init@{orientation\_init}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{orientation\_init()}{orientation\_init()}}
+{\footnotesize\ttfamily void orientation\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}}]{display,  }\item[{int}]{i,  }\item[{int}]{j }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_a9304a3f59719ff1ddb9c5aaf28a5d60a}\label{cub_8h_a9304a3f59719ff1ddb9c5aaf28a5d60a} 
+\index{cub.h@{cub.h}!orientation\_player@{orientation\_player}}
+\index{orientation\_player@{orientation\_player}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{orientation\_player()}{orientation\_player()}}
+{\footnotesize\ttfamily void orientation\+\_\+player (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}}]{display,  }\item[{int}]{operation }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_a34e52c58df884bb27d2354b928ad3d91}\label{cub_8h_a34e52c58df884bb27d2354b928ad3d91} 
+\index{cub.h@{cub.h}!overflowing\_values@{overflowing\_values}}
+\index{overflowing\_values@{overflowing\_values}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{overflowing\_values()}{overflowing\_values()}}
+{\footnotesize\ttfamily int overflowing\+\_\+values (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{split\+\_\+rgb }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_a7391b1eebadf52def3de66a661e19cfe}\label{cub_8h_a7391b1eebadf52def3de66a661e19cfe} 
+\index{cub.h@{cub.h}!parsing@{parsing}}
+\index{parsing@{parsing}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{parsing()}{parsing()}}
+{\footnotesize\ttfamily int parsing (\begin{DoxyParamCaption}\item[{int \texorpdfstring{$\ast$}{*}}]{map\+\_\+height,  }\item[{char \texorpdfstring{$\ast$}{*}}]{file,  }\item[{\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}}]{display }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_a34aa07489c4d2660a97d876005bfcffe}\label{cub_8h_a34aa07489c4d2660a97d876005bfcffe} 
+\index{cub.h@{cub.h}!perform\_dda@{perform\_dda}}
+\index{perform\_dda@{perform\_dda}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{perform\_dda()}{perform\_dda()}}
+{\footnotesize\ttfamily void perform\+\_\+dda (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_a249ca701a99a7da39d83c6270adac2ec}{t\+\_\+ray}} \texorpdfstring{$\ast$}{*}}]{ray,  }\item[{\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}}]{display }\end{DoxyParamCaption})}
+
+
+
+March Through the Grid Until You Hit a Wall! 🏃‍♀️ 
+
+This is the exciting part -\/ your laser beam starts running through the grid like a speedy explorer! It keeps jumping from one grid line to another until it finds a wall to bounce off.
+
+At each step, it\+:
+\begin{DoxyEnumerate}
+\item Checks which direction is closer (left/right or up/down)
+\item Jumps to the next grid line in that direction
+\item Looks around and says "{}\+Is there a wall here?"{}
+\item If it finds a wall, it stops and celebrates!
+\item If it goes off the map, it stops too
+\end{DoxyEnumerate}
+
+It\textquotesingle{}s like playing tag in a giant checkerboard -\/ keep running until someone yells "{}\+You\textquotesingle{}re it!"{} (or in this case, "{}\+Wall!"{})
+
+
+\begin{DoxyParams}{Parameters}
+{\em ray} & Your laser beam that will explore the grid \\
+\hline
+{\em display} & Your game world with walls and open spaces \\
+\hline
+\end{DoxyParams}
+\Hypertarget{cub_8h_a88c2557827b5ab9502c72e476beb0204}\label{cub_8h_a88c2557827b5ab9502c72e476beb0204} 
+\index{cub.h@{cub.h}!pixel\_to\_bloc@{pixel\_to\_bloc}}
+\index{pixel\_to\_bloc@{pixel\_to\_bloc}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{pixel\_to\_bloc()}{pixel\_to\_bloc()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{cub_8h_abf8063a0a45283ae6e7e17678404e394}{t\+\_\+point}} pixel\+\_\+to\+\_\+bloc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_abf8063a0a45283ae6e7e17678404e394}{t\+\_\+point}}}]{pixel,  }\item[{\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}}]{display }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_a6c93c77330cf89c2b2a23ad499e8aa47}\label{cub_8h_a6c93c77330cf89c2b2a23ad499e8aa47} 
+\index{cub.h@{cub.h}!player\_error@{player\_error}}
+\index{player\_error@{player\_error}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{player\_error()}{player\_error()}}
+{\footnotesize\ttfamily int player\+\_\+error (\begin{DoxyParamCaption}\item[{int}]{count,  }\item[{\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}}]{display }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_adea13faaf453b1ad646a52ed3178165a}\label{cub_8h_adea13faaf453b1ad646a52ed3178165a} 
+\index{cub.h@{cub.h}!player\_in\_str@{player\_in\_str}}
+\index{player\_in\_str@{player\_in\_str}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{player\_in\_str()}{player\_in\_str()}}
+{\footnotesize\ttfamily int player\+\_\+in\+\_\+str (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{str }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_a064b9912b87049f9a2bf651f43eb3e95}\label{cub_8h_a064b9912b87049f9a2bf651f43eb3e95} 
+\index{cub.h@{cub.h}!player\_move@{player\_move}}
+\index{player\_move@{player\_move}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{player\_move()}{player\_move()}}
+{\footnotesize\ttfamily void player\+\_\+move (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}}]{display,  }\item[{int}]{op,  }\item[{bool}]{is\+\_\+float }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_aae77763c14a7545a5a4ecb36d644bea1}\label{cub_8h_aae77763c14a7545a5a4ecb36d644bea1} 
+\index{cub.h@{cub.h}!print\_list@{print\_list}}
+\index{print\_list@{print\_list}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{print\_list()}{print\_list()}}
+{\footnotesize\ttfamily void print\+\_\+list (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_a139e96a69bb6c58269ae9acc2ef01331}{t\+\_\+line}} \texorpdfstring{$\ast$}{*}}]{head }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_a674706d120a0e7b6142305d0acf074f7}\label{cub_8h_a674706d120a0e7b6142305d0acf074f7} 
+\index{cub.h@{cub.h}!print\_map@{print\_map}}
+\index{print\_map@{print\_map}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{print\_map()}{print\_map()}}
+{\footnotesize\ttfamily void print\+\_\+map (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{map }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_a785131858cf35b5edefb649259aaeecb}\label{cub_8h_a785131858cf35b5edefb649259aaeecb} 
+\index{cub.h@{cub.h}!quit\_win@{quit\_win}}
+\index{quit\_win@{quit\_win}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{quit\_win()}{quit\_win()}}
+{\footnotesize\ttfamily int quit\+\_\+win (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}}]{mlx }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_a1187c0d962c39fc8bfef708b8b8d9db2}\label{cub_8h_a1187c0d962c39fc8bfef708b8b8d9db2} 
+\index{cub.h@{cub.h}!rad\_to\_deg@{rad\_to\_deg}}
+\index{rad\_to\_deg@{rad\_to\_deg}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{rad\_to\_deg()}{rad\_to\_deg()}}
+{\footnotesize\ttfamily void rad\+\_\+to\+\_\+deg (\begin{DoxyParamCaption}\item[{double}]{rad }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_a5f125bc4c5eb963e2eccd92c08310187}\label{cub_8h_a5f125bc4c5eb963e2eccd92c08310187} 
+\index{cub.h@{cub.h}!releasing\_key@{releasing\_key}}
+\index{releasing\_key@{releasing\_key}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{releasing\_key()}{releasing\_key()}}
+{\footnotesize\ttfamily int releasing\+\_\+key (\begin{DoxyParamCaption}\item[{int}]{key,  }\item[{void \texorpdfstring{$\ast$}{*}}]{param }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_a914127c28ff0ab4995dab99c22b1b15a}\label{cub_8h_a914127c28ff0ab4995dab99c22b1b15a} 
+\index{cub.h@{cub.h}!render\_all@{render\_all}}
+\index{render\_all@{render\_all}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{render\_all()}{render\_all()}}
+{\footnotesize\ttfamily void render\+\_\+all (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}}]{display }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_ac17848a5e2d60e3b0d5d2e59b84934e1}\label{cub_8h_ac17848a5e2d60e3b0d5d2e59b84934e1} 
+\index{cub.h@{cub.h}!rgb\_error@{rgb\_error}}
+\index{rgb\_error@{rgb\_error}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{rgb\_error()}{rgb\_error()}}
+{\footnotesize\ttfamily int rgb\+\_\+error (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{split\+\_\+rgb,  }\item[{char \texorpdfstring{$\ast$}{*}}]{str\+\_\+rgb }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_afeb904d7c4314df13a0415f57f771089}\label{cub_8h_afeb904d7c4314df13a0415f57f771089} 
+\index{cub.h@{cub.h}!rotate\_player@{rotate\_player}}
+\index{rotate\_player@{rotate\_player}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{rotate\_player()}{rotate\_player()}}
+{\footnotesize\ttfamily void rotate\+\_\+player (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}}]{display,  }\item[{float}]{angle }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_ac4388e15152dcb6e6b1ce3dfd5c2d216}\label{cub_8h_ac4388e15152dcb6e6b1ce3dfd5c2d216} 
+\index{cub.h@{cub.h}!sample\_texture@{sample\_texture}}
+\index{sample\_texture@{sample\_texture}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{sample\_texture()}{sample\_texture()}}
+{\footnotesize\ttfamily int sample\+\_\+texture (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_a26826566628048bb2153a6452151f119}{t\+\_\+img\+\_\+texture}} \texorpdfstring{$\ast$}{*}}]{img\+\_\+tex,  }\item[{int}]{tex\+\_\+x,  }\item[{int}]{tex\+\_\+y }\end{DoxyParamCaption})}
+
+
+
+Grab a Color from Your Wallpaper! 🎨 
+
+Imagine you have a big wallpaper with lots of pretty colors. When you want to paint a wall, you need to pick just the right color from the right spot on the wallpaper. That\textquotesingle{}s what this function does!
+
+It takes coordinates (like "{}3 steps across, 5 steps up"{}) and finds the color at that exact spot on the texture. If you ask for a spot outside the wallpaper, it just uses the closest edge color instead.
+
+It\textquotesingle{}s like having a magic color-\/picker that never misses the wallpaper!
+
+
+\begin{DoxyParams}{Parameters}
+{\em img\+\_\+tex} & The wallpaper (texture) you\textquotesingle{}re picking colors from \\
+\hline
+{\em tex\+\_\+x} & How far across the wallpaper (left to right) \\
+\hline
+{\em tex\+\_\+y} & How far up the wallpaper (bottom to top) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The color number at that spot on the wallpaper 
+\end{DoxyReturn}
+\Hypertarget{cub_8h_a9e92c3c142027c098bc3606588d978d9}\label{cub_8h_a9e92c3c142027c098bc3606588d978d9} 
+\index{cub.h@{cub.h}!shifter@{shifter}}
+\index{shifter@{shifter}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{shifter()}{shifter()}}
+{\footnotesize\ttfamily int shifter (\begin{DoxyParamCaption}\item[{int}]{number }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_a486e858d259a70e546f528c1db7844df}\label{cub_8h_a486e858d259a70e546f528c1db7844df} 
+\index{cub.h@{cub.h}!something\_is\_wrong@{something\_is\_wrong}}
+\index{something\_is\_wrong@{something\_is\_wrong}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{something\_is\_wrong()}{something\_is\_wrong()}}
+{\footnotesize\ttfamily int something\+\_\+is\+\_\+wrong (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}}]{display,  }\item[{char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{argv,  }\item[{int}]{argc,  }\item[{int \texorpdfstring{$\ast$}{*}}]{map\+\_\+height }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_af5e5ebf6524d05af6d28e4b5475c49cc}\label{cub_8h_af5e5ebf6524d05af6d28e4b5475c49cc} 
+\index{cub.h@{cub.h}!store\_texture@{store\_texture}}
+\index{store\_texture@{store\_texture}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{store\_texture()}{store\_texture()}}
+{\footnotesize\ttfamily void store\+\_\+texture (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{str,  }\item[{\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}}]{texture }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_a38c2d7218dec7f29e4f5969ae5a80372}\label{cub_8h_a38c2d7218dec7f29e4f5969ae5a80372} 
+\index{cub.h@{cub.h}!successive\_commas@{successive\_commas}}
+\index{successive\_commas@{successive\_commas}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{successive\_commas()}{successive\_commas()}}
+{\footnotesize\ttfamily int successive\+\_\+commas (\begin{DoxyParamCaption}\item[{int \texorpdfstring{$\ast$}{*}}]{i,  }\item[{char \texorpdfstring{$\ast$}{*}}]{og\+\_\+rgb }\end{DoxyParamCaption})}
+
+\Hypertarget{cub_8h_aaed1df998ec081d089da675998aa9b84}\label{cub_8h_aaed1df998ec081d089da675998aa9b84} 
+\index{cub.h@{cub.h}!texture\_error@{texture\_error}}
+\index{texture\_error@{texture\_error}!cub.h@{cub.h}}
+\doxysubsubsection{\texorpdfstring{texture\_error()}{texture\_error()}}
+{\footnotesize\ttfamily int texture\+\_\+error (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cub_8h_a4c91479c6f95825d9a98ebc4b2ee6682}{t\+\_\+display}} \texorpdfstring{$\ast$}{*}}]{texture }\end{DoxyParamCaption})}
+
