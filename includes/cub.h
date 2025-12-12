@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
+/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/09 19:33:16 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/12 09:24:17 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@
 # endif
 
 # ifndef SPEED
-#  define SPEED 1.5
+#  define SPEED 0.25
 # endif
 
 # ifndef TETA
-#  define TETA 0.0872664626
+#  define TETA 0.0174532925
 # endif
 
 # ifndef SIZE_IMG
