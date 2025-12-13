@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/09 19:33:16 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/13 11:45:03 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+
+# ifndef LARGE_DIST
+#  define LARGE_DIST 1e30f
+# endif
 
 # ifndef M_PI
 #  define M_PI 3.14159265358979
@@ -166,7 +170,7 @@ typedef struct s_move
 typedef struct s_hit
 {
 	float			distance;
-	t_point			collision;
+	int				collision;
 	int				wall_direction;
 }					t_hit;
 
@@ -215,6 +219,26 @@ typedef struct s_player
 	char			orientation;
 }					t_player;
 
+typedef struct s_ray
+{
+	float			dir_x;
+	float			dir_y;
+	int				map_x;
+	int				map_y;
+	float			delta_dist_x;
+	float			delta_dist_y;
+	float			side_dist_x;
+	float			side_dist_y;
+	int				step_x;
+	int				step_y;
+	int				side;
+	float			perp_wall_dist;
+	float			wall_x;
+	int				wall_dir;
+	float			angle_offset;
+}					t_ray;
+
+
 typedef struct s_display
 {
 	char			**map;
@@ -230,6 +254,7 @@ typedef struct s_display
 	t_img			rays;
 	t_move			key_stat;
 	float			beta;
+	t_ray			ray;
 }					t_display;
 
 typedef struct s_tex_utils
@@ -254,10 +279,10 @@ int					player_in_str(char *str);
 int					matrix_height(char **matrix);
 
 void				rad_to_deg(double rad);
-void				render_all(t_display *display);
+void	render_all(t_display *display);
 void				orientation_player(t_display *display, int operation);
 
-void				cast_ray(t_point begin, t_display *display, int d);
+void	cast_ray(t_point begin, t_display *display, int d);
 int					float_abs(float number);
 int					get_map_height(t_display *display, int *map_height,
 						char *file);
@@ -268,7 +293,8 @@ char				**get_map(char *gnl, int fd, int map_height);
 void				get_elements(int fd, t_display *texture, int map_height);
 void				store_texture(char *str, t_display *texture);
 t_line				*bresenham_line(t_point *begin, t_point *end);
-t_line				*dda_line(t_point *begin, t_point *end);
+// t_line				*dda_line(t_point *begin, t_point *end);
+t_line	*dda_line(t_display *display);
 int					ft_linesize(t_line *line);
 void				ft_lineadd_back(t_line **line, t_line *new);
 t_line				*ft_linenew(t_point content);
@@ -310,7 +336,7 @@ int					game_engine(t_display *display);
 void				player_move(t_display *display, int op, bool is_float);
 
 void				load_textures(t_display *display);
-int					sample_texture(t_img_texture *img_tex, float u, float v);
+int	sample_texture(t_img_texture *img_tex, int tex_x, int tex_y);
 void				aff_floor_and_ceiling(t_display *display);
 
 int					get_wall_direction(t_point collision, t_point player_pos);
@@ -336,4 +362,6 @@ void				west_case(float normalised_x, t_hit *hit, t_point bloc,
 int					direction_fix(t_display *display, t_hit *hit, t_point bloc);
 void				init_xpm_image(t_display *display);
 void				load_textures(t_display *display);
+void	init_ray_direction(t_display *display, float angle);
+void	init_step_and_side_dist(t_display *display);
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bresenham.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 13:17:03 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/09 18:29:27 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/13 11:57:51 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	draw_wall_lines(t_display *display, t_hit hit, int pixel_index,
 
 	(void)angle;
 	if (hit.distance)
-		line_size = SIZE_IMG * WALL_UNIT / hit.distance;
+		line_size = SCRN_HEIGHT / hit.distance;
 	else
 		line_size = SCRN_HEIGHT;
 	begin.y = (SCRN_HEIGHT >> 1) - (line_size >> 1);
@@ -43,7 +43,9 @@ void	draw_wall_lines(t_display *display, t_hit hit, int pixel_index,
 
 void	cast_ray(t_point begin, t_display *display, int d)
 {
-	t_point	true_end;
+	(void)begin;
+	(void)d;
+	// t_point	true_end;
 	t_hit	hit;
 	float	angle;
 	int		pixel_index;
@@ -52,10 +54,12 @@ void	cast_ray(t_point begin, t_display *display, int d)
 	angle = -FOV / 2;
 	while (angle <= FOV / 2)
 	{
-		true_end = calculate_end(begin, display->player.angle + angle, d);
+		// true_end = calculate_end(begin, display->player.angle + angle, d);
+		init_ray_direction(display, angle);
+		init_step_and_side_dist(display);
 		if (display->head)
 			ft_linefree(&display->head);
-		display->head = dda_line(&begin, &true_end);
+		display->head = dda_line(display);
 		hit = draw_line_2(display, angle);
 		if (display->head)
 		{
