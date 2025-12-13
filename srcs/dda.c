@@ -14,9 +14,11 @@
 
 int	is_valid_map_pos(t_display *display)
 {
-	if (display->ray.map_y < 0 || display->ray.map_y >= display->texture.map_height)
+	if (display->ray.map_y < 0
+		|| display->ray.map_y >= display->texture.map_height)
 		return (0);
-	if (display->ray.map_x < 0 || display->ray.map_x >= display->texture.map_width)
+	if (display->ray.map_x < 0
+		|| display->ray.map_x >= display->texture.map_width)
 		return (0);
 	if (!display->map[display->ray.map_y][display->ray.map_x])
 		return (0);
@@ -55,7 +57,8 @@ void	init_step_and_side_dist(t_display *display)
 	else
 	{
 		display->ray.step_x = 1;
-		display->ray.side_dist_x = (1.0f - pos_in_cell_x) * display->ray.delta_dist_x;
+		display->ray.side_dist_x = (1.0f - pos_in_cell_x)
+			* display->ray.delta_dist_x;
 	}
 	if (display->ray.dir_y < 0)
 	{
@@ -65,14 +68,15 @@ void	init_step_and_side_dist(t_display *display)
 	else
 	{
 		display->ray.step_y = 1;
-		display->ray.side_dist_y = (1.0f - pos_in_cell_y) * display->ray.delta_dist_y;
+		display->ray.side_dist_y = (1.0f - pos_in_cell_y)
+			* display->ray.delta_dist_y;
 	}
 }
 
 t_line	*dda_line(t_display *display)
 {
-	int	hit;
-	t_dda dda;
+	int		hit;
+	t_dda	dda;
 
 	hit = 0;
 	dda.head = NULL;

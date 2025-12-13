@@ -16,7 +16,8 @@ void	calculate_wall_dist_and_x(t_display *display)
 {
 	if (display->ray.side == 0)
 	{
-		display->ray.perp_wall_dist = display->ray.side_dist_x - display->ray.delta_dist_x;
+		display->ray.perp_wall_dist = display->ray.side_dist_x
+			- display->ray.delta_dist_x;
 		display->ray.wall_x = display->player.pixels.f_y / SIZE_IMG
 			+ display->ray.perp_wall_dist * display->ray.dir_y;
 		if (display->ray.step_x > 0)
@@ -26,7 +27,8 @@ void	calculate_wall_dist_and_x(t_display *display)
 	}
 	else
 	{
-		display->ray.perp_wall_dist = display->ray.side_dist_y - display->ray.delta_dist_y;
+		display->ray.perp_wall_dist = display->ray.side_dist_y
+			- display->ray.delta_dist_y;
 		display->ray.wall_x = display->player.pixels.f_x / SIZE_IMG
 			+ display->ray.perp_wall_dist * display->ray.dir_x;
 		if (display->ray.step_y > 0)
@@ -38,7 +40,7 @@ void	calculate_wall_dist_and_x(t_display *display)
 	display->ray.perp_wall_dist *= cosf(display->ray.angle_offset);
 }
 
-void wall_assign(t_hit *hit, t_display *display)
+void	wall_assign(t_hit *hit, t_display *display)
 {
 	calculate_wall_dist_and_x(display);
 	hit->wall_direction = display->ray.wall_dir;
@@ -65,7 +67,7 @@ int	is_walkable(t_display *display, t_point tmp_bloc)
 		|| is_player(display->map[tmp_bloc.y][tmp_bloc.x]));
 }
 
-void init_hit(t_hit *hit)
+void	init_hit(t_hit *hit)
 {
 	hit->collision = 0;
 	hit->distance = 0;
