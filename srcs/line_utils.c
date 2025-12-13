@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   line_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 09:55:53 by mratsima          #+#    #+#             */
-/*   Updated: 2025/12/13 14:48:22 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/13 15:48:51 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,17 @@ void	ft_lineadd_back(t_line **line, t_line *new)
 		tmp = tmp->next;
 	}
 	tmp->next = new;
+}
+
+int	is_valid_map_pos(t_display *display)
+{
+	if (display->ray.map_y < 0
+		|| display->ray.map_y >= display->texture.map_height)
+		return (0);
+	if (display->ray.map_x < 0
+		|| display->ray.map_x >= display->texture.map_width)
+		return (0);
+	if (!display->map[display->ray.map_y][display->ray.map_x])
+		return (0);
+	return (1);
 }

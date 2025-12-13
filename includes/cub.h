@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/13 14:52:40 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/13 15:47:57 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -341,4 +341,6 @@ void				init_xpm_image(t_display *display);
 void				load_textures(t_display *display);
 void				init_ray_direction(t_display *display, float angle);
 void				init_step_and_side_dist(t_display *display);
+int					is_valid_map_pos(t_display *display);
+
 #endif

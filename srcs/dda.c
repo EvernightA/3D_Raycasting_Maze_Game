@@ -6,24 +6,11 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 09:26:52 by mratsima          #+#    #+#             */
-/*   Updated: 2025/12/13 15:35:31 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/13 15:48:32 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
-
-int	is_valid_map_pos(t_display *display)
-{
-	if (display->ray.map_y < 0
-		|| display->ray.map_y >= display->texture.map_height)
-		return (0);
-	if (display->ray.map_x < 0
-		|| display->ray.map_x >= display->texture.map_width)
-		return (0);
-	if (!display->map[display->ray.map_y][display->ray.map_x])
-		return (0);
-	return (1);
-}
 
 void	init_ray_direction(t_display *display, float angle)
 {
@@ -71,6 +58,39 @@ void	init_step_and_side_dist(t_display *display)
 	}
 }
 
+void	increment_dda(t_display *display)
+{
+	if (display->ray.side_dist_x < display->ray.side_dist_y)
+	{
+		display->ray.side_dist_x += display->ray.delta_dist_x;
+		display->ray.map_x += display->ray.step_x;
+		display->ray.side = 0;
+	}
+	else
+	{
+		display->ray.side_dist_y += display->ray.delta_dist_y;
+		display->ray.map_y += display->ray.step_y;
+		display->ray.side = 1;
+	}
+}
+
+void	create_dda_line(t_dda *dda, t_display *display)
+{
+	dda->current.x = display->ray.map_x;
+	dda->current.y = display->ray.map_y;
+	dda->new_node = ft_linenew(dda->current);
+	if (dda->head == NULL)
+	{
+		dda->head = dda->new_node;
+		dda->tail = dda->new_node;
+	}
+	else
+	{
+		dda->tail->next = dda->new_node;
+		dda->tail = dda->new_node;
+	}
+}
+
 t_line	*dda_line(t_display *display)
 {
 	int		hit;
@@ -81,31 +101,8 @@ t_line	*dda_line(t_display *display)
 	dda.tail = NULL;
 	while (hit == 0)
 	{
-		if (display->ray.side_dist_x < display->ray.side_dist_y)
-		{
-			display->ray.side_dist_x += display->ray.delta_dist_x;
-			display->ray.map_x += display->ray.step_x;
-			display->ray.side = 0;
-		}
-		else
-		{
-			display->ray.side_dist_y += display->ray.delta_dist_y;
-			display->ray.map_y += display->ray.step_y;
-			display->ray.side = 1;
-		}
-		dda.current.x = display->ray.map_x;
-		dda.current.y = display->ray.map_y;
-		dda.new_node = ft_linenew(dda.current);
-		if (dda.head == NULL)
-		{
-			dda.head = dda.new_node;
-			dda.tail = dda.new_node;
-		}
-		else
-		{
-			dda.tail->next = dda.new_node;
-			dda.tail = dda.new_node;
-		}
+		increment_dda(display);
+		create_dda_line(&dda, display);
 		if (is_valid_map_pos(display))
 		{
 			if (display->map[display->ray.map_y][display->ray.map_x] == '1')
