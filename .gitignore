@@ -21,3 +21,4 @@ libft/libft.a
 
 # Mac files
 .DS_Store
+_codeql_detected_source_root
