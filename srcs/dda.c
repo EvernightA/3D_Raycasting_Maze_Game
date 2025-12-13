@@ -91,6 +91,7 @@ int	is_valid_map_pos(t_display *display)
 
 void	init_ray_direction(t_display *display, float angle)
 {
+	display->ray.angle_offset = angle;
 	display->ray.dir_x = cosf(display->player.angle + angle);
 	display->ray.dir_y = sinf(display->player.angle + angle);
 	display->ray.map_x = (int)(display->player.pixels.f_x / SIZE_IMG);

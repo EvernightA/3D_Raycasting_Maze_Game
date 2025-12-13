@@ -35,6 +35,7 @@ void	calculate_wall_dist_and_x(t_display *display)
 			display->ray.wall_dir = SOUTH;
 	}
 	display->ray.wall_x -= floorf(display->ray.wall_x);
+	display->ray.perp_wall_dist *= cosf(display->ray.angle_offset);
 }
 
 void wall_assign(t_hit *hit, t_display *display)
