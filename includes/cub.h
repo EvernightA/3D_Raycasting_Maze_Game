@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/13 14:36:54 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/13 14:49:27 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -304,7 +304,7 @@ int					error_handling(t_display *texture);
 int					texture_error(t_display *texture);
 int					releasing_key(int key, void *param);
 
-t_hit				draw_line_2(t_display *display, float beta);
+t_hit				draw_line(t_display *display, float beta);
 
 void				free_texture(t_display *texture);
 void				free_split(char **split);
@@ -318,7 +318,6 @@ int					player_in_str(char *str);
 int					parsing(int *map_height, char *file, t_display *display);
 
 void				img_initialization(t_display *display);
-void				draw_line(t_display *display);
 void				rotate_player(t_display *display, float angle);
 
 t_point				calculate_end(t_point begin, float angle, int max_distance);

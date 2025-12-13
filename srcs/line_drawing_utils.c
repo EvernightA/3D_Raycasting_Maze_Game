@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 18:38:28 by mratsima          #+#    #+#             */
-/*   Updated: 2025/12/13 11:55:13 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/13 14:34:39 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,68 +67,3 @@ void	draw_textured_line(t_line *line, t_hit hit, int line_size,
 		utils.tmp = utils.tmp->next;
 	}
 }
-
-void	draw_line(t_display *display)
-{
-	t_line	*tmp;
-	t_point	tmp_bloc;
-
-	tmp = display->head;
-	while (tmp)
-	{
-		tmp_bloc = pixel_to_bloc(tmp->dot, display);
-		if (display->map[tmp_bloc.y][tmp_bloc.x] == '0'
-			|| is_player(display->map[tmp_bloc.y][tmp_bloc.x]))
-			mlx_pixel_put(display->mlx.mlx_ptr, display->mlx.win_ptr,
-				tmp->dot.x, tmp->dot.y, 0xFF000);
-		else
-		{
-			break ;
-		}
-		tmp = tmp->next;
-	}
-}
-
-// void	direct_fix(float normalised_x, t_hit *hit, t_point bloc,
-// 		t_display *display)
-// {
-// 	char	prev_wall_char;
-// 	char	next_wall_char;
-// 	int		dx;
-// 	int		dy;
-
-// 	dx = (int)(hit->collision.f_x / 16) - display->player.blocs.x;
-// 	dy = (int)(hit->collision.f_y / 16) - display->player.blocs.y;
-// 	prev_wall_char = display->map[bloc.y - 1][bloc.x];
-// 	next_wall_char = display->map[bloc.y + 1][bloc.x];
-// 	if (display->map[bloc.y][bloc.x] == prev_wall_char
-// 		&& prev_wall_char == next_wall_char)
-// 	{
-// 		if ((dx < 0 && dy < 0) || (dx < 0 && dy > 0))
-// 			hit->wall_direction = EAST;
-// 		else
-// 			hit->wall_direction = WEST;
-// 	}
-// 	else
-// 	{
-// 		normalised_x = fmodf(hit->collision.f_x, 16);
-// 		east_case(normalised_x, hit, bloc, display);
-// 		west_case(normalised_x, hit, bloc, display);
-// 	}
-// }
-
-// int	direction_fix(t_display *display, t_hit *hit, t_point bloc)
-// {
-// 	float	normalised_x;
-
-// 	normalised_x = 0;
-// 	if (hit->wall_direction == NORTH || hit->wall_direction == SOUTH)
-// 	{
-// 		bloc = pixel_to_bloc(hit->collision, display);
-// 		if (bloc.y <= 0 || bloc.y >= display->texture.map_height - 1
-// 			|| !(display->map[bloc.y][bloc.x]))
-// 			return (1);
-// 		direct_fix(normalised_x, hit, bloc, display);
-// 	}
-// 	return (0);
-// }
