@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 11:17:34 by mratsima          #+#    #+#             */
-/*   Updated: 2025/12/09 13:28:58 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/13 15:05:18 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ char	**get_map(char *gnl, int fd, int map_height)
 
 	i = 0;
 	map = (char **)ft_calloc(map_height + 1, sizeof(char *));
+	if (!map)
+		return (NULL);
 	while (i < map_height)
 	{
 		map[i++] = ft_strdup(gnl);
