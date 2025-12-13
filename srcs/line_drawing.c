@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 10:34:32 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/13 14:14:55 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/13 14:33:48 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void init_hit(t_hit *hit)
 	hit->wall_direction = 0;
 }
 
-t_hit	draw_line_2(t_display *display, float beta)
+t_hit	draw_line(t_display *display, float beta)
 {
 	t_line	*tmp;
 	t_line	*before;

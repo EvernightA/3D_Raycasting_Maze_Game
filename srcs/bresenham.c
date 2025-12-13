@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 13:17:03 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/13 14:20:02 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/13 14:33:48 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	cast_ray(t_display *display)
 		if (display->head)
 			ft_linefree(&display->head);
 		display->head = dda_line(display);
-		hit = draw_line_2(display, angle);
+		hit = draw_line(display, angle);
 		if (display->head)
 		{
 			ft_linefree(&display->head);
