@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 09:26:52 by mratsima          #+#    #+#             */
-/*   Updated: 2025/12/13 11:26:51 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/13 14:13:42 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ int	is_valid_map_pos(t_display *display)
 
 void	init_ray_direction(t_display *display, float angle)
 {
+	display->ray.angle_offset = angle;
 	display->ray.dir_x = cosf(display->player.angle + angle);
 	display->ray.dir_y = sinf(display->player.angle + angle);
 	display->ray.map_x = (int)(display->player.pixels.f_x / SIZE_IMG);

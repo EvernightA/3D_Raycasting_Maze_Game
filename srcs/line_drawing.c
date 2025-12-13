@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 10:34:32 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/13 11:36:21 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/13 14:14:55 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	calculate_wall_dist_and_x(t_display *display)
 			display->ray.wall_dir = SOUTH;
 	}
 	display->ray.wall_x -= floorf(display->ray.wall_x);
+	display->ray.perp_wall_dist *= cosf(display->ray.angle_offset);
 }
 
 void wall_assign(t_hit *hit, t_display *display)
