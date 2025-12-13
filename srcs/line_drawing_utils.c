@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 18:38:28 by mratsima          #+#    #+#             */
-/*   Updated: 2025/12/13 14:34:39 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/13 15:37:33 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,18 @@ void	draw_textured_line(t_line *line, t_hit hit, int line_size,
 	t_tex_utils	utils;
 	int			tex_x;
 	int			tex_y;
+	float		uv_y;
 	int			texture_color;
 
 	if (line_size <= 0)
-		return;
+		return ;
 	utils.tmp = line;
 	utils.count = 0;
 	utils.texture_to_display = &display->texture.t_north;
 	set_texture(&utils.texture_to_display, hit, display);
 	while (utils.tmp)
 	{
-		float uv_y = (float)utils.count / line_size;
+		uv_y = (float)utils.count / line_size;
 		tex_x = calculate_tex_x(&display->ray, utils.texture_to_display);
 		tex_y = (int)(uv_y * (float)utils.texture_to_display->height);
 		texture_color = sample_texture(utils.texture_to_display, tex_x, tex_y);

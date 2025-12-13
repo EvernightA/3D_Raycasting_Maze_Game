@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 10:34:32 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/13 14:35:58 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/13 15:38:44 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,6 @@ int	is_walkable(t_display *display, t_point tmp_bloc)
 		|| is_player(display->map[tmp_bloc.y][tmp_bloc.x]));
 }
 
-void	init_hit(t_hit *hit)
-{
-	hit->collision = 0;
-	hit->distance = 0;
-	hit->wall_direction = 0;
-}
-
 t_hit	draw_line(t_display *display, float beta)
 {
 	t_line	*tmp;
@@ -83,7 +76,9 @@ t_hit	draw_line(t_display *display, float beta)
 
 	tmp = display->head;
 	before = NULL;
-	init_hit(&hit);
+	hit.collision = 0;
+	hit.distance = 0;
+	hit.wall_direction = 0;
 	while (tmp)
 	{
 		tmp_bloc = pixel_to_bloc(tmp->dot, display);

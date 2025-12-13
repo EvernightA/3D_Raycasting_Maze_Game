@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 09:26:52 by mratsima          #+#    #+#             */
-/*   Updated: 2025/12/13 14:29:46 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/13 15:35:31 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,32 +44,30 @@ void	init_ray_direction(t_display *display, float angle)
 
 void	init_step_and_side_dist(t_display *display)
 {
-	float	pos_in_cell_x;
-	float	pos_in_cell_y;
+	float	in_x;
+	float	in_y;
 
-	pos_in_cell_x = display->player.pixels.f_x / SIZE_IMG - display->ray.map_x;
-	pos_in_cell_y = display->player.pixels.f_y / SIZE_IMG - display->ray.map_y;
+	in_x = display->player.pixels.f_x / SIZE_IMG - display->ray.map_x;
+	in_y = display->player.pixels.f_y / SIZE_IMG - display->ray.map_y;
 	if (display->ray.dir_x < 0)
 	{
 		display->ray.step_x = -1;
-		display->ray.side_dist_x = pos_in_cell_x * display->ray.delta_dist_x;
+		display->ray.side_dist_x = in_x * display->ray.delta_dist_x;
 	}
 	else
 	{
 		display->ray.step_x = 1;
-		display->ray.side_dist_x = (1.0f - pos_in_cell_x)
-			* display->ray.delta_dist_x;
+		display->ray.side_dist_x = (1.0f - in_x) * display->ray.delta_dist_x;
 	}
 	if (display->ray.dir_y < 0)
 	{
 		display->ray.step_y = -1;
-		display->ray.side_dist_y = pos_in_cell_y * display->ray.delta_dist_y;
+		display->ray.side_dist_y = in_y * display->ray.delta_dist_y;
 	}
 	else
 	{
 		display->ray.step_y = 1;
-		display->ray.side_dist_y = (1.0f - pos_in_cell_y)
-			* display->ray.delta_dist_y;
+		display->ray.side_dist_y = (1.0f - in_y) * display->ray.delta_dist_y;
 	}
 }
 
