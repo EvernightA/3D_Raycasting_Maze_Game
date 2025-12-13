@@ -1,0 +1,24 @@
+# Build artifacts
+*.o
+*.a
+cub3D
+
+# Object files in minilibx
+minilibx-linux/obj/
+minilibx-linux/test/*.o
+minilibx-linux/test/mlx-test
+minilibx-linux/libmlx.a
+minilibx-linux/libmlx_Linux.a
+
+# Library files
+libft/libft.a
+
+# IDE files
+.vscode/
+*.swp
+*.swo
+*~
+
+# Mac files
+.DS_Store
+_codeql_detected_source_root
