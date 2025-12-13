@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 09:55:53 by mratsima          #+#    #+#             */
-/*   Updated: 2025/12/09 11:04:32 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/13 14:48:22 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,30 +59,4 @@ void	ft_lineadd_back(t_line **line, t_line *new)
 		tmp = tmp->next;
 	}
 	tmp->next = new;
-}
-
-int	ft_linesize(t_line *line)
-{
-	int	i;
-
-	i = 0;
-	while (line != NULL)
-	{
-		i++;
-		line = line->next;
-	}
-	return (i);
-}
-
-void	print_list(t_line *head)
-{
-	t_line	*tmp;
-
-	tmp = head;
-	while (tmp)
-	{
-		printf("x = %d\n", tmp->dot.x);
-		printf("y = %d\n", tmp->dot.y);
-		tmp = tmp->next;
-	}
 }
