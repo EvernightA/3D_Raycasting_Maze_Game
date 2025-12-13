@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/13 11:45:03 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/13 14:20:24 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -282,7 +282,7 @@ void				rad_to_deg(double rad);
 void	render_all(t_display *display);
 void				orientation_player(t_display *display, int operation);
 
-void	cast_ray(t_point begin, t_display *display, int d);
+void				cast_ray(t_display *display);
 int					float_abs(float number);
 int					get_map_height(t_display *display, int *map_height,
 						char *file);

@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:50:26 by mratsima          #+#    #+#             */
-/*   Updated: 2025/12/13 11:26:37 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/13 14:22:17 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,15 +82,8 @@ void	orientation_player(t_display *display, int operation)
 
 void	render_all(t_display *display)
 {
-	int	d;
-	(void)d;
-	int	power_h;
-	int	power_w;
-	power_h = display->texture.map_height * display->texture.map_height * 256;
-	power_w = display->texture.map_width * display->texture.map_width * 256;
 	aff_floor_and_ceiling(display);
-	d = sqrt(power_h + power_w);
-	cast_ray(display->begin, display, 0);
+	cast_ray(display);
 	mlx_put_image_to_window(display->mlx2.mlx_ptr, display->mlx2.win_ptr,
 		display->all.mlx_img, 0, 0);
 }

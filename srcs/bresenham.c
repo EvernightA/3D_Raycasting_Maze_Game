@@ -6,21 +6,19 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 13:17:03 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/13 11:57:51 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/13 14:20:02 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-void	draw_wall_lines(t_display *display, t_hit hit, int pixel_index,
-		float angle)
+void	draw_wall_lines(t_display *display, t_hit hit, int pixel_index)
 {
 	t_line	*line;
 	int		line_size;
 	t_point	begin;
 	t_point	end;
 
-	(void)angle;
 	if (hit.distance)
 		line_size = SCRN_HEIGHT / hit.distance;
 	else
@@ -41,11 +39,8 @@ void	draw_wall_lines(t_display *display, t_hit hit, int pixel_index,
 	}
 }
 
-void	cast_ray(t_point begin, t_display *display, int d)
+void	cast_ray(t_display *display)
 {
-	(void)begin;
-	(void)d;
-	// t_point	true_end;
 	t_hit	hit;
 	float	angle;
 	int		pixel_index;
@@ -54,7 +49,6 @@ void	cast_ray(t_point begin, t_display *display, int d)
 	angle = -FOV / 2;
 	while (angle <= FOV / 2)
 	{
-		// true_end = calculate_end(begin, display->player.angle + angle, d);
 		init_ray_direction(display, angle);
 		init_step_and_side_dist(display);
 		if (display->head)
@@ -66,7 +60,7 @@ void	cast_ray(t_point begin, t_display *display, int d)
 			ft_linefree(&display->head);
 			display->head = NULL;
 		}
-		draw_wall_lines(display, hit, pixel_index, angle);
+		draw_wall_lines(display, hit, pixel_index);
 		angle += (FOV / SCRN_WIDTH);
 		pixel_index++;
 	}
