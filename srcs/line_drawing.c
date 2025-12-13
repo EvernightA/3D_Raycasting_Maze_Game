@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 10:34:32 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/13 14:33:48 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/13 14:35:58 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,10 @@ void	calculate_wall_dist_and_x(t_display *display)
 
 void wall_assign(t_hit *hit, t_display *display)
 {
-	// hit->collision = tmp->dot;
-	// hit->wall_direction = get_wall_direction(hit->collision, display->player.blocs);
-	// direction_fix(display, hit, bloc);
-	// calc_exact_hit(hit, display, beta, bloc);
 	calculate_wall_dist_and_x(display);
 	hit->wall_direction = display->ray.wall_dir;
 	hit->distance = display->ray.perp_wall_dist;
 	hit->collision = display->ray.wall_x;
-	// hit->distance = to_wall(display, hit->collision, beta);
 }
 
 int	go_to_next_node(t_line **tmp, t_line **before, t_hit *hit,
