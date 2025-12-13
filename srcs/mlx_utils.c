@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:50:26 by mratsima          #+#    #+#             */
-/*   Updated: 2025/12/13 14:22:17 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/13 15:16:43 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ int	quit_win(t_display *display)
 	if (display->texture.t_north.img_ptr)
 		mlx_destroy_image(display->mlx2.mlx_ptr,
 			display->texture.t_north.img_ptr);
-	if (display->texture.t_north.img_ptr)
+	if (display->texture.t_west.img_ptr)
 		mlx_destroy_image(display->mlx2.mlx_ptr,
 			display->texture.t_west.img_ptr);
-	if (display->texture.t_north.img_ptr)
+	if (display->texture.t_south.img_ptr)
 		mlx_destroy_image(display->mlx2.mlx_ptr,
 			display->texture.t_south.img_ptr);
 	mlx_destroy_image(display->mlx2.mlx_ptr, display->all.mlx_img);
