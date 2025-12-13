@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/13 14:33:50 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/13 14:48:48 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,6 @@
 #ifndef SCRN_HEIGHT
  #define SCRN_HEIGHT 600
 #endif
-
-# ifndef WALL_UNIT
-#  define WALL_UNIT 600
-# endif
 
 # ifndef MAX_DISTANCE
 #  define MAX_DISTANCE 600
@@ -278,23 +274,19 @@ int					player_error(int count, t_display *display);
 int					player_in_str(char *str);
 int					matrix_height(char **matrix);
 
-void				rad_to_deg(double rad);
-void	render_all(t_display *display);
+void				render_all(t_display *display);
 void				orientation_player(t_display *display, int operation);
 
 void				cast_ray(t_display *display);
 int					float_abs(float number);
 int					get_map_height(t_display *display, int *map_height,
 						char *file);
-
-void				print_map(char **map);
 int					count_map_lines(int fd);
 char				**get_map(char *gnl, int fd, int map_height);
 void				get_elements(int fd, t_display *texture, int map_height);
 void				store_texture(char *str, t_display *texture);
 t_line				*bresenham_line(t_point *begin, t_point *end);
-// t_line				*dda_line(t_point *begin, t_point *end);
-t_line	*dda_line(t_display *display);
+t_line				*dda_line(t_display *display);
 int					ft_linesize(t_line *line);
 void				ft_lineadd_back(t_line **line, t_line *new);
 t_line				*ft_linenew(t_point content);
@@ -319,26 +311,17 @@ int					parsing(int *map_height, char *file, t_display *display);
 
 void				img_initialization(t_display *display);
 void				rotate_player(t_display *display, float angle);
-
-t_point				calculate_end(t_point begin, float angle, int max_distance);
 t_point				pixel_to_bloc(t_point pixel, t_display *display);
-
-void				ray_fov(t_point begin, t_display *display, int d);
-float				to_wall(t_display *display, t_point collision, float beta);
 void				draw_textured_line(t_line *line, t_hit hit, int line_size,
 						t_display *display);
 int					shifter(int number);
 void				img_pix_put(t_img *img, int x, int y, int color);
-void				clear_img(t_display *display);
-void				clear_rays(t_display *display);
 int					game_engine(t_display *display);
 void				player_move(t_display *display, int op, bool is_float);
 
 void				load_textures(t_display *display);
-int	sample_texture(t_img_texture *img_tex, int tex_x, int tex_y);
+int					sample_texture(t_img_texture *img_tex, int tex_x, int tex_y);
 void				aff_floor_and_ceiling(t_display *display);
-
-int					get_wall_direction(t_point collision, t_point player_pos);
 void				free_tex_map(t_display *display);
 void				init_player_pos(t_display *display, int i, int j);
 void				init_it(t_display *display);
@@ -354,13 +337,8 @@ int					rgb_error(char **split_rgb, char *str_rgb);
 int					overflowing_values(char **split_rgb);
 int					non_numeric_values(char **split_rgb);
 int					not_enough_values(char **split_rgb);
-void				east_case(float normalised_x, t_hit *hit, t_point bloc,
-					t_display *display);
-void				west_case(float normalised_x, t_hit *hit, t_point bloc,
-					t_display *display);
-int					direction_fix(t_display *display, t_hit *hit, t_point bloc);
 void				init_xpm_image(t_display *display);
 void				load_textures(t_display *display);
-void	init_ray_direction(t_display *display, float angle);
-void	init_step_and_side_dist(t_display *display);
+void				init_ray_direction(t_display *display, float angle);
+void				init_step_and_side_dist(t_display *display);
 #endif
