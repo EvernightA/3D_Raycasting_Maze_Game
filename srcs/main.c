@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 11:42:50 by mratsima          #+#    #+#             */
-/*   Updated: 2025/12/09 13:49:28 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/15 10:03:08 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	parsing(int *map_height, char *file, t_display *display)
 		|| !display->texture.east || !display->texture.west || !display->map)
 	{
 		ft_putstr_fd("Error\nMissing or Invalid identifier\n", 2);
+		close(fd);
 		free_tex_map(display);
 		return (1);
 	}

@@ -1,6 +1,6 @@
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror 
 
 NAME = cub3D
 
@@ -58,7 +58,7 @@ $(OBJ) : $(SRCS) $(LIBFT)
 $(NAME) : $(OBJ) $(LIBFT) $(MLX)
 	$(CC) $(CFLAGS) $(OBJ) $(MLXFLAGS) $(LIBFT) -o $(NAME);
 
-clean:
+clean: 
 	make clean -C $(MINILIBX)
 	make clean -C ./libft
 	rm -f $(OBJ)

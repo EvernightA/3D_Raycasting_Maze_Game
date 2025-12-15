@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/13 15:47:57 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/15 08:41:29 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,6 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-
-# ifndef LARGE_DIST
-#  define LARGE_DIST 1e30f
-# endif
 
 # ifndef M_PI
 #  define M_PI 3.14159265358979
@@ -46,16 +42,12 @@
 #  define FOV 1.0472
 # endif
 
-#ifndef SCRN_WIDTH
- #define SCRN_WIDTH 800
-#endif
+# ifndef SCRN_WIDTH
+#  define SCRN_WIDTH 800
+# endif
 
-#ifndef SCRN_HEIGHT
- #define SCRN_HEIGHT 600
-#endif
-
-# ifndef MAX_DISTANCE
-#  define MAX_DISTANCE 600
+# ifndef SCRN_HEIGHT
+#  define SCRN_HEIGHT 600
 # endif
 
 # ifndef NORTH
@@ -234,7 +226,6 @@ typedef struct s_ray
 	float			angle_offset;
 }					t_ray;
 
-
 typedef struct s_display
 {
 	char			**map;
@@ -287,11 +278,9 @@ void				get_elements(int fd, t_display *texture, int map_height);
 void				store_texture(char *str, t_display *texture);
 t_line				*bresenham_line(t_point *begin, t_point *end);
 t_line				*dda_line(t_display *display);
-int					ft_linesize(t_line *line);
 void				ft_lineadd_back(t_line **line, t_line *new);
 t_line				*ft_linenew(t_point content);
 void				ft_linefree(t_line **line);
-void				print_list(t_line *head);
 int					error_handling(t_display *texture);
 int					texture_error(t_display *texture);
 int					releasing_key(int key, void *param);
@@ -320,7 +309,8 @@ int					game_engine(t_display *display);
 void				player_move(t_display *display, int op, bool is_float);
 
 void				load_textures(t_display *display);
-int					sample_texture(t_img_texture *img_tex, int tex_x, int tex_y);
+int					sample_texture(t_img_texture *img_tex, int tex_x,
+						int tex_y);
 void				aff_floor_and_ceiling(t_display *display);
 void				free_tex_map(t_display *display);
 void				init_player_pos(t_display *display, int i, int j);
