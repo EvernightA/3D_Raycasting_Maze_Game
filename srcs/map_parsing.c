@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 11:17:34 by mratsima          #+#    #+#             */
-/*   Updated: 2025/12/13 15:05:18 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/15 15:36:14 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	count_lines(char *gnl, char *tmp, int *count, int fd)
 {
 	while (gnl)
 	{
-		if (tmp[0] != '1' && tmp[0] != '0' && tmp[0] != '\n')
+		if (tmp[0] != '1' && tmp[0] != '0')
 		{
 			free(tmp);
 			printf("Error\nError in map\n");
