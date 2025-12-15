@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 17:41:59 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/15 15:02:10 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/15 15:41:28 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,10 @@ int	there_is_no_wall(t_display *display, int op, bool is_float)
 		tmp = pixel_to_bloc(tmp, display);
 	}
 	if (tmp.x < display->texture.map_width && display->map[tmp.y][tmp.x]
-		&& display->map[tmp.y][tmp.x] != '1' && display->texture.dup_map[tmp.y][tmp.x] != 'X' && display->texture.dup_map[tmp.y][tmp.x] != ' ')
-	{
+		&& display->map[tmp.y][tmp.x] != '1' &&
+		display->texture.dup_map[tmp.y][tmp.x] != 'X'
+		&& display->texture.dup_map[tmp.y][tmp.x] != ' ')
 		return (1);
-	}
 	return (0);
 }
 

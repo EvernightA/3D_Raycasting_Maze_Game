@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/15 14:01:53 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/15 15:26:05 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -225,6 +225,14 @@ typedef struct s_ray
 	int				wall_dir;
 	float			angle_offset;
 }					t_ray;
+
+typedef struct s_tmp
+{
+	char	*tmp;
+	char	*tmp1;
+	char	*tmp2;
+	char	*tmp3;
+}				t_tmp;
 
 typedef struct s_display
 {

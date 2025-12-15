@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 16:00:37 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/15 14:31:30 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/15 15:27:39 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,31 +65,26 @@ int	closed_error(char **map)
 
 int	texture_error(t_display *display)
 {
-	char	*tmp;
-	char	*tmp1;
-	char	*tmp2;
-	char	*tmp3;
+	t_tmp	t;
 
-	tmp = ft_strnstr(display->texture.north, ".xpm",
+	t.tmp = ft_strnstr(display->texture.north, ".xpm",
 			ft_strlen(display->texture.north));
-	tmp1 = ft_strnstr(display->texture.south, ".xpm",
+	t.tmp1 = ft_strnstr(display->texture.south, ".xpm",
 			ft_strlen(display->texture.south));
-	tmp2 = ft_strnstr(display->texture.west, ".xpm",
+	t.tmp2 = ft_strnstr(display->texture.west, ".xpm",
 			ft_strlen(display->texture.west));
-	tmp3 = ft_strnstr(display->texture.east, ".xpm",
+	t.tmp3 = ft_strnstr(display->texture.east, ".xpm",
 			ft_strlen(display->texture.east));
-	if (tmp == NULL || tmp1 == NULL || tmp2 == NULL || tmp3 == NULL
-		|| ft_strncmp(tmp, ".xpm", 5) != 0 || ft_strncmp(tmp1, ".xpm", 5) != 0
-		|| ft_strncmp(tmp2, ".xpm", 5) != 0 || ft_strncmp(tmp3, ".xpm", 5) != 0)
+	if (t.tmp == NULL || t.tmp1 == NULL || t.tmp2 == NULL || t.tmp3 == NULL
+		|| ft_strncmp(t.tmp, ".xpm", 5) != 0
+		|| ft_strncmp(t.tmp1, ".xpm", 5) != 0
+		|| ft_strncmp(t.tmp2, ".xpm", 5) != 0
+		|| ft_strncmp(t.tmp3, ".xpm", 5) != 0
+		|| display->element_count != 6)
 	{
+		printf("%d\n", display->element_count);
 		free_tex_map(display);
-		ft_putstr_fd("Error\nInvalid extension for texture\n", 2);
-		return (1);
-	}
-	if (display->element_count != 6)
-	{
-		printf("Error\nSomething is missing or is too much\n");
-		free_tex_map(display);
+		ft_putstr_fd("Error\nSomething is wrong with the elements\n", 2);
 		return (1);
 	}
 	return (0);

@@ -1,10 +1,10 @@
-NO ./textures/fanina.xpm
-SO ./textures/fanina.xpm
-EA ./textures/fanina.xpm
-WE ./textures/fanina.xpm
+NO ./textures/saitama.xpm
+SO ./textures/star.xpm
+EA ./textures/neon.xpm
+WE ./textures/pl.xpm
 
 C 0,0,25
-F 0,0,25
+F 50,0,25
 
         1111111111111111111111111
         1000000000110000000000001
