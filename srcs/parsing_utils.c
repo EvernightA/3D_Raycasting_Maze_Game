@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 10:27:44 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/15 15:28:32 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/15 15:59:13 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,8 @@ void	get_brute_texture(char *str, char **texture, t_display *display)
 	return ;
 }
 
-void	store_texture(char *str, t_display *display)
+void	store_texture(char *tmp, char *str, t_display *display)
 {
-	char	*tmp;
-
 	tmp = ft_strtrim(str, " \t");
 	if (ft_strncmp("NO ", tmp, 3) == 0 || ft_strncmp("NO\t", tmp, 3) == 0)
 		get_brute_texture(str, &display->texture.north, display);

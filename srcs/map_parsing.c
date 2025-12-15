@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
+/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 11:17:34 by mratsima          #+#    #+#             */
-/*   Updated: 2025/12/15 15:36:14 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/15 15:59:22 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,10 @@ void	get_elements(int fd, t_display *display, int map_height)
 {
 	char	*str;
 	char	*tmp;
+	char	*tmp2;
 
 	str = "";
+	tmp2 = NULL;
 	while (str)
 	{
 		str = get_next_line(fd);
@@ -104,7 +106,7 @@ void	get_elements(int fd, t_display *display, int map_height)
 		}
 		if (str)
 		{
-			store_texture(str, display);
+			store_texture(tmp2, str, display);
 		}
 		else
 			break ;
