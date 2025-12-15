@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 09:26:52 by mratsima          #+#    #+#             */
-/*   Updated: 2025/12/13 15:48:32 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/15 08:35:50 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ void	init_ray_direction(t_display *display, float angle)
 	display->ray.map_x = (int)(display->player.pixels.f_x / SIZE_IMG);
 	display->ray.map_y = (int)(display->player.pixels.f_y / SIZE_IMG);
 	if (display->ray.dir_x == 0)
-		display->ray.delta_dist_x = LARGE_DIST;
+		display->ray.delta_dist_x = INFINITY;
 	else
 		display->ray.delta_dist_x = fabsf(1.0f / display->ray.dir_x);
 	if (display->ray.dir_y == 0)
-		display->ray.delta_dist_y = LARGE_DIST;
+		display->ray.delta_dist_y = INFINITY;
 	else
 		display->ray.delta_dist_y = fabsf(1.0f / display->ray.dir_y);
 }

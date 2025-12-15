@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rgb_handling.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 14:57:44 by mratsima          #+#    #+#             */
-/*   Updated: 2025/12/09 14:09:58 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/15 14:05:43 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ int	get_rgb(t_rgb *rgb, char *og_rgb)
 	if (successive_commas(&i, og_rgb))
 		return (1);
 	i = 0;
-	while (og_rgb[i] && !ft_isdigit(og_rgb[i]))
+	while (og_rgb[i] && !ft_isdigit(og_rgb[i])
+		&& og_rgb[i] != '-')
 		i++;
 	str_rgb = ft_strtrim(&og_rgb[i], " \t\n");
 	split_rgb = ft_split(str_rgb, ',');
