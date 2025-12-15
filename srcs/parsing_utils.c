@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 10:27:44 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/15 14:29:20 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/15 14:39:54 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,14 @@
 void	get_brute_texture(char *str, char **texture)
 {
 	char	*file;
+	char	*new_file;
 
 	file = ft_strnstr(str, ".", ft_strlen(str));
+	new_file = ft_strtrim(file, " \t\n");
 	if (texture && *texture)
 		free(*texture);
-	*texture = ft_strdup(file);
+	*texture = ft_strdup(new_file);
+	free(new_file);
 	return ;
 }
 
