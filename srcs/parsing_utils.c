@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 10:27:44 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/21 14:39:29 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/22 08:08:25 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,19 +39,9 @@ int	store_texture(char *tmp, char *str, t_display *display)
 	else if (ft_strncmp("EA ", tmp, 3) == 0 || ft_strncmp("EA\t", tmp, 3) == 0)
 		get_brute_texture(str, &display->texture.east, display);
 	else if (ft_strncmp("C ", tmp, 2) == 0 || ft_strncmp("C\t", tmp, 2) == 0)
-	{
-		if (display->texture.c_rgb)
-			free(display->texture.c_rgb);
-		display->texture.c_rgb = ft_strdup(tmp);
-		display->element_count++;
-	}
+		rgb_storing(&display->texture.c_rgb, tmp, display);
 	else if (ft_strncmp("F ", tmp, 2) == 0 || ft_strncmp("F\t", tmp, 2) == 0)
-	{
-		if (display->texture.f_rgb)
-			free(display->texture.f_rgb);
-		display->texture.f_rgb = ft_strdup(tmp);
-		display->element_count++;
-	}
+		rgb_storing(&display->texture.f_rgb, tmp, display);
 	else if (tmp && tmp[0] && tmp[0] != '\n')
 	{
 		ft_putstr_fd("Error\nInvalid identifier\n", 2);

@@ -1,6 +1,6 @@
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror 
+CFLAGS = -Wall -Wextra -Werror
 
 NAME = cub3D
 
@@ -32,6 +32,7 @@ SRCS =  $(SRCS_DIR)main.c 				\
 		$(SRCS_DIR)tex_mapping.c		\
 		$(SRCS_DIR)color_utils.c		\
 		$(SRCS_DIR)parsing_utils.c		\
+		$(SRCS_DIR)parsing_utils2.c		\
 		$(SRCS_DIR)dda.c	        	\
 		$(SRCS_DIR)line_drawing_utils.c	\
 		$(SRCS_DIR)texture_loading.c	\
@@ -58,7 +59,7 @@ $(OBJ) : $(SRCS) $(LIBFT)
 $(NAME) : $(OBJ) $(LIBFT) $(MLX)
 	$(CC) $(CFLAGS) $(OBJ) $(MLXFLAGS) $(LIBFT) -o $(NAME);
 
-clean: 
+clean:
 	make clean -C $(MINILIBX)
 	make clean -C ./libft
 	rm -f $(OBJ)

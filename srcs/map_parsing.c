@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 11:17:34 by mratsima          #+#    #+#             */
-/*   Updated: 2025/12/22 07:47:39 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/22 08:09:51 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,17 +113,13 @@ int	get_elements(int fd, t_display *display, int map_height)
 			display->map = get_map(str, fd, map_height);
 			break ;
 		}
-		if (str)
+		if (str && store_texture(tmp2, str, display))
 		{
-			if (store_texture(tmp2, str, display))
-			{
-				exhaust_gnl(str, fd);
-				free(tmp);
-				return (1);
-			}
+			exhaust_gnl(str, fd);
+			return (free(tmp), 1);
 		}
-		else
-			break ;
+		// else
+		// 	break ;
 		free(str);
 		free(tmp);
 	}

@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/21 14:38:46 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/22 08:08:43 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -341,5 +341,6 @@ void				load_textures(t_display *display);
 void				init_ray_direction(t_display *display, float angle);
 void				init_step_and_side_dist(t_display *display);
 int					is_valid_map_pos(t_display *display);
+void				rgb_storing(char **rgb, char *tmp, t_display *display);
 
 #endif
