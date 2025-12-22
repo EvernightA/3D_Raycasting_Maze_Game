@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/15 15:59:48 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/21 14:38:46 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -283,8 +283,8 @@ int					get_map_height(t_display *display, int *map_height,
 						char *file);
 int					count_map_lines(int fd);
 char				**get_map(char *gnl, int fd, int map_height);
-void				get_elements(int fd, t_display *texture, int map_height);
-void				store_texture(char *tmp, char *str, t_display *display);
+int				get_elements(int fd, t_display *texture, int map_height);
+int				store_texture(char *tmp, char *str, t_display *display);
 t_line				*bresenham_line(t_point *begin, t_point *end);
 t_line				*dda_line(t_display *display);
 void				ft_lineadd_back(t_line **line, t_line *new);

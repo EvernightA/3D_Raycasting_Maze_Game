@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 11:42:50 by mratsima          #+#    #+#             */
-/*   Updated: 2025/12/15 14:32:03 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/21 14:38:46 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ int	parsing(int *map_height, char *file, t_display *display)
 		ft_putstr_fd("Error\nNo such file or directory\n", 2);
 		return (1);
 	}
-	get_elements(fd, display, *map_height);
+	if (get_elements(fd, display, *map_height))
+		return (1);
 	if (!display->texture.c_rgb || !display->texture.f_rgb
 		|| !display->texture.north || !display->texture.south
 		|| !display->texture.east || !display->texture.west || !display->map)

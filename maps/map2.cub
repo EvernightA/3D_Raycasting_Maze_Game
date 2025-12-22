@@ -3,9 +3,7 @@ SO ./textures/w.xpm
 
 
 WE ./textures/b.xpm
-EA ./textures/b.xpm  
-
-
+EA ./textures/b.xpm
 
 
 C       0,0,0

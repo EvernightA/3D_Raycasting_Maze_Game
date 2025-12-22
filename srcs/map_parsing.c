@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 11:17:34 by mratsima          #+#    #+#             */
-/*   Updated: 2025/12/15 16:00:29 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/22 07:47:39 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,16 @@ int	count_map_lines(int fd)
 	return (count);
 }
 
-void	get_elements(int fd, t_display *display, int map_height)
+void	exhaust_gnl(char *str, int fd)
+{
+	while (str)
+	{
+		free(str);
+		str = get_next_line(fd);
+	}
+}
+
+int	get_elements(int fd, t_display *display, int map_height)
 {
 	char	*str;
 	char	*tmp;
@@ -106,11 +115,17 @@ void	get_elements(int fd, t_display *display, int map_height)
 		}
 		if (str)
 		{
-			store_texture(tmp2, str, display);
+			if (store_texture(tmp2, str, display))
+			{
+				exhaust_gnl(str, fd);
+				free(tmp);
+				return (1);
+			}
 		}
 		else
 			break ;
 		free(str);
 		free(tmp);
 	}
+	return (0);
 }
