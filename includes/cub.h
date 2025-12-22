@@ -228,11 +228,11 @@ typedef struct s_ray
 
 typedef struct s_tmp
 {
-	char	*tmp;
-	char	*tmp1;
-	char	*tmp2;
-	char	*tmp3;
-}				t_tmp;
+	char			*tmp;
+	char			*tmp1;
+	char			*tmp2;
+	char			*tmp3;
+}					t_tmp;
 
 typedef struct s_display
 {
@@ -283,8 +283,8 @@ int					get_map_height(t_display *display, int *map_height,
 						char *file);
 int					count_map_lines(int fd);
 char				**get_map(char *gnl, int fd, int map_height);
-int				get_elements(int fd, t_display *texture, int map_height);
-int				store_texture(char *tmp, char *str, t_display *display);
+int					get_elements(int fd, t_display *texture, int map_height);
+int					store_texture(char *tmp, char *str, t_display *display);
 t_line				*bresenham_line(t_point *begin, t_point *end);
 t_line				*dda_line(t_display *display);
 void				ft_lineadd_back(t_line **line, t_line *new);
