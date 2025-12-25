@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
+/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 11:42:50 by mratsima          #+#    #+#             */
-/*   Updated: 2025/12/21 14:38:46 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/25 16:18:49 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,11 @@ int	parsing(int *map_height, char *file, t_display *display)
 		ft_putstr_fd("Error\nNo such file or directory\n", 2);
 		return (1);
 	}
-	if (get_elements(fd, display, *map_height))
+	if (get_elements(fd, display, *map_height) || display->tex_error)
+	{
+		ft_putstr_fd("Error\nInvalid texture\n", 2);
 		return (1);
+	}
 	if (!display->texture.c_rgb || !display->texture.f_rgb
 		|| !display->texture.north || !display->texture.south
 		|| !display->texture.east || !display->texture.west || !display->map)

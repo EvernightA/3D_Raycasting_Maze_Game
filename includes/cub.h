@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
+/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/22 08:08:43 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/25 16:09:30 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -251,6 +251,7 @@ typedef struct s_display
 	float			beta;
 	t_ray			ray;
 	int				element_count;
+	int				tex_error;
 }					t_display;
 
 typedef struct s_tex_utils

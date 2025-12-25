@@ -3,20 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
+/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 10:27:44 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/22 08:08:25 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/25 16:16:58 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
+int	split_size(char **split)
+{
+	int i;
+
+	i = 0;
+	while (split[i])
+	{
+		i++;
+	}
+	return (i);
+}
 void	get_brute_texture(char *str, char **texture, t_display *display)
 {
 	char	*file;
 	char	*new_file;
+	char	**split;
 
+	split = ft_split(str, ' ');
+	if (split_size(split) != 2)
+		display->tex_error = 1;
 	file = ft_strnstr(str, ".", ft_strlen(str));
 	new_file = ft_strtrim(file, " \t\n");
 	if (texture && *texture)
@@ -24,6 +39,7 @@ void	get_brute_texture(char *str, char **texture, t_display *display)
 	*texture = ft_strdup(new_file);
 	display->element_count++;
 	free(new_file);
+	free_split(split);
 	return ;
 }
 
