@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 11:42:50 by mratsima          #+#    #+#             */
-/*   Updated: 2025/12/26 10:36:28 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/26 15:37:02 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	parsing(int *map_height, char *file, t_display *display)
 	}
 	if (get_elements(fd, display, *map_height) || display->tex_error)
 	{
-		ft_putstr_fd("Error\nInvalid texture or (absolute path)\n", 2);
+		ft_putstr_fd("Error\nInvalid texture\n", 2);
 		return (1);
 	}
 	if (!display->texture.c_rgb || !display->texture.f_rgb
