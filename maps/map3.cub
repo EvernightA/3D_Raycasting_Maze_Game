@@ -3,7 +3,7 @@ SO ./textures/opti.xpm
 EA ./textures/opti.xpm
 WE ./textures/opti.xpm
 
-C -2,0,1
+C 2,0,1
 F 2,5,1
 
         1111111111111111111111111
