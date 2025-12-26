@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 10:27:44 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/26 10:20:53 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/26 15:18:58 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,18 @@ void	get_brute_texture(char *str, char **texture, t_display *display)
 
 int	store_texture(char *tmp, char *str, t_display *display)
 {
+	char	*clean_str;
+
+	clean_str = ft_strtrim(str, "\t\n ");
 	tmp = ft_strtrim(str, " \t");
 	if (ft_strncmp("NO ", tmp, 3) == 0 || ft_strncmp("NO\t", tmp, 3) == 0)
-		get_brute_texture(str, &display->texture.north, display);
+		get_brute_texture(clean_str, &display->texture.north, display);
 	else if (ft_strncmp("SO ", tmp, 3) == 0 || ft_strncmp("SO\t", tmp, 3) == 0)
-		get_brute_texture(str, &display->texture.south, display);
+		get_brute_texture(clean_str, &display->texture.south, display);
 	else if (ft_strncmp("WE ", tmp, 3) == 0 || ft_strncmp("WE\t", tmp, 3) == 0)
-		get_brute_texture(str, &display->texture.west, display);
+		get_brute_texture(clean_str, &display->texture.west, display);
 	else if (ft_strncmp("EA ", tmp, 3) == 0 || ft_strncmp("EA\t", tmp, 3) == 0)
-		get_brute_texture(str, &display->texture.east, display);
+		get_brute_texture(clean_str, &display->texture.east, display);
 	else if (ft_strncmp("C ", tmp, 2) == 0 || ft_strncmp("C\t", tmp, 2) == 0)
 		rgb_storing(&display->texture.c_rgb, tmp, display);
 	else if (ft_strncmp("F ", tmp, 2) == 0 || ft_strncmp("F\t", tmp, 2) == 0)
@@ -66,6 +69,7 @@ int	store_texture(char *tmp, char *str, t_display *display)
 		free(tmp);
 		return (1);
 	}
+	free(clean_str);
 	free(tmp);
 	return (0);
 }
