@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:28:34 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/26 10:42:56 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/26 11:20:47 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,14 +113,23 @@ int	error_handling(t_display *display)
 int	input_error(int argc, char **argv)
 {
 	char	*tmp;
+	int		len;
 
 	if (argc != 2)
 	{
 		ft_putstr_fd("Error\nUsage: ./cub3D <path to the map>\n", 2);
 		return (1);
 	}
-	tmp = ft_strnstr(argv[1], ".cub", ft_strlen(argv[1]));
-	if (tmp == NULL || ft_strncmp(".cub", tmp, 4) != 0 || ft_strlen(tmp) == 4)
+	len = ft_strlen(argv[1]) - 4;
+	printf("argv %s\n", argv[1] + len - 1);
+	tmp = ft_strnstr(argv[1] + len, ".cub", ft_strlen(argv[1]));
+	printf("tmp = %s\n", tmp);
+	if (ft_strncmp(argv[1] + len - 1, "/.cub", ft_strlen(argv[1] + len - 1)) == 0)
+	{
+		ft_putstr_fd("Error\nInvalid extension for map\n", 2);
+		return (1);
+	}
+	if (tmp == NULL || ft_strncmp(".cub", tmp, 5) != 0)
 	{
 		ft_putstr_fd("Error\nInvalid extension for map\n", 2);
 		return (1);
