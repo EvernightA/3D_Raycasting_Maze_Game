@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 10:27:44 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/25 16:16:58 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/26 09:53:44 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,14 @@ void	get_brute_texture(char *str, char **texture, t_display *display)
 	char	**split;
 
 	split = ft_split(str, ' ');
-	if (split_size(split) != 2)
+	file = ft_strnstr(str, " .", ft_strlen(str));
+	if (split_size(split) != 2 || !file)
 		display->tex_error = 1;
-	file = ft_strnstr(str, ".", ft_strlen(str));
 	new_file = ft_strtrim(file, " \t\n");
 	if (texture && *texture)
+	{
 		free(*texture);
+	}
 	*texture = ft_strdup(new_file);
 	display->element_count++;
 	free(new_file);
@@ -73,6 +75,7 @@ void	get_clean_texture(char **texture)
 	char	*tmp;
 
 	tmp = NULL;
+	printf("--> %s\n", *texture);
 	tmp = ft_strtrim((*texture), "\n");
 	free(*texture);
 	(*texture) = ft_strdup(tmp);
