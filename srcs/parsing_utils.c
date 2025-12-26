@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 10:27:44 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/26 09:53:44 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/26 10:20:53 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ void	get_clean_texture(char **texture)
 	char	*tmp;
 
 	tmp = NULL;
-	printf("--> %s\n", *texture);
 	tmp = ft_strtrim((*texture), "\n");
 	free(*texture);
 	(*texture) = ft_strdup(tmp);

@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 11:28:34 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/25 15:37:08 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/26 10:31:13 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ int	error_handling(t_display *display)
 	if (matrix_height(tmp) <= 2)
 	{
 		ft_putstr_fd("Error\nWhat kind of psych are u?\n", 2);
+		free_split(tmp);
 		free_tex_map(display);
 		return (1);
 	}
