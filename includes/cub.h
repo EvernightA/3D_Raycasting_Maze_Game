@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
+/*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:18:18 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/25 16:09:30 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/26 15:05:40 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -343,5 +343,6 @@ void				init_ray_direction(t_display *display, float angle);
 void				init_step_and_side_dist(t_display *display);
 int					is_valid_map_pos(t_display *display);
 void				rgb_storing(char **rgb, char *tmp, t_display *display);
+int					split_size(char **split);
 
 #endif

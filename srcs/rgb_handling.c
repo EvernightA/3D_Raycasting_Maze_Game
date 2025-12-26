@@ -6,7 +6,7 @@
 /*   By: mratsima <mratsima@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 14:57:44 by mratsima          #+#    #+#             */
-/*   Updated: 2025/12/26 14:59:06 by mratsima         ###   ########.fr       */
+/*   Updated: 2025/12/26 15:02:43 by mratsima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,10 @@ int	non_numeric_check(char *rgb_part)
 	return (0);
 }
 
-int not_enough_values(char **split_rgb)
+int	not_enough_values(char **split_rgb)
 {
-    return (!split_rgb || !split_rgb[0] || !split_rgb[1] || !split_rgb[2] || split_rgb[3]);
+	return (!split_rgb || !split_rgb[0] || !split_rgb[1] || !split_rgb[2]
+		|| split_rgb[3]);
 }
 
 int	non_numeric_values(char **split_rgb)
@@ -57,7 +58,7 @@ int	get_rgb(t_rgb *rgb, char *og_rgb)
 		return (1);
 	i = 0;
 	while (og_rgb[i] && (og_rgb[i] == ' ' || og_rgb[i] == '	'
-		|| og_rgb[i] == 'F' || og_rgb[i] == 'C'))
+			|| og_rgb[i] == 'F' || og_rgb[i] == 'C'))
 		i++;
 	str_rgb = ft_strtrim(&og_rgb[i], " \t\n");
 	split_rgb = ft_split(str_rgb, ',');
