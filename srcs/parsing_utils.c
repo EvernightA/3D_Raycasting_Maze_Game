@@ -6,23 +6,12 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 10:27:44 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/26 15:18:58 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/26 15:21:31 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-int	split_size(char **split)
-{
-	int i;
-
-	i = 0;
-	while (split[i])
-	{
-		i++;
-	}
-	return (i);
-}
 void	get_brute_texture(char *str, char **texture, t_display *display)
 {
 	char	*file;
