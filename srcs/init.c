@@ -6,7 +6,7 @@
 /*   By: fsamy-an <fsamy-an@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 12:27:43 by fsamy-an          #+#    #+#             */
-/*   Updated: 2025/12/15 14:03:19 by fsamy-an         ###   ########.fr       */
+/*   Updated: 2025/12/25 16:09:54 by fsamy-an         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	init_it(t_display *display)
 	display->end.x = 0;
 	display->end.y = 0;
 	display->element_count = 0;
+	display->tex_error = 0;
 }
 
 void	orientation_init(t_display *display, int i, int j)
