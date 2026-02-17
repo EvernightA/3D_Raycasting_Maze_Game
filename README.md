@@ -1,4 +1,4 @@
-# Cub3D
+# 3D_Raycasting_Maze_Game
 
 A raycasting-powered first-person 3D maze explorer implemented in C with MiniLibX, offering textured walls and smooth player movement in a grid-based world, inspired by classic FPS games like Wolfenstein 3D.
 
