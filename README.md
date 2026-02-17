@@ -25,7 +25,7 @@ A raycasting-powered first-person 3D maze explorer implemented in C with MiniLib
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone [<repository-url>](https://github.com/EvernightA/cub3d.git)
    cd cub3D
    ```
 
