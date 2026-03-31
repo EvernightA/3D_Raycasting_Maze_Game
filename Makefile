@@ -1,0 +1,73 @@
+CC = gcc
+
+CFLAGS = -Wall -Wextra -Werror -g
+
+NAME = cub3D
+
+MLXFLAGS =  -Lminilibx-linux ./minilibx-linux/libmlx_Linux.a ./libft/libft.a -lX11 -lXext -lm
+
+LIBFT = ./libft/libft.a
+
+SRCS_DIR = ./srcs/
+
+OBJ_DIR = ./objs/
+
+SRCS =  $(SRCS_DIR)main.c 				\
+	    $(SRCS_DIR)map_parsing.c 		\
+		$(SRCS_DIR)bresenham.c			\
+		$(SRCS_DIR)line_utils.c			\
+		$(SRCS_DIR)frees.c 				\
+		$(SRCS_DIR)mlx_utils.c			\
+		$(SRCS_DIR)error.c				\
+		$(SRCS_DIR)ft_atoll.c			\
+		$(SRCS_DIR)rgb_handling.c		\
+		$(SRCS_DIR)error2.c				\
+		$(SRCS_DIR)error3.c				\
+		$(SRCS_DIR)error4.c				\
+		$(SRCS_DIR)init.c				\
+		$(SRCS_DIR)rotate.c				\
+		$(SRCS_DIR)calculus.c			\
+		$(SRCS_DIR)img.c				\
+		$(SRCS_DIR)moves.c				\
+		$(SRCS_DIR)tex_mapping.c		\
+		$(SRCS_DIR)color_utils.c		\
+		$(SRCS_DIR)parsing_utils.c		\
+		$(SRCS_DIR)parsing_utils2.c		\
+		$(SRCS_DIR)dda.c	        	\
+		$(SRCS_DIR)line_drawing_utils.c	\
+		$(SRCS_DIR)texture_loading.c	\
+		$(SRCS_DIR)line_drawing.c
+
+
+OBJ = $(SRCS:$(SRCS_DIR)%.c=%.o)
+
+MLX = ./minilibx-linux/libmlx_Linux.a
+
+MINILIBX = ./minilibx-linux/
+
+all : $(NAME)
+
+$(LIBFT):
+	make -C ./libft
+
+$(MLX) :
+	make -C $(MINILIBX)
+
+$(OBJ) : $(SRCS) $(LIBFT)
+	$(CC) $(CFLAGS) -c $(SRCS)
+
+$(NAME) : $(OBJ) $(LIBFT) $(MLX)
+	$(CC) $(CFLAGS) $(OBJ) $(MLXFLAGS) $(LIBFT) -o $(NAME);
+
+clean:
+	make clean -C $(MINILIBX)
+	make clean -C ./libft
+	rm -f $(OBJ)
+
+fclean: clean
+	make fclean -C ./libft
+	rm -f $(NAME)
+
+re : fclean all
+
+.PHONY: all fclean clean re
